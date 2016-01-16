@@ -1,0 +1,102 @@
+@import "grid-settings.less";
+@import "../core/mixins.less";
+@lt-size0: ~"only screen and (max-width : (@size0 - 1))";
+
+.container() {
+    .clearfix;
+	margin: 0 auto;
+	padding: 0px;
+	border: 0px;
+
+    @media @lt-size0 {//only screen and (max-width : (@size0 - 1)) {
+        width: 100%;
+    }
+    @media only screen and (min-width : @size0) and (max-width : (@size1 - 1)) {
+        width: @size0 - 15px;
+    }
+    @media only screen and (min-width : @size1) and (max-width : (@size2 - 1)) {
+        width: @size1 - 15px;
+    }
+    @media only screen and (min-width : @size2) {
+        width: @size2 - 15px;
+    }
+}
+
+.container-fluid() {
+    width: 100%;
+}
+
+.row() {
+    .clearfix;
+	margin: 0px;
+	//margin: 1.12em 0;
+	padding: 0px;
+	border: 0px;
+	width: 100%;
+}
+
+.columns(@count, @total) {
+    .clearfix;
+    display: block;
+    float: left;
+    margin: 0px;
+    //padding: 0px;
+    //border: 0px;
+    width: (@count * 100% / @total);
+    @media only screen and (max-width : (@size0 - 1)) {
+        width: 100%;
+    }
+}
+
+.offset(@count, @total) {
+    margin: 0px 0px 0px (@count * 100% / @total);
+    @media only screen and (max-width : (@size0 - 1)) {
+        margin: 0px 0px 0px 0px;
+    }
+}
+
+.make-columns(@width, @number, @index: 1) when (@index =< @number) {
+    .span@{index} {
+        display: block;
+        float: left;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        width: (@index * @width / @number);
+    }
+    .make-columns(@width, @number, (@index + 1));
+}
+
+.make-offsets(@width, @number, @index: 1) when (@index =< @number) {
+    .offset@{index} {
+        display: block;
+        float: left;
+        padding: 0px;
+        border: 0px;
+        margin: 0px 0px 0px (@index * @width / @number);
+    }
+    .make-offsets(@width, @number, (@index + 1));
+}
+
+.make-columns-fluid(@number, @index: 1) when (@index =< @number) {
+    .span@{index} {
+        display: block;
+        float: left;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        width: (@index * 100% / @number);
+    }
+    .make-columns(@number, (@index + 1));
+}
+
+.make-offsets-fluid(@number, @index: 1) when (@index =< @number) {
+    .offset@{index} {
+        display: block;
+        float: left;
+        padding: 0px;
+        border: 0px;
+        margin: 0px 0px 0px (@index * 100% / @number);
+    }
+    .make-offsets(@number, (@index + 1));
+}

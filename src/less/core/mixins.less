@@ -1,0 +1,141 @@
+@import "../settings.less";
+.hidden {
+	display: none ! important;
+}
+
+.hidden-soft {
+	position: absolute ! important;
+	overflow: hidden;
+	top: -9999px ! important;
+	left: -9999px ! important;
+	visibility: hidden;
+	height: 0px;
+	width: 0px;
+}
+
+.hidden-visually {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+}
+
+.show-block {
+	display: block ! important;
+}
+
+.clearfix {
+	display: block;
+	zoom: 1;
+	&:after {
+		display: table;
+		content: '';
+		clear: both;
+	}
+}
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+.noselect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.border-radius (@radius) {
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.border-top-left-radius (@radius) {
+	-moz-border-radius-topleft: @radius;
+	border-top-left-radius: @radius;
+}
+
+.border-top-right-radius (@radius) {
+	-moz-border-radius-topright: @radius;
+	border-top-right-radius: @radius;
+}
+
+.border-bottom-right-radius (@radius) {
+	-moz-border-radius-bottomright: @radius;
+	border-bottom-right-radius: @radius;
+}
+
+.border-bottom-left-radius (@radius) {
+	-moz-border-radius-bottomleft: @radius;
+	border-bottom-left-radius: @radius;
+}
+
+.border-radius-all (@top-left , @top-right , @bottom-right , @bottom-left) {
+	.border-top-left-radius (@top-left);
+	.border-top-right-radius (@top-right);
+	.border-bottom-right-radius (@bottom-right);
+	.border-bottom-left-radius (@bottom-left);
+}
+
+.box-sizing (@value) {
+	box-sizing: @value;
+	-moz-box-sizing: @value;
+}
+
+.linear-gradient (@direction , @color0 , @color1) {
+	@props: ~`"@{arguments}".replace(/[\[\]]/g, '')`;
+	//background-color: average(@color0, @color1);
+	background: -webkit-linear-gradient(@props);
+	background: -moz-linear-gradient(@props);
+	background: -ms-linear-gradient(@props);
+	background: -o-linear-gradient(@props);
+	background: linear-gradient(@props);
+}
+
+.repeating-linear-gradient (@direction , @color0 , @color1) {
+	@props: ~`"@{arguments}".replace(/[\[\]]/g, '')`;
+	background-color: average(@color0, @color1);
+	background-image: -webkit-repeating-linear-gradient(@props);
+	background-image: -moz-repeating-linear-gradient(@props);
+	background-image: -ms-repeating-linear-gradient(@props);
+	background-image: -o-repeating-linear-gradient(@props);
+	background-image: repeating-linear-gradient(@props);
+}
+
+.radial-radient (@direction , @color0 , @color1) {
+	@props: ~`"@{arguments}".replace(/[\[\]]/g, '')`;
+	background-color: average(@color0, @color1);
+	background-image: -webkit-radial-gradient(@props);
+	background-image: -moz-radial-gradient(@props);
+	background-image: -ms-radial-gradient(@props);
+	background-image: -o-radial-gradient(@props);
+	background-image: radial-gradient(@props);
+}
+
+.repeating-radial-radient (@direction , @color0 , @color1) {
+	@props: ~`"@{arguments}".replace(/[\[\]]/g, '')`;
+	background-color: average(@color0, @color1);
+	background-image: -webkit-repeating-radial-gradient(@props);
+	background-image: -moz-repeating-radial-gradient(@props);
+	background-image: -ms-repeating-radial-gradient(@props);
+	background-image: -o-repeating-radial-gradient(@props);
+	background-image: repeating-radial-gradient(@props);
+}
+
+.transform (@value) {
+	-webkit-transform: @value;
+	-moz-transform: @value;
+	-ms-transform: @value;
+	-o-transform: @value;
+	transform: @value;
+}
