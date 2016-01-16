@@ -1,0 +1,10 @@
+{
+    "name": "build-widgets",
+    "version": "0.0.0",
+    "ignore": [
+        ".jshintrc",
+        "**/*.txt"
+    ],
+    "dependencies": {},
+    "devDependencies": {}
+}
