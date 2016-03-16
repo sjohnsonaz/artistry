@@ -1,0 +1,154 @@
+@import "input-settings.less";
+
+/* LESS Style */
+.focus() {
+    &:focus {
+        outline: none;
+        border-color: @input-default-border-color-focus;
+        box-shadow: @box-shadow-height-1;
+    }
+}
+
+.focus-tight() {
+    &:focus {
+        outline: none;
+        background-color: darken(@input-default-background-color, @darker);
+        border-color: @input-default-border-color;
+        box-shadow: inherit;
+    }
+}
+
+.button,
+button,
+input[type="button"] {
+    .noselect;
+    display: inline-block;
+    margin: @input-margin;
+    padding: @input-padding;
+    border: @input-border-width solid @input-default-border-color;
+    color: @input-default-color;
+    background-color: @input-default-background-color;
+    border-radius: @input-border-radius;
+    box-shadow: @input-box-shadow-height0;
+    transition: box-shadow 0.3s;
+    &:hover {
+        color: lighten(@input-default-color, @lighter);
+        background-color: lighten(@input-default-background-color, @lighter);
+        box-shadow: @input-box-shadow-height1;
+    }
+    &:active {
+        color: darken(@input-default-color, @darker);
+        background-color: darken(@input-default-background-color, @darker);
+    }
+    .focus();
+}
+
+.button-primary {
+    border: @input-border-width solid @input-primary-border-color;
+    color: @input-primary-color;
+    background-color: @input-primary-background-color;
+    &:hover {
+        color: lighten(@input-primary-color, @lighter);
+        background-color: lighten(@input-primary-background-color, @lighter);
+    }
+    &:active {
+        color: darken(@input-primary-color, @darker);
+        background-color: darken(@input-primary-background-color, @darker);
+    }
+}
+
+.button-danger {
+    border: @input-border-width solid @input-danger-border-color;
+    color: @input-danger-color;
+    background-color: @input-danger-background-color;
+    &:hover {
+        color: lighten(@input-danger-color, @lighter);
+        background-color: lighten(@input-danger-background-color, @lighter);
+    }
+    &:active {
+        color: darken(@input-danger-color, @darker);
+        background-color: darken(@input-danger-background-color, @darker);
+    }
+}
+
+.submit,
+button[type="submit"],
+input[type="submit"] {
+    .button;
+    .button-primary;
+}
+
+.button-group {
+    .clearfix;
+    display: inline-block;
+    margin: @input-margin;
+    padding: 0px;
+    vertical-align: middle;
+    box-shadow: @input-box-shadow-height0;
+    border-radius: @input-border-radius;
+    transition: box-shadow 0.3s;
+    &:hover {
+		box-shadow: @input-box-shadow-height1;
+    }
+    & > button,
+    & > input {
+        display: block;
+        .pull-left;
+        margin:0px;
+        border-right-width: 0px;
+        border-radius: 0px;
+        .focus-tight();
+        box-shadow: none;
+        &:first-child {
+            border-top-left-radius: @input-border-radius;
+            border-bottom-left-radius: @input-border-radius;
+        }
+        &:last-child {
+            border-right-width: @input-border-width;
+            border-top-right-radius: @input-border-radius;
+            border-bottom-right-radius: @input-border-radius;
+        }
+    }
+}
+
+.text,
+.password,
+.textarea,
+input[type="text"],
+input[type="password"],
+textarea {
+    .focus();
+    margin: @input-margin;
+    padding: @input-padding;
+    border-radius: @input-border-radius;
+    border: @input-border-width solid @input-default-border-color;
+    font-family: Arial;
+    box-shadow: @input-box-shadow-height0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+}
+
+.label,
+label {
+    font-weight: bold;
+}
+
+.fieldset,
+fieldset {
+    border-radius: @input-border-radius;
+    border: @input-border-width solid @input-default-border-color;
+}
+
+.select,
+select {
+	.focus();
+	margin: @input-margin;
+	padding: @input-padding;
+	border-radius: @input-border-radius;
+	border: @input-border-width solid @input-default-border-color;
+	font-family: Arial;
+	overflow: auto;
+    box-shadow: @input-box-shadow-height0;
+}
