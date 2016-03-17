@@ -4,6 +4,7 @@
 @quarter-pi: 3.141592653589793 / 4;
 @popover-box-shadow-x-prime: @popover-box-shadow-x * cos(@quarter-pi) + @popover-box-shadow-y * sin(@quarter-pi);
 @popover-box-shadow-y-prime: -@popover-box-shadow-x * sin(@quarter-pi) + @popover-box-shadow-y * cos(@quarter-pi);
+@popover-gradient-percentage: 60%;
 .popover-trigger {
     position: relative;
 }
@@ -123,24 +124,24 @@
         -webkit-backface-visibility: hidden;
         -webkit-filter: blur(0);
         .popover-top& {
-            .linear-gradient(-45deg, @popover-background-color 51%, transparent 51%);
+            .linear-gradient(-45deg, @popover-background-color @popover-gradient-percentage, transparent @popover-gradient-percentage);
             .transform(translateY(@popover-diagonal / 2 - @popover-border-width) translateX(-50%) rotate(45deg));
             left: 50%;
             bottom: @popover-spacing;
         }
         .popover-right& {
-            .linear-gradient(45deg, @popover-background-color 51%, transparent 51%);
+            .linear-gradient(45deg, @popover-background-color @popover-gradient-percentage, transparent @popover-gradient-percentage);
             transform: translateX(@popover-border-width - @popover-diagonal / 2) translateY(-50%) rotate(45deg);
             top: 50%;
         }
         .popover-bottom& {
-            .linear-gradient(135deg, @popover-background-color 51%, transparent 51%);
+            .linear-gradient(135deg, @popover-background-color @popover-gradient-percentage, transparent @popover-gradient-percentage);
             transform: translateY(@popover-border-width - @popover-diagonal / 2) translateX(-50%) rotate(45deg);
             left: 50%;
             top: @popover-spacing;
         }
         .popover-left& {
-            .linear-gradient(-135deg, @popover-background-color 51%, transparent 51%);
+            .linear-gradient(-135deg, @popover-background-color @popover-gradient-percentage, transparent @popover-gradient-percentage);
             transform: translateX(@popover-diagonal / 2 - @popover-border-width) translateY(-50%) rotate(45deg);
             top: 50%;
             right: @popover-spacing;
