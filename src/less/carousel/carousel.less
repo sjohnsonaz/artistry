@@ -1,0 +1,34 @@
+@import "carousel-settings.less";
+.carousel {
+    display: block;
+    position: relative;
+    min-height: 200px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    &:after {
+        display: table;
+        content: '';
+        clear: both;
+    }
+    & > div {
+        display: block;
+        position: absolute;
+        float: left;
+        padding: 0;
+        margin: 0;
+        top: 0;
+        right: 100%;
+        left: -100%;
+        bottom: 0;
+        transition: left 0.5s, right 0.5s;
+        &.carousel-selected {
+            right: 0;
+            left: 0;
+        }
+        &.breadcrumb-selected ~ div {
+            right: -100%;
+            left: 100%;
+        }
+    }
+}
