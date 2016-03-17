@@ -1,0 +1,173 @@
+@import "tooltip-settings.less";
+@import "../core/mixins.less";
+
+.tooltip {
+	position: relative;
+	/* These may affect the applied element */
+	display: inline-block;
+	overflow: visible;
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		border: @tooltip-spacing solid @tooltip-background-color;
+		width: 0;
+		z-index: @tooltip-zindex + 1;
+
+		text-decoration: underline;
+		visibility: hidden;
+		opacity: 0;
+		transition: visibility 0s, opacity 0.3s;
+		-webkit-backface-visibility: hidden;
+
+		.tooltip-info& {
+			border-color: @tooltip-info-background-color;
+		}
+		.tooltip-success& {
+			border-color: @tooltip-success-background-color;
+		}
+		.tooltip-warning& {
+			border-color: @tooltip-warning-background-color;
+		}
+		.tooltip-error& {
+			border-color: @tooltip-error-background-color;
+		}
+
+		.tooltip-top& {
+			top: -@tooltip-spacing;
+			right: 50%;
+			margin: 0 -@tooltip-spacing;
+			border-right-color: transparent;
+			border-bottom-color: transparent;
+			border-left-color: transparent;
+		}
+		.tooltip-bottom& {
+			bottom: -@tooltip-spacing;
+			right: 50%;
+			margin: 0 -@tooltip-spacing;
+			border-top-color: transparent;
+			border-right-color: transparent;
+			border-left-color: transparent;
+		}
+		.tooltip-right& {
+			right: -@tooltip-spacing;
+			bottom: 50%;
+			margin: -@tooltip-spacing 0;
+			border-top-color: transparent;
+			border-bottom-color: transparent;
+			border-left-color: transparent;
+		}
+		.tooltip-left& {
+			left: -@tooltip-spacing;
+			bottom: 50%;
+			margin: -@tooltip-spacing 0;
+			border-top-color: transparent;
+			border-right-color: transparent;
+			border-bottom-color: transparent;
+		}
+	}
+	&:after {
+		content: attr(aria-label);
+		display: block;
+		position: absolute;
+		background-color: @tooltip-background-color;
+		color: @tooltip-color;
+		padding: @tooltip-padding;
+		border: 1px solid @tooltip-background-color;
+		border-radius: @tooltip-border-radius;
+		white-space: pre;
+		line-height: @tooltip-line-height;
+		font-size: @tooltip-font-size;
+		font-weight: @tooltip-font-weight;
+		z-index: @tooltip-zindex;
+
+		text-decoration: underline;
+		visibility: hidden;
+		opacity: 0;
+		transition: visibility 0s, opacity 0.3s;
+
+		.tooltip-info& {
+			border-color: @tooltip-info-background-color;
+			background-color: @tooltip-info-background-color;
+			color: @tooltip-info-color;
+		}
+		.tooltip-success& {
+			border-color: @tooltip-success-background-color;
+			background-color: @tooltip-success-background-color;
+			color: @tooltip-success-color;
+		}
+		.tooltip-warning& {
+			border-color: @tooltip-warning-background-color;
+			background-color: @tooltip-warning-background-color;
+			color: @tooltip-warning-color;
+		}
+		.tooltip-error& {
+			border-color: @tooltip-error-background-color;
+			background-color: @tooltip-error-background-color;
+			color: @tooltip-error-color;
+		}
+
+		/* Fixed blurry text in Chrome */
+		-webkit-backface-visibility: hidden;
+		-webkit-filter: blur(0);
+		.tooltip-top& {
+			bottom: 100%;
+			margin: @tooltip-spacing 0;
+			right: 50%;
+			.transform(translateX(50%));
+		}
+		.tooltip-bottom& {
+			top: 100%;
+			margin: @tooltip-spacing 0;
+			right: 50%;
+			.transform(translateX(50%));
+		}
+		.tooltip-right& {
+			left: 100%;
+			margin: 0 @tooltip-spacing;
+			top: 50%;
+			.transform(translateY(-50%));
+		}
+		.tooltip-left& {
+			right: 100%;
+			margin: 0 @tooltip-spacing;
+			top: 50%;
+			.transform(translateY(-50%));
+		}
+		.tooltip-top.tooltip-align-left&,
+		.tooltip-bottom.tooltip-align-left& {
+			right: auto;
+			left: 0;
+			.transform(none);
+		}
+		.tooltip-top.tooltip-align-right&,
+		.tooltip-bottom.tooltip-align-right& {
+			right: 0;
+			.transform(none);
+		}
+		.tooltip-right.tooltip-align-top&,
+		.tooltip-left.tooltip-align-top& {
+			top: 0;
+			.transform(none);
+		}
+		.tooltip-right.tooltip-align-bottom&,
+		.tooltip-left.tooltip-align-bottom& {
+			top: auto;
+			bottom: 0;
+			.transform(none);
+		}
+	}
+	&:hover,
+	&.tooltip-open {
+		&:before {
+			text-decoration: none;
+			visibility: visible;
+			opacity: 1;
+		}
+		&:after {
+			text-decoration: none;
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
