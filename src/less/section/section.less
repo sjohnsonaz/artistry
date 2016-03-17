@@ -1,4 +1,5 @@
 @import "section-settings.less";
+@section-header-margin: -(@section-border-width + @section-padding);
 section.section {
     border: @section-border-width solid @section-border-color;
     border-radius: @section-border-radius;
@@ -10,7 +11,7 @@ section.section {
         font-weight: @section-header-font-weight;
         border: @section-border-width solid @section-border-color;
         padding: @section-padding;
-        margin: -(@section-border-width + @section-padding);
+        margin: @section-header-margin @section-header-margin 0;
     }
     & > .section-content {
         transition: max-height @section-animation-time;
