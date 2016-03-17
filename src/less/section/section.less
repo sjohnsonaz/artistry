@@ -6,6 +6,7 @@ section.section {
     padding: @section-padding;
     margin: @section-margin 0;
     overflow: hidden;
+    box-shadow: @section-box-shadow;
     & > header {
         background-color: @section-header-background-color;
         color: @section-header-color;
@@ -16,7 +17,6 @@ section.section {
     }
     & > .section-content {
         transition: max-height @section-animation-time;
-        overflow: hidden;
     }
     &.section-closed > .section-content {
         max-height: 0;
