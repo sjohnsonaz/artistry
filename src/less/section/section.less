@@ -1,0 +1,22 @@
+@import "section-settings.less";
+section.section {
+    border: @section-border-width solid @section-border-color;
+    border-radius: @section-border-radius;
+    padding: @section-padding;
+    overflow: hidden;
+    & > header {
+        background-color: @section-header-background-color;
+        color: @section-header-color;
+        font-weight: @section-header-font-weight;
+        border: @section-border-width solid @section-border-color;
+        padding: @section-padding;
+        margin: -(@section-border-width + @section-padding);
+    }
+    & > .section-content {
+        transition: max-height @section-animation-time;
+        overflow: hidden;
+    }
+    &.section-closed > .section-content {
+        max-height: 0;
+    }
+}
