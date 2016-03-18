@@ -40,4 +40,10 @@ table.table {
             background-color: @table-row-hover-background-color;
         }
     }
+    & > tfoot {
+        .table-row-template();
+        & > tr {
+            border-top: 1px solid @table-head-border-color;
+        }
+    }
 }
