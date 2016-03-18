@@ -2,10 +2,11 @@
 .carousel {
     display: block;
     position: relative;
-    min-height: 200px;
+    //min-height: 200px;
     padding: 0;
     margin: 0;
     overflow: hidden;
+    transition: height 0.5s;
     &:after {
         display: table;
         content: '';
@@ -14,19 +15,26 @@
     & > div {
         display: block;
         position: absolute;
-        float: left;
         padding: 0;
         margin: 0;
-        top: 0;
+
+        //top: 0;
         right: 100%;
         left: -100%;
-        bottom: 0;
-        transition: left 0.5s, right 0.5s;
-        &.carousel-selected {
+
+        //bottom: 0;
+        transition: left 0.5s, right 0.5s, position 0s linear 0.5s;
+        &.carousel-selecting {
             right: 0;
             left: 0;
         }
-        &.breadcrumb-selected ~ div {
+        &.carousel-selected {
+            right: 0;
+            left: 0;
+            position: static;
+        }
+        &.carousel-selecting ~ div,
+        &.carousel-selected ~ div {
             right: -100%;
             left: 100%;
         }

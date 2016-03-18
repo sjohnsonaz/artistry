@@ -11,4 +11,18 @@ $(function () {
             });
         });
     });
+
+    window.runCarousel = function (index) {
+        var carousel = $('.carousel');
+        var child = $(carousel.children()[index]);
+        carousel.height(carousel.height());
+        carousel.children().removeClass('carousel-selected');
+        child.addClass('carousel-selecting');
+        carousel.height(child.height());
+        window.setTimeout(function () {
+            child.removeClass('carousel-selecting');
+            child.addClass('carousel-selected');
+            carousel.height('auto');
+        }, 500);
+    }
 });
