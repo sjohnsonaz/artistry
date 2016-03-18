@@ -1,10 +1,12 @@
 {
-    "name": "build-widgets",
-    "version": "0.0.0",
-    "ignore": [
-        ".jshintrc",
-        "**/*.txt"
-    ],
-    "dependencies": {},
-    "devDependencies": {}
+  "name": "build-widgets",
+  "version": "0.0.0",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "jquery": "~2.2.2"
+  }
 }

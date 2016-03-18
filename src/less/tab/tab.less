@@ -60,5 +60,11 @@
         background-color: @tab-background-color;
         border-radius: 0 @tab-border-radius @tab-border-radius @tab-border-radius;
         box-shadow: @tab-box-shadow;
+        & > div {
+            display: none;
+            &.tab-active {
+                display: block;
+            }
+        }
     }
 }
