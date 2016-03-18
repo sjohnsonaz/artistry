@@ -27,6 +27,9 @@ $(function () {
         }
         hidden = !hidden;
     });
+    $('.modal-content').click(function(event) {
+        event.stopPropagation();
+    });
 
     var carouselIndex = 0;
     var timeout;
