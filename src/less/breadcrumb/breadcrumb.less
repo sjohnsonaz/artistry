@@ -1,10 +1,13 @@
 @import "breadcrumb-settings.less";
 @breadcrumb-padding: 10px;
 @breadcrumb-line-height: 30px;
-@breadcrumb-border-width: @default-border-width;
+@breadcrumb-border-width: 1px;//@default-border-width;
 @breadcrumb-border-color: @default-border-color;
+@breadcrumb-border-radius: @default-border-radius;
 @breadcrumb-height: 2 * @breadcrumb-padding + @breadcrumb-line-height;
-@breadcrumb-diagonal: (@breadcrumb-height + 1) * sqrt(2) / 2;
+@breadcrumb-curve-offset-x: @breadcrumb-border-radius - (@breadcrumb-border-radius * cos(45deg));
+@breadcrumb-curve-offset-y: @breadcrumb-curve-offset-x;
+@breadcrumb-diagonal: (@breadcrumb-height + 3 * @breadcrumb-border-width - 2 * @breadcrumb-curve-offset-x) * sqrt(2) / 2;
 .breadcrumb {
     list-style: none;
     padding: 0;
@@ -17,13 +20,19 @@
     }
     & > li {
         margin: 0;
+        margin-left: -@breadcrumb-border-radius;
         padding: 0;
         float: left;
         border-top: @breadcrumb-border-width solid @breadcrumb-border-color;
-        border-right: 0;
+        border-right: @breadcrumb-border-width solid @breadcrumb-border-color;
         border-bottom: @breadcrumb-border-width solid @breadcrumb-border-color;
+        border-top-right-radius: @breadcrumb-border-radius;
+        border-bottom-right-radius: @breadcrumb-border-radius;
         &:first-child {
+            margin-left: 0;
             border-left: @breadcrumb-border-width solid @breadcrumb-border-color;
+            border-top-left-radius: @breadcrumb-border-radius;
+            border-bottom-left-radius: @breadcrumb-border-radius;
             & > a {
                 padding-left: @breadcrumb-padding;
             }
@@ -34,6 +43,7 @@
             margin: 0;
             padding: @breadcrumb-padding;
             padding-left: @breadcrumb-diagonal;
+            padding-right: @breadcrumb-padding + @breadcrumb-curve-offset-x;
             text-decoration: none;
             float: left;
             height: @breadcrumb-height;
@@ -41,11 +51,17 @@
                 display: block;
                 content: '';
                 position: absolute;
-                right: 0;
-                top: -2px;
+                & when (@breadcrumb-border-radius > 0) {
+                    right: 0;
+                }
+                & when (@breadcrumb-border-radius = 0) {
+                    right: -@breadcrumb-border-width;
+                }
+                top: @breadcrumb-curve-offset-y - 2 * @breadcrumb-border-width;
                 transform: translateX(50%) translateY(25%) rotate(45deg);
                 border-top: @breadcrumb-border-width solid @breadcrumb-border-color;
                 border-right: @breadcrumb-border-width solid @breadcrumb-border-color;
+                border-top-right-radius: @breadcrumb-border-radius;
                 height: @breadcrumb-diagonal;
                 width: @breadcrumb-diagonal;
             }
