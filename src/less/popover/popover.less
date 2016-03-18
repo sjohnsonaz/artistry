@@ -45,24 +45,24 @@
     .popover-top.popover-align-left&,
     .popover-bottom.popover-align-left& {
         left: 0;
-        transform: none;
+        .transform(none);
     }
     .popover-top.popover-align-right&,
     .popover-bottom.popover-align-right& {
         right: 0;
         left: auto;
-        transform: none;
+        .transform(none);
     }
     .popover-right.popover-align-top&,
     .popover-left.popover-align-top& {
         top: 0;
-        transform: none;
+        .transform(none);
     }
     .popover-right.popover-align-bottom&,
     .popover-left.popover-align-bottom& {
         top: auto;
         bottom: 0;
-        transform: none;
+        .transform(none);
     }
     &:before {
         content: '';
@@ -131,18 +131,18 @@
         }
         .popover-right& {
             .linear-gradient(45deg, @popover-background-color @popover-gradient-percentage, transparent @popover-gradient-percentage);
-            transform: translateX(@popover-border-width - @popover-diagonal / 2) translateY(-50%) rotate(45deg);
+            .transform(translateX(@popover-border-width - @popover-diagonal / 2) translateY(-50%) rotate(45deg));
             top: 50%;
         }
         .popover-bottom& {
             .linear-gradient(135deg, @popover-background-color @popover-gradient-percentage, transparent @popover-gradient-percentage);
-            transform: translateY(@popover-border-width - @popover-diagonal / 2) translateX(-50%) rotate(45deg);
+            .transform(translateY(@popover-border-width - @popover-diagonal / 2) translateX(-50%) rotate(45deg));
             left: 50%;
             top: @popover-spacing;
         }
         .popover-left& {
             .linear-gradient(-135deg, @popover-background-color @popover-gradient-percentage, transparent @popover-gradient-percentage);
-            transform: translateX(@popover-diagonal / 2 - @popover-border-width) translateY(-50%) rotate(45deg);
+            .transform(translateX(@popover-diagonal / 2 - @popover-border-width) translateY(-50%) rotate(45deg));
             top: 50%;
             right: @popover-spacing;
         }

@@ -1,7 +1,7 @@
 @import "breadcrumb-settings.less";
 @breadcrumb-padding: 10px;
 @breadcrumb-line-height: 30px;
-@breadcrumb-border-width: 1px;//@default-border-width;
+@breadcrumb-border-width: 1px; //@default-border-width;
 @breadcrumb-border-color: @default-border-color;
 @breadcrumb-border-radius: @default-border-radius;
 @breadcrumb-height: 2 * @breadcrumb-padding + @breadcrumb-line-height;
@@ -58,7 +58,7 @@
                     right: -@breadcrumb-border-width;
                 }
                 top: @breadcrumb-curve-offset-y - 2 * @breadcrumb-border-width;
-                transform: translateX(50%) translateY(25%) rotate(45deg);
+                .transform(translateX(50%) translateY(25%) rotate(45deg));
                 border-top: @breadcrumb-border-width solid @breadcrumb-border-color;
                 border-right: @breadcrumb-border-width solid @breadcrumb-border-color;
                 border-top-right-radius: @breadcrumb-border-radius;
