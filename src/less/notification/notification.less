@@ -1,0 +1,84 @@
+@import "notification-settings.less";
+@notification-width: 300px;
+@notification-border-width: @default-border-width;
+@notification-border-color: @default-border-color;
+@notification-border-radius: @default-border-radius;
+@notification-padding: @default-padding;
+@notification-margin: @default-margin-layout;
+@notification-background-color: @default-background-color;
+@notification-color: @default-color;
+@notification-box-shadow: @box-shadow-height-1;
+@notification-success-background-color: @success-color;
+@notification-success-color: @success-color-alt;
+@notification-info-background-color: @info-color;
+@notification-info-color: @info-color-alt;
+@notification-warning-background-color: @warning-color;
+@notification-warning-color: @warning-color-alt;
+@notification-danger-background-color: @danger-color;
+@notification-danger-color: @danger-color-alt;
+.notification-container {
+    display: block;
+    position: fixed;
+    margin: @notification-margin;
+    padding: 0;
+    border: 0;
+    right: @notification-margin;
+    bottom: @notification-margin;
+    width: @notification-width;
+    z-index: 100;
+    &.notification-top {
+        top: @notification-margin;
+        bottom: auto;
+    }
+    &.notification-right {
+        right: @notification-margin;
+        left: auto;
+    }
+    &.notification-bottom {
+        top: auto;
+        bottom: @notification-margin;
+    }
+    &.notification-left {
+        right: auto;
+        left: @notification-margin;
+    }
+    &.notification-center-vertical {
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+    }
+    &.notification-center-horizontal {
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+    }
+}
+.notification {
+    display: block;
+    margin: @notification-margin 0;
+    padding: @notification-padding;
+    border: @notification-border-width solid @notification-border-color;
+    border-radius: @notification-border-radius;
+    background-color: @notification-background-color;
+    color: @notification-color;
+    box-shadow: @notification-box-shadow;
+    &.notification-success {
+        background-color: @notification-success-background-color;
+        color: @notification-success-color;
+    }
+    &.notification-info {
+        background-color: @notification-info-background-color;
+        color: @notification-info-color;
+    }
+    &.notification-warning {
+        background-color: @notification-warning-background-color;
+        color: @notification-warning-color;
+    }
+    &.notification-danger {
+        background-color: @notification-danger-background-color;
+        color: @notification-danger-color;
+    }
+    & > header {
+        font-weight: bold;
+    }
+}
