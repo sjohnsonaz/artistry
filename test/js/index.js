@@ -17,6 +17,17 @@ $(function () {
         });
     });
 
+    var hidden = true;
+    $('#clickOpenModal, #clickCloseModal, .modal-scroll').click(function (event) {
+        event.stopPropagation();
+        if (hidden) {
+            $('.modal').show();
+        } else {
+            $('.modal').hide();
+        }
+        hidden = !hidden;
+    });
+
     var carouselIndex = 0;
     var timeout;
 
