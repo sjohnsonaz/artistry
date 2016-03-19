@@ -1,11 +1,4 @@
 @import "breadcrumb-settings.less";
-@breadcrumb-padding: @default-padding;
-@breadcrumb-line-height: 30px;
-@breadcrumb-border-width: @default-border-width;
-@breadcrumb-border-color: @default-border-color;
-@breadcrumb-border-radius: @default-border-radius;
-@breadcrumb-background-color: @default-background-color;
-@breadcrumb-hover-background-color: gray;
 @breadcrumb-height: 2 * @breadcrumb-padding + @breadcrumb-line-height;
 @breadcrumb-curve-offset: (@breadcrumb-border-radius) * (1 - cos(45deg));
 @breadcrumb-adjusted-height: @breadcrumb-height - 2 * @breadcrumb-curve-offset;
@@ -41,6 +34,7 @@
                 border-bottom-left-radius: @breadcrumb-border-radius;
             }
         }
+        & > span,
         & > a {
             display: block;
             position: relative;
@@ -56,13 +50,8 @@
             float: left;
             height: @breadcrumb-height;
             background-color: @breadcrumb-background-color;
+            font-weight: bold;
             z-index: 1;
-            &:hover {
-                background-color: @breadcrumb-hover-background-color;
-                &:after {
-                    .linear-gradient(225deg, @breadcrumb-hover-background-color @breadcrumb-gradient-percentage, transparent @breadcrumb-gradient-percentage);
-                }
-            }
             &:after {
                 display: block;
                 content: '';
@@ -74,7 +63,6 @@
                 border-right: @breadcrumb-border-width solid @breadcrumb-border-color;
                 & when (@breadcrumb-border-radius = 0) {
                     & when (@breadcrumb-border-width > 1) {
-                        //@breadcrumb-gradient-percentage: 60% + (@breadcrumb-border-width * (sqrt(2) / 2));
                         border-top: @breadcrumb-border-width * (2 / sqrt(2)) - @breadcrumb-border-radius solid @breadcrumb-border-color;
                         border-right: @breadcrumb-border-width * (2 / sqrt(2)) - @breadcrumb-border-radius solid @breadcrumb-border-color;
                     }
@@ -89,6 +77,15 @@
                 .linear-gradient(225deg, @breadcrumb-background-color @breadcrumb-gradient-percentage, transparent @breadcrumb-gradient-percentage);
                 z-index: 100;
             }
+        }
+        & > a:hover {
+            background-color: @breadcrumb-hover-background-color;
+            &:after {
+                .linear-gradient(225deg, @breadcrumb-hover-background-color @breadcrumb-gradient-percentage, transparent @breadcrumb-gradient-percentage);
+            }
+        }
+        & > span {
+            cursor: default;
         }
     }
 }
