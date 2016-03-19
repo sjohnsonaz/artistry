@@ -4,27 +4,35 @@
 @breadcrumb-border-width: @default-border-width;
 @breadcrumb-border-color: @default-border-color;
 @breadcrumb-border-radius: @default-border-radius;
+@breadcrumb-background-color: @default-background-color;
+@breadcrumb-hover-background-color: gray;;
 @breadcrumb-height: 2 * @breadcrumb-padding + @breadcrumb-line-height;
 @breadcrumb-curve-offset: (@breadcrumb-border-radius) * (1 - cos(45deg));
 @breadcrumb-adjusted-height: @breadcrumb-height - 2 * @breadcrumb-curve-offset;
 @breadcrumb-diagonal: @breadcrumb-adjusted-height * sqrt(2) / 2;
 @breadcrumb-corner-right: @breadcrumb-curve-offset - @breadcrumb-border-width;
+@breadcrumb-corner-border-width: @breadcrumb-border-width;
+@breadcrumb-gradient-percentage: 60%;
 .breadcrumb {
+    display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
     line-height: @breadcrumb-line-height;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
     &:after {
         content: '';
         clear: both;
         display: table;
     }
     & > li {
+        position: relative;
         margin: 0;
         margin-left: -@breadcrumb-border-radius;
         padding: 0;
         float: left;
-        &:first-child {
+        &:last-child {
             margin-left: 0;
             & > a {
                 padding-left: @breadcrumb-padding;
@@ -47,6 +55,14 @@
             text-decoration: none;
             float: left;
             height: @breadcrumb-height;
+            background-color: @breadcrumb-background-color;
+            z-index: 1;
+            &:hover {
+                background-color: @breadcrumb-hover-background-color;
+                &:after {
+                    .linear-gradient(225deg, @breadcrumb-hover-background-color @breadcrumb-gradient-percentage, transparent @breadcrumb-gradient-percentage);
+                }
+            }
             &:after {
                 display: block;
                 content: '';
@@ -54,11 +70,13 @@
                 right: @breadcrumb-corner-right;
                 top: 50%;
                 .transform(translateX(50%) translateY(-50%) rotate(45deg));
-                border-top: @breadcrumb-border-width solid @breadcrumb-border-color;
-                border-right: @breadcrumb-border-width solid @breadcrumb-border-color;
+                border-top: @breadcrumb-corner-border-width solid @breadcrumb-border-color;
+                border-right: @breadcrumb-corner-border-width solid @breadcrumb-border-color;
                 border-top-right-radius: @breadcrumb-border-radius;
                 height: @breadcrumb-diagonal;
                 width: @breadcrumb-diagonal;
+                .linear-gradient(225deg, @breadcrumb-background-color @breadcrumb-gradient-percentage, transparent @breadcrumb-gradient-percentage);
+                z-index: 100;
             }
         }
     }
