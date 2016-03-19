@@ -18,16 +18,22 @@ $(function () {
     });
 
     var hidden = true;
+    var modalTimeout;
     $('#clickOpenModal, #clickCloseModal, .modal-scroll').click(function (event) {
         event.stopPropagation();
         if (hidden) {
-            $('.modal').show();
+            $('.modal').addClass('modal-open');
         } else {
-            $('.modal').hide();
+            $('.modal').addClass('modal-closing');
+            $('.modal').removeClass('modal-open');
+            window.clearTimeout(modalTimeout);
+            modalTimeout = window.setTimeout(function () {
+                $('.modal').removeClass('modal-closing');
+            }, 500);
         }
         hidden = !hidden;
     });
-    $('.modal-content').click(function(event) {
+    $('.modal-content').click(function (event) {
         event.stopPropagation();
     });
 

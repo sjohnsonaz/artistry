@@ -1,14 +1,22 @@
 @import "modal-settings.less";
 @modal-margin-right: (-@modal-width / 2);
 .modal {
+    display: block;
     position: fixed;
     z-index: @modal-z-index;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    visibility: hidden;
+    transform: scale(0);
     &.modal-open {
-
+        transform: none;
+        visibility: inherit;
+    }
+    &.modal-closing {
+        transform: none;
+        visibility: inherit;
     }
     .modal-mask {
         position: absolute;
@@ -16,15 +24,24 @@
         right: 0;
         bottom: 0;
         left: 0;
-        background-color: @modal-mask-background-color;
+        background-color: transparent;
+        transition: background-color 0.5s;
+        .modal-open& {
+            background-color: @modal-mask-background-color;
+        }
     }
     .modal-scroll {
         position: absolute;
-        top: 0;
+        top: -100%;
         right: 0;
-        bottom: 0;
+        bottom: 100%;
         left: 0;
         overflow-y: auto;
+        transition: top 0.5s, bottom 0.5s;
+        .modal-open& {
+            top: 0;
+            bottom: 0;
+        }
         .modal-content {
             position: absolute;
             left: 50%;
