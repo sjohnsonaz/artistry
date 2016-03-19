@@ -1,15 +1,14 @@
 @import "breadcrumb-settings.less";
-@breadcrumb-padding: 10px;
+@breadcrumb-padding: @default-padding;
 @breadcrumb-line-height: 30px;
 @breadcrumb-border-width: @default-border-width;
 @breadcrumb-border-color: @default-border-color;
 @breadcrumb-border-radius: @default-border-radius;
 @breadcrumb-height: 2 * @breadcrumb-padding + @breadcrumb-line-height;
-@breadcrumb-curve-offset: (@breadcrumb-border-radius) * (1 - cos(45deg));// - (@breadcrumb-border-width / 2)
+@breadcrumb-curve-offset: (@breadcrumb-border-radius) * (1 - cos(45deg));
 @breadcrumb-adjusted-height: @breadcrumb-height - 2 * @breadcrumb-curve-offset;
 @breadcrumb-diagonal: @breadcrumb-adjusted-height * sqrt(2) / 2;
-@breadcrumb-corner-translate-x: @breadcrumb-border-width - @breadcrumb-curve-offset;
-@breadcrumb-corner-translate-y: (@breadcrumb-curve-offset / 2) - @breadcrumb-border-width;//(@breadcrumb-diagonal / 2) - (@breadcrumb-height / 2);
+@breadcrumb-corner-right: @breadcrumb-curve-offset - @breadcrumb-border-width;
 .breadcrumb {
     list-style: none;
     padding: 0;
@@ -27,11 +26,11 @@
         float: left;
         &:first-child {
             margin-left: 0;
-            border-left: @breadcrumb-border-width solid @breadcrumb-border-color;
-            border-top-left-radius: @breadcrumb-border-radius;
-            border-bottom-left-radius: @breadcrumb-border-radius;
             & > a {
                 padding-left: @breadcrumb-padding;
+                border-left: @breadcrumb-border-width solid @breadcrumb-border-color;
+                border-top-left-radius: @breadcrumb-border-radius;
+                border-bottom-left-radius: @breadcrumb-border-radius;
             }
         }
         & > a {
@@ -39,9 +38,7 @@
             position: relative;
             margin: 0;
             padding: @breadcrumb-padding;
-
-            //padding-left: @breadcrumb-diagonal;
-            //padding-right: @breadcrumb-diagonal;
+            padding-left: @breadcrumb-padding + @breadcrumb-height / 2;
             border-top: @breadcrumb-border-width solid @breadcrumb-border-color;
             border-right: @breadcrumb-border-width solid @breadcrumb-border-color;
             border-bottom: @breadcrumb-border-width solid @breadcrumb-border-color;
@@ -54,16 +51,9 @@
                 display: block;
                 content: '';
                 position: absolute;
-
-                //& when (@breadcrumb-border-radius > 0) {
-                //right: 0;
-                //}
-                //& when (@breadcrumb-border-radius = 0) {
-                //right: -@breadcrumb-border-width;
-                //}
-                right: 0;//@breadcrumb-curve-offset;
-                top: 0;//@breadcrumb-curve-offset;
-                .transform(translateX(@breadcrumb-corner-translate-x) translateX(50%) translateY(@breadcrumb-corner-translate-y) translateY(25%) rotate(45deg));
+                right: @breadcrumb-corner-right;
+                top: 50%;
+                .transform(translateX(50%) translateY(-50%) rotate(45deg));
                 border-top: @breadcrumb-border-width solid @breadcrumb-border-color;
                 border-right: @breadcrumb-border-width solid @breadcrumb-border-color;
                 border-top-right-radius: @breadcrumb-border-radius;
