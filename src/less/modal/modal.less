@@ -10,13 +10,11 @@
     left: 0;
     visibility: hidden;
     transform: scale(0);
+    transition: transform 0s 0.5s, visibility 0s 0.5s;
     &.modal-open {
         transform: none;
         visibility: inherit;
-    }
-    &.modal-closing {
-        transform: none;
-        visibility: inherit;
+        transition: transform 0s 0s, visibility 0.5s 0s;
     }
     .modal-mask {
         position: absolute;
