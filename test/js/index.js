@@ -17,9 +17,12 @@ $(function () {
         });
     });
 
+    var hidden = false;
     $('#clickOpenModal, #clickCloseModal, .modal-scroll').click(function (event) {
         event.stopPropagation();
-        $('.modal').toggleClass('modal-open');
+        hidden = !hidden;
+        //$('body').toggleClass('scroll-lock', hidden);
+        $('.modal').toggleClass('modal-open', hidden);
     });
     $('.modal-content').click(function (event) {
         event.stopPropagation();

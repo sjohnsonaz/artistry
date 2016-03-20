@@ -36,11 +36,15 @@
         right: 0;
         bottom: 100%;
         left: 0;
-        overflow-y: auto;
-        transition: top 0.5s, bottom 0.5s;
+        overflow-y: visible;
+        opacity: 0;
+        transition: top 0.5s, bottom 0.5s, opacity 0.5s;//, overflow 0s 0.5s;
         .modal-open& {
             top: 0;
             bottom: 0;
+            opacity: 1;
+            overflow-y: auto;
+            //transition: top 0.5s, bottom 0.5s, overflow 0.5s 0s;
         }
         .modal-content {
             position: absolute;
@@ -82,4 +86,7 @@
             }
         }
     }
+}
+body.scroll-lock {
+    overflow: hidden;
 }
