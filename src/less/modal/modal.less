@@ -11,12 +11,9 @@
     visibility: hidden;
     transform: scale(0);
     transition: transform 0s 0.5s, visibility 0s 0.5s;
-    &.modal-open {
-        transform: none;
-        visibility: inherit;
-        transition: transform 0s 0s, visibility 0.5s 0s;
-    }
-    .modal-mask {
+    &:before {
+        display: block;
+        content: '';
         position: absolute;
         top: 0;
         right: 0;
@@ -24,7 +21,12 @@
         left: 0;
         background-color: transparent;
         transition: background-color 0.5s;
-        .modal-open& {
+    }
+    &.modal-open {
+        transform: none;
+        visibility: inherit;
+        transition: transform 0s 0s, visibility 0.5s 0s;
+        &:before {
             background-color: @modal-mask-background-color;
         }
     }
