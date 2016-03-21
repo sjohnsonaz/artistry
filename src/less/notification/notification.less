@@ -2,11 +2,11 @@
 .notification-container {
     display: block;
     position: fixed;
-    margin: @notification-margin;
+    margin: 0;
     padding: 0;
     border: 0;
-    right: @notification-margin;
-    bottom: @notification-margin;
+    right: 0;
+    bottom: 0;
     width: @notification-width;
     z-index: 100;
     &.notification-top {
@@ -34,6 +34,9 @@
         right: 0;
         left: 0;
         margin: 0 auto;
+    }
+    .notification {
+        margin: @notification-margin;
     }
 }
 .notification {
