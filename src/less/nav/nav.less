@@ -1,0 +1,52 @@
+@import "nav-settings.less";
+@nav-border-width: @default-border-width;
+@nav-border-color: @default-border-color;
+@nav-border-radius: @default-border-radius;
+@nav-item-padding: @default-padding;
+@nav-item-margin: @default-margin;
+@nav-color: @default-header-color-alt;
+@nav-background-color: @default-header-color;
+@nav-hover-color: darken(@default-header-color-alt, 10%);
+@nav-hover-background-color: darken(@default-header-color, 10%);
+.nav {
+    display: flex;
+    flex-direction: row;
+    & > ul {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        & > li {
+            padding: 0;
+            margin: 0;
+            & > a,
+            & > span {
+                padding: @nav-item-padding;
+                margin: @nav-item-margin;
+                border-top: @nav-border-width solid @nav-border-color;
+                border-right: @nav-border-width solid @nav-border-color;
+                border-bottom: @nav-border-width solid @nav-border-color;
+                background-color: @nav-background-color;
+                color: @nav-color;
+                font-weight: bold;
+                text-decoration: none;
+            }
+            &:first-child a,
+            &:first-child span {
+                border-left: @nav-border-width solid @nav-border-color;
+                border-top-left-radius: @nav-border-radius;
+                border-bottom-left-radius: @nav-border-radius;
+            }
+            &:last-child a,
+            &:last-child span {
+                border-top-right-radius: @nav-border-radius;
+                border-bottom-right-radius: @nav-border-radius;
+            }
+            & > a:hover {
+                background-color: @nav-hover-background-color;
+                color: @nav-hover-color;
+            }
+        }
+    }
+}
