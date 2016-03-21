@@ -165,39 +165,56 @@
         </section>
         <section class="section">
             <header>Navigation</header>
-            <div class="section-content">
-                <h3>Navbar</h3>
-                <nav class="nav">
-                    <ul>
+            <div class="section-container">
+                <div class="section-content">
+                    <h3>Navbar</h3>
+                    <nav class="nav">
+                        <ul>
+                            <li>
+                                <a href="#0">Link 0</a>
+                            </li>
+                            <li>
+                                <a href="#1">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#2">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#3">Link 3 &#x25bc;</a>
+                                <ul>
+                                    <li>
+                                        <a href="#0">Nested Link 0</a>
+                                    </li>
+                                    <li>
+                                        <a href="#1">Nested Link 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#2">Nested Link 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#3">Nested Link 3</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <h3>Breadcrumb</h3>
+                    <ul class="breadcrumb">
                         <li>
-                            <a href="#0">Link 0</a>
+                            <span>Current</span>
                         </li>
                         <li>
-                            <a href="#1">Link 1</a>
+                            <a href="#2">Link</a>
                         </li>
                         <li>
-                            <a href="#2">Link 2</a>
+                            <a href="#1">Container</a>
                         </li>
                         <li>
-                            <a href="#3">Link 3</a>
+                            <a href="#0">Home</a>
                         </li>
                     </ul>
-                </nav>
-                <h3>Breadcrumb</h3>
-                <ul class="breadcrumb">
-                    <li>
-                        <span>Current</span>
-                    </li>
-                    <li>
-                        <a href="#2">Link</a>
-                    </li>
-                    <li>
-                        <a href="#1">Container</a>
-                    </li>
-                    <li>
-                        <a href="#0">Home</a>
-                    </li>
-                </ul>
+                </div>
             </div>
         </section>
         <section class="section">
@@ -242,15 +259,15 @@
                 <h3>Carousel</h3>
                 <button id="clickCarouselBack" class="button">Back</button>
                 <button id="clickCarouselNext" class="button">Next</button>
-                <div class="carousel">
-                    <div class="carousel-selected" style="background-color: red;">
+                <div class="carousel" style="background-color: black; border-radius: 5px;">
+                    <div class="carousel-selected" style="background-color: red; padding: 10px;">
                         Content 0
                     </div>
-                    <div style="background-color: blue;">
+                    <div style="background-color: blue; padding: 10px;">
                         Content 1
                         <br /> Line 2
                     </div>
-                    <div style="background-color: yellow;">
+                    <div style="background-color: yellow; padding: 10px;">
                         Content 2
                         <br /> Line 2
                         <br /> Line 3
