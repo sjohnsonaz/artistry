@@ -18,7 +18,7 @@ $(function () {
     });
 
     var hidden = false;
-    $('#clickOpenModal, #clickCloseModal, .modal-scroll').click(function (event) {
+    $('#clickOpenModal, #clickCloseModal, .modal').click(function (event) {
         event.stopPropagation();
         hidden = !hidden;
         //$('body').toggleClass('scroll-lock', hidden);
