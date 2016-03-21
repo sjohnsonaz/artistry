@@ -25,8 +25,6 @@
             & > span {
                 display: flex;
                 align-items: flex-start;
-
-                //align-items: flex-start;
                 padding: @nav-item-padding;
                 margin: @nav-item-margin;
                 border-top: @nav-border-width solid @nav-border-color;
@@ -57,6 +55,8 @@
         a + ul:hover {
             transform: none;
             visibility: visible;
+            opacity: 1;
+            transition: visibility 0s, transform 0s, opacity 0.5s;
         }
         ul {
             display: flex;
@@ -67,6 +67,8 @@
             z-index: 5;
             visibility: hidden;
             transform: scale(0);
+            opacity: 0;
+            transition: visibility 0s 0.5s, transform 0s 0.5s, opacity 0.5s;
             & > li > a {
                 border-left: @nav-border-width solid @nav-border-color;
                 border-top: 0;
