@@ -10,7 +10,7 @@
     "gulp-minify-css": "^1.2.2",
     "gulp-util": "3.0.7",
     "gulp-watch-less": "^1.0.1",
-    "less": "1.x.x",
+    "less": "2.x.x",
     "normalize.css": "3.0.3"
   }
 }
