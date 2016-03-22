@@ -29,16 +29,17 @@ $(function () {
     });
 
     var carouselIndex = 0;
+    var carouselCount = 3;
     var timeout;
 
     function runCarousel(index) {
         var carousel = $('.carousel');
         var child = $(carousel.children()[index]);
-        carousel.height(carousel.height());
+        carousel.height(carousel.outerHeight());
         carousel.children().removeClass('carousel-selected');
         carousel.children().removeClass('carousel-selecting');
         child.addClass('carousel-selecting');
-        carousel.height(child.height());
+        carousel.height(child.outerHeight());
         window.clearTimeout(timeout);
         timeout = window.setTimeout(function () {
             child.removeClass('carousel-selecting');
@@ -49,10 +50,12 @@ $(function () {
 
     $('#clickCarouselNext').click(function (event) {
         carouselIndex++;
+        carouselIndex = (carouselIndex + carouselCount) % carouselCount;
         runCarousel(carouselIndex);
     });
     $('#clickCarouselBack').click(function (event) {
         carouselIndex--;
+        carouselIndex = (carouselIndex + carouselCount) % carouselCount;
         runCarousel(carouselIndex);
     });
 });

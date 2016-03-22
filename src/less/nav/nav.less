@@ -1,0 +1,96 @@
+@import "nav-settings.less";
+@nav-border-width: @default-border-width;
+@nav-border-color: @default-border-color;
+@nav-border-radius: @default-border-radius;
+@nav-item-padding: @default-padding;
+@nav-item-margin: @default-margin;
+@nav-color: @default-header-color-alt;
+@nav-background-color: @default-header-color;
+@nav-hover-color: darken(@default-header-color-alt, 10%);
+@nav-hover-background-color: darken(@default-header-color, 10%);
+.nav {
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        & > li {
+            flex: 0 1 auto;
+            padding: 0;
+            margin: 0;
+            & > a,
+            & > span {
+                display: flex;
+                align-items: flex-start;
+                padding: @nav-item-padding;
+                margin: @nav-item-margin;
+                border-top: @nav-border-width solid @nav-border-color;
+                border-right: @nav-border-width solid @nav-border-color;
+                border-bottom: @nav-border-width solid @nav-border-color;
+                background-color: @nav-background-color;
+                color: @nav-color;
+                font-weight: bold;
+                text-decoration: none;
+                white-space: nowrap;
+            }
+            &:first-child > a,
+            &:first-child > span {
+                border-left: @nav-border-width solid @nav-border-color;
+                border-top-left-radius: @nav-border-radius;
+                border-bottom-left-radius: @nav-border-radius;
+            }
+            &:last-child > a,
+            &:last-child > span {
+                border-top-right-radius: @nav-border-radius;
+                border-bottom-right-radius: @nav-border-radius;
+            }
+            & > a:hover > {
+                background-color: @nav-hover-background-color;
+                color: @nav-hover-color;
+            }
+        }
+        a:hover + ul,
+        a + ul:hover {
+            transform: none;
+            visibility: visible;
+            opacity: 1;
+            transition: visibility 0s, transform 0s, opacity 0.5s;
+        }
+        ul {
+            display: flex;
+            position: absolute;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            z-index: 5;
+            visibility: hidden;
+            transform: scale(0);
+            opacity: 0;
+            transition: visibility 0s 0.5s, transform 0s 0.5s, opacity 0.5s;
+            & > li > a {
+                border-left: @nav-border-width solid @nav-border-color;
+                border-top: 0;
+            }
+            & > li:first-child > a,
+            & > li:first-child > span {
+                border-top: @nav-border-width solid @nav-border-color;
+                border-top-left-radius: 0;
+                border-top-right-radius: @nav-border-radius;
+                border-bottom-left-radius: 0;
+            }
+            & > li:last-child > a,
+            & > li:last-child > span {
+                border-top-right-radius: 0;
+                border-bottom-left-radius: @nav-border-radius;
+            }
+            ul {
+                position: absolute;
+                left: 100%;
+                transform: translateY(-100%) !important;
+            }
+        }
+    }
+}
