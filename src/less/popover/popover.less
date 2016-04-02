@@ -15,7 +15,7 @@
     z-index: 1;
     opacity: 0;
     visibility: hidden;
-    transition: visibility 0s, opacity 0.3s;
+    transition: visibility 0s 0.3s, opacity 0.3s;
     -webkit-backface-visibility: hidden;
     -webkit-filter: blur(0);
     &.popover-top {
@@ -177,5 +177,6 @@
     &.popover-open {
         opacity: 1;
         visibility: visible;
+        transition: visibility 0.3s, opacity 0.3s;
     }
 }

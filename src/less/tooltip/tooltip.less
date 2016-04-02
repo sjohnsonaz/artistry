@@ -15,7 +15,7 @@
         text-decoration: underline;
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0s, opacity 0.3s;
+        transition: visibility 0s 0.3s, opacity 0.3s;
         -webkit-backface-visibility: hidden;
         .tooltip-info& {
             border-color: @tooltip-info-background-color;
@@ -76,10 +76,10 @@
         font-size: @tooltip-font-size;
         font-weight: @tooltip-font-weight;
         z-index: @tooltip-zindex;
-        text-decoration: underline;
+        text-decoration: none;
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0s, opacity 0.3s;
+        transition: visibility 0s 0.3s, opacity 0.3s;
         .tooltip-info& {
             border-color: @tooltip-info-background-color;
             background-color: @tooltip-info-background-color;
@@ -157,11 +157,13 @@
             text-decoration: none;
             visibility: visible;
             opacity: 1;
+            transition: visibility 0s, opacity 0.3s;
         }
         &:after {
             text-decoration: none;
             visibility: visible;
             opacity: 1;
+            transition: visibility 0s, opacity 0.3s;
         }
     }
 }
