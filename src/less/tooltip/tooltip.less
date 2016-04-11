@@ -108,47 +108,47 @@
             bottom: 100%;
             margin: @tooltip-spacing 0;
             right: 50%;
-            .transform(translateX(50%));
+            transform: translateX(50%);
         }
         .tooltip-bottom& {
             top: 100%;
             margin: @tooltip-spacing 0;
             right: 50%;
-            .transform(translateX(50%));
+            transform: translateX(50%);
         }
         .tooltip-right& {
             left: 100%;
             margin: 0 @tooltip-spacing;
             top: 50%;
-            .transform(translateY(-50%));
+            transform: translateY(-50%);
         }
         .tooltip-left& {
             right: 100%;
             margin: 0 @tooltip-spacing;
             top: 50%;
-            .transform(translateY(-50%));
+            transform: translateY(-50%);
         }
         .tooltip-top.tooltip-align-left&,
         .tooltip-bottom.tooltip-align-left& {
             right: auto;
             left: 0;
-            .transform(none);
+            transform: none;
         }
         .tooltip-top.tooltip-align-right&,
         .tooltip-bottom.tooltip-align-right& {
             right: 0;
-            .transform(none);
+            transform: none;
         }
         .tooltip-right.tooltip-align-top&,
         .tooltip-left.tooltip-align-top& {
             top: 0;
-            .transform(none);
+            transform: none;
         }
         .tooltip-right.tooltip-align-bottom&,
         .tooltip-left.tooltip-align-bottom& {
             top: auto;
             bottom: 0;
-            .transform(none);
+            transform: none;
         }
     }
     &:hover,

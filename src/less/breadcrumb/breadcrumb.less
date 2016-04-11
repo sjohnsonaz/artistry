@@ -58,7 +58,7 @@
                 position: absolute;
                 right: @breadcrumb-corner-right;
                 top: 50%;
-                .transform(translateX(50%) translateY(-50%) rotate(45deg));
+                transform: translateX(50%) translateY(-50%) rotate(45deg);
                 border-top: @breadcrumb-border-width solid @breadcrumb-border-color;
                 border-right: @breadcrumb-border-width solid @breadcrumb-border-color;
                 & when (@breadcrumb-border-radius = 0) {
@@ -74,14 +74,14 @@
                 border-top-right-radius: @breadcrumb-border-radius;
                 height: @breadcrumb-diagonal;
                 width: @breadcrumb-diagonal;
-                .linear-gradient(225deg, @breadcrumb-background-color @breadcrumb-gradient-percentage, transparent @breadcrumb-gradient-percentage);
+                background-image: linear-gradient(225deg, @breadcrumb-background-color @breadcrumb-gradient-percentage, transparent @breadcrumb-gradient-percentage);
                 z-index: 100;
             }
         }
         & > a:hover {
             background-color: @breadcrumb-hover-background-color;
             &:after {
-                .linear-gradient(225deg, @breadcrumb-hover-background-color @breadcrumb-gradient-percentage, transparent @breadcrumb-gradient-percentage);
+                background-image: linear-gradient(225deg, @breadcrumb-hover-background-color @breadcrumb-gradient-percentage, transparent @breadcrumb-gradient-percentage);
             }
         }
         & > span {

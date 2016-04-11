@@ -3,12 +3,18 @@ var gutil = require('gulp-util');
 var clean = require('gulp-clean');
 var watchLess = require('gulp-watch-less');
 var less = require('gulp-less');
-var minifyCss = require('gulp-minify-css');
+var cleanCSS = require('gulp-clean-css');
+var postcss = require('gulp-postcss');
+//var sourcemaps   = require('gulp-sourcemaps');
+var autoprefixer = require('autoprefixer');
 
 gulp.task('less:build', function () {
     return gulp.src('src/less/main.less')
         .pipe(less())
-        .pipe(minifyCss({
+        .pipe(postcss([autoprefixer({
+            browsers: ['last 2 versions']
+        })]))
+        .pipe(cleanCSS({
             compatibility: 'ie8'
         }))
         .pipe(gulp.dest('dist/css'));
