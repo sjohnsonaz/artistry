@@ -13,6 +13,6 @@
     "gulp-util": "3.0.7",
     "gulp-watch-less": "^1.0.1",
     "less": "2.x.x",
-    "normalize.css": "3.0.3"
+    "normalize.css": "^4.0.0"
   }
 }
