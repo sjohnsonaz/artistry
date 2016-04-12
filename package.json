@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "author": "Sean Johnson <sjohnson@sjohnsonaz.com>",
   "private": true,
+  "scripts": {
+    "install": "gulp"
+  },
   "dependencies": {
     "autoprefixer": "^6.3.6",
     "gulp": "^3.9.0",
