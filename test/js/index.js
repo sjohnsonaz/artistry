@@ -1,5 +1,21 @@
 $(function () {
 
+    $('#clickLockableEdit, #clickLockableSave, #clickLockableDelete').click(function (event) {
+        var button = $(event.currentTarget);
+        (function () {
+            button.addClass('button-locked');
+            button.attr({
+                disabled: true
+            });
+            var timeout = window.setTimeout(function () {
+                button.removeClass('button-locked');
+                button.attr({
+                    disabled: false
+                });
+            }, 1000);
+        })();
+    });
+
     $('#clickShowNotifications').click(function (event) {
         $('.notification-container').toggleClass('hidden');
     });
