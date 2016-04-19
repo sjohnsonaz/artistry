@@ -52,14 +52,13 @@ $(function () {
         var carousel = $('.carousel');
         var child = $(carousel.children()[index]);
         carousel.height(carousel.outerHeight());
+        carousel.addClass('carousel-run');
         carousel.children().removeClass('carousel-selected');
-        carousel.children().removeClass('carousel-selecting');
-        child.addClass('carousel-selecting');
+        child.addClass('carousel-selected');
         carousel.height(child.outerHeight());
         window.clearTimeout(timeout);
         timeout = window.setTimeout(function () {
-            child.removeClass('carousel-selecting');
-            child.addClass('carousel-selected');
+            carousel.removeClass('carousel-run');
             carousel.height('auto');
         }, 500);
     }
