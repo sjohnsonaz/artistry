@@ -11,6 +11,10 @@ var autoprefixer = require('autoprefixer');
 gulp.task('less:build', function () {
     return gulp.src('src/less/main.less')
         .pipe(less())
+        .on('error', function (error) {
+            console.log(error.toString());
+            this.emit('end');
+        })
         .pipe(postcss([autoprefixer({
             browsers: ['last 2 versions']
         })]))
@@ -21,10 +25,7 @@ gulp.task('less:build', function () {
 });
 
 gulp.task('less:build-watch', ['less:build'], function () {
-    return gulp.src('src/less/main.less')
-        .pipe(watchLess('src/less/main.less', function () {
-            gulp.start('less:build');
-        }));
+    return gulp.watch(["src/less/**/*"], ["less:build"]);
 });
 
 gulp.task('default', ['less:build']);
