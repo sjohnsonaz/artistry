@@ -19,7 +19,7 @@
         min-height: @carousel-min-height;
         right: 100%;
         left: -100%;
-        transition: left 0.5s, right 0.5s, position 0s linear 0.5s;
+        transition: left 0.5s, right 0.5s;
         &.carousel-selected {
             right: 0;
             left: 0;
@@ -30,9 +30,8 @@
             left: 100%;
         }
     }
-    &.carousel-run {
-        & > div.carousel-selected {
-            position: absolute;
-        }
+    & > div.carousel-selected.carousel-selecting,
+    &.carousel-run > div.carousel-selected {
+        position: absolute;
     }
 }
