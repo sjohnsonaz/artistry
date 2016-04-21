@@ -12,7 +12,7 @@
     "gulp-clean-css": "^2.0.6",
     "gulp-less": "^3.0.5",
     "gulp-postcss": "^6.1.0",
-    "gulp-util": "3.0.7",
+    "gulp-sourcemaps": "^1.6.0",
     "less": "2.x.x",
     "normalize.css": "^4.0.0"
   }
