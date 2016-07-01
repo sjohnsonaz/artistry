@@ -73,4 +73,11 @@ $(function () {
         carouselIndex = (carouselIndex + carouselCount) % carouselCount;
         runCarousel(carouselIndex);
     });
+
+    $('#clickLockSection').click(function (event) {
+        $('#lockedSection').addClass('locked');
+        window.setTimeout(function () {
+            $('#lockedSection').removeClass('locked');
+        }, 1000);
+    });
 });
