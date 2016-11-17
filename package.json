@@ -4,16 +4,18 @@
   "author": "Sean Johnson <sjohnson@sjohnsonaz.com>",
   "private": true,
   "scripts": {
-    "install": "gulp"
+    "install": "gulp",
+    "build": "gulp",
+    "dev": "gulp dev"
   },
   "dependencies": {
-    "autoprefixer": "^6.3.6",
-    "gulp": "^3.9.0",
-    "gulp-clean-css": "^2.0.6",
-    "gulp-less": "^3.0.5",
-    "gulp-postcss": "^6.1.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "less": "2.x.x",
-    "normalize.css": "^4.0.0"
+    "autoprefixer": "^6.5.3",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-less": "^3.3.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-sourcemaps": "^1.9.0",
+    "less": "^2.7.1",
+    "normalize.css": "^4.2.0"
   }
 }
