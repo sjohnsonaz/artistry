@@ -8,7 +8,7 @@
     background-color: @progress-bar-background-color;
     border-radius: @progress-bar-border-radius;
     & > div {
-        padding: 1px;
+        padding: @progress-bar-border-radius - @progress-bar-border-width;
         width: 0;
         height: 100%;
         overflow: visible;
@@ -16,8 +16,8 @@
         color: @progress-bar-normal-color;
         font-size: 12px;
         text-align: center;
-        line-height: @progress-bar-height - 2 * @progress-bar-border-width;
-        border-radius: @progress-bar-border-radius - @progress-bar-border-width;
+        line-height: @progress-bar-height - 2 * @progress-bar-border-width - max(0, 2 * (@progress-bar-border-radius - @progress-bar-border-width));
+        border-radius: max(@progress-bar-border-radius - @progress-bar-border-width, 0);
         transition: width @progress-bar-transition-duration ease;
     }
     &.progress-complete > div {
