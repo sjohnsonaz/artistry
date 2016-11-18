@@ -11,7 +11,7 @@
 .focus-tight() {
     &:focus {
         outline: none;
-        background-color: darken(@input-default-background-color, @darker);
+        background-color: darken(@input-default-background-color, @input-color-variance);
         border-color: @input-default-border-color;
         box-shadow: inherit;
     }
@@ -26,19 +26,21 @@
     background-color: @input-default-background-color;
     border-radius: @input-border-radius;
     box-shadow: @input-box-shadow-height0;
+    cursor: pointer;
     transition: box-shadow 0.3s;
     &:hover:enabled {
-        color: lighten(@input-default-color, @lighter);
-        background-color: lighten(@input-default-background-color, @lighter);
+        color: lighten(@input-default-color, @input-color-variance);
+        background-color: lighten(@input-default-background-color, @input-color-variance);
         box-shadow: @input-box-shadow-height1;
     }
     &:active:enabled {
-        color: darken(@input-default-color, @darker);
-        background-color: darken(@input-default-background-color, @darker);
+        color: darken(@input-default-color, @input-color-variance);
+        background-color: darken(@input-default-background-color, @input-color-variance);
     }
     &.button-locked,
     &:disabled {
         opacity: @input-disabled-opacity;
+        cursor: default;
     }
     .focus();
     &.button-primary {
@@ -46,12 +48,12 @@
         color: @input-primary-color;
         background-color: @input-primary-background-color;
         &:hover:enabled {
-            color: lighten(@input-primary-color, @lighter);
-            background-color: lighten(@input-primary-background-color, @lighter);
+            color: lighten(@input-primary-color, @input-color-variance);
+            background-color: lighten(@input-primary-background-color, @input-color-variance);
         }
         &:active:enabled {
-            color: darken(@input-primary-color, @darker);
-            background-color: darken(@input-primary-background-color, @darker);
+            color: darken(@input-primary-color, @input-color-variance);
+            background-color: darken(@input-primary-background-color, @input-color-variance);
         }
     }
     &.button-danger {
@@ -59,12 +61,12 @@
         color: @input-danger-color;
         background-color: @input-danger-background-color;
         &:hover:enabled {
-            color: lighten(@input-danger-color, @lighter);
-            background-color: lighten(@input-danger-background-color, @lighter);
+            color: lighten(@input-danger-color, @input-color-variance);
+            background-color: lighten(@input-danger-background-color, @input-color-variance);
         }
         &:active:enabled {
-            color: darken(@input-danger-color, @darker);
-            background-color: darken(@input-danger-background-color, @darker);
+            color: darken(@input-danger-color, @input-color-variance);
+            background-color: darken(@input-danger-background-color, @input-color-variance);
         }
     }
     &.button-locked {
