@@ -1,4 +1,4 @@
-var less = require('gulp-less');
+var stylus = require('gulp-stylus');
 var cleanCSS = require('gulp-clean-css');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
@@ -6,9 +6,12 @@ var autoprefixer = require('autoprefixer');
 
 module.exports = function (gulp) {
     gulp.task('less:build', function () {
-        return gulp.src('src/less/main.less')
+        return gulp.src('src/less/main.styl')
             .pipe(sourcemaps.init())
-            .pipe(less())
+            .pipe(stylus({
+                compress: true,
+                linenos: false
+            }))
             .on('error', function (error) {
                 console.log(error.toString());
                 this.emit('end');

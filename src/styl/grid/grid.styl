@@ -1,0 +1,105 @@
+@import "grid-settings.styl";
+@import "../core/mixins.styl";
+$lt-size0= unquote('only screen and (max-width: ($size0 - 1))');
+container() {
+    clearfix();
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    @media only screen and (max-width: ($size0 - 1)) {
+        width: 100%;
+    }
+    @media only screen and (min-width: $size0) and (max-width: ($size1 - 1)) {
+        width: $size0 - 15px;
+    }
+    @media only screen and (min-width: $size1) and (max-width: ($size2 - 1)) {
+        width: $size1 - 15px;
+    }
+    @media only screen and (min-width: $size2) {
+        width: $size2 - 15px;
+    }
+}
+.container {
+    container();
+}
+container-fluid() {
+    width: 100%;
+}
+row() {
+    clearfix();
+    margin: 0;
+
+    //margin: 1.12em 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+}
+columns($count, $total) {
+    clearfix();
+    display: block;
+    float: left;
+    margin: 0;
+
+    //padding: 0px;
+    //border: 0px;
+    width: ($count * 100% / $total);
+    @media only screen and (max-width: ($size0 - 1)) {
+        width: 100%;
+    }
+}
+offset($count, $total) {
+    margin: 0;
+    @media only screen and (max-width: ($size0 - 1)) {
+        margin: 0;
+    }
+}
+make-columns($width, $number) {
+    for $index in (1..$number) {
+        .span{$index} {
+            display: block;
+            float: left;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            width: ($index * $width / $number);
+        }
+        make-columns($width, $number, ($index + 1));
+    }
+}
+make-offsets($width, $number) {
+    for $index in (1..$number) {
+        .offset{$index} {
+            display: block;
+            float: left;
+            padding: 0;
+            border: 0;
+            margin: 0;
+        }
+        make-offsets($width, $number, ($index + 1));
+    }
+}
+make-columns-fluid($number) {
+    for $index in (1..$number) {
+        .span{$index} {
+            display: block;
+            float: left;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            width: ($index * 100% / $number);
+        }
+        make-columns($number, ($index + 1));
+    }
+}
+make-offsets-fluid($number) {
+    for $index in (1..$number) {
+        .offset{$index} {
+            display: block;
+            float: left;
+            padding: 0;
+            border: 0;
+            margin: 0;
+        }
+        make-offsets($number, ($index + 1));
+    }
+}

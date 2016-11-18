@@ -1,0 +1,30 @@
+@import "section-settings.styl";
+$section-header-margin = -($section-border-width + $section-padding);
+.section {
+    border: $section-border-width solid $section-border-color;
+    border-radius: $section-border-radius;
+    padding: 0;
+    margin: $section-margin 0;
+    box-shadow: $section-box-shadow;
+    & > header {
+        background-color: $section-header-background-color;
+        color: $section-header-color;
+        font-weight: $section-header-font-weight;
+        border: $section-border-width solid $section-border-color;
+        border-top-left-radius: $section-border-radius;
+        border-top-right-radius: $section-border-radius;
+        padding: $section-padding;
+        margin: -$section-border-width;
+    }
+    .section-container {
+        position: relative;
+    }
+    .section-content {
+        padding: $section-padding;
+        transition: max-height $section-animation-time;
+        overflow: hidden;
+    }
+    &.section-closed > .section-content {
+        max-height: 0;
+    }
+}

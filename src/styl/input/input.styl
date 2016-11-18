@@ -1,0 +1,153 @@
+@import "input-settings.styl";
+
+/* LESS Style */
+focus() {
+    &:focus {
+        outline: none;
+        border-color: $input-default-border-color-focus;
+        box-shadow: $box-shadow-height-1;
+    }
+}
+focus-tight() {
+    &:focus {
+        outline: none;
+        background-color: darken($input-default-background-color, $input-color-variance);
+        border-color: $input-default-border-color;
+        box-shadow: inherit;
+    }
+}
+.button {
+    user-select: none;
+    display: inline-block;
+    margin: $input-margin;
+    padding: $input-padding;
+    border: $input-border-width solid $input-default-border-color;
+    color: $input-default-color;
+    background-color: $input-default-background-color;
+    border-radius: $input-border-radius;
+    box-shadow: $input-box-shadow-height0;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    &:hover:enabled {
+        color: lighten($input-default-color, $input-color-variance);
+        background-color: lighten($input-default-background-color, $input-color-variance);
+        box-shadow: $input-box-shadow-height1;
+    }
+    &:active:enabled {
+        color: darken($input-default-color, $input-color-variance);
+        background-color: darken($input-default-background-color, $input-color-variance);
+    }
+    &.button-locked, 
+    &:disabled {
+        opacity: $input-disabled-opacity;
+        cursor: default;
+    }
+    focus();
+    &.button-primary {
+        border: $input-border-width solid $input-primary-border-color;
+        color: $input-primary-color;
+        background-color: $input-primary-background-color;
+        &:hover:enabled {
+            color: lighten($input-primary-color, $input-color-variance);
+            background-color: lighten($input-primary-background-color, $input-color-variance);
+        }
+        &:active:enabled {
+            color: darken($input-primary-color, $input-color-variance);
+            background-color: darken($input-primary-background-color, $input-color-variance);
+        }
+    }
+    &.button-danger {
+        border: $input-border-width solid $input-danger-border-color;
+        color: $input-danger-color;
+        background-color: $input-danger-background-color;
+        &:hover:enabled {
+            color: lighten($input-danger-color, $input-color-variance);
+            background-color: lighten($input-danger-background-color, $input-color-variance);
+        }
+        &:active:enabled {
+            color: darken($input-danger-color, $input-color-variance);
+            background-color: darken($input-danger-background-color, $input-color-variance);
+        }
+    }
+    &.button-locked {
+        position: relative;
+        & > .button-text {
+            visibility: hidden;
+        }
+        & > .button-spinner {
+            display: block;
+        }
+    }
+    & > .button-spinner {
+        position: absolute;
+        display: none;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+}
+.button-group {
+    clearfix();
+    display: inline-block;
+    margin: $input-margin;
+    padding: 0;
+    vertical-align: middle;
+    box-shadow: $input-box-shadow-height0;
+    border-radius: $input-border-radius;
+    transition: box-shadow 0.3s;
+    &:hover {
+        box-shadow: $input-box-shadow-height1;
+    }
+    & > button, 
+    & > input {
+        display: block;
+        pull-left();
+        margin: 0;
+        border-right-width: 0;
+        border-radius: 0;
+        focus-tight();
+        box-shadow: none;
+        &:first-child {
+            border-top-left-radius: $input-border-radius;
+            border-bottom-left-radius: $input-border-radius;
+        }
+        &:last-child {
+            border-right-width: $input-border-width;
+            border-top-right-radius: $input-border-radius;
+            border-bottom-right-radius: $input-border-radius;
+        }
+    }
+}
+.text, 
+.password, 
+.textarea, 
+input[type="text"], 
+input[type="password"], 
+textarea {
+    focus();
+    margin: $input-margin;
+    padding: $input-padding;
+    border-radius: $input-border-radius;
+    border: $input-border-width solid $input-default-border-color;
+    font-family: Arial;
+    box-shadow: $input-box-shadow-height0;
+}
+input[type="checkbox"], 
+input[type="radio"] {
+
+}
+.label, 
+label {
+    font-weight: bold;
+}
+.select, 
+select {
+    focus();
+    margin: $input-margin;
+    padding: $input-padding;
+    border-radius: $input-border-radius;
+    border: $input-border-width solid $input-default-border-color;
+    font-family: Arial;
+    overflow: auto;
+    box-shadow: $input-box-shadow-height0;
+}
