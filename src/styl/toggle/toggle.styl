@@ -13,14 +13,14 @@
         border: $toggle-border-width solid $toggle-border-color;
         height: $toggle-box-height;
         min-width: $toggle-min-width;
-        border-radius: $toggle-box-height / 2 + $toggle-border-width;
+        border-radius: ($toggle-box-height / 2 + $toggle-border-width);
         background-color: $toggle-box-background-color;
         box-shadow: $toggle-box-box-shadow;
         cursor: pointer;
         & > input[type="checkbox"] {
             display: none;
             &:checked + .toggle-button {
-                left: calc(100% unquote('-') $toggle-button-height + $toggle-button-offset * 2);
+                transform: translateX($toggle-min-width - ($toggle-button-height + 2 * ($toggle-button-offset - $toggle-border-width)));
             }
         }
         &:hover {
@@ -45,12 +45,11 @@
             border: $toggle-border-width solid $toggle-button-border-color;
             height: $toggle-button-height;
             width: $toggle-button-height;
-            top: ($toggle-box-height - $toggle-button-height) / 2 - $toggle-border-width;
-            left: 0;
+            top: (($toggle-box-height - $toggle-button-height) / 2 - $toggle-border-width);
             border-radius: 50%;
             background-color: $toggle-button-background-color;
             box-shadow: $toggle-button-box-shadow;
-            transition: left 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             user-select: none;
         }
     }

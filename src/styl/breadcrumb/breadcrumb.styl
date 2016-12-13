@@ -22,7 +22,7 @@ $breadcrumb-gradient-percentage = 60%;
     & > li {
         position: relative;
         margin: 0;
-        margin-left: -$breadcrumb-border-radius;
+        margin-left: -1 * $breadcrumb-border-radius;
         padding: 0;
         float: left;
         &:last-child {
@@ -40,7 +40,7 @@ $breadcrumb-gradient-percentage = 60%;
             position: relative;
             margin: 0;
             padding: $breadcrumb-padding;
-            padding-left: $breadcrumb-padding + $breadcrumb-height / 2;
+            padding-left: ($breadcrumb-padding + $breadcrumb-height / 2);
             border-top: $breadcrumb-border-width solid $breadcrumb-border-color;
             border-right: $breadcrumb-border-width solid $breadcrumb-border-color;
             border-bottom: $breadcrumb-border-width solid $breadcrumb-border-color;
