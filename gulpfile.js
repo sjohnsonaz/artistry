@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 require('./tasks/compile')(gulp);
 
-gulp.task('default', ['less:build']);
+gulp.task('default', ['stylus:build']);
 
-gulp.task('dev', ['less:build-watch']);
+gulp.task('dev', ['stylus:build-watch']);

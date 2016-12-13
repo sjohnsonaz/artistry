@@ -5,8 +5,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('autoprefixer');
 
 module.exports = function (gulp) {
-    gulp.task('less:build', function () {
-        return gulp.src('src/less/main.styl')
+    gulp.task('stylus:build', function () {
+        return gulp.src('src/styl/main.styl')
             .pipe(sourcemaps.init())
             .pipe(stylus({
                 compress: true,
@@ -26,7 +26,7 @@ module.exports = function (gulp) {
             .pipe(gulp.dest('dist/css'));
     });
 
-    gulp.task('less:build-watch', ['less:build'], function () {
-        return gulp.watch(["src/less/**/*"], ["less:build"]);
+    gulp.task('stylus:build-watch', ['stylus:build'], function () {
+        return gulp.watch(["src/styl/**/*"], ["stylus:build"]);
     });
 };
