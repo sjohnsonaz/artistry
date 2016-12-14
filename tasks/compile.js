@@ -3,6 +3,7 @@ var cleanCSS = require('gulp-clean-css');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('autoprefixer');
+var argv = require('yargs').argv;
 
 module.exports = function (gulp) {
     gulp.task('stylus:build', function () {
@@ -27,6 +28,6 @@ module.exports = function (gulp) {
     });
 
     gulp.task('stylus:build-watch', ['stylus:build'], function () {
-        return gulp.watch(["src/styl/**/*"], ["stylus:build"]);
+        return gulp.watch(["src/styl/**/*", "config.json"], ["stylus:build"]);
     });
 };

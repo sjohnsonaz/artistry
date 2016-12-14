@@ -16,6 +16,7 @@
     "gulp-sourcemaps": "^1.9.0",
     "gulp-stylus": "^2.6.0",
     "normalize.css": "^4.2.0",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "yargs": "^6.5.0"
   }
 }
