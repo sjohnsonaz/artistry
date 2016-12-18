@@ -4,9 +4,9 @@
  *
  */
 
-@import "../../node_modules/normalize.css/normalize.css";
-
 json("../../config.json")
+$node_modules ?= '../../node_modules/';
+@import ($node_modules + "normalize.css/normalize.css");
 
 @import "core/reset.styl";
 @import "core/mixins.styl";
