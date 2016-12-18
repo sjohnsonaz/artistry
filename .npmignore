@@ -1,0 +1,14 @@
+node_modules/
+bower_components/
+test/
+docs/
+src/
+*.map
+*.log
+*.tgz
+build-widgets-*
+bower.json
+.gitignore
+.npmignore
+.travis.yml
+.vscode/

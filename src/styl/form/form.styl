@@ -1,0 +1,69 @@
+@import "form-settings.styl";
+@import "../grid/grid.styl";
+.form {
+    position: relative;
+    text-align: center;
+    background: white;
+    container-fluid();
+    .form-container {
+        clearfix();
+        text-align: left;
+    }
+    .form-label {
+        row();
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        & > .form-title {
+            columns($form-label-columns, $form-label-columns + $form-input-columns);
+            padding: $form-padding;
+            text-align: right;
+            font-weight: bold;
+        }
+        & > .form-input {
+            columns($form-input-columns, $form-label-columns + $form-input-columns);
+            padding: $form-padding;
+            & > textbox, 
+            & > select, 
+            & > input:not([type="checkbox"]):not([type="radio"]) {
+                width: 100%;
+            }
+        }
+    }
+    .form-actions {
+        row();
+        padding: $form-padding;
+        text-align: right;
+        border-top: $form-action-border-width solid $form-action-border-color;
+    }
+    &.form-lock > .form-lock-screen {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 100;
+        vertical-align: middle;
+        text-align: center;
+    }
+    @media only screen and (max-width: 768px) {
+        .form-label:not(.form-force-inline) {
+            flex-direction: column;
+            align-items: left;
+        }
+        .form-label:not(.form-force-inline) > .form-title {
+            text-align: left;
+        }
+        .form-label:not(.form-force-inline) > .form-input {
+
+        }
+        .form-label.form-force-inline > .form-title {
+            text-align: left;
+        }
+        .form-label.form-force-inline > .form-input {
+
+        }
+    }
+}

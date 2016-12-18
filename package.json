@@ -2,9 +2,11 @@
   "name": "build-widgets",
   "version": "0.0.0",
   "author": "Sean Johnson <sjohnson@sjohnsonaz.com>",
-  "private": true,
+  "private": false,
+  "repository": "https://www.github.com/sjohnsonaz/build-widgets.git",
   "scripts": {
     "install": "gulp",
+    "prepublish": "gulp",
     "build": "gulp",
     "dev": "gulp dev"
   },
@@ -12,10 +14,11 @@
     "autoprefixer": "^6.5.3",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.0.13",
-    "gulp-less": "^3.3.0",
     "gulp-postcss": "^6.2.0",
     "gulp-sourcemaps": "^1.9.0",
-    "less": "^2.7.1",
-    "normalize.css": "^4.2.0"
+    "gulp-stylus": "^2.6.0",
+    "normalize.css": "^4.2.0",
+    "stylus": "^0.54.5",
+    "yargs": "^6.5.0"
   }
 }

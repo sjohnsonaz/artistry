@@ -1,14 +1,18 @@
-var less = require('gulp-less');
+var stylus = require('gulp-stylus');
 var cleanCSS = require('gulp-clean-css');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('autoprefixer');
+var argv = require('yargs').argv;
 
 module.exports = function (gulp) {
-    gulp.task('less:build', function () {
-        return gulp.src('src/less/main.less')
+    gulp.task('stylus:build', function () {
+        return gulp.src('src/styl/main.styl')
             .pipe(sourcemaps.init())
-            .pipe(less())
+            .pipe(stylus({
+                compress: true,
+                linenos: false
+            }))
             .on('error', function (error) {
                 console.log(error.toString());
                 this.emit('end');
@@ -23,7 +27,7 @@ module.exports = function (gulp) {
             .pipe(gulp.dest('dist/css'));
     });
 
-    gulp.task('less:build-watch', ['less:build'], function () {
-        return gulp.watch(["src/less/**/*"], ["less:build"]);
+    gulp.task('stylus:build-watch', ['stylus:build'], function () {
+        return gulp.watch(["src/styl/**/*", "config.json"], ["stylus:build"]);
     });
 };

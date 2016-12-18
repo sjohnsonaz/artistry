@@ -1,0 +1,11 @@
+@import "code-settings.styl";
+.code {
+    counter-reset: listing;
+    & > code {
+        counter-increment: listing;
+        &:before {
+            content: counter(listing) ". ";
+            color: $code-number-color;
+        }
+    }
+}

@@ -1,0 +1,48 @@
+@import "../settings.styl";
+.hidden {
+    display: none !important;
+}
+.hidden-soft {
+    position: absolute !important;
+    overflow: hidden;
+    top: -9999px !important;
+    left: -9999px !important;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
+.hidden-visually {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+.show-block {
+    display: block !important;
+}
+clearfix() {
+    &:after {
+        display: table;
+        content: '';
+        clear: both;
+    }
+}
+.clearfix {
+    clearfix();
+}
+pull-left() {
+    float: left;
+}
+.pull-left {
+    pull-left();
+}
+pull-right() {
+    float: right;
+}
+.pull-right {
+    pull-right();
+}

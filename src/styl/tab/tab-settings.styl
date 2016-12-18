@@ -1,0 +1,16 @@
+@import "../settings.styl";
+$tab-background-color ?= $default-background-color;
+$tab-color ?= $default-color;
+$tab-border-width ?= $default-border-width;
+$tab-border-color ?= $default-border-color;
+$tab-border-radius ?= $default-border-radius;
+$tab-body-padding ?= $default-padding;
+$tab-header-padding ?= $default-padding;
+$tab-inactive-background-color ?= $default-header-color;
+$tab-inactive-color ?= $default-header-color-alt;
+$tab-hover-background-color ?= lighten($tab-inactive-background-color, $lighter);
+$tab-hover-color ?= lighten($tab-inactive-color, $lighter);
+$tab-active-background-color ?= darken($tab-inactive-background-color, $darker);
+$tab-active-color ?= darken($tab-inactive-color, $darker);
+$tab-box-shadow ?= $box-shadow-height-1;
+$tab-box-shadow-guard ?= 10px;
