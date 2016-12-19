@@ -4,11 +4,12 @@
   "author": "Sean Johnson <sjohnson@sjohnsonaz.com>",
   "private": false,
   "repository": "https://www.github.com/sjohnsonaz/build-widgets.git",
+  "main": "src/styl/main.styl",
   "scripts": {
-    "install": "gulp",
-    "prepublish": "gulp",
-    "build": "gulp",
-    "dev": "gulp dev"
+    "install": "webpack",
+    "prepublish": "webpack",
+    "build": "webpack",
+    "dev": "webpack --watch"
   },
   "dependencies": {
     "autoprefixer": "^6.5.3",
@@ -20,5 +21,15 @@
     "normalize.css": "^4.2.0",
     "stylus": "^0.54.5",
     "yargs": "^6.5.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.5.4",
+    "clean-css-loader": "0.0.3",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "postcss-loader": "^1.2.1",
+    "style-loader": "^0.13.1",
+    "stylus-loader": "^2.4.0",
+    "webpack": "^1.14.0"
   }
 }
