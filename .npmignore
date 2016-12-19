@@ -1,6 +1,9 @@
 bower_components/
 test/
+tasks/
 docs/
+dist/main.js
+gulpfile.js
 *.map
 *.log
 *.tgz

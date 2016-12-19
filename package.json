@@ -11,24 +11,16 @@
     "build": "webpack",
     "dev": "webpack --watch"
   },
-  "dependencies": {
-    "autoprefixer": "^6.5.3",
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^2.0.13",
-    "gulp-postcss": "^6.2.0",
-    "gulp-sourcemaps": "^1.9.0",
-    "gulp-stylus": "^2.6.0",
-    "normalize.css": "^4.2.0",
-    "stylus": "^0.54.5",
-    "yargs": "^6.5.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^6.5.4",
     "clean-css-loader": "0.0.3",
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "normalize.css": "^5.0.0",
     "postcss-loader": "^1.2.1",
     "style-loader": "^0.13.1",
+    "stylus": "^0.54.5",
     "stylus-loader": "^2.4.0",
     "webpack": "^1.14.0"
   }
