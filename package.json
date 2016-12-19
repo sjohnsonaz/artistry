@@ -6,18 +6,19 @@
   "repository": "https://www.github.com/sjohnsonaz/build-widgets.git",
   "main": "src/styl/main.styl",
   "scripts": {
-    "install": "webpack",
+    "install": "",
     "prepublish": "webpack",
     "build": "webpack",
     "dev": "webpack --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "normalize.css": "^5.0.0"
+  },
   "devDependencies": {
     "autoprefixer": "^6.5.4",
     "clean-css-loader": "0.0.3",
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^1.0.1",
-    "normalize.css": "^5.0.0",
     "postcss-loader": "^1.2.1",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
