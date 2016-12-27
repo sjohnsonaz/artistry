@@ -70,7 +70,7 @@ $popover-gradient-percentage = 60%;
         height: $popover-diagonal;
         width: $popover-diagonal;
         border: $popover-border-width solid $popover-border-color;
-        background-color: #888;
+        background-color: $popover-border-color;
         z-index: -1;
         box-shadow: $popover-box-shadow-x-prime $popover-box-shadow-y-prime $popover-box-shadow-additional;
         -webkit-backface-visibility: hidden;
@@ -167,6 +167,7 @@ $popover-gradient-percentage = 60%;
     & .popover-content {
         padding: $popover-padding;
         background-color: $popover-background-color;
+        color: $popover-color;
         border: $popover-border-width solid $popover-border-color;
         border-radius: $popover-border-radius;
         box-shadow: $popover-box-shadow-x $popover-box-shadow-y $popover-box-shadow-additional;
