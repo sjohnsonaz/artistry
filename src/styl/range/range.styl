@@ -1,0 +1,93 @@
+@import "range-settings.styl";
+
+// http://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+
+track() {
+	width: $range-track-width;
+	height: $range-track-height;
+	cursor: pointer;
+	animate: 0.2s;
+}
+
+thumb() {
+    box-shadow: $range-thumb-shadow;
+	border: $range-thumb-border-width solid $range-thumb-border-color;
+	height: $range-thumb-height;
+	width: $range-thumb-width;
+	border-radius: $range-thumb-radius;
+	background: $range-thumb-color;
+	cursor: pointer;
+}
+
+input[type=range].range {
+	-webkit-appearance: none;
+	margin: $range-thumb-height / 2 0;
+	width: $range-track-width;
+	&:focus {
+		outline: none;
+	}
+
+	&::-webkit-slider-runnable-track {
+		track();
+        box-shadow: $range-track-shadow;
+		background: $range-track-color;
+		border-radius: $range-track-radius;
+		border: $range-track-border-width solid $range-track-border-color;
+	}
+
+	&::-webkit-slider-thumb {
+		thumb();
+		-webkit-appearance: none;
+		margin-top: ((-1 * $range-track-border-width * 2 + $range-track-height) / 2) - ($range-thumb-height / 2);
+	}
+
+	&:focus::-webkit-slider-runnable-track {
+		background: lighten($range-track-color, $range-contrast);
+	}
+
+	&::-moz-range-track {
+		track();
+        box-shadow: $range-track-shadow;
+		background: $range-track-color;
+		border-radius: $range-track-radius;
+		border: $range-track-border-width solid $range-track-border-color;
+	}
+
+	&::-moz-range-thumb {
+		thumb();
+	}
+
+	&::-ms-track {
+		track();
+		background: transparent;
+		border-color: transparent;
+		border-width: $range-thumb-width 0;
+		color: transparent;
+	}
+
+	&::-ms-fill-lower {
+		background: darken($range-track-color, $range-contrast);
+		border: $range-track-border-width solid $range-track-border-color;
+		border-radius: $range-track-radius * 2;
+        box-shadow: $range-track-shadow;
+	}
+
+	&::-ms-fill-upper {
+		background: $range-track-color;
+		border: $range-track-border-width solid $range-track-border-color;
+		border-radius: $range-track-radius * 2;
+        box-shadow: $range-track-shadow;
+	}
+
+	&::-ms-thumb {
+		thumb();
+	}
+
+	&:focus::-ms-fill-lower {
+		background: $range-track-color;
+	}
+
+	&:focus::-ms-fill-upper {
+		background: lighten($range-track-color, $range-contrast);
+	}
+}
