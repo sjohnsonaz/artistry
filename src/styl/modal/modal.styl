@@ -20,6 +20,9 @@ $modal-margin-right = -1 * $modal-width / 2;
         opacity: 1;
         overflow-y: auto;
         transition: transform 0s 0s, visibility $modal-transition-duration 0s, opacity $modal-transition-duration, overflow 0s;
+        & > .modal-content {
+            transform: none !important;
+        }
     }
     .modal-content {
         display: block;
@@ -35,9 +38,6 @@ $modal-margin-right = -1 * $modal-width / 2;
         transform: translateY(-2 * ($modal-margin-top + $modal-margin-bottom)) translateY(-100%);
         transition: transform $modal-transition-duration;
         clearfix();
-        .modal-open& {
-            transform: none !important;
-        }
         .modal-header,
         .modal-footer {
             margin: -1 * $modal-padding;
