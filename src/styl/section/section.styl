@@ -25,7 +25,8 @@ $section-header-margin = -($section-border-width + $section-padding);
         overflow: hidden;
         &.lock-contents:after {
             margin-top: $section-border-width;
-            border-radius: 0 0 ($section-border-radius - $section-border-width) ($section-border-radius - $section-border-width);
+            border-bottom-right-radius: max(0, $section-border-radius - $section-border-width);
+            border-bottom-left-radius: max(0, $section-border-radius - $section-border-width);
         }
     }
     &.section-closed > .section-content {
