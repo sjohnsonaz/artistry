@@ -60,9 +60,17 @@ $modal-margin-right = -1 * $modal-width / 2;
             padding: $modal-padding;
             &:first-child {
                 margin-top: (-1 * $modal-padding);
+                &.lock-contents:after {
+                    border-top-right-radius: max(0, $modal-border-radius - $modal-border-width);
+                    border-top-left-radius: max(0, $modal-border-radius - $modal-border-width);
+                }
             }
             &:last-child {
                 margin-bottom: (-1 * $modal-padding);
+                &.lock-contents:after {
+                    border-bottom-right-radius: max(0, $modal-border-radius - $modal-border-width);
+                    border-bottom-left-radius: max(0, $modal-border-radius - $modal-border-width);
+                }
             }
         }
         .modal-footer {
