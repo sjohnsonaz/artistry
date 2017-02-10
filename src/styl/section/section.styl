@@ -23,6 +23,10 @@ $section-header-margin = -($section-border-width + $section-padding);
         padding: $section-padding;
         transition: max-height $section-animation-time;
         overflow: hidden;
+        &.lock-contents:after {
+            margin-top: $section-border-width;
+            border-radius: 0 0 ($section-border-radius - $section-border-width) ($section-border-radius - $section-border-width);
+        }
     }
     &.section-closed > .section-content {
         max-height: 0;
