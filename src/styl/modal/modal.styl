@@ -38,9 +38,8 @@ $modal-margin-right = -1 * $modal-width / 2;
         transform: translateY(-2 * ($modal-margin-top + $modal-margin-bottom)) translateY(-100%);
         transition: transform $modal-transition-duration;
         clearfix();
-        .modal-header,
-        .modal-footer {
-            margin: -1 * $modal-padding;
+        .modal-header {
+            margin: (-1 * $modal-padding) (-1 * $modal-padding) 0 (-1 * $modal-padding);
             padding: $modal-padding;
             border-bottom: $modal-border-width solid $modal-border-color;
             background-color: $modal-header-background-color;
@@ -55,6 +54,25 @@ $modal-margin-right = -1 * $modal-width / 2;
             .modal-controls {
                 float: right;
             }
+        }
+        .modal-body {
+            margin: 0 (-1 * $modal-padding);
+            padding: $modal-padding;
+            &:first-child {
+                margin-top: (-1 * $modal-padding);
+            }
+            &:last-child {
+                margin-bottom: (-1 * $modal-padding);
+            }
+        }
+        .modal-footer {
+            margin: 0 (-1 * $modal-padding) (-1 * $modal-padding) (-1 * $modal-padding);
+            padding: $modal-padding;
+            border-top: $modal-border-width solid $modal-border-color;
+            background-color: $modal-header-background-color;
+            border-bottom-left-radius: $modal-border-radius;
+            border-bottom-right-radius: $modal-border-radius;
+            clearfix();
         }
     }
     &.modal-animate-top {
