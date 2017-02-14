@@ -103,6 +103,7 @@ focus-tight() {
     & > .text, 
     & > .password {
         display: block;
+        position: relative;
         pull-left();
         margin: 0;
         border-right-width: 0;
@@ -117,6 +118,9 @@ focus-tight() {
             border-right-width: $input-border-width;
             border-top-right-radius: $input-border-radius;
             border-bottom-right-radius: $input-border-radius;
+        }
+        &:hover {
+            z-index: 1;
         }
     }
 }
