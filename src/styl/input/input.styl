@@ -98,8 +98,10 @@ focus-tight() {
     &:hover {
         box-shadow: $input-box-shadow-height1;
     }
-    & > button, 
-    & > input {
+    & > .button, 
+    & > .input,
+    & > .text, 
+    & > .password {
         display: block;
         pull-left();
         margin: 0;
@@ -115,6 +117,28 @@ focus-tight() {
             border-right-width: $input-border-width;
             border-top-right-radius: $input-border-radius;
             border-bottom-right-radius: $input-border-radius;
+        }
+    }
+}
+.button-bar {
+    clearfix();
+    display: inline-block;
+    margin: $input-margin;
+    padding: 0;
+    vertical-align: middle;
+    border-radius: $input-border-radius;
+    background-color: $button-bar-background-color;
+    box-shadow: $input-box-shadow-height1;
+    & > .button, 
+    & > .input,
+    & > .text, 
+    & > .password {
+        display: block;
+        margin: $button-bar-margin $button-bar-margin $button-bar-margin 0;
+        pull-left();
+        focus-tight();
+        &:first-child {
+            margin: $button-bar-margin;
         }
     }
 }
