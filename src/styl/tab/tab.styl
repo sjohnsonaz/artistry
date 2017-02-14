@@ -2,7 +2,7 @@
 @import "../core/mixins.styl";
 .tab-container {
     margin.7 em 0;
-    & > ul {
+    & > .tab-header {
         display: flex;
         list-style: none;
         padding: 0;
@@ -51,7 +51,7 @@
             }
         }
     }
-    & > div {
+    & > .tab-body {
         display: block;
         position: relative;
         margin: 0;
@@ -67,5 +67,15 @@
                 display: block;
             }
         }
+    }
+    & > .tab-carousel {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: $tab-body-padding;
+        border: $tab-border-width solid $tab-border-color;
+        background-color: $tab-background-color;
+        border-radius: 0 $tab-border-radius $tab-border-radius $tab-border-radius;
+        box-shadow: $tab-box-shadow;
     }
 }
