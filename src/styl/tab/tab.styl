@@ -73,10 +73,13 @@
         display: block;
         position: relative;
         margin: 0;
-        padding: $tab-body-padding;
+        padding: 0;
         border: $tab-border-width solid $tab-border-color;
         background-color: $tab-background-color;
         border-radius: 0 $tab-border-radius $tab-border-radius $tab-border-radius;
         box-shadow: $tab-box-shadow;
+        & > div {
+            padding: $tab-body-padding;
+        }
     }
 }
