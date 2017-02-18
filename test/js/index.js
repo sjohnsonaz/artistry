@@ -74,10 +74,36 @@ $(function () {
         runCarousel(carouselIndex);
     });
 
+    var closed = false;
+    $('#clickToggleSection').click(function (event) {
+        closed = !closed;
+        var button = $(this);
+        if (closed) {
+            $('#closedSection').addClass('section-closed');
+        } else {
+            $('#closedSection').removeClass('section-closed');
+        }
+    });
     $('#clickLockSection').click(function (event) {
         $('#lockedSection').addClass('locked');
         window.setTimeout(function () {
             $('#lockedSection').removeClass('locked');
         }, 1000);
+    });
+    $('clockLoadSection').click(function (event) {
+        if (closed) {
+            button.addClass('button-locked');
+            button.attr({
+                disabled: true
+            });
+            window.setTimeout(function () {
+                closed = false;
+                $('#closedSection').removeClass('section-closed');
+                button.removeClass('button-locked');
+                button.attr({
+                    disabled: false
+                });
+            }, 1000);
+        }
     });
 });
