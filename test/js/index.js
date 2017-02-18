@@ -75,35 +75,29 @@ $(function () {
     });
 
     var closed = false;
+    var toggleTimeout;
     $('#clickToggleSection').click(function (event) {
+        window.clearTimeout(toggleTimeout);
         closed = !closed;
+        var section = $('#closedSection')[0];
+        var sectionHeader = $('#sectionHeader')[0];
+        var sectionContent = $('#sectionContent')[0]
         var button = $(this);
         if (closed) {
-            $('#closedSection').addClass('section-closed');
+            section.style.height = section.offsetHeight + 'px';
+            section.style.height = sectionHeader.offsetHeight + 'px';
         } else {
-            $('#closedSection').removeClass('section-closed');
+            var sectionBorder = section.offsetHeight - section.clientHeight;
+            section.style.height = sectionBorder / 2 + sectionHeader.offsetHeight + sectionContent.offsetHeight + 'px';
+            toggleTimeout = window.setTimeout(function () {
+                section.style.height = 'auto';
+            }, 220)
         }
     });
     $('#clickLockSection').click(function (event) {
-        $('#lockedSection').addClass('locked');
+        $('#sectionContent').addClass('locked');
         window.setTimeout(function () {
-            $('#lockedSection').removeClass('locked');
+            $('#sectionContent').removeClass('locked');
         }, 1000);
-    });
-    $('clockLoadSection').click(function (event) {
-        if (closed) {
-            button.addClass('button-locked');
-            button.attr({
-                disabled: true
-            });
-            window.setTimeout(function () {
-                closed = false;
-                $('#closedSection').removeClass('section-closed');
-                button.removeClass('button-locked');
-                button.attr({
-                    disabled: false
-                });
-            }, 1000);
-        }
     });
 });
