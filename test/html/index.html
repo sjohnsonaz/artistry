@@ -357,9 +357,15 @@
                 </div>
 
                 <h3>Locked</h3>
-                <section class="section">
-                    <header>Locked Content</header>
-                    <div id="lockedSection" class="section-content lock-contents">
+                <section id="closedSection" class="section">
+                    <header id="sectionHeader">
+                        Locked Content
+                        <button id="clickToggleSection" class="button section-toggle">
+                            <div class="button-text">-</div>
+                            <div class="button-spinner">O</div>
+                        </button>
+                    </header>
+                    <div id="sectionContent" class="section-content lock-contents">
                         <button id="clickLockSection" class="button">Lock</button>
                     </div>
                 </section>
