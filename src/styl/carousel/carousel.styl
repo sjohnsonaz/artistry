@@ -24,7 +24,6 @@
             right: 0;
             left: 0;
             position: relative;
-            z-index: 1;
         }
         &.carousel-selected ~ div {
             right: -100%;
@@ -34,5 +33,6 @@
     & > div.carousel-selected.carousel-selecting, 
     &.carousel-run > div.carousel-selected {
         position: absolute;
+        z-index: 1;
     }
 }
