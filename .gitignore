@@ -21,21 +21,23 @@ coverage
 .lock-wscript
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
+build
 build/Release
 
 # Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
 bower_components
+
+# Build directory
 dist/
-build-widgets-*/
 
+# Packed files
 *.tgz
+artistry-*
 
-# Optional npm cache directory
-.npm
+# Editor configuration files
+.vscode/
 
-# Optional REPL history
-.node_repl_history
-
-.vscode
+# MkDocs files
+site

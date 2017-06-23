@@ -1,15 +1,35 @@
+# Dependency directory
+node_modules/
 bower_components/
-test/
-tasks/
+
+# Documentation directory
 docs/
+
+# Source directory
+test/
+
+# Build directory
 dist/main.js
-gulpfile.js
+
+# Sourcemap, log, packed files
 *.map
 *.log
 *.tgz
-build-widgets-*
-bower.json
+artistry-*
+
+# Ignore files
 .gitignore
 .npmignore
+
+# Build configuration files
+tsconfig.json
+webpack.config.js
+webpack.dev.config.js
 .travis.yml
+bower.json
+
+# Editor configuration files
 .vscode/
+
+# MkDocs files
+site
