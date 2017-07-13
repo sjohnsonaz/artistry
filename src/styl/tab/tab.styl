@@ -43,8 +43,9 @@
                 content: '';
                 display: block;
                 position: absolute;
-                bottom: -1 * $tab-border-width;
-                height: $tab-border-width + $tab-box-shadow-guard;
+                // Added 1 pixel extra to cover IE artifacts
+                bottom: -1 * $tab-border-width - 1;
+                height: $tab-border-width + $tab-box-shadow-guard + 1;
                 width: 100%;
                 background-color: $tab-background-color;
                 z-index: 1;
