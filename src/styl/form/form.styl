@@ -5,6 +5,8 @@
     text-align: center;
     background: white;
     container-fluid();
+    width: auto;
+    margin: (-1 * $form-padding) (-1 * $form-padding) (-1 * $form-padding) (-1 * $form-padding);
     .form-container {
         clearfix();
         text-align: left;
@@ -32,9 +34,19 @@
     }
     .form-actions {
         row();
-        padding: $form-padding;
-        text-align: right;
-        border-top: $form-action-border-width solid $form-action-border-color;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: $form-padding ($form-padding - (0.5 * $form-actions-input-margin)) $form-padding ($form-padding - (0.5 * $form-actions-input-margin));
+        border-top: $form-actions-border-width solid $form-actions-border-color;
+        background-color: $form-actions-background-color;
+        & > .button, 
+        & > .input,
+        & > .text, 
+        & > .password {
+            display: block;
+            margin: 0 (0.5 * $form-actions-input-margin) 0 (0.5 * $form-actions-input-margin);
+        }
     }
     &.form-lock > .form-lock-screen {
         display: block;
