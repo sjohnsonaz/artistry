@@ -81,7 +81,7 @@ $(function () {
         closed = !closed;
         var section = $('#closedSection')[0];
         var sectionHeader = $('#sectionHeader')[0];
-        var sectionContent = $('#sectionContent')[0]
+        var sectionContent = $('#sectionContent')[0];
         var button = $(this);
         if (closed) {
             section.style.height = section.offsetHeight + 'px';
