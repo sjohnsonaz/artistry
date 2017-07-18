@@ -20,10 +20,12 @@
         right: 100%;
         left: -100%;
         transition: left 0.5s, right 0.5s;
+        visibility: hidden;
         &.carousel-selected {
             right: 0;
             left: 0;
             position: relative;
+            visibility: visible;
         }
         &.carousel-selected ~ div {
             right: -100%;
@@ -31,8 +33,11 @@
         }
     }
     & > div.carousel-selected.carousel-selecting, 
-    &.carousel-run > div.carousel-selected {
-        position: absolute;
-        z-index: 1;
+    &.carousel-run > div {
+        visibility: visible;
+        &.carousel-selected {
+            position: absolute;
+            z-index: 1;
+        }
     }
 }
