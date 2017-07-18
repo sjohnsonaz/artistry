@@ -28,6 +28,17 @@ $section-header-margin = -($section-border-width + $section-padding);
             font-weight: bold;
         }
     }
+    & > footer {
+        background-color: $section-header-background-color;
+        color: $section-header-color;
+        font-weight: $section-header-font-weight;
+        border: $section-border-width solid $section-border-color;
+        border-bottom-left-radius: $section-border-radius;
+        border-bottom-right-radius: $section-border-radius;
+        padding: $section-padding;
+        margin: 0 (-1 * $section-border-width) (-1 * $section-border-width) (-1 * $section-border-width);
+        clearfix();
+    }
     .section-container {
         position: relative;
     }
