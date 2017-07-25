@@ -4,6 +4,7 @@
   "author": "Sean Johnson <sjohnson@sjohnsonaz.com>",
   "private": false,
   "repository": "https://www.github.com/sjohnsonaz/artistry.git",
+  "license": "MIT",
   "main": "src/styl/main.styl",
   "scripts": {
     "prepublishOnly": "webpack",
@@ -11,17 +12,21 @@
     "dev": "webpack --watch --progress"
   },
   "dependencies": {
-    "normalize.css": "^7.0.0"
+    "normalize.css": "7.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^6.5.4",
-    "clean-css-loader": "0.0.3",
-    "css-loader": "^0.26.1",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "postcss-loader": "^1.2.1",
-    "style-loader": "^0.13.1",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^2.4.0",
-    "webpack": "^1.14.0"
+    "@types/jquery": "3.2.9",
+    "autoprefixer": "7.1.2",
+    "clean-css-loader": "0.1.3",
+    "css-loader": "0.28.4",
+    "extract-text-webpack-plugin": "3.0.0",
+    "jquery": "3.2.1",
+    "postcss-loader": "2.0.6",
+    "style-loader": "0.18.2",
+    "stylus": "0.54.5",
+    "stylus-loader": "3.0.1",
+    "ts-loader": "2.3.1",
+    "typescript": "2.4.2",
+    "webpack": "3.4.0"
   }
 }
