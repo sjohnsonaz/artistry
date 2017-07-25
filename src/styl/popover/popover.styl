@@ -176,6 +176,7 @@ $popover-gradient-percentage = 60%;
         border-radius: $popover-border-radius;
         box-shadow: $popover-box-shadow-x $popover-box-shadow-y $popover-box-shadow-additional;
         z-index: 1;
+        user-select: all;
     }
     *:hover:not(.popover-closed) > &:not(.popover-closed),
     *.popover-open > &:not(.popover-closed),
@@ -194,6 +195,8 @@ $popover-gradient-percentage = 60%;
     bottom: 0;
     left: 0;
     z-index: 2;
+    cursor: default;
+    user-select: none;
     *.popover-open > &:not(.popover-closed),
     &.popover-open {
         display: block;
