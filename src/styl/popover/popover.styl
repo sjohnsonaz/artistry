@@ -4,14 +4,17 @@ $quarter-pi = 3.141592653589793 / 4;
 $popover-box-shadow-x-prime = $popover-box-shadow-x * cos($quarter-pi) + $popover-box-shadow-y * sin($quarter-pi);
 $popover-box-shadow-y-prime = -1 * $popover-box-shadow-x * sin($quarter-pi) + $popover-box-shadow-y * cos($quarter-pi);
 $popover-gradient-percentage = 60%;
+
+// TODO: Prevent mouse-down on trigger when popover is open
 .popover-trigger {
     position: relative;
 }
+
 .popover {
     display: block;
     position: absolute;
     min-width: 30vw;
-    z-index: 1;
+    z-index: 2;
     opacity: 0;
     visibility: hidden;
     transition: visibility 0s 0.3s, opacity 0.3s;
@@ -174,10 +177,25 @@ $popover-gradient-percentage = 60%;
         box-shadow: $popover-box-shadow-x $popover-box-shadow-y $popover-box-shadow-additional;
         z-index: 1;
     }
-    *:hover > &,
+    *:hover:not(.popover-closed) > &:not(.popover-closed),
+    *.popover-open > &:not(.popover-closed),
     &.popover-open {
         opacity: 1;
         visibility: visible;
         transition: visibility 0.3s, opacity 0.3s;
+    }
+}
+
+.popover-mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    *.popover-open > &:not(.popover-closed),
+    &.popover-open {
+        display: block;
     }
 }

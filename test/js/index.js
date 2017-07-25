@@ -16,6 +16,20 @@ $(function () {
         })();
     });
 
+    $('#clickShowPopoverMenu > .popover').click(function (event) {
+        event.stopPropagation();
+    });
+    var popoverMenuOpen = false;
+    $('#clickShowPopoverMenu').click(function (event) {
+        if (popoverMenuOpen) {
+            $('#clickShowPopoverMenu').addClass('popover-closed').removeClass('popover-open');
+            popoverMenuOpen = false;
+        } else {
+            $('#clickShowPopoverMenu').addClass('popover-open').removeClass('popover-closed');
+            popoverMenuOpen = true;
+        }
+    });
+
     $('#clickShowNotifications').click(function (event) {
         $('.notification-container').toggleClass('hidden');
     });
