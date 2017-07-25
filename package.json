@@ -9,8 +9,10 @@
   "main": "src/styl/main.styl",
   "scripts": {
     "prepublishOnly": "webpack",
-    "build": "webpack --progress",
-    "dev": "webpack --watch --progress"
+    "build": "webpack",
+    "min": "webpack --progress",
+    "dev": "webpack --config webpack.dev.config.js --progress",
+    "watch": "webpack --config webpack.dev.config.js --watch --progress"
   },
   "dependencies": {
     "normalize.css": "7.0.0"
