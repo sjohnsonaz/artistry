@@ -8,9 +8,7 @@ docs/
 test/
 
 # Build directory
-dist/*
-dist/.*
-!dist/main.css
+build/
 
 # Sourcemap, log, packed files
 *.map
@@ -26,6 +24,7 @@ artistry-*
 tsconfig.json
 webpack.config.js
 webpack.dev.config.js
+postcss.config.js
 .travis.yml
 
 # Editor configuration files

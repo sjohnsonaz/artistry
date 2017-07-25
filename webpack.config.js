@@ -3,10 +3,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     entry: {
         'main': './src/styl/main.styl',
-        'index': './test/js/index.ts'
+        'index': './test/ts/index.ts'
     },
     output: {
-        filename: './dist/[name].js',
+        filename: './test/build/[name].js',
     },
     resolve: {
         extensions: ['.webpack.js', '.web.js', '.js', '.css', '.styl']

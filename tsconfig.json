@@ -15,7 +15,7 @@
     "noLib": false,
     "preserveConstEnums": true,
     "suppressImplicitAnyIndexErrors": true,
-    "outDir": "dist",
+    "outDir": "build",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "lib": [
