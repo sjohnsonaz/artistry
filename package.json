@@ -5,6 +5,7 @@
   "private": false,
   "repository": "https://www.github.com/sjohnsonaz/artistry.git",
   "license": "MIT",
+  "description": "A powerful and configurable stylesheet",
   "main": "src/styl/main.styl",
   "scripts": {
     "prepublishOnly": "webpack",
