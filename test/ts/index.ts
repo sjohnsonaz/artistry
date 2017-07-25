@@ -24,10 +24,10 @@ $(function () {
     var popoverMenuOpen = false;
     $('#clickShowPopoverMenu').click(function (event) {
         if (popoverMenuOpen) {
-            $('#clickShowPopoverMenu').addClass('popover-closed').removeClass('popover-open');
+            $('#clickShowPopoverMenu').removeClass('button-down').addClass('popover-closed').removeClass('popover-open');
             popoverMenuOpen = false;
         } else {
-            $('#clickShowPopoverMenu').addClass('popover-open').removeClass('popover-closed');
+            $('#clickShowPopoverMenu').addClass('button-down').addClass('popover-open').removeClass('popover-closed');
             popoverMenuOpen = true;
         }
     });
