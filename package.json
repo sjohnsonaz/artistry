@@ -29,5 +29,18 @@
     "ts-loader": "2.3.1",
     "typescript": "2.4.2",
     "webpack": "3.4.0"
-  }
+  },
+  "keywords": [
+    "widget",
+    "component",
+    "html",
+    "css",
+    "stylesheet",
+    "configurable",
+    "modals",
+    "tabs",
+    "carousels",
+    "buttons",
+    "forms"
+  ]
 }
