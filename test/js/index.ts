@@ -1,4 +1,3 @@
-<<<<<<< HEAD:test/js/index.ts
 import * as $ from 'jquery';
 
 $(function () {
@@ -104,7 +103,6 @@ $(function () {
         }, 1000);
     });
 });
-=======
 $(function () {
 
     $('#clickLockableEdit, #clickLockableSave, #clickLockableDelete').click(function (event) {
@@ -222,4 +220,3 @@ $(function () {
         }, 1000);
     });
 });
->>>>>>> 36a721a2ae7641bdd24341e4ebab3c5f7e25c13d:test/js/index.js
