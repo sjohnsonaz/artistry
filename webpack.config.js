@@ -2,7 +2,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
-        'main': './src/styl/main.styl',
+        'artistry': './src/styl/main.styl',
         'index': './test/ts/index.ts'
     },
     output: {
