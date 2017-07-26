@@ -1,0 +1,67 @@
+@import "menu-bar-settings.styl";
+
+.menu-bar {
+    background-color: $menu-bar-background-color;
+    box-shadow: $menu-bar-shadow;
+
+    & > .menu-bar-title {
+        display: block;
+        padding: 0 $menu-bar-padding;
+        font-size: 30px;
+        font-weight: bold;
+        line-height: $menu-bar-top-height;
+        float: left;
+        color: $menu-bar-color;
+    }
+
+    & > ul {
+        display: block;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        & > li {
+            display: block;
+            float: left;
+
+            & > a {
+                display: block;
+                height: $menu-bar-top-height;
+                padding: $menu-bar-padding;
+                line-height: $menu-bar-top-height - 2 * $menu-bar-padding;
+                text-decoration: none;
+                cursor: pointer;
+                transition: background-color 0.3s;
+
+                &:hover {
+                    background-color: $menu-bar-background-color-hover;
+                }
+
+                &.menu-item {
+                    color: $menu-bar-color;
+                }
+            }
+
+            &.menu-active > a {
+                background-color: $menu-bar-background-color-hover;
+            }
+
+            &.pull-right {
+                float: right;
+            }
+        }
+    }
+
+    &.menu-bar-top {
+        height: $menu-bar-top-height;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 10;
+    }
+}
+
+.container-menu-bar-top {
+    padding-top: $menu-bar-top-height;
+}
