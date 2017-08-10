@@ -1,0 +1,52 @@
+@import "drawer-settings.styl";
+.drawer-mask {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.5;
+}
+.drawer {
+    display: block;
+    position: fixed;
+    background-color: $drawer-background-color;
+    padding: $drawer-padding;
+    border: $drawer-border-width solid $drawer-border-color;
+    border-radius: $drawer-border-radius;
+    box-shadow: $drawer-box-shadow;
+    z-index: $drawer-z-index;
+    visibility: hidden;
+    transition: transform $drawer-transition-duration, visibility $drawer-transition-duration;
+    &.drawer-top {
+        top: 0;
+        left: 0;
+        right: 0;
+        transform: translateY(-200%);
+    }
+    &.drawer-right {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        transform: translateX(200%);
+    }
+    &.drawer-bottom {
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateY(200%);
+    }
+    &.drawer-left {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(- 200%);
+    }
+    &.drawer-open {
+        transition: transform 0.5s;
+        transform: none;
+        visibility: visible;
+    }
+}

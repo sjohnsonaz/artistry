@@ -36,6 +36,10 @@ $(function () {
         $('.notification-container').toggleClass('hidden');
     });
 
+    $('#clickOpenDrawer').click(function (event) {
+        $('#drawer').toggleClass('drawer-open');
+    });
+
     $('.tab-container').each(function (index, element) {
         var ul = $($(element).children()[0]);
         var div = $($(element).children()[1]);
