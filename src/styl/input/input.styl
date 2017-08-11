@@ -27,13 +27,13 @@ focus-tight() {
     color: $input-default-color;
     background-color: $input-default-background-color;
     border-radius: $input-border-radius;
-    box-shadow: $input-box-shadow-height0;
+    box-shadow: $input-box-shadow-height-0;
     cursor: pointer;
     transition: box-shadow 0.3s;
     &:hover:enabled {
         color: lighten($input-default-color, $input-color-variance);
         background-color: lighten($input-default-background-color, $input-color-variance);
-        box-shadow: $input-box-shadow-height1;
+        box-shadow: $input-box-shadow-height-1;
     }
     &:active:enabled,
     &.button-down:enabled {
@@ -98,11 +98,11 @@ focus-tight() {
     margin: $input-margin;
     padding: 0;
     vertical-align: middle;
-    box-shadow: $input-box-shadow-height0;
+    box-shadow: $input-box-shadow-height-0;
     border-radius: $input-border-radius;
     transition: box-shadow 0.3s;
     &:hover {
-        box-shadow: $input-box-shadow-height1;
+        box-shadow: $input-box-shadow-height-1;
     }
     & > .button, 
     & > .input,
@@ -139,7 +139,7 @@ focus-tight() {
     border: $input-border-width solid $input-default-border-color;
     border-radius: $input-border-radius;
     background-color: $button-bar-background-color;
-    box-shadow: $input-box-shadow-height1;
+    box-shadow: $input-box-shadow-height-1;
     & > .button, 
     & > .input,
     & > .text, 
@@ -163,7 +163,7 @@ focus-tight() {
     border-radius: $input-border-radius;
     border: $input-border-width solid $input-default-border-color;
     font-family: Arial;
-    box-shadow: $input-box-shadow-height0;
+    box-shadow: $input-box-shadow-height-0;
 }
 input[type="checkbox"], 
 input[type="radio"] {
@@ -182,5 +182,5 @@ select {
     border: $input-border-width solid $input-default-border-color;
     font-family: Arial;
     overflow: auto;
-    box-shadow: $input-box-shadow-height0;
+    box-shadow: $input-box-shadow-height-0;
 }
