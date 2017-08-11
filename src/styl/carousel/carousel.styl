@@ -17,19 +17,18 @@
         padding: 0;
         margin: 0;
         min-height: $carousel-min-height;
-        right: 100%;
-        left: -100%;
-        transition: left 0.5s, right 0.5s;
+        right: 0;
+        left: 0;
+        transform: translateX(-100%);
+        transition: transform 0.5s;
         visibility: hidden;
         &.carousel-selected {
-            right: 0;
-            left: 0;
+            transform: translateX(0);
             position: relative;
             visibility: visible;
         }
         &.carousel-selected ~ div {
-            right: -100%;
-            left: 100%;
+            transform: translateX(100%);
         }
     }
     & > div.carousel-selected.carousel-selecting, 
