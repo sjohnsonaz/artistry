@@ -1,55 +1,75 @@
 @import "drawer-settings.styl";
-.drawer-mask {
+.drawer {
     display: block;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: black;
-    opacity: 0.5;
-}
-.drawer {
-    display: block;
-    position: fixed;
-    background-color: $drawer-background-color;
-    padding: $drawer-padding;
-    border: $drawer-border-width solid $drawer-border-color;
-    border-radius: $drawer-border-radius;
-    max-height: 100%;
-    max-width: 100%;
-    overflow: auto;
-    box-shadow: $drawer-box-shadow;
-    z-index: $drawer-z-index;
+    background-color: $drawer-mask-background-color;
     visibility: hidden;
-    transition: transform $drawer-transition-duration, visibility $drawer-transition-duration;
-    &.drawer-top {
-        top: 0;
-        left: 0;
-        right: 0;
-        transform: translateY(-200%);
-    }
-    &.drawer-right {
-        top: 0;
-        right: 0;
-        bottom: 0;
-        transform: translateX(200%);
-    }
-    &.drawer-bottom {
-        right: 0;
-        bottom: 0;
-        left: 0;
-        transform: translateY(200%);
-    }
-    &.drawer-left {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        transform: translateX(- 200%);
-    }
+    opacity: 0;
+    z-index: $drawer-z-index;
+        transition: transform 0s $drawer-transition-duration, visibility 0s $drawer-transition-duration, opacity $drawer-transition-duration, overflow $drawer-transition-duration;
     &.drawer-open {
-        transition: transform 0.5s;
-        transform: none;
+        opacity: 1;
         visibility: visible;
+        transition: transform 0s 0s, visibility $drawer-transition-duration 0s, opacity $drawer-transition-duration, overflow 0s;
+    }
+    & > .drawer-content {
+        display: block;
+        position: fixed;
+        background-color: $drawer-background-color;
+        padding: $drawer-padding;
+        border: $drawer-border-width solid $drawer-border-color;
+        border-radius: $drawer-border-radius;
+        max-height: 100%;
+        max-width: 100%;
+        overflow: auto;
+        box-shadow: $drawer-box-shadow;
+        z-index: $drawer-z-index + 1;
+        visibility: hidden;
+        transition: transform $drawer-transition-duration, visibility $drawer-transition-duration;
+        .drawer-top&{
+            top: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(-200%);
+            .drawer-full& {
+                bottom: 0;
+            }
+        }
+        .drawer-right& {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            transform: translateX(200%);
+            .drawer-full& {
+                left: 0;
+            }
+        }
+        .drawer-bottom& {
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateY(200%);
+            .drawer-full& {
+                top: 0;
+            }
+        }
+        .drawer-left& {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateX(- 200%);
+            .drawer-full& {
+                right: 0;
+            }
+        }
+        .drawer-open& {
+            transition: transform 0.5s;
+            transform: none;
+            visibility: visible;
+        }
     }
 }

@@ -39,6 +39,15 @@ $(function () {
     $('#clickOpenDrawer').click(function (event) {
         $('#drawer').toggleClass('drawer-open');
     });
+    $('#clickCloseDrawer').click(function (event) {
+        $('#drawer').toggleClass('drawer-open');
+    });
+    $('#drawer').click(function (event) {
+        $('#drawer').toggleClass('drawer-open');
+    });
+    $('.drawer-content').click(function (event) {
+        event.stopPropagation();
+    });
 
     $('.tab-container').each(function (index, element) {
         var ul = $($(element).children()[0]);
