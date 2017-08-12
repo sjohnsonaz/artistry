@@ -36,19 +36,6 @@ $(function () {
         $('.notification-container').toggleClass('hidden');
     });
 
-    $('.tab-container').each(function (index, element) {
-        var ul = $($(element).children()[0]);
-        var div = $($(element).children()[1]);
-        ul.children().each(function (index, element) {
-            $(element).find('a').click(function (event) {
-                ul.children().removeClass('tab-active');
-                div.children().removeClass('tab-active');
-                $(element).addClass('tab-active');
-                $(div.children()[index]).addClass('tab-active');
-            });
-        });
-    });
-
     function lockBodyScroll(lock: boolean) {
         let body = document.body;
         let root = document.querySelector('.root');
@@ -86,10 +73,20 @@ $(function () {
         event.stopPropagation();
     });
 
-    var carouselIndex = 0;
-    var carouselCount = 3;
-    var timeout;
+    $('.tab-container#tab-regular').each(function (index, element) {
+        var ul = $($(element).children()[0]);
+        var div = $($(element).children()[1]);
+        ul.children().each(function (index, element) {
+            $(element).find('a').click(function (event) {
+                ul.children().removeClass('tab-active');
+                div.children().removeClass('tab-active');
+                $(element).addClass('tab-active');
+                $(div.children()[index]).addClass('tab-active');
+            });
+        });
+    });
 
+    var timeout;
     function runCarousel(carouselId, index) {
         var carousel = $(carouselId);
         var child = $(carousel.children()[index]);
@@ -105,15 +102,33 @@ $(function () {
         }, 500);
     }
 
+    let tabIndex = 0;
+    $('.tab-container#tab-carousel').each(function (index, element) {
+        var ul = $($(element).children()[0]);
+        var div = $($(element).children()[1]);
+        ul.children().each(function (index, element) {
+            $(element).find('a').click(function (event) {
+                if (index !== tabIndex) {
+                    ul.children().removeClass('tab-active');
+                    $(element).addClass('tab-active');
+                    runCarousel('#carousel-tab', index);
+                    tabIndex = index;
+                }
+            });
+        });
+    });
+
+    var carouselIndex = 0;
+    var carouselCount = 3;
     $('#clickCarouselNext').click(function (event) {
         carouselIndex++;
         carouselIndex = (carouselIndex + carouselCount) % carouselCount;
-        runCarousel('.carousel', carouselIndex);
+        runCarousel('#carousel', carouselIndex);
     });
     $('#clickCarouselBack').click(function (event) {
         carouselIndex--;
         carouselIndex = (carouselIndex + carouselCount) % carouselCount;
-        runCarousel('.carousel', carouselIndex);
+        runCarousel('#carousel', carouselIndex);
     });
 
     var closed = false;

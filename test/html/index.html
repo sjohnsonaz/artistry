@@ -319,28 +319,6 @@
         <section class="section">
             <header>Containers</header>
             <div class="section-content">
-                <h3>Tab</h3>
-                <div class="tab-container">
-                    <ul class="tab-header">
-                        <li class="tab-title tab-active">
-                            <a>Widgets</a>
-                        </li>
-                        <li class="tab-title"><a>Input</a></li>
-                        <li class="tab-title"><a>View Models</a></li>
-                    </ul>
-                    <div class="tab-body">
-                        <div class="tab-panel tab-active">
-                            Widgets Content
-                        </div>
-                        <div class="tab-panel">
-                            Input Content
-                        </div>
-                        <div class="tab-panel">
-                            View Models Content
-                        </div>
-                    </div>
-                </div>
-
                 <h3>Modal</h3>
                 <button id="clickOpenModal" class="button">Open Modal</button>
                 <div class="modal modal-animate-top">
@@ -365,10 +343,59 @@
                     </div>
                 </div>
 
+                <h3>Tab</h3>
+                <div class="tab-container" id="tab-regular">
+                    <ul class="tab-header">
+                        <li class="tab-title tab-active">
+                            <a>Widgets</a>
+                        </li>
+                        <li class="tab-title"><a>Input</a></li>
+                        <li class="tab-title"><a>View Models</a></li>
+                    </ul>
+                    <div class="tab-body">
+                        <div class="tab-panel tab-active">
+                            Widgets Content
+                        </div>
+                        <div class="tab-panel">
+                            Input Content
+                        </div>
+                        <div class="tab-panel">
+                            View Models Content
+                        </div>
+                    </div>
+                </div>
+
                 <h3>Carousel</h3>
+                <div class="tab-container" id="tab-carousel">
+                    <ul class="tab-header">
+                        <li class="tab-title tab-active">
+                            <a>Widgets</a>
+                        </li>
+                        <li class="tab-title"><a>Input</a></li>
+                        <li class="tab-title"><a>View Models</a></li>
+                    </ul>
+                    <div class="carousel tab-carousel" id="carousel-tab">
+                        <div class="carousel-selected">
+                            Content 0
+                            <br /><input type="text" />
+                        </div>
+                        <div>
+                            Content 1
+                            <br />Line 2
+                            <br /><input type="text" />
+                        </div>
+                        <div>
+                            Content 2
+                            <br />Line 2
+                            <br />Line 3
+                            <br /><input type="text" />
+                        </div>
+                    </div>
+                </div>
+                <br />
                 <button id="clickCarouselBack" class="button">Back</button>
                 <button id="clickCarouselNext" class="button">Next</button>
-                <div class="carousel carousel-animate-fade" style="background-color: black">
+                <div class="carousel" id="carousel" style="background-color: black">
                     <div class="carousel-selected" style="background-color: red; padding: 10px;">
                         Content 0
                         <br /><input type="text" />
