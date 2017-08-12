@@ -36,19 +36,6 @@ $(function () {
         $('.notification-container').toggleClass('hidden');
     });
 
-    $('#clickOpenDrawer').click(function (event) {
-        $('#drawer').toggleClass('drawer-open');
-    });
-    $('#clickCloseDrawer').click(function (event) {
-        $('#drawer').toggleClass('drawer-open');
-    });
-    $('#drawer').click(function (event) {
-        $('#drawer').toggleClass('drawer-open');
-    });
-    $('.drawer-content').click(function (event) {
-        event.stopPropagation();
-    });
-
     $('.tab-container').each(function (index, element) {
         var ul = $($(element).children()[0]);
         var div = $($(element).children()[1]);
@@ -73,12 +60,25 @@ $(function () {
         event.stopPropagation();
     });
 
+    $('#clickOpenDrawer').click(function (event) {
+        $('#drawer').toggleClass('drawer-open');
+    });
+    $('#clickCloseDrawer').click(function (event) {
+        $('#drawer').toggleClass('drawer-open');
+    });
+    $('#drawer').click(function (event) {
+        $('#drawer').toggleClass('drawer-open');
+    });
+    $('.drawer-content').click(function (event) {
+        event.stopPropagation();
+    });
+
     var carouselIndex = 0;
     var carouselCount = 3;
     var timeout;
 
-    function runCarousel(index) {
-        var carousel = $('.carousel');
+    function runCarousel(carouselId, index) {
+        var carousel = $(carouselId);
         var child = $(carousel.children()[index]);
         carousel.height(carousel.outerHeight());
         carousel.addClass('carousel-run');
@@ -95,12 +95,12 @@ $(function () {
     $('#clickCarouselNext').click(function (event) {
         carouselIndex++;
         carouselIndex = (carouselIndex + carouselCount) % carouselCount;
-        runCarousel(carouselIndex);
+        runCarousel('.carousel', carouselIndex);
     });
     $('#clickCarouselBack').click(function (event) {
         carouselIndex--;
         carouselIndex = (carouselIndex + carouselCount) % carouselCount;
-        runCarousel(carouselIndex);
+        runCarousel('.carousel', carouselIndex);
     });
 
     var closed = false;
