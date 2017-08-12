@@ -50,16 +50,16 @@ $(function () {
     });
 
     function lockBodyScroll(lock: boolean) {
-        let body = $('body');
-        let root = $('.root');
+        let body = document.body;
+        let root = document.querySelector('.root');
         if (lock) {
-            let scrollTop = body[0].scrollTop;
-            body.addClass('body-scroll-lock');
-            root[0].scrollTop = scrollTop;
+            let scrollTop = body.scrollTop;
+            body.classList.add('body-scroll-lock');
+            root.scrollTop = scrollTop;
         } else {
-            let scrollTop = root[0].scrollTop;
-            body.removeClass('body-scroll-lock');
-            body[0].scrollTop = scrollTop;
+            let scrollTop = root.scrollTop;
+            body.classList.remove('body-scroll-lock');
+            body.scrollTop = scrollTop;
         }
     }
 
