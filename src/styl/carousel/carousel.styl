@@ -19,8 +19,8 @@
         min-height: $carousel-min-height;
         right: 0;
         left: 0;
-        transform: translateX(-100%);
         transition: transform 0.5s;
+        transform: translateX(-100%);
         visibility: hidden;
         &.carousel-selected {
             transform: translateX(0);
@@ -37,6 +37,26 @@
         &.carousel-selected {
             position: absolute;
             z-index: 1;
+        }
+    }
+    &.carousel-animate-none {
+        transition: none;
+        & > div {
+            transition: none;
+        }
+    }
+    &.carousel-animate-slide {
+        & > div {
+            transition: transform 0.5s;
+        }
+    }
+    &.carousel-animate-fade {
+        & > div {
+            transition: opacity 0.5s;
+            opacity: 0;
+            &.carousel-selected {
+                opacity: 1;
+            }
         }
     }
 }
