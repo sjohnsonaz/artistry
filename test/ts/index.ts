@@ -49,25 +49,38 @@ $(function () {
         });
     });
 
-    var hidden = false;
+    function lockBodyScroll(lock: boolean) {
+        let body = $('body');
+        let root = $('.root');
+        if (lock) {
+            let scrollTop = body[0].scrollTop;
+            body.addClass('body-scroll-lock');
+            root[0].scrollTop = scrollTop;
+        } else {
+            let scrollTop = root[0].scrollTop;
+            body.removeClass('body-scroll-lock');
+            body[0].scrollTop = scrollTop;
+        }
+    }
+
+    var modalHidden = false;
     $('#clickOpenModal, #clickCloseModal, .modal').click(function (event) {
         event.stopPropagation();
-        hidden = !hidden;
-        //$('body').toggleClass('scroll-lock', hidden);
-        $('.modal').toggleClass('modal-open', hidden);
+        modalHidden = !modalHidden;
+        //$('body').toggleClass('scroll-lock', modalHidden);
+        $('.modal').toggleClass('modal-open', modalHidden);
+        lockBodyScroll(modalHidden);
     });
     $('.modal-content').click(function (event) {
         event.stopPropagation();
     });
 
-    $('#clickOpenDrawer').click(function (event) {
-        $('#drawer').toggleClass('drawer-open');
-    });
-    $('#clickCloseDrawer').click(function (event) {
-        $('#drawer').toggleClass('drawer-open');
-    });
-    $('#drawer').click(function (event) {
-        $('#drawer').toggleClass('drawer-open');
+    var drawerHidden = false;
+    $('#clickOpenDrawer, #clickCloseDrawer, #drawer').click(function (event) {
+        event.stopPropagation();
+        drawerHidden = !drawerHidden;
+        $('#drawer').toggleClass('drawer-open', drawerHidden);
+        lockBodyScroll(drawerHidden);
     });
     $('.drawer-content').click(function (event) {
         event.stopPropagation();
