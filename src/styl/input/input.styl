@@ -19,7 +19,7 @@ focus-tight() {
     }
 }
 .button {
-    user-select: none;
+    position: relative;
     display: inline-block;
     margin: $input-margin;
     padding: $input-padding;
@@ -29,7 +29,8 @@ focus-tight() {
     border-radius: $input-border-radius;
     box-shadow: $input-box-shadow-height-0;
     cursor: pointer;
-    transition: box-shadow 0.3s;
+    user-select: none;
+    transition: opacity 0.3s, box-shadow 0.3s;
     &:hover:enabled {
         color: lighten($input-default-color, $input-color-variance);
         background-color: lighten($input-default-background-color, $input-color-variance);
@@ -75,21 +76,27 @@ focus-tight() {
             background-color: darken($input-danger-background-color, $input-color-variance);
         }
     }
-    &.button-locked {
-        position: relative;
-        & > .button-text {
-            visibility: hidden;
-        }
-        & > .button-spinner {
-            display: block;
-        }
+    & > .button-text {
+        display: block;
+        opacity: 1;
+        transition: opacity 0.5s;
     }
     & > .button-spinner {
         position: absolute;
-        display: none;
+        display: block;
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+    &.button-locked {
+        & > .button-text {
+            opacity: 0;
+        }
+        & > .button-spinner {
+            opacity: 1;
+        }
     }
 }
 .button-group {
