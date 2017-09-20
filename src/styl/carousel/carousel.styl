@@ -5,7 +5,6 @@
     padding: 0;
     margin: 0;
     overflow: hidden;
-    transition: height 0.5s;
     &:after {
         display: table;
         content: '';
@@ -32,10 +31,13 @@
         }
     }
     & > div.carousel-selected.carousel-selecting, 
-    &.carousel-run > div {
-        &.carousel-selected {
-            position: absolute;
-            z-index: 1;
+    &.carousel-run {
+        transition: height 0.5s;
+        & > div {
+            &.carousel-selected {
+                position: absolute;
+                z-index: 1;
+            }
         }
     }
     &.carousel-animate-fade {
