@@ -30,6 +30,24 @@
             transform: translateX(100%);
         }
     }
+    &.carousel-safe {
+        & > div {
+            right: 100%;
+            left: -100%;
+            transition: left 0.5s, right 0.5s, visibility 0.5s;
+            transform: none;
+            &.carousel-selected {
+                right: 0;
+                left: 0;
+                transform: none;
+            }
+            &.carousel-selected ~ div {
+                right: -100%;
+                left: 100%;
+                transform: none;
+            }
+        }
+    }
     & > div.carousel-selected.carousel-selecting, 
     &.carousel-run {
         transition: height 0.5s;
