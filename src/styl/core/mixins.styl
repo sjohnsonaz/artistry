@@ -47,7 +47,9 @@ pull-right() {
     pull-right();
 }
 .body-scroll-lock {
-    overflow-y: scroll;
+    @media only screen and (min-width: $size0) {
+        overflow-y: scroll;
+    }
     & > .root {
         display: block;
         position: absolute;

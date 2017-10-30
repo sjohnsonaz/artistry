@@ -109,8 +109,29 @@ $modal-margin-right = -1 * $modal-width / 2;
             transform: scale(0, 0);
         }
     }
-}
-body.scroll-lock {
-    overflow: hidden;
-    padding-right: 17px;
+    @media only screen and (max-width: ($size0 - 1)) {
+        overflow-y: visible;
+        .modal-content {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            width: 100%;
+            border-radius: 0;
+            .modal-header {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+            .modal-body {
+                flex: 1;
+                overflow-y: scroll;
+            }
+            .modal-footer {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
 }
