@@ -28,9 +28,14 @@ focus-tight() {
     background-color: $input-default-background-color;
     border-radius: $input-border-radius;
     box-shadow: $input-box-shadow-height-0;
+    text-decoration: none;
+    text-align: center;
     cursor: pointer;
     user-select: none;
     transition: opacity 0.3s, box-shadow 0.3s;
+    // Added for consistency between Button and A tags.
+    font-size: 100%;
+    line-height: 1.15;
     &:hover:enabled {
         color: lighten($input-default-color, $input-color-variance);
         background-color: lighten($input-default-background-color, $input-color-variance);

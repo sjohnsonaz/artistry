@@ -19,10 +19,13 @@ $(function () {
     });
 
     $('#clickShowPopoverMenu > .popover').click(function (event) {
+        event.preventDefault();
         event.stopPropagation();
     });
     var popoverMenuOpen = false;
     $('#clickShowPopoverMenu').click(function (event) {
+        event.preventDefault();
+        event.stopPropagation();
         if (popoverMenuOpen) {
             $('#clickShowPopoverMenu').removeClass('button-down').addClass('popover-closed').removeClass('popover-open');
             popoverMenuOpen = false;
