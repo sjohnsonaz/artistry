@@ -1,1 +1,27 @@
 @require "thumbnail-settings.styl";
+
+$thumbnail-user-small-height = 40px;
+$thumbnail-user-medium-height = 70px;
+$thumbnail-user-large-height = 120px;
+
+.thumbnail {
+    &.thumbnail-user-small {
+        height: $thumbnail-user-small-height;
+        width: $thumbnail-user-small-height;
+        border: 0;
+        border-radius: ($thumbnail-user-small-height / 2);
+    }
+    &.thumbnail-user,
+    &.thumbnail-user-medium {
+        height: $thumbnail-user-medium-height;
+        width: $thumbnail-user-medium-height;
+        border: 0;
+        border-radius: ($thumbnail-user-medium-height / 2);
+    }
+    &.thumbnail-user-large {
+        height: $thumbnail-user-large-height;
+        width: $thumbnail-user-large-height;
+        border: 0;
+        border-radius: ($thumbnail-user-large-height / 2);
+    }
+}
