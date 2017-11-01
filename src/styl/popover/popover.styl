@@ -1,14 +1,16 @@
 @require "popover-settings.styl";
+// Added a 1px offset to cover in Firefox
+$popover-arrow-cover-offset = 1;
+
 $popover-diagonal = $popover-spacing * math(2, 'sqrt');
+$popover-diagonal-cover = ($popover-spacing + $popover-arrow-cover-offset) * math(2, 'sqrt');
 $quarter-pi = 3.141592653589793 / 4;
 $popover-box-shadow-x-prime = $popover-box-shadow-x * cos($quarter-pi) + $popover-box-shadow-y * sin($quarter-pi);
 $popover-box-shadow-y-prime = -1 * $popover-box-shadow-x * sin($quarter-pi) + $popover-box-shadow-y * cos($quarter-pi);
 $popover-gradient-percentage = 60%;
 
-// Added a 1px offset to cover in Firefox
-$popover-arrow-cover-offset = 1;
-$popover-arrow-cover = ($popover-diagonal / 2) + $popover-arrow-cover-offset;
-$popover-arrow-cover-position = ($popover-diagonal / 2) - $popover-arrow-cover-offset;
+$popover-arrow-cover = ($popover-diagonal-cover / 2);
+$popover-arrow-cover-position = ($popover-diagonal-cover / 2) - ($popover-arrow-cover-offset * math(2, 'sqrt'));
 
 // TODO: Prevent mouse-down on trigger when popover is open
 .popover-trigger {
@@ -163,7 +165,7 @@ $popover-arrow-cover-position = ($popover-diagonal / 2) - $popover-arrow-cover-o
         .popover-top.popover-align-right&,
         .popover-bottom.popover-align-right& {
             left: auto;
-            right: $popover-padding;
+            right: $popover-padding - ($popover-arrow-cover-offset * math(2, 'sqrt'));
         }
         .popover-right.popover-align-top&,
         .popover-left.popover-align-top& {
@@ -172,7 +174,7 @@ $popover-arrow-cover-position = ($popover-diagonal / 2) - $popover-arrow-cover-o
         .popover-right.popover-align-bottom&,
         .popover-left.popover-align-bottom& {
             top: auto;
-            bottom: $popover-padding - $popover-border-width;
+            bottom: $popover-padding - $popover-border-width - ($popover-arrow-cover-offset * math(2, 'sqrt'));
         }
     }
     & .popover-content {
