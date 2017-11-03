@@ -21,7 +21,7 @@ $popover-arrow-cover-position = ($popover-diagonal-cover / 2) - ($popover-arrow-
     display: block;
     position: absolute;
     min-width: 30vw;
-    z-index: 2;
+    z-index: 10;
     opacity: 0;
     visibility: hidden;
     transition: visibility 0s 0.3s, opacity 0.3s;
@@ -184,7 +184,7 @@ $popover-arrow-cover-position = ($popover-diagonal-cover / 2) - ($popover-arrow-
         border: $popover-border-width solid $popover-border-color;
         border-radius: $popover-border-radius;
         box-shadow: $popover-box-shadow-x $popover-box-shadow-y $popover-box-shadow-additional;
-        z-index: 1;
+        z-index: 10;
         user-select: all;
     }
     *:hover:not(.popover-closed) > &:not(.popover-closed),
@@ -203,7 +203,7 @@ $popover-arrow-cover-position = ($popover-diagonal-cover / 2) - ($popover-arrow-
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 2;
+    z-index: 10;
     cursor: default;
     user-select: none;
     *.popover-open > &:not(.popover-closed),
