@@ -7,7 +7,6 @@ $popover-diagonal-cover = ($popover-spacing + $popover-arrow-cover-offset) * mat
 $quarter-pi = 3.141592653589793 / 4;
 $popover-box-shadow-x-prime = $popover-box-shadow-x * cos($quarter-pi) + $popover-box-shadow-y * sin($quarter-pi);
 $popover-box-shadow-y-prime = -1 * $popover-box-shadow-x * sin($quarter-pi) + $popover-box-shadow-y * cos($quarter-pi);
-$popover-gradient-percentage = 60%;
 
 $popover-arrow-cover = ($popover-diagonal-cover / 2);
 $popover-arrow-cover-position = ($popover-diagonal-cover / 2) - ($popover-arrow-cover-offset * math(2, 'sqrt'));
@@ -15,6 +14,7 @@ $popover-arrow-cover-position = ($popover-diagonal-cover / 2) - ($popover-arrow-
 // TODO: Prevent mouse-down on trigger when popover is open
 .popover-trigger {
     position: relative;
+    display: inline-block;
 }
 
 .popover {

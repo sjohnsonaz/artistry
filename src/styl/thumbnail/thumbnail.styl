@@ -1,23 +1,5 @@
 @require "thumbnail-settings.styl";
 
-$thumbnail-background-color = #f00;
-$thumbnail-border-color = #000;
-$thumbnail-border-width = 0;
-$thumbnail-color = white;
-$thumbnail-font-size = inherit;
-$thumbnail-font-weight = bold;
-$thumbnail-user-small-height = 40px;
-$thumbnail-user-medium-height = 70px;
-$thumbnail-user-large-height = 120px;
-$thumbnail-type-0-color = white;
-$thumbnail-type-0-background-color = #f00;
-$thumbnail-type-1-color = white;
-$thumbnail-type-1-background-color = #a0a;
-$thumbnail-type-2-color = white;
-$thumbnail-type-2-background-color = #aa0;
-$thumbnail-type-3-color = white;
-$thumbnail-type-3-background-color = #faa;
-
 .thumbnail {
     display: inline-block;
     background-color: $thumbnail-background-color;
@@ -25,6 +7,7 @@ $thumbnail-type-3-background-color = #faa;
     color: $thumbnail-color;
     font-size: $thumbnail-font-size;
     font-weight: $thumbnail-font-weight;
+    vertical-align: middle;
     &.thumbnail-user-small {
         text-align: center;
         height: $thumbnail-user-small-height;

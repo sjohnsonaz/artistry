@@ -1,6 +1,8 @@
 @require "menu-bar-settings.styl";
 
 .menu-bar {
+    display: flex;
+    flex-direction: horizontal;
     background-color: $menu-bar-background-color;
     box-shadow: $menu-bar-shadow;
 
@@ -15,39 +17,39 @@
     }
 
     & > ul {
-        display: block;
+        display: flex;
+        flex-direction: horizontal;
+        flex-grow: 1;
         padding: 0;
         margin: 0;
         list-style: none;
 
         & > li {
             display: block;
-            float: left;
 
-            & > a {
+            &.menu-spacer {
+                flex-grow: 1;
+            }
+
+            &.menu-link {
+                & > a {
+                    color: $menu-bar-color;
+                    text-decoration: none;
+                    transition: background-color 0.3s;
+                    &:hover {
+                        background-color: $menu-bar-background-color-hover;
+                    }
+                }
+                &.menu-active > a {
+                    background-color: $menu-bar-background-color-hover;
+                }
+            }
+
+            & > * {
                 display: block;
                 height: $menu-bar-top-height;
                 padding: $menu-bar-padding;
                 line-height: $menu-bar-top-height - 2 * $menu-bar-padding;
-                text-decoration: none;
-                cursor: pointer;
-                transition: background-color 0.3s;
-
-                &:hover {
-                    background-color: $menu-bar-background-color-hover;
-                }
-
-                &.menu-item {
-                    color: $menu-bar-color;
-                }
-            }
-
-            &.menu-active > a {
-                background-color: $menu-bar-background-color-hover;
-            }
-
-            &.pull-right {
-                float: right;
             }
         }
     }
