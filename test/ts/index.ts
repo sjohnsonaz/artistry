@@ -1,6 +1,10 @@
 import * as $ from 'jquery';
 
 $(function () {
+    $('#clickMenuBarExpander > a').click(function (event) {
+        event.preventDefault();
+        $('.menu-bar-top').toggleClass('menu-bar-open');
+    });
 
     $('#clickLockableEdit, #clickLockableSave, #clickLockableDelete').click(function (event) {
         var button = $(event.currentTarget);

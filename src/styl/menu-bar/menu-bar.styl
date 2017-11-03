@@ -12,8 +12,26 @@
         font-size: 30px;
         font-weight: bold;
         line-height: $menu-bar-top-height;
-        float: left;
         color: $menu-bar-color;
+    }
+
+    & > .menu-bar-expander {
+        display: block;
+        & > a {
+            padding: $menu-bar-padding;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: $menu-bar-top-height;
+            color: $menu-bar-color;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            &:hover {
+                background-color: $menu-bar-background-color-hover;
+            }
+        }
+        &.menu-bar-expander-active > a {
+            background-color: $menu-bar-background-color-hover;
+        }
     }
 
     & > ul {
@@ -61,6 +79,30 @@
         right: 0;
         left: 0;
         z-index: 10;
+
+        @media only screen and (max-width: ($size0 - 1)) {
+            display: block;
+            height: auto;
+
+            & > .menu-bar-title {
+                display: inline-block;
+            }
+
+            & > .menu-bar-expander {
+                display: inline-block;
+            }
+
+            & > ul {
+                display: none;
+                flex-direction: column;
+            }
+            &.menu-bar-open {
+                & > ul {
+                    clear: top;
+                    display: flex;
+                }
+            }
+        }
     }
 }
 
