@@ -94,7 +94,7 @@ $(function () {
         });
     });
 
-    var timeout;
+    var timeoutCarousel;
     function runCarousel(carouselId, index) {
         var carousel = $(carouselId);
         var child = $(carousel.children()[index]);
@@ -103,8 +103,8 @@ $(function () {
         carousel.children().removeClass('carousel-selected');
         child.addClass('carousel-selected');
         carousel.height(child.outerHeight());
-        window.clearTimeout(timeout);
-        timeout = window.setTimeout(function () {
+        window.clearTimeout(timeoutCarousel);
+        timeoutCarousel = window.setTimeout(function () {
             carousel.removeClass('carousel-run');
             carousel.height('auto');
         }, 500);
@@ -137,6 +137,19 @@ $(function () {
         carouselIndex--;
         carouselIndex = (carouselIndex + carouselCount) % carouselCount;
         runCarousel('#carousel', carouselIndex);
+    });
+
+    var flipIndex = 0;
+    var flipCount = 3;
+    $('#clickFlipNext').click(function (event) {
+        flipIndex++;
+        flipIndex = (flipIndex + flipCount) % flipCount;
+        runCarousel('#flip', flipIndex);
+    });
+    $('#clickFlipBack').click(function (event) {
+        flipIndex--;
+        flipIndex = (flipIndex + flipCount) % flipCount;
+        runCarousel('#flip', flipIndex);
     });
 
     var closed = false;

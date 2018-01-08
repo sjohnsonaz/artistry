@@ -1,15 +1,17 @@
-@require "carousel-settings.styl";
+@require 'carousel-settings.styl';
+
 .carousel {
     display: block;
     position: relative;
     padding: 0;
     margin: 0;
-    overflow: hidden;
+
     &:after {
         display: table;
         content: '';
         clear: both;
     }
+
     & > div {
         display: block;
         position: absolute;
@@ -21,26 +23,31 @@
         transition: transform 0.5s, visibility 0.5s;
         transform: translateX(-100%);
         visibility: hidden;
+
         &.carousel-selected {
             transform: translateX(0);
             position: relative;
             visibility: visible;
         }
+
         &.carousel-selected ~ div {
             transform: translateX(100%);
         }
     }
+
     &.carousel-safe {
         & > div {
             right: 100%;
             left: -100%;
             transition: left 0.5s, right 0.5s, visibility 0.5s;
             transform: none;
+
             &.carousel-selected {
                 right: 0;
                 left: 0;
                 transform: none;
             }
+
             &.carousel-selected ~ div {
                 right: -100%;
                 left: 100%;
@@ -48,9 +55,15 @@
             }
         }
     }
-    & > div.carousel-selected.carousel-selecting, 
+
+    & > div.carousel-selected.carousel-selecting,
     &.carousel-run {
         transition: height 0.5s;
+        overflow: hidden;
+        &.carousel-animate-flip {
+            overflow: visible;
+        }
+
         & > div {
             &.carousel-selected {
                 position: absolute;
@@ -58,12 +71,31 @@
             }
         }
     }
+
     &.carousel-animate-fade {
         & > div {
             transition: transform 0.5s, opacity 0.5s;
             opacity: 0;
+
             &.carousel-selected {
                 opacity: 1;
+            }
+        }
+    }
+
+    &.carousel-animate-flip {
+        perspective: 1000px;
+
+        & > div {
+            transform: RotateY(-180deg);
+            backface-visibility: hidden;
+
+            &.carousel-selected {
+                transform: RotateY(0deg);
+            }
+
+            &.carousel-selected ~ div {
+                transform: RotateY(180deg);
             }
         }
     }
