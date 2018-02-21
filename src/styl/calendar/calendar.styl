@@ -3,74 +3,83 @@
 .calendar {
     & > .calendar-title {
         width: 100%;
-        & > .calendar-month-title {
-            clearfix();
+        & > .calendar-year-title {
+            display: flex;
             padding: 5px;
+            align-items: center
+            justify-content: center;
+            & > .calendar-year-down {
+                padding: 0;
+                margin: 0;
+                //width: 1em;
+                //height: 1em;
+                flex-grow: 0;
+            }
+            & > .calendar-year-name {
+                display: block;
+                //padding: 2px 0 0;
+                //margin: 0;
+                text-align: center;
+                flex-grow: 0;
+            }
+            & > .calendar-year-up {
+                padding: 0;
+                margin: 0;
+                //width: 1em;
+                //height: 1em;
+                flex-grow: 0;
+            }
+        }
+        & > .calendar-month-title {
+            display: flex;
+            padding: 5px;
+            align-items: center
+            justify-content: center;
             & > .calendar-month-down {
                 padding: 0;
                 margin: 0;
-                width: 15%;
-                float: left;
+                //width: 1em;
+                //height: 1em;
+                flex-grow: 0;
+                justify-self: start
             }
             & > .calendar-month-name {
                 display: block;
                 padding: 2px 0 0;
                 margin: 0;
-                width: 70%;
                 text-align: center;
-                float: left;
+                flex-grow: 0;
             }
             & > .calendar-month-up {
                 padding: 0;
                 margin: 0;
-                width: 15%;
-                float: left;
-            }
-        }
-        .calendar-year-title {
-            clearfix();
-            padding: 5px;
-            & > .calendar-year-down {
-                padding: 0;
-                margin: 0;
-                width: 15%;
-                float: left;
-            }
-            & > .calendar-year-name {
-                display: block;
-                padding: 2px 0 0;
-                margin: 0;
-                width: 70%;
-                text-align: center;
-                float: left;
-            }
-            & > .calendar-year-up {
-                padding: 0;
-                margin: 0;
-                width: 15%;
-                float: left;
+                //width: 1em;
+                //height: 1em;
+                flex-grow: 0;
             }
         }
     }
     table {
+        width: 100%;
         td {
             padding: 0;
-            &.calendar-day-selected {
-                background-color: $calendar-day-selected-background-color;
-                font-weight: bold;
-                color: $calendar-day-selected-color;
-                &:hover {
-                    background-color: $calendar-day-selected-background-color;
-                }
-            }
-            &:hover {
-                background-color: $calendar-day-hover-background-color;
-            }
-            a {
+            & > a {
                 display: block;
                 padding: 5px;
                 text-align: right;
                 cursor: pointer;
+                transition: background-color 0.3s;
+                &.calendar-day-selected {
+                    background-color: $calendar-day-selected-background-color;
+                    font-weight: bold;
+                    color: $calendar-day-selected-color;
+                    &:hover {
+                        background-color: $calendar-day-selected-background-color;
+                    }
+                }
+                &:hover {
+                    background-color: $calendar-day-hover-background-color;
+                }
             }
         }
     }
