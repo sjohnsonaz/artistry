@@ -161,14 +161,23 @@ $(function () {
         var sectionHeader = $('#sectionHeader')[0];
         var sectionContent = $('#sectionContent')[0];
         var button = $(this);
+        section.classList.add("section-run");
         if (closed) {
             section.style.height = section.offsetHeight + 'px';
             section.style.height = sectionHeader.offsetHeight + 'px';
+            section.classList.add("section-closed");
+            toggleTimeout = window.setTimeout(function () {
+                section.style.height = 'auto';
+                section.classList.remove("section-run");
+            }, 220)
         } else {
             var sectionBorder = section.offsetHeight - section.clientHeight;
+            section.style.height = sectionBorder / 2 + sectionHeader.offsetHeight + 'px';
+            section.classList.remove("section-closed");
             section.style.height = sectionBorder / 2 + sectionHeader.offsetHeight + sectionContent.offsetHeight + 'px';
             toggleTimeout = window.setTimeout(function () {
                 section.style.height = 'auto';
+                section.classList.remove("section-run");
             }, 220)
         }
     });

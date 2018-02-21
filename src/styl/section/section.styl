@@ -7,7 +7,6 @@ $section-header-margin = -($section-border-width + $section-padding);
     padding: 0;
     margin: $section-margin 0;
     box-shadow: $section-box-shadow;
-    overflow: hidden;
     transition: height $section-animation-time;
     & > header {
         background-color: $section-header-background-color;
@@ -45,15 +44,21 @@ $section-header-margin = -($section-border-width + $section-padding);
     .section-content {
         padding: $section-padding;
         transition: max-height $section-animation-time;
-        overflow: hidden;
         &.lock-contents:after {
             border-bottom-right-radius: max(0, $section-border-radius - $section-border-width);
             border-bottom-left-radius: max(0, $section-border-radius - $section-border-width);
         }
     }
-    &.section-closed > .section-content {
-        padding-top: 0;
-        padding-bottom: 0;
-        max-height: 0;
+    &.section-closed {
+        overflow: hidden;
+        & > .section-content {
+            overflow: hidden;
+            padding-top: 0;
+            padding-bottom: 0;
+            max-height: 0;
+        }
+    }
+    &.section-run {
+        overflow: hidden;
     }
 }
