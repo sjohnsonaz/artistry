@@ -9,7 +9,7 @@
     margin: (-1 * $form-padding) (-1 * $form-padding) (-1 * $form-padding) (-1 * $form-padding);
     .form-container {
         clearfix();
-        text-align: left;
+        text-align: start;
     }
     .form-label {
         row();
@@ -19,7 +19,7 @@
         & > .form-title {
             columns($form-label-columns, $form-label-columns + $form-input-columns);
             padding: $form-padding;
-            text-align: right;
+            text-align: end;
             font-weight: bold;
         }
         & > .form-input {
@@ -63,16 +63,16 @@
     @media only screen and (max-width: 768px) {
         .form-label:not(.form-force-inline) {
             flex-direction: column;
-            align-items: left;
+            align-items: start;
         }
         .form-label:not(.form-force-inline) > .form-title {
-            text-align: left;
+            text-align: start;
         }
         .form-label:not(.form-force-inline) > .form-input {
 
         }
         .form-label.form-force-inline > .form-title {
-            text-align: left;
+            text-align: start;
         }
         .form-label.form-force-inline > .form-input {
 
