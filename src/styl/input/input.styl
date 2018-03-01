@@ -113,8 +113,7 @@ focus-tight() {
     }
 }
 .button-group {
-    clearfix();
-    display: inline-block;
+    display: inline-flex;
     margin: $input-margin;
     padding: 0;
     vertical-align: middle;
@@ -130,7 +129,6 @@ focus-tight() {
     & > .password {
         display: block;
         //position: relative;
-        pull-left();
         margin: 0;
         border-right-width: 0;
         border-radius: 0;
@@ -149,12 +147,15 @@ focus-tight() {
             z-index: 1;
         }
     }
+    // Added fix for popover
+    &.popover-trigger {
+        display: inline-flex;
+    }
 }
 .button-bar {
-    clearfix();
-    display: inline-block;
+    display: inline-flex;
     margin: $input-margin;
-    padding: 0;
+    padding: ($button-bar-margin / 2);
     vertical-align: middle;
     border: $input-border-width solid $input-default-border-color;
     border-radius: $input-border-radius;
@@ -165,12 +166,8 @@ focus-tight() {
     & > .text, 
     & > .password {
         display: block;
-        margin: $button-bar-margin $button-bar-margin $button-bar-margin 0;
-        pull-left();
+        margin: ($button-bar-margin / 2);
         focus-tight();
-        &:first-child {
-            margin: $button-bar-margin;
-        }
     }
 }
 .input,
