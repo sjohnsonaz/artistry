@@ -9,6 +9,7 @@ $section-header-margin = -($section-border-width + $section-padding);
     box-shadow: $section-box-shadow;
     transition: height $section-animation-time;
     & > header {
+        display: flex;
         background-color: $section-header-background-color;
         color: $section-header-color;
         font-weight: $section-header-font-weight;
@@ -19,9 +20,9 @@ $section-header-margin = -($section-border-width + $section-padding);
         margin: (-1 * $section-border-width) (-1 * $section-border-width) 0 (-1 * $section-border-width);
         clearfix();
         & > .section-toggle {
-            float: right;
             padding: 0;
             margin: 0;
+            margin-left: auto;
             height: 20px;
             width: 20px;
             font-weight: bold;
