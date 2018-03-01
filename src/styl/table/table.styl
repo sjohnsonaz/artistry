@@ -1,49 +1,76 @@
-@require "table-settings.styl";
+@require 'table-settings.styl';
+
 table-row-template() {
     & > tr {
         & > th {
             padding: 5px;
             text-align: left;
         }
+
         & > td {
             padding: 5px;
             text-align: left;
         }
+
         &:nth-child(odd) {
             background-color: $table-row-odd-background-color;
         }
+
         &:nth-child(even) {
             background-color: $table-row-even-background-color;
         }
     }
 }
+
 table.table {
     width: 100%;
     border-collapse: collapse;
+
     & > thead {
         table-row-template();
+
         & > tr {
             border-bottom: 1px solid $table-head-border-color;
         }
     }
+
     tbody {
         table-row-template();
+
         & > tr {
             &:hover {
                 background-color: $table-row-hover-background-color;
             }
         }
     }
+
     table-row-template();
+
     & > tr {
         &:hover {
             background-color: $table-row-hover-background-color;
         }
     }
+
     & > tfoot {
         table-row-template();
+
         & > tr {
             border-top: 1px solid $table-head-border-color;
         }
+    }
+
+    &.table-fixed {
+        table-layout: fixed;
+    }
+}
+
+.action-column {
+    td& {
+    }
+
+    th& {
+        width: 1px;
+        white-space: nowrap;
     }
 }
