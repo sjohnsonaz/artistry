@@ -13,7 +13,7 @@
     }
 
     & > div {
-        display: block;
+        display: none;
         position: absolute;
         padding: 0;
         margin: 0;
@@ -25,6 +25,7 @@
         visibility: hidden;
 
         &.carousel-selected {
+            display: block;
             transform: translateX(0);
             position: relative;
             visibility: visible;
@@ -65,6 +66,7 @@
         }
 
         & > div {
+            display: block;
             &.carousel-selected {
                 position: absolute;
                 z-index: 1;

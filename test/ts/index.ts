@@ -100,14 +100,16 @@ $(function () {
         var child = $(carousel.children()[index]);
         carousel.height(carousel.outerHeight());
         carousel.addClass('carousel-run');
-        carousel.children().removeClass('carousel-selected');
-        child.addClass('carousel-selected');
-        carousel.height(child.outerHeight());
-        window.clearTimeout(timeoutCarousel);
-        timeoutCarousel = window.setTimeout(function () {
-            carousel.removeClass('carousel-run');
-            carousel.height('auto');
-        }, 500);
+        window.setTimeout(function () {
+            carousel.children().removeClass('carousel-selected');
+            child.addClass('carousel-selected');
+            carousel.height(child.outerHeight());
+            window.clearTimeout(timeoutCarousel);
+            timeoutCarousel = window.setTimeout(function () {
+                carousel.removeClass('carousel-run');
+                carousel.height('auto');
+            }, 500);
+        });    
     }
 
     let tabIndex = 0;
