@@ -1,4 +1,5 @@
-@require "drawer-settings.styl";
+@require 'drawer-settings.styl';
+
 // TODO: Create z-index override to force on top
 .drawer {
     display: block;
@@ -11,12 +12,14 @@
     visibility: hidden;
     opacity: 0;
     z-index: $drawer-z-index;
-        transition: transform 0s $drawer-transition-duration, visibility 0s $drawer-transition-duration, opacity $drawer-transition-duration, overflow $drawer-transition-duration;
+    transition: transform 0s $drawer-transition-duration, visibility 0s $drawer-transition-duration, opacity $drawer-transition-duration, overflow $drawer-transition-duration;
+
     &.drawer-open {
         opacity: 1;
         visibility: visible;
         transition: transform 0s 0s, visibility $drawer-transition-duration 0s, opacity $drawer-transition-duration, overflow 0s;
     }
+
     & > .drawer-content {
         display: block;
         position: fixed;
@@ -31,42 +34,51 @@
         z-index: $drawer-z-index + 1;
         visibility: hidden;
         transition: transform $drawer-transition-duration, visibility $drawer-transition-duration;
-        .drawer-top&{
+
+        .drawer-top& {
             top: 0;
             left: 0;
             right: 0;
             transform: translateY(-200%);
+
             .drawer-full& {
                 bottom: 0;
             }
         }
+
         .drawer-right& {
             top: 0;
             right: 0;
             bottom: 0;
             transform: translateX(200%);
+
             .drawer-full& {
                 left: 0;
             }
         }
+
         .drawer-bottom& {
             right: 0;
             bottom: 0;
             left: 0;
             transform: translateY(200%);
+
             .drawer-full& {
                 top: 0;
             }
         }
+
         .drawer-left& {
             top: 0;
             bottom: 0;
             left: 0;
             transform: translateX(- 200%);
+
             .drawer-full& {
                 right: 0;
             }
         }
+
         .drawer-open& {
             transition: transform 0.5s;
             transform: none;
