@@ -20,7 +20,7 @@
         min-height: $carousel-min-height;
         right: 0;
         left: 0;
-        transition: transform 0.5s, visibility 0.5s;
+        transition: transform $carousel-animation-time, visibility $carousel-animation-time;
         transform: translateX(-100%);
         visibility: hidden;
 
@@ -40,7 +40,7 @@
         & > div {
             right: 100%;
             left: -100%;
-            transition: left 0.5s, right 0.5s, visibility 0.5s;
+            transition: left $carousel-animation-time, right $carousel-animation-time, visibility $carousel-animation-time;
             transform: none;
 
             &.carousel-selected {
@@ -59,7 +59,7 @@
 
     & > div.carousel-selected.carousel-selecting,
     &.carousel-run {
-        transition: height 0.5s;
+        transition: height $carousel-animation-time;
         overflow: hidden;
         &.carousel-animate-flip {
             overflow: visible;
@@ -76,7 +76,7 @@
 
     &.carousel-animate-fade {
         & > div {
-            transition: transform 0.5s, opacity 0.5s;
+            transition: transform $carousel-animation-time, opacity $carousel-animation-time;
             opacity: 0;
 
             &.carousel-selected {
@@ -86,7 +86,7 @@
     }
 
     &.carousel-animate-flip {
-        perspective: 1000px;
+        perspective: 1500px;
 
         & > div {
             transform: RotateY(-180deg);

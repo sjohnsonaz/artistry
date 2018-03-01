@@ -94,22 +94,53 @@ $(function () {
         });
     });
 
-    var timeoutCarousel;
+    var timeoutCarousel0;
+    var timeoutCarousel1;
     function runCarousel(carouselId, index) {
+        // Clear any timeouts
+        window.clearTimeout(timeoutCarousel0);
+        window.clearTimeout(timeoutCarousel1);
+
+        // Get carousel
         var carousel = $(carouselId);
+
+        // Get old child
+        var oldChild = carousel.find('.carousel-selected');
+        // Get new child
         var child = $(carousel.children()[index]);
+
+        // Pin carousel height
         carousel.height(carousel.outerHeight());
+
+        // Add carousel-run class
         carousel.addClass('carousel-run');
-        window.setTimeout(function () {
-            carousel.children().removeClass('carousel-selected');
+
+        // Wait for class to be used
+        timeoutCarousel0 = window.setTimeout(function () {
+
+            // Clear any timeouts
+            window.clearTimeout(timeoutCarousel0);
+            window.clearTimeout(timeoutCarousel1);
+
+            // Remove carousel-selected from all children
+            oldChild.removeClass('carousel-selected');
+
+            // Add carousel-selected to new child
             child.addClass('carousel-selected');
+
+            // Change carousel height to match new child
             carousel.height(child.outerHeight());
-            window.clearTimeout(timeoutCarousel);
-            timeoutCarousel = window.setTimeout(function () {
+
+            // Wait for animation
+            timeoutCarousel1 = window.setTimeout(function () {
+
+                // Remove carousel-run class
                 carousel.removeClass('carousel-run');
+
+                // Un-pin carousel height
                 carousel.height('auto');
             }, 500);
-        });    
+        }, 10);
     }
 
     let tabIndex = 0;
