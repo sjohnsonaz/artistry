@@ -1,0 +1,93 @@
+@require "card-settings.styl";
+@require "../core/mixins.styl";
+
+$card-header-margin = -($card-border-width + $card-padding);
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($card-min-width, 1fr));
+    grid-gap: $card-gap;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex-basis: auto;
+
+    padding: 0;
+    margin: $card-margin 0;
+
+    border: $card-border-width solid $card-border-color;
+    border-radius: $card-border-radius;
+
+    box-shadow: $card-box-shadow;
+
+    transition: height $card-animation-time;
+
+    & > header {
+        display: flex;
+        background-color: $card-header-background-color;
+        color: $card-header-color;
+        font-weight: $card-header-font-weight;
+        border: $card-border-width solid $card-border-color;
+        border-top-left-radius: $card-border-radius;
+        border-top-right-radius: $card-border-radius;
+        padding: $card-padding;
+        margin: (-1 * $card-border-width) (-1 * $card-border-width) 0 (-1 * $card-border-width);
+        clearfix();
+        & > .card-toggle {
+            padding: 0;
+            margin: 0;
+            margin-left: auto;
+            height: 20px;
+            width: 20px;
+            font-weight: bold;
+        }
+    }
+    & > footer {
+        background-color: $card-header-background-color;
+        color: $card-header-color;
+        font-weight: $card-header-font-weight;
+        border: $card-border-width solid $card-border-color;
+        border-bottom-left-radius: $card-border-radius;
+        border-bottom-right-radius: $card-border-radius;
+        padding: $card-padding;
+        margin: 0 (-1 * $card-border-width) (-1 * $card-border-width) (-1 * $card-border-width);
+        clearfix();
+    }
+    & > div {
+        padding: $card-padding;
+        transition: max-height $card-animation-time;
+        &.lock-contents:after {
+            border-bottom-right-radius: max(0, $card-border-radius - $card-border-width);
+            border-bottom-left-radius: max(0, $card-border-radius - $card-border-width);
+        }
+    }
+    & > nav {
+        & > ul {
+            display: flex;
+            flex-direction: row;
+            margin: 0;
+            padding: 0;
+            & > li {
+                list-style-type: none;
+                & > a {
+                    text-decoration: none;
+                    padding: $card-padding;
+                }
+            }
+        }
+    }
+    &.card-closed {
+        overflow: hidden;
+        & > div.card-content {
+            overflow: hidden;
+            padding-top: 0;
+            padding-bottom: 0;
+            max-height: 0;
+        }
+    }
+    &.card-run {
+        overflow: hidden;
+    }
+}
