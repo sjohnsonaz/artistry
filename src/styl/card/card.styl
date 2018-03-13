@@ -5,7 +5,7 @@ $card-header-margin = -($card-border-width + $card-padding);
 
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax($card-min-width, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax($card-min-width, $card-max-width));
     grid-gap: $card-gap;
 }
 
@@ -24,17 +24,36 @@ $card-header-margin = -($card-border-width + $card-padding);
 
     transition: height $card-animation-time;
 
-    & > header {
+    & > *:first-child {
+        border-top-left-radius: $card-border-radius;
+        border-top-right-radius: $card-border-radius;
+    }
+
+    & > *:last-child {
+        border-bottom-left-radius: $card-border-radius;
+        border-bottom-right-radius: $card-border-radius;
+    }
+
+    & > header,
+    & > footer,
+    .card-title {
         display: flex;
         background-color: $card-header-background-color;
         color: $card-header-color;
         font-weight: $card-header-font-weight;
         border: $card-border-width solid $card-border-color;
-        border-top-left-radius: $card-border-radius;
-        border-top-right-radius: $card-border-radius;
+        margin: (-1 * $card-border-width);
         padding: $card-padding;
-        margin: (-1 * $card-border-width) (-1 * $card-border-width) 0 (-1 * $card-border-width);
         clearfix();
+
+        &:first-child {
+            margin-bottom: 0;
+        }
+
+        &:last-child {
+            margin-top: 0;
+        }
+
         & > .card-toggle {
             padding: 0;
             margin: 0;
@@ -44,41 +63,31 @@ $card-header-margin = -($card-border-width + $card-padding);
             font-weight: bold;
         }
     }
-    & > footer {
-        background-color: $card-header-background-color;
-        color: $card-header-color;
-        font-weight: $card-header-font-weight;
-        border: $card-border-width solid $card-border-color;
-        border-bottom-left-radius: $card-border-radius;
-        border-bottom-right-radius: $card-border-radius;
-        padding: $card-padding;
-        margin: 0 (-1 * $card-border-width) (-1 * $card-border-width) (-1 * $card-border-width);
-        clearfix();
+
+    & > nav,
+    & > .card-nav {
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        padding: 0;
+        & > a {
+            text-decoration: none;
+            padding: $card-padding;
+        }
     }
-    & > div {
+
+    & > .card-content {
         padding: $card-padding;
+        flex-grow: 1;
         transition: max-height $card-animation-time;
         &.lock-contents:after {
             border-bottom-right-radius: max(0, $card-border-radius - $card-border-width);
             border-bottom-left-radius: max(0, $card-border-radius - $card-border-width);
         }
     }
-    & > nav {
-        & > ul {
-            display: flex;
-            flex-direction: row;
-            margin: 0;
-            padding: 0;
-            & > li {
-                list-style-type: none;
-                & > a {
-                    text-decoration: none;
-                    padding: $card-padding;
-                }
-            }
-        }
-    }
-    &.card-closed {
+
+    &.card-closed,
+    &[data-closed=true] {
         overflow: hidden;
         & > div.card-content {
             overflow: hidden;
