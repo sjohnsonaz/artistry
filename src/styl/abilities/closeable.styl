@@ -1,0 +1,21 @@
+@require "ability-settings.styl";
+
+closeable() {
+    //padding: 0;
+    transition: height $closeable-animation-time;
+
+    &[data-closed=true] {
+        overflow: hidden;
+        //padding-top: 0;
+        //padding-bottom: 0;
+        height: 0;
+    }
+
+    &[data-running=true] {
+        overflow: hidden;
+    }
+}
+
+.closeable {
+    closeable();
+}
