@@ -33,9 +33,6 @@ module.exports = {
                 ]
             })
         }, {
-            test: /\.tsx?$/,
-            loader: 'ts-loader'
-        }, {
             test: /\.hbs$/,
             loader: 'handlebars-loader'
         }]
