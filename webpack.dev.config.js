@@ -3,7 +3,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     entry: {
         'artistry': './src/styl/main.styl',
-        'index': './test/ts/index.ts'
+        'index': './test/ts/index.ts',
+        'view': './test/ts/view.ts'
     },
     output: {
         filename: './test/build/[name].js',
@@ -34,6 +35,9 @@ module.exports = {
         }, {
             test: /\.tsx?$/,
             loader: 'ts-loader'
+        }, {
+            test: /\.hbs$/,
+            loader: 'handlebars-loader'
         }]
     },
     plugins: [
