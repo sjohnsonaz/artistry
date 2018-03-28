@@ -1,4 +1,8 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -7,38 +11,55 @@ module.exports = {
         'view': './test/ts/view.ts'
     },
     output: {
-        filename: './test/build/[name].js',
+        filename: '[name].js',
+        path: path.resolve(__dirname, './test/build')
     },
     resolve: {
         extensions: ['.webpack.js', '.web.js', '.js', '.css', '.styl']
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.styl$/,
-            loader: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: [
-                    'css-loader',
-                    { loader: 'postcss-loader', options: { sourceMap: true } },
-                    'stylus-loader'
-                ]
-            })
+            use: [
+                MiniCssExtractPlugin.loader,
+                'css-loader',
+                { loader: 'postcss-loader', options: { sourceMap: true } },
+                'stylus-loader'
+            ]
         }, {
             test: /\.css$/,
-            loader: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: [
-                    'css-loader',
-                    'clean-css-loader',
-                    { loader: 'postcss-loader', options: { sourceMap: true } }
-                ]
-            })
+            use: [
+                MiniCssExtractPlugin.loader,
+                'css-loader',
+                'clean-css-loader',
+                { loader: 'postcss-loader', options: { sourceMap: true } }
+            ]
         }, {
             test: /\.hbs$/,
-            loader: 'handlebars-loader'
+            use: ['handlebars-loader']
+        }, {
+            test: /\.tsx?$/,
+            use: ['ts-loader']
         }]
     },
     plugins: [
-        new ExtractTextPlugin("./dist/[name].css")
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        }),
+        new OptimizeCssAssetsPlugin({
+            cssProcessorOptions: {
+                discardComments: {
+                    removeAll: true
+                }
+            }
+        })
     ]
 };
