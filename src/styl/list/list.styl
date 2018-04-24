@@ -2,11 +2,17 @@
 
 .list {
     list-style-type: none;
+    padding: 0;
+    margin: 0;
 
-    & > li {
-        border: 1px 0 1px 0 solid #000;
+    & > * {
+        border-bottom: $list-border-width solid $list-border-color;
         padding: 10px;
         margin: 0;
         background-color: white;
+
+        &:last-child {
+            border-bottom: none;
+        }
     }
 }
