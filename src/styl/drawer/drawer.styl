@@ -1,5 +1,27 @@
 @require 'drawer-settings.styl';
 
+.drawer-container {
+    display: flex;
+    flex-direction: row;
+
+    .drawer {
+        opacity: 1;
+        visibility: visible;
+        transition: none;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+
+        & > .drawer-content {
+            transition: none;
+            transform: none;
+            visibility: visible;
+            box-shadow: none;
+        }
+    }
+}
+
 // TODO: Create z-index override to force on top
 .drawer {
     display: block;
