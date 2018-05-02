@@ -52,6 +52,7 @@ relative() {
 .relative {
     relative();
 }
+
 .body-scroll-lock {
     @media only screen and (min-width: $size0) {
         overflow-y: scroll;
@@ -64,5 +65,17 @@ relative() {
         bottom: 0;
         left: 0;
         overflow: hidden;
+    }
+}
+
+:root{
+  --scrollbar-width: calc(100vw - 100%);
+}
+
+body.body-scroll {
+    overflow-y: scroll;
+
+    &.body-scroll-lock {
+        margin-right: var(--scrollbar-width);
     }
 }
