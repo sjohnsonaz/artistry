@@ -1,0 +1,101 @@
+@require "input-settings.styl";
+
+.button {
+    display: inline-block;
+    margin: $input-margin;
+    padding: $input-padding;
+    border: $input-border-width solid $input-default-border-color;
+    color: $input-default-color;
+    background-color: $input-default-background-color;
+    border-radius: $input-border-radius;
+    box-shadow: $input-box-shadow-height-0;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.3s, box-shadow 0.3s;
+    // Added for consistency between Button and A tags.
+    font-size: 100%;
+    line-height: 1.15;
+    &:focus:enabled,
+    &:hover:enabled {
+        color: lighten($input-default-color, $input-color-variance);
+        background-color: lighten($input-default-background-color, $input-color-variance);
+        box-shadow: $input-box-shadow-height-1;
+    }
+    &:active:enabled,
+    &.button-down:enabled {
+        color: darken($input-default-color, $input-color-variance);
+        background-color: darken($input-default-background-color, $input-color-variance);
+    }
+    // TODO: Decide if disabled should use opacity
+    &.button-locked, 
+    &:disabled {
+        opacity: $input-disabled-opacity;
+        cursor: default;
+    }
+    &:focus,
+    &.button-down:enabled {
+        outline: none;
+        border-color: $input-default-border-color-focus;
+        box-shadow: $box-shadow-height-1;
+    }
+    &[data-theme='primary'],
+    &.button-primary {
+        border: $input-border-width solid $input-primary-border-color;
+        color: $input-primary-color;
+        background-color: $input-primary-background-color;
+        &:focus:enabled,
+        &:hover:enabled {
+            color: lighten($input-primary-color, $input-color-variance);
+            background-color: lighten($input-primary-background-color, $input-color-variance);
+        }
+        &:active:enabled,
+        &.button-down:enabled {
+            color: darken($input-primary-color, $input-color-variance);
+            background-color: darken($input-primary-background-color, $input-color-variance);
+        }
+    }
+    &[data-theme='danger'],
+    &.button-danger {
+        border: $input-border-width solid $input-danger-border-color;
+        color: $input-danger-color;
+        background-color: $input-danger-background-color;
+        &:focus:enabled,
+        &:hover:enabled {
+            color: lighten($input-danger-color, $input-color-variance);
+            background-color: lighten($input-danger-background-color, $input-color-variance);
+        }
+        &:active:enabled,
+        &.button-down:enabled {
+            color: darken($input-danger-color, $input-color-variance);
+            background-color: darken($input-danger-background-color, $input-color-variance);
+        }
+    }
+    &.button-lockable {
+        position: relative;
+
+        &.button-locked {
+            & > .button-text {
+                opacity: 0;
+            }
+            & > .button-spinner {
+                opacity: 1;
+            }
+        }
+        & > .button-text {
+            display: block;
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+        & > .button-spinner {
+            position: absolute;
+            display: block;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+    }
+}

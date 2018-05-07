@@ -1,196 +1,25 @@
 @require "input-settings.styl";
 
-/* LESS Style */
-focus() {
-    &:focus,
-    &.button-down:enabled {
-        outline: none;
-        border-color: $input-default-border-color-focus;
-        box-shadow: $box-shadow-height-1;
-    }
-}
-focus-tight() {
-    &:focus,
-    &.button-down:enabled {
-        outline: none;
-        background-color: darken($input-default-background-color, $input-color-variance);
-        border-color: $input-default-border-color;
-        box-shadow: inherit;
-    }
-}
-.button {
-    display: inline-block;
-    margin: $input-margin;
-    padding: $input-padding;
-    border: $input-border-width solid $input-default-border-color;
-    color: $input-default-color;
-    background-color: $input-default-background-color;
-    border-radius: $input-border-radius;
-    box-shadow: $input-box-shadow-height-0;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
-    transition: opacity 0.3s, box-shadow 0.3s;
-    // Added for consistency between Button and A tags.
-    font-size: 100%;
-    line-height: 1.15;
-    &:focus:enabled,
-    &:hover:enabled {
-        color: lighten($input-default-color, $input-color-variance);
-        background-color: lighten($input-default-background-color, $input-color-variance);
-        box-shadow: $input-box-shadow-height-1;
-    }
-    &:active:enabled,
-    &.button-down:enabled {
-        color: darken($input-default-color, $input-color-variance);
-        background-color: darken($input-default-background-color, $input-color-variance);
-    }
-    // TODO: Decide if disabled should use opacity
-    &.button-locked, 
-    &:disabled {
-        opacity: $input-disabled-opacity;
-        cursor: default;
-    }
-    focus();
-    &[data-theme='primary'],
-    &.button-primary {
-        border: $input-border-width solid $input-primary-border-color;
-        color: $input-primary-color;
-        background-color: $input-primary-background-color;
-        &:focus:enabled,
-        &:hover:enabled {
-            color: lighten($input-primary-color, $input-color-variance);
-            background-color: lighten($input-primary-background-color, $input-color-variance);
-        }
-        &:active:enabled,
-        &.button-down:enabled {
-            color: darken($input-primary-color, $input-color-variance);
-            background-color: darken($input-primary-background-color, $input-color-variance);
-        }
-    }
-    &[data-theme='danger'],
-    &.button-danger {
-        border: $input-border-width solid $input-danger-border-color;
-        color: $input-danger-color;
-        background-color: $input-danger-background-color;
-        &:focus:enabled,
-        &:hover:enabled {
-            color: lighten($input-danger-color, $input-color-variance);
-            background-color: lighten($input-danger-background-color, $input-color-variance);
-        }
-        &:active:enabled,
-        &.button-down:enabled {
-            color: darken($input-danger-color, $input-color-variance);
-            background-color: darken($input-danger-background-color, $input-color-variance);
-        }
-    }
-    &.button-lockable {
-        position: relative;
-
-        &.button-locked {
-            & > .button-text {
-                opacity: 0;
-            }
-            & > .button-spinner {
-                opacity: 1;
-            }
-        }
-        & > .button-text {
-            display: block;
-            opacity: 1;
-            transition: opacity 0.5s;
-        }
-        & > .button-spinner {
-            position: absolute;
-            display: block;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-    }
-}
-.button-group {
-    display: inline-flex;
-    margin: $input-margin;
-    padding: 0;
-    vertical-align: middle;
-    box-shadow: $input-box-shadow-height-0;
-    border-radius: $input-border-radius;
-    transition: box-shadow 0.3s;
-    &:hover {
-        box-shadow: $input-box-shadow-height-1;
-    }
-    & > .button, 
-    & > .input,
-    & > .text, 
-    & > .password {
-        display: block;
-        //position: relative;
-        margin: 0;
-        border-right-width: 0;
-        border-radius: 0;
-        focus-tight();
-        box-shadow: none;
-        &:first-child {
-            border-top-left-radius: $input-border-radius;
-            border-bottom-left-radius: $input-border-radius;
-        }
-        &:last-child {
-            border-right-width: $input-border-width;
-            border-top-right-radius: $input-border-radius;
-            border-bottom-right-radius: $input-border-radius;
-        }
-        &:hover {
-            z-index: 1;
-        }
-    }
-    // Added fix for popover
-    &.popover-trigger {
-        display: inline-flex;
-    }
-}
-.button-bar {
-    display: inline-flex;
-    margin: $input-margin;
-    padding: ($button-bar-margin / 2);
-    vertical-align: middle;
-    border: $input-border-width solid $input-default-border-color;
-    border-radius: $input-border-radius;
-    background-color: $button-bar-background-color;
-    box-shadow: $input-box-shadow-height-1;
-    & > .button, 
-    & > .input,
-    & > .text, 
-    & > .password {
-        display: block;
-        margin: ($button-bar-margin / 2);
-        focus-tight();
-    }
-}
 .input,
 .text, 
 .password, 
 .textarea {
-    focus();
     margin: $input-margin;
     padding: $input-padding;
     border-radius: $input-border-radius;
     border: $input-border-width solid $input-default-border-color;
     font-family: Arial;
     box-shadow: $input-box-shadow-height-0;
-}
-input[type="checkbox"], 
-input[type="radio"] {
-
+    &:focus {
+        outline: none;
+        border-color: $input-default-border-color-focus;
+        box-shadow: $box-shadow-height-1;
+    }
 }
 .label {
     font-weight: bold;
 }
 .select {
-    focus();
     margin: $input-margin;
     padding: $input-padding;
     border-radius: $input-border-radius;
@@ -198,4 +27,9 @@ input[type="radio"] {
     font-family: Arial;
     overflow: auto;
     box-shadow: $input-box-shadow-height-0;
+    &:focus {
+        outline: none;
+        border-color: $input-default-border-color-focus;
+        box-shadow: $box-shadow-height-1;
+    }
 }

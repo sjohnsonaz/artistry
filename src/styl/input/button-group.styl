@@ -1,0 +1,70 @@
+@require "input-settings.styl";
+    
+focus-tight() {
+    &:focus,
+    &.button-down:enabled {
+        outline: none;
+        background-color: darken($input-default-background-color, $input-color-variance);
+        border-color: $input-default-border-color;
+        box-shadow: inherit;
+    }
+}
+
+.button-group {
+    display: inline-flex;
+    margin: $input-margin;
+    padding: 0;
+    vertical-align: middle;
+    box-shadow: $input-box-shadow-height-0;
+    border-radius: $input-border-radius;
+    transition: box-shadow 0.3s;
+    &:hover {
+        box-shadow: $input-box-shadow-height-1;
+    }
+    & > .button, 
+    & > .input,
+    & > .text, 
+    & > .password {
+        display: block;
+        //position: relative;
+        margin: 0;
+        border-right-width: 0;
+        border-radius: 0;
+        focus-tight();
+        box-shadow: none;
+        &:first-child {
+            border-top-left-radius: $input-border-radius;
+            border-bottom-left-radius: $input-border-radius;
+        }
+        &:last-child {
+            border-right-width: $input-border-width;
+            border-top-right-radius: $input-border-radius;
+            border-bottom-right-radius: $input-border-radius;
+        }
+        &:hover {
+            z-index: 1;
+        }
+    }
+    // Added fix for popover
+    &.popover-trigger {
+        display: inline-flex;
+    }
+}
+.button-bar {
+    display: inline-flex;
+    margin: $input-margin;
+    padding: ($button-bar-margin / 2);
+    vertical-align: middle;
+    border: $input-border-width solid $input-default-border-color;
+    border-radius: $input-border-radius;
+    background-color: $button-bar-background-color;
+    box-shadow: $input-box-shadow-height-1;
+    & > .button, 
+    & > .input,
+    & > .text, 
+    & > .password {
+        display: block;
+        margin: ($button-bar-margin / 2);
+        focus-tight();
+    }
+}
