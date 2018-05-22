@@ -8,6 +8,7 @@ $section-header-margin = -($section-border-width + $section-padding);
     margin: $section-margin 0;
     box-shadow: $section-box-shadow;
     transition: height $section-animation-time;
+
     & > header {
         display: flex;
         background-color: $section-header-background-color;
@@ -39,12 +40,27 @@ $section-header-margin = -($section-border-width + $section-padding);
         margin: 0 (-1 * $section-border-width) (-1 * $section-border-width) (-1 * $section-border-width);
         clearfix();
     }
-    .section-container {
-        position: relative;
-    }
     .section-content {
-        padding: $section-padding;
+        padding: 0;
         transition: max-height $section-animation-time;
+
+        &.section-content-relative {
+            position: relative;
+        }
+
+        &.section-content-space {
+            padding: $section-padding;
+        }
+
+        &:not(.section-content-space) {
+            &:after {
+                content: '';
+                display: block;
+                height: 1px;
+                margin-top: -1px;
+            }
+        }
+
         &.lock-contents:after {
             border-bottom-right-radius: max(0, $section-border-radius - $section-border-width);
             border-bottom-left-radius: max(0, $section-border-radius - $section-border-width);

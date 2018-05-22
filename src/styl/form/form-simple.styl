@@ -1,4 +1,6 @@
-@require "form-settings.styl";
+$form-spacing: 10px;
+$form-boder-color: #ccc;
+$form-label-width: 200px;
 
 .form {
     &.form-lock {
@@ -48,7 +50,6 @@
         }
 
         .form-input {
-            flex-grow: 1;
         }
     }
 }
@@ -63,21 +64,13 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    padding: 0;
-
-    & > * {
-        margin: 0 $form-spacing 0 0;
-        &:last-child {
-            margin-right: 0;
-        }
-    }
 }
 
 @media screen and (max-width: 680px) {
     .form {
     }
 
-    .form-container:not(.form-container-inline) {
+    .form-container:not(.form-inline) {
         width: auto;
         margin: $form-spacing;
 
@@ -103,11 +96,6 @@
 
     .form-action {
         width: auto;
-        margin: 0;
-        padding: ($form-spacing / 2);
-
-        & > * {
-            margin: ($form-spacing / 2);
-        }
+        margin: $form-spacing;
     }
 }
