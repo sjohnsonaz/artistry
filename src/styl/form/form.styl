@@ -21,12 +21,12 @@
 
 .form-text {
     margin: $form-spacing auto;
-    width: 680px;
+    width: $form-line-width;
 }
 
 .form-container {
     margin: $form-spacing auto;
-    width: 680px;
+    width: $form-line-width;
 
     .form-text {
         display: block;
@@ -59,7 +59,7 @@
 
 .form-action {
     margin: $form-spacing auto;
-    width: 680px;
+    width: $form-line-width;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -73,7 +73,7 @@
     }
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: $form-width) {
     .form {
     }
 
