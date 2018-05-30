@@ -77,22 +77,39 @@
     .form {
     }
 
-    .form-container:not(.form-container-inline) {
+    .form-container {
         width: auto;
         margin: $form-spacing;
 
-        .form-label {
-            margin: $form-spacing 0;
-            flex-direction: column;
-            align-items: flex-start;
+        &:not(.form-container-inline) {
+            .form-label {
+                margin: $form-spacing 0;
+                flex-direction: column;
+                align-items: flex-start;
 
-            .form-title {
-                margin: 0;
-                width: auto;
+                .form-title {
+                    margin: 0;
+                    width: auto;
+                }
+
+                .form-input {
+                    width: 100%;
+                }
             }
+        }
 
-            .form-input {
-                width: 100%;
+        &.form-container-inline {
+            .form-label {
+                .form-title {
+                    margin: 0;
+                    text-align: start;
+                }
+
+                .form-input {
+                    margin: 0 $form-spacing;
+                    text-align: start;
+                    flex-grow: initial;
+                }
             }
         }
     }
