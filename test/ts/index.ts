@@ -223,10 +223,10 @@ $(function () {
 
     $('#clickAnimate').click(function (event) {
         $('.animatable').each(function () {
-            if (this.getAttribute('data-direction') === "in") {
-                this.setAttribute('data-direction', "out");
-            } else {
+            if (this.getAttribute('data-direction') === "out") {
                 this.setAttribute('data-direction', "in");
+            } else {
+                this.setAttribute('data-direction', "out");
             }
         });
     });
