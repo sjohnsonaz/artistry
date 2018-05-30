@@ -56,12 +56,18 @@ $popover-arrow-cover-position = ($popover-diagonal-cover / 2) - ($popover-arrow-
     .popover-bottom.popover-align-left& {
         left: 0;
         transform: none;
+        .popover-fill& {
+            right: 0;
+        }
     }
     .popover-top.popover-align-right&,
     .popover-bottom.popover-align-right& {
         right: 0;
         left: auto;
         transform: none;
+        .popover-fill& {
+            left: 0;
+        }
     }
     .popover-right.popover-align-top&,
     .popover-left.popover-align-top& {
