@@ -220,4 +220,14 @@ $(function () {
             $('#sectionContent').removeClass('locked');
         }, 1000);
     });
+
+    $('#clickAnimate').click(function (event) {
+        $('.animatable').each(function () {
+            if (this.getAttribute('data-direction') === "in") {
+                this.setAttribute('data-direction', "out");
+            } else {
+                this.setAttribute('data-direction', "in");
+            }
+        });
+    });
 });

@@ -1,0 +1,104 @@
+@require "animation-settings.styl";
+@require "fade.styl";
+@require "slide.styl";
+
+.animatable {
+  animation-duration: $animation-duration;
+  animation-fill-mode: both;
+}
+
+.animatable.loopable {
+  animation-iteration-count: infinite;
+}
+
+.clip-y {
+    overflow-y: hidden;
+}
+
+.clip-x {
+    overflow-x: hidden;
+}
+
+
+// Animations
+
+*[data-animation="fade"] {
+    &[data-direction="in"] {
+        animation-name: fade-in;
+    }
+    &[data-direction="out"] {
+        animation-name: fade-out;
+    }
+}
+
+*[data-animation="slide-top"] {
+    &[data-direction="in"] {
+        animation-name: slide-top-in;
+    }
+    &[data-direction="out"] {
+        animation-name: slide-top-out;
+    }
+}
+
+*[data-animation="slide-right"] {
+    &[data-direction="in"] {
+        animation-name: slide-right-in;
+    }
+    &[data-direction="out"] {
+        animation-name: slide-right-out;
+    }
+}
+
+*[data-animation="slide-bottom"] {
+    &[data-direction="in"] {
+        animation-name: slide-bottom-in;
+    }
+    &[data-direction="out"] {
+        animation-name: slide-bottom-out;
+    }
+}
+
+*[data-animation="slide-left"] {
+    &[data-direction="in"] {
+        animation-name: slide-left-in;
+    }
+    &[data-direction="out"] {
+        animation-name: slide-left-out;
+    }
+}
+
+*[data-animation="fade-slide-top"] {
+    &[data-direction="in"] {
+        animation-name: fade-in, slide-top-in;
+    }
+    &[data-direction="out"] {
+        animation-name: fade-out, slide-top-out;
+    }
+}
+
+*[data-animation="fade-slide-right"] {
+    &[data-direction="in"] {
+        animation-name: fade-in, slide-right-in;
+    }
+    &[data-direction="out"] {
+        animation-name: fade-out, slide-right-out;
+    }
+}
+
+*[data-animation="fade-slide-bottom"] {
+    &[data-direction="in"] {
+        animation-name: fade-in, slide-bottom-in;
+    }
+    &[data-direction="out"] {
+        animation-name: fade-out, slide-bottom-out;
+    }
+}
+
+*[data-animation="fade-slide-left"] {
+    &[data-direction="in"] {
+        animation-name: fade-in, slide-left-in;
+    }
+    &[data-direction="out"] {
+        animation-name: fade-out, slide-left-out;
+    }
+}
