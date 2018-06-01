@@ -1,6 +1,12 @@
 import * as $ from 'jquery';
 
 $(function () {
+    window.addEventListener('hashchange', function (event) {
+        $('.menu-link').removeClass('menu-active');
+        $('a[href="' + window.location.hash + '"]').parent().addClass('menu-active');
+    });
+    $('a[href="' + window.location.hash + '"]').parent().addClass('menu-active');
+
     $('#clickMenuBarExpander > a').click(function (event) {
         event.preventDefault();
         $('.menu-bar-top').toggleClass('menu-bar-open');
