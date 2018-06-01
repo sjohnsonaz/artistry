@@ -1,14 +1,33 @@
+<style type="text/css">
+    .layout-section {
+        display: none;
+    }
+
+    .layout-section:target {
+        display: block;
+    }
+</style>
 <div class="root container container-menu-bar-top">
     {{#> menu-bar-top}}{{/menu-bar-top}}
-    <h1>Artistry</h1>
-    {{#> button}}{{/button}}
-    {{#> input}}{{/input}}
-    {{#> form}}{{/form}}
-    {{#> data}}{{/data}}
-    <h2>Widgets</h2>
-    {{#> information}}{{/information}}
-    {{#> containers}}{{/containers}}
-    {{#> navigation}}{{/navigation}}
-    {{#> widgets}}{{/widgets}}
-    {{#> animation}}{{/animation}}
+    <div id="forms" class="layout-section animatable" data-animation="fade-top" data-direction="in">
+        {{#> button}}{{/button}}
+        {{#> input}}{{/input}}
+        {{#> form}}{{/form}}
+    </div>
+    <div id="data" class="layout-section animatable" data-animation="fade-top" data-direction="in">
+        {{#> data}}{{/data}}
+    </div>
+    <div id="widgets" class="layout-section animatable" data-animation="fade-top" data-direction="in">
+        <h2>Widgets</h2>
+        {{#> information}}{{/information}}
+        {{#> containers}}{{/containers}}
+    </div>
+    <div id="navigation" class="layout-section animatable" data-animation="fade-top" data-direction="in">
+        <h2>Navigation</h2>
+        {{#> navigation}}{{/navigation}}
+        {{#> widgets}}{{/widgets}}
+    </div>
+    <div id="animation" class="layout-section animatable" data-animation="fade-top" data-direction="in">
+        {{#> animation}}{{/animation}}
+    </div>
 </div>
