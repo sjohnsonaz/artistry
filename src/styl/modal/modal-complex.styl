@@ -1,0 +1,150 @@
+@require "modal-settings.styl";
+$modal-margin-right = -1 * $modal-width / 2;
+// TODO: Create z-index override to force on top
+.modal-complex {
+    display: block;
+    position: fixed;
+    z-index: $modal-z-index;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+    overflow-y: visible;
+    transition: visibility $modal-transition-duration, overflow $modal-transition-duration;
+    will-change: visibility;
+    &.modal-open {
+        //transform: none;
+        visibility: inherit;
+        overflow-y: auto;
+        & > .modal-content {
+            transform: none !important;
+        }
+        & > .modal-mask {
+            opacity: 1;
+        }
+    }
+
+    .modal-mask {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $modal-mask-background-color;
+        opacity: 0;
+        transition: opacity $modal-transition-duration;
+        will-change: opacity;
+    }
+
+    .modal-content {
+        display: block;
+        position: relative;
+        padding: $modal-padding;
+        margin: $modal-margin-top auto $modal-margin-bottom;
+        border: $modal-border-width solid $modal-border-color;
+        border-radius: $modal-border-radius;
+        width: $modal-width;
+        min-height: $modal-min-height;
+        background-color: $modal-background-color;
+        box-shadow: $modal-content-box-shadow;
+        transform: translateY(-2 * ($modal-margin-top + $modal-margin-bottom)) translateY(-100%);
+        transition: transform $modal-transition-duration;
+        will-change: transform;
+        clearfix();
+        .modal-header {
+            margin: (-1 * $modal-padding) (-1 * $modal-padding) 0 (-1 * $modal-padding);
+            padding: $modal-padding;
+            border-bottom: $modal-border-width solid $modal-border-color;
+            background-color: $modal-header-background-color;
+            border-top-left-radius: $modal-border-radius;
+            border-top-right-radius: $modal-border-radius;
+            clearfix();
+            .modal-title {
+                padding: 0;
+                margin: 0;
+                float: left;
+            }
+            .modal-controls {
+                float: right;
+            }
+        }
+        .modal-body {
+            margin: 0 (-1 * $modal-padding);
+            padding: $modal-padding;
+            &:first-child {
+                margin-top: (-1 * $modal-padding);
+                &.lock-contents:after {
+                    border-top-right-radius: max(0, $modal-border-radius - $modal-border-width);
+                    border-top-left-radius: max(0, $modal-border-radius - $modal-border-width);
+                }
+            }
+            &:last-child {
+                margin-bottom: (-1 * $modal-padding);
+                &.lock-contents:after {
+                    border-bottom-right-radius: max(0, $modal-border-radius - $modal-border-width);
+                    border-bottom-left-radius: max(0, $modal-border-radius - $modal-border-width);
+                }
+            }
+        }
+        .modal-footer {
+            margin: 0 (-1 * $modal-padding) (-1 * $modal-padding) (-1 * $modal-padding);
+            padding: $modal-padding;
+            border-top: $modal-border-width solid $modal-border-color;
+            background-color: $modal-header-background-color;
+            border-bottom-left-radius: $modal-border-radius;
+            border-bottom-right-radius: $modal-border-radius;
+            clearfix();
+        }
+    }
+    &.modal-animate-top {
+        .modal-content {
+            transform: translateY(-2 * ($modal-margin-top + $modal-margin-bottom)) translateY(-100%);
+        }
+    }
+    &.modal-animate-right {
+        .modal-content {
+            transform: translateX(100%);
+        }
+    }
+    &.modal-animate-bottom {
+        .modal-content {
+            transform: translateY(2 * ($modal-margin-top + $modal-margin-bottom)) translateY(100%);
+        }
+    }
+    &.modal-animate-left {
+        .modal-content {
+            transform: translateX(-100%);
+        }
+    }
+    &.modal-animate-center {
+        .modal-content {
+            transform: scale(0, 0);
+        }
+    }
+    @media only screen and (max-width: ($size0 - 1)) {
+        overflow-y: visible;
+        .modal-content {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            width: 100%;
+            border-radius: 0;
+            .modal-header {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+            .modal-body {
+                flex: 1;
+                overflow-y: auto;
+            }
+            .modal-footer {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
+}

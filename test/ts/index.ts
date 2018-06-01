@@ -59,15 +59,24 @@ $(function () {
     }
 
     var modalHidden = false;
-    $('#clickOpenModal, #clickCloseModal, .modal').click(function (event) {
+    $('#clickOpenModal, #clickCloseModal, #modal').click(function (event) {
         event.stopPropagation();
         modalHidden = !modalHidden;
         //$('body').toggleClass('scroll-lock', modalHidden);
-        $('.modal').toggleClass('modal-open', modalHidden);
+        $('#modal.modal').toggleClass('modal-open', modalHidden);
         lockBodyScroll(modalHidden);
     });
     $('.modal-content').click(function (event) {
         event.stopPropagation();
+    });
+
+    var modalHidden = false;
+    $('#clickOpenModalComplex, #clickCloseModalComplex, #modal-complex > .modal-mask').click(function (event) {
+        event.stopPropagation();
+        modalHidden = !modalHidden;
+        //$('body').toggleClass('scroll-lock', modalHidden);
+        $('#modal-complex').toggleClass('modal-open', modalHidden);
+        lockBodyScroll(modalHidden);
     });
 
     var drawerHidden = false;
