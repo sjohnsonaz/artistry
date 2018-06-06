@@ -1,6 +1,20 @@
 import * as $ from 'jquery';
 
 $(function () {
+    // Move Modals
+    let modals = document.querySelectorAll('.modal');
+    let modalRoot = document.getElementById('modal-root');
+    for (var index = 0, length = modals.length; index < length; index++) {
+        let modal = modals[index];
+        modalRoot.appendChild(modal);
+    }
+    modals = document.querySelectorAll('.modal-complex');
+    for (var index = 0, length = modals.length; index < length; index++) {
+        let modal = modals[index];
+        modalRoot.appendChild(modal);
+    }
+
+    // Create Hash Change listener
     window.addEventListener('hashchange', function (event) {
         $('.menu-link').removeClass('menu-active');
         $('a[href="' + window.location.hash + '"]').parent().addClass('menu-active');
