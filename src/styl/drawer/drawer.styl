@@ -30,16 +30,30 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: $drawer-mask-background-color;
     visibility: hidden;
-    opacity: 0;
     z-index: $drawer-z-index;
-    transition: transform 0s $drawer-transition-duration, visibility 0s $drawer-transition-duration, opacity $drawer-transition-duration, overflow $drawer-transition-duration;
+    transition: visibility 0s $drawer-transition-duration, overflow $drawer-transition-duration;
 
     &.drawer-open {
-        opacity: 1;
         visibility: visible;
-        transition: transform 0s 0s, visibility $drawer-transition-duration 0s, opacity $drawer-transition-duration, overflow 0s;
+        transition: visibility $drawer-transition-duration 0s, overflow 0s;
+    }
+
+    &:before {
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $drawer-mask-background-color;
+        opacity: 0;
+        transition: opacity $drawer-transition-duration;
+
+        .drawer-open& {
+            opacity: 1;
+        }
     }
 
     & > .drawer-content {
@@ -54,8 +68,7 @@
         overflow: auto;
         box-shadow: $drawer-box-shadow;
         z-index: $drawer-z-index + 1;
-        visibility: hidden;
-        transition: transform $drawer-transition-duration, visibility $drawer-transition-duration;
+        transition: transform $drawer-transition-duration;
 
         .drawer-top& {
             top: 0;
@@ -104,7 +117,6 @@
         .drawer-open& {
             transition: transform 0.5s;
             transform: none;
-            visibility: visible;
         }
     }
 }

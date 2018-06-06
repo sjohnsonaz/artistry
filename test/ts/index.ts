@@ -8,7 +8,7 @@ $(function () {
         let modal = modals[index];
         modalRoot.appendChild(modal);
     }
-    modals = document.querySelectorAll('.modal-complex');
+    modals = document.querySelectorAll('.drawer');
     for (var index = 0, length = modals.length; index < length; index++) {
         let modal = modals[index];
         modalRoot.appendChild(modal);
@@ -88,15 +88,6 @@ $(function () {
     });
     $('.modal-content').click(function (event) {
         event.stopPropagation();
-    });
-
-    var modalHidden = false;
-    $('#clickOpenModalComplex, #clickCloseModalComplex, #modal-complex > .modal-mask').click(function (event) {
-        event.stopPropagation();
-        modalHidden = !modalHidden;
-        //$('body').toggleClass('scroll-lock', modalHidden);
-        $('#modal-complex').toggleClass('modal-open', modalHidden);
-        lockBodyScroll(modalHidden);
     });
 
     var drawerHidden = false;
