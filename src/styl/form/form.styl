@@ -78,7 +78,7 @@
     }
 
     .form-container {
-        max-width: auto;
+        max-width: none;
         margin: $form-spacing;
 
         &:not(.form-container-inline) {
@@ -89,7 +89,8 @@
 
                 .form-title {
                     margin: 0;
-                    max-width: auto;
+                    width: auto;
+                    text-align: start;
                 }
 
                 .form-input {
@@ -115,17 +116,28 @@
     }
 
     .form-text {
-        max-width: auto;
+        max-width: none;
         margin: $form-spacing;
     }
 
     .form-action {
-        max-width: auto;
+        max-width: none;
         margin: 0;
         padding: ($form-spacing / 2) $form-spacing;
 
         & > * {
             margin: ($form-spacing / 2);
         }
+    }
+}
+
+// TODO: Figure out why this is needed
+.modal {
+    .form-container,
+    .form-action {
+        padding: 0 $form-spacing;
+    }
+    .form-text {
+        padding: $form-spacing;
     }
 }
