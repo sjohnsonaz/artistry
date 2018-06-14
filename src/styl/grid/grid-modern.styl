@@ -1,0 +1,9 @@
+@require 'grid-settings.styl';
+
+.grid-modern {
+    display: grid;
+}
+.grid-item {
+    grid-column-start: attr(data-start);
+    grid-column-end: span attr(data-span);
+}
