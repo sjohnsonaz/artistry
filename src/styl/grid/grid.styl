@@ -1,130 +1,68 @@
 @require 'grid-settings.styl';
-@require '../core/mixins.styl';
 
-// $lt-size0= unquote('only screen and (max-width: ($size0 - 1))');
-container() {
-    clearfix();
+container(sizes...)
     margin: 0 auto;
     padding: 0;
     border: 0;
 
-    @media only screen and (max-width: (($size0 - 1))) {
+    @media only screen and (max-width: sizes[0] - 1) {
         width: 100%;
     }
 
-    @media only screen and (min-width: $size0) and (max-width: (($size1 - 1))) {
-        width: $size0 - 15px;
-    }
-
-    @media only screen and (min-width: $size1) and (max-width: (($size2 - 1))) {
-        width: $size1 - 15px;
-    }
-
-    @media only screen and (min-width: $size2) {
-        width: $size2 - 15px;
-    }
-}
-
-.container {
-    container();
-}
+    for size in sizes
+        @media only screen and (min-width: size) {
+            width: size;
+        }
 
 container-fluid() {
     width: 100%;
 }
 
-row() {
-    // clearfix();
+row($min-width) {
     display: flex;
-    flex-direction: row;
-    margin: 0;
-    // margin: 1.12em 0;
-    padding: 0;
-    border: 0;
-    width: 100%;
+    flex-direction: column;
 
-    @media only screen and (max-width: ($size0 - 1)) {
-        flex-direction: column;
-        width: 100%;
+    @media only screen and (min-width: $min-width) {
+        flex-direction: row;
     }
 }
 
-columns($count, $total) {
-    // clearfix();
-    display: block;
-    // float: left;
-    margin: 0;
-    // padding: 0px;
-    // border: 0px;
-    width: ($count * 100% / $total);
+flex-column($span, $total, $min-width) {
+    flex: 0 0 100%;
 
-    @media only screen and (max-width: ($size0 - 1)) {
-        width: 100%;
+    @media only screen and (min-width: $min-width) {
+        flex: 0 0 ((100% * $span)/ $total);
     }
 }
 
-offset($count, $total) {
-    margin: 0;
+flex-offset($span, $total, $min-width) {
+    margin-left: 0;
 
-    @media only screen and (max-width: ($size0 - 1)) {
-        margin: 0;
+    @media only screen and (min-width: $min-width) {
+        margin-left: ((100% * $span) / $total);
     }
 }
 
-make-columns($width, $number) {
-    for $index in (1 .. $number) {
-        .span{$index} {
-            display: block;
-            float: left;
-            margin: 0;
-            padding: 0;
-            border: 0;
-            width: ($index * $width / $number);
-        }
+flex-grid($columns, $min-width)
+    for $span in (1...$columns)
+        & > .col-{$span}
+            flex-column($span, 12, $min-width)
+        & > .offset-{$span}
+            flex-offset($span, 12, $min-width)
 
-        make-columns($width, $number, ($index + 1));
-    }
-}
+.container
+    container($size0, $size1, $size2)
 
-make-offsets($width, $number) {
-    for $index in (1 .. $number) {
-        .offset{$index} {
-            display: block;
-            float: left;
-            padding: 0;
-            border: 0;
-            margin: 0;
-        }
+.container-fluid
+    container-fluid()
 
-        make-offsets($width, $number, ($index + 1));
-    }
-}
+.row
+    row($size0)
 
-make-columns-fluid($number) {
-    for $index in (1 .. $number) {
-        .span{$index} {
-            display: block;
-            float: left;
-            margin: 0;
-            padding: 0;
-            border: 0;
-            width: ($index * 100% / $number);
-        }
+.grid > .row
+    .col
+        flex-grow: 1;
 
-        make-columns($number, ($index + 1));
-    }
-}
+.grid-12 > .row
+    flex-grid(12, $size0)
 
-make-offsets-fluid($number) {
-    for $index in (1 .. $number) {
-        .offset{$index} {
-            display: block;
-            float: left;
-            padding: 0;
-            border: 0;
-            margin: 0;
-        }
-
-        make-offsets($number, ($index + 1));
-    }
-}
