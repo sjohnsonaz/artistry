@@ -44,11 +44,11 @@ flex-offset($span, $total, $min-width) {
 }
 
 flex-grid($columns, $min-width)
-    for $span in (1...$columns)
+    for $span in (1..$columns)
         & > .col-{$span}
-            flex-column($span, 12, $min-width)
+            flex-column($span, $columns, $min-width)
         & > .offset-{$span}
-            flex-offset($span, 12, $min-width)
+            flex-offset($span, $columns, $min-width)
 
 .container
     container($size0, $size1, $size2)
@@ -59,10 +59,9 @@ flex-grid($columns, $min-width)
 .row
     row($size0)
 
-.grid > .row
-    .col
-        flex-grow: 1;
+.grid > .row > .col,
+.grid-12 > .row > .col
+    flex-grow: 1;
 
 .grid-12 > .row
     flex-grid(12, $size0)
-
