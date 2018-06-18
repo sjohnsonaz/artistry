@@ -18,32 +18,50 @@ container-fluid() {
     width: 100%;
 }
 
-row($min-width) {
+row($min-width = false) {
     display: flex;
-    flex-direction: column;
 
-    @media only screen and (min-width: $min-width) {
+    if $min-width {
+        flex-direction: column;
+
+        @media only screen and (min-width: $min-width) {
+            flex-direction: row;
+        }
+    } else {
         flex-direction: row;
     }
 }
 
 flex-column($span, $total, $min-width) {
-    flex: 0 0 100%;
+    if $min-width {
+        flex: 0 0 100%;
 
-    @media only screen and (min-width: $min-width) {
+        @media only screen and (min-width: $min-width) {
+            flex: 0 0 ((100% * $span)/ $total);
+        }
+    } else {
         flex: 0 0 ((100% * $span)/ $total);
     }
 }
 
 flex-offset($span, $total, $min-width) {
-    margin-left: 0;
+    if $min-width {
+        margin-left: 0;
 
-    @media only screen and (min-width: $min-width) {
+        @media only screen and (min-width: $min-width) {
+            margin-left: ((100% * $span) / $total);
+        }
+    } else {
         margin-left: ((100% * $span) / $total);
     }
 }
 
-flex-grid($columns, $min-width)
+flex-grid($columns, $min-width = false)
+    row($min-width)
+
+    & > .col
+        flex-grow: 1;
+
     for $span in (1..$columns)
         & > .col-{$span}
             flex-column($span, $columns, $min-width)
@@ -56,12 +74,14 @@ flex-grid($columns, $min-width)
 .container-fluid
     container-fluid()
 
-.row
-    row($size0)
-
-.grid > .row > .col,
-.grid-12 > .row > .col
-    flex-grow: 1;
-
 .grid-12 > .row
+    flex-grid(12)
+
+.grid-sm-12 > .row
     flex-grid(12, $size0)
+
+.grid-md-12 > .row
+    flex-grid(12, $size1)
+
+.grid-lg-12 > .row
+    flex-grid(12, $size2);
