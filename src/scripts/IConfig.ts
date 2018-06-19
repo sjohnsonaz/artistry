@@ -70,9 +70,10 @@ export interface IDefault {
     $danger-color-alt ?: $white;
     
     Size Properties
-    $size0 ?: string;
-    $size1 ?: string;
-    $size2 ?: string;
+    $size-sm ?: string;
+    $size-md ?: string;
+    $size-lg ?: string;
+    $size-xl ?: string;
     
     Shadow Properties
     $box-shadow-height-0 ?: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
