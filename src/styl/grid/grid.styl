@@ -88,6 +88,13 @@ flex-grid($columns, $min-width = false)
             & > .offset-{$span}
                 flex-offset($span, $columns, $min-width)
 
+.grid-space
+    & > .row,
+    & > .row-reverse
+        .col,
+        [class^=col-]
+            padding: $grid-spacing
+
 .container
     container($size-sm, $size-md, $size-lg, $size-xl)
 
