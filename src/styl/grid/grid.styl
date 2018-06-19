@@ -32,6 +32,20 @@ row($min-width = false) {
     }
 }
 
+row-reverse($min-width = false) {
+    display: flex;
+
+    if $min-width {
+        flex-direction: column;
+
+        @media only screen and (min-width: $min-width) {
+            flex-direction: row-reverse;
+        }
+    } else {
+        flex-direction: row-reverse;
+    }
+}
+
 flex-column($span, $total, $min-width) {
     if $min-width {
         flex: 0 0 100%;
@@ -57,31 +71,41 @@ flex-offset($span, $total, $min-width) {
 }
 
 flex-grid($columns, $min-width = false)
-    row($min-width)
+    & > .row
+        row($min-width)
 
-    & > .col
-        flex-grow: 1;
+    & > .row-reverse
+        row-reverse($min-width)
 
-    for $span in (1..$columns)
-        & > .col-{$span}
-            flex-column($span, $columns, $min-width)
-        & > .offset-{$span}
-            flex-offset($span, $columns, $min-width)
+    & > .row,
+    & > .row-reverse
+        & > .col
+            flex-grow: 1;
+
+        for $span in (1..$columns)
+            & > .col-{$span}
+                flex-column($span, $columns, $min-width)
+            & > .offset-{$span}
+                flex-offset($span, $columns, $min-width)
 
 .container
-    container($size0, $size1, $size2)
+    container($size-sm, $size-md, $size-lg, $size-xl)
 
 .container-fluid
     container-fluid()
 
-.grid-12 > .row
+.grid-12,
+.grid-xs-12
     flex-grid(12)
 
-.grid-sm-12 > .row
-    flex-grid(12, $size0)
+.grid-sm-12
+    flex-grid(12, $size-sm)
 
-.grid-md-12 > .row
-    flex-grid(12, $size1)
+.grid-md-12
+    flex-grid(12, $size-md)
 
-.grid-lg-12 > .row
-    flex-grid(12, $size2);
+.grid-lg-12
+    flex-grid(12, $size-lg);
+
+.grid-xl-12
+    flex-grid(12, $size-xl);

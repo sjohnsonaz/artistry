@@ -80,9 +80,12 @@ $card-header-margin = -($card-border-width + $card-padding);
     }
 
     & > .card-content {
-        padding: $card-padding;
+        padding: 0;
         flex-grow: 1;
         transition: max-height $card-animation-time;
+        &.card-content-space {
+            padding: $card-padding;
+        }
         &.lock-contents:after {
             border-bottom-right-radius: max(0, $card-border-radius - $card-border-width);
             border-bottom-left-radius: max(0, $card-border-radius - $card-border-width);
