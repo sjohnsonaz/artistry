@@ -66,7 +66,6 @@
         box-shadow: $tab-box-shadow;
         & > div {
             display: none;
-            padding: $tab-body-padding;
             clearfix();
             &.tab-active {
                 display: block;
@@ -82,8 +81,12 @@
         background-color: $tab-background-color;
         border-radius: 0 $tab-border-radius $tab-border-radius $tab-border-radius;
         box-shadow: $tab-box-shadow;
-        & > div {
-            //padding: $tab-body-padding;
+    }
+
+    &.tab-space {
+        .tab-body > div,
+        .tab-carousel > div {
+            padding: $tab-body-padding;
         }
     }
 }
