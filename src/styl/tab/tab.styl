@@ -26,16 +26,20 @@
                 padding: $tab-header-padding;
                 text-decoration: none;
                 cursor: pointer;
-                color: $tab-color;
+                color: $tab-inactive-color;
             }
         }
         & > li:hover {
-            color: $tab-hover-color;
             background-color: $tab-hover-background-color;
+            & > a {
+                color: $tab-hover-color;
+            }
         }
         & > li:active {
-            color: $tab-active-color;
             background-color: $tab-active-background-color;
+            & > a {
+                color: $tab-active-color;
+            }
         }
         & > li.tab-active {
             background-color: $tab-background-color;
@@ -52,6 +56,7 @@
             }
             & > a {
                 cursor: default;
+                color: $tab-color;
             }
         }
     }
