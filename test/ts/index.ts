@@ -250,4 +250,32 @@ $(function () {
             }
         });
     });
+
+    var closeableClosed = false;
+    var closeableTimeout;
+    $('#clickCloseableToggle').click(function (event) {
+        window.clearTimeout(closeableTimeout);
+        closeableClosed = !closeableClosed;
+        var section = $('#closeable')[0];
+        var button = $(this);
+        section.setAttribute('data-running', 'true');
+        if (closeableClosed) {
+            section.style.height = section.offsetHeight + 'px';
+            section.setAttribute('data-closed', 'true');
+            var sectionBorder = section.offsetHeight - section.clientHeight;
+            section.style.height = sectionBorder / 2 + 'px';
+            closeableTimeout = window.setTimeout(function () {
+                section.setAttribute('data-running', 'false');
+            }, 220)
+        } else {
+            var sectionBorder = section.offsetHeight - section.clientHeight;
+            section.style.height = sectionBorder / 2 + 'px';
+            section.setAttribute('data-closed', 'false');
+            section.style.height = sectionBorder / 2 + section.scrollHeight + 'px';
+            closeableTimeout = window.setTimeout(function () {
+                section.style.height = 'auto';
+                section.setAttribute('data-running', 'false');
+            }, 220)
+        }
+    });
 });
