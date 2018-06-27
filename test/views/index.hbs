@@ -7,32 +7,34 @@
         display: block;
     }
 </style>
-<div class="root container container-menu-bar-top">
-    {{#> menu-bar-top}}{{/menu-bar-top}}
-    <div id="forms" class="layout-section animatable" data-animation="fade-top" data-direction="in">
-        {{#> button}}{{/button}}
-        {{#> input}}{{/input}}
-        {{#> form}}{{/form}}
-    </div>
-    <div id="data" class="layout-section animatable" data-animation="fade-top" data-direction="in">
-        {{#> data}}{{/data}}
-    </div>
-    <div id="widgets" class="layout-section animatable" data-animation="fade-top" data-direction="in">
-        <h2>Widgets</h2>
-        {{#> information}}{{/information}}
-        {{#> containers}}{{/containers}}
-        {{#> card}}{{/card}}
-        {{#> widgets}}{{/widgets}}
-    </div>
-    <div id="navigation" class="layout-section animatable" data-animation="fade-top" data-direction="in">
-        <h2>Navigation</h2>
-        {{#> navigation}}{{/navigation}}
-    </div>
-    <div id="animation" class="layout-section animatable" data-animation="fade-top" data-direction="in">
-        {{#> animation}}{{/animation}}
-    </div>
-    <div id="grid" class="layout-section animatable" data-animation="fade-top" data-direction="in">
-        {{#> grid}}{{/grid}}
+<div class="root">
+    <div class="container container-menu-bar-top">
+        {{#> menu-bar-top}}{{/menu-bar-top}}
+        <div id="forms" class="layout-section animatable" data-animation="fade-top" data-direction="in">
+            {{#> button}}{{/button}}
+            {{#> input}}{{/input}}
+            {{#> form}}{{/form}}
+        </div>
+        <div id="data" class="layout-section animatable" data-animation="fade-top" data-direction="in">
+            {{#> data}}{{/data}}
+        </div>
+        <div id="widgets" class="layout-section animatable" data-animation="fade-top" data-direction="in">
+            <h2>Widgets</h2>
+            {{#> information}}{{/information}}
+            {{#> containers}}{{/containers}}
+            {{#> card}}{{/card}}
+            {{#> widgets}}{{/widgets}}
+        </div>
+        <div id="navigation" class="layout-section animatable" data-animation="fade-top" data-direction="in">
+            <h2>Navigation</h2>
+            {{#> navigation}}{{/navigation}}
+        </div>
+        <div id="animation" class="layout-section" data-animation="fade-top" data-direction="in">
+            {{#> animation}}{{/animation}}
+        </div>
+        <div id="grid" class="layout-section animatable" data-animation="fade-top" data-direction="in">
+            {{#> grid}}{{/grid}}
+        </div>
     </div>
 </div>
 <div id="modal-root"></div>

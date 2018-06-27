@@ -278,4 +278,49 @@ $(function () {
             }, 220)
         }
     });
+
+    var filled = false;
+    var fillableTimeout;
+    $('#clickFillableToggle').click(function (event) {
+        window.clearTimeout(fillableTimeout);
+        filled = !filled;
+        var fillable = $('#fillable')[0] as HTMLDivElement;
+        var fillableContent = fillable.children[0] as HTMLDivElement;
+        var card = fillableContent.children[0] as HTMLDivElement;
+        var button = $(this);
+        //fillable.setAttribute('data-running', 'true');
+        if (!filled) {
+            let rect = fillable.getBoundingClientRect();
+            fillableContent.style.top = rect.top + 'px';
+            fillableContent.style.bottom = window.innerHeight - rect.top - rect.height + 'px';
+            fillableContent.style.left = rect.left + 'px';
+            fillableContent.style.right = document.body.scrollWidth - rect.left - rect.width + 'px';
+            window.setTimeout(function () {
+                fillableContent.style.top = null;
+                fillableContent.style.bottom = null;
+                fillableContent.style.left = null;
+                fillableContent.style.right = null;
+                fillable.style.height = null;
+                fillable.style.width = null;
+                fillable.setAttribute('data-filled', 'false');
+                card.classList.remove('card-square');
+            }, 220);
+        } else {
+            let rect = fillable.getBoundingClientRect();
+            fillable.style.height = rect.height + 'px';
+            fillable.style.width = rect.width + 'px';
+            fillableContent.style.top = rect.top + 'px';
+            fillableContent.style.bottom = window.innerHeight - rect.top - rect.height + 'px';
+            fillableContent.style.left = rect.left + 'px';
+            fillableContent.style.right = document.body.scrollWidth - rect.left - rect.width + 'px';
+            fillable.setAttribute('data-filled', 'true');
+            card.classList.add('card-square');
+            window.setTimeout(function () {
+                fillableContent.style.top = 0 + 'px';
+                fillableContent.style.bottom = 0 + 'px';
+                fillableContent.style.left = 0 + 'px';
+                fillableContent.style.right = 0 + 'px';
+            }, 20);
+        }
+    });
 });

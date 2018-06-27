@@ -18,20 +18,24 @@ $card-header-margin = -($card-border-width + $card-padding);
     margin: $card-margin 0;
 
     border: $card-border-width solid $card-border-color;
-    border-radius: $card-border-radius;
 
+    background-color: $card-background-color;
     box-shadow: $card-box-shadow;
 
     transition: height $card-animation-time;
 
-    & > *:first-child {
-        border-top-left-radius: $card-border-radius;
-        border-top-right-radius: $card-border-radius;
-    }
+    &:not(.card-square) {
+        border-radius: $card-border-radius;
 
-    & > *:last-child {
-        border-bottom-left-radius: $card-border-radius;
-        border-bottom-right-radius: $card-border-radius;
+        & > *:first-child {
+            border-top-left-radius: $card-border-radius;
+            border-top-right-radius: $card-border-radius;
+        }
+
+        & > *:last-child {
+            border-bottom-left-radius: $card-border-radius;
+            border-bottom-right-radius: $card-border-radius;
+        }
     }
 
     & > header,

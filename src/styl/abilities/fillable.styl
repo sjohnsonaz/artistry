@@ -1,0 +1,19 @@
+@require "ability-settings.styl";
+
+fillable() {
+    //padding: 0;
+    .fillable-content {
+        transition: top $fillable-animation-time, right $fillable-animation-time, bottom $fillable-animation-time, left $fillable-animation-time;
+        z-index: 100;
+    }
+
+    &[data-filled="true"] {
+        .fillable-content {
+            position: fixed;
+        }
+    }
+}
+
+.fillable {
+    fillable();
+}
