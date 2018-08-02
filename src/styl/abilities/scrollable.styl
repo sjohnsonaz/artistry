@@ -1,0 +1,34 @@
+.scrollable
+    &:not([data-scroll])
+    &[data-scroll="auto"]
+        overflow: auto
+
+    &[data-scroll="both"]
+        overflow: scroll
+
+    &[data-scroll="none"]
+        overflow: hidden
+
+    &[data-scroll="x"]
+        overflow-x: auto
+
+    &[data-scroll="y"]
+        overflow-y: auto
+
+    &[data-scroll="x-always"]
+        overflow-x: scroll
+
+    &[data-scroll="y-always"]
+        overflow-y: scroll
+
+    &[data-scroll="x-never"]
+        overflow-x: hidden
+
+    &[data-scroll="y-never"]
+        overflow-y: hidden
+
+.scrollable-y
+    overflow-y: auto
+
+.scrollable-x
+    overflow-x: auto
