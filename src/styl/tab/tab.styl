@@ -78,14 +78,20 @@
         }
     }
     & > .tab-carousel {
-        display: block;
-        position: relative;
-        margin: 0;
-        padding: 0;
-        border: $tab-border-width solid $tab-border-color;
-        background-color: $tab-background-color;
-        border-radius: 0 $tab-border-radius $tab-border-radius $tab-border-radius;
-        box-shadow: $tab-box-shadow;
+        &:not(.fill-height) {
+            display: block;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            border: $tab-border-width solid $tab-border-color;
+            background-color: $tab-background-color;
+            border-radius: 0 $tab-border-radius $tab-border-radius $tab-border-radius;
+            box-shadow: $tab-box-shadow;
+        }
+        &.fill-height {
+            border-top: $tab-border-width solid $tab-border-color;
+            background-color: $tab-background-color;
+        }
     }
 
     &.tab-space {
