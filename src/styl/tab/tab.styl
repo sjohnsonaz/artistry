@@ -77,8 +77,8 @@
             }
         }
     }
-    & > .tab-carousel {
-        &:not(.fill-height) {
+    &:not(.fill-height) {
+        & > .tab-carousel {
             display: block;
             position: relative;
             margin: 0;
@@ -88,7 +88,9 @@
             border-radius: 0 $tab-border-radius $tab-border-radius $tab-border-radius;
             box-shadow: $tab-box-shadow;
         }
-        &.fill-height {
+    }
+    &.fill-height {
+        & > .tab-carousel{
             border-top: $tab-border-width solid $tab-border-color;
             background-color: $tab-background-color;
         }
