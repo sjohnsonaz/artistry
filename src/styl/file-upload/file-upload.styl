@@ -1,0 +1,28 @@
+@require "file-upload-settings.styl";
+
+.file-upload {
+    border: $file-upload-border-width dashed $file-upload-border-color;
+    border-radius: $file-upload-border-radius;
+    margin: $file-upload-margin;
+    padding:  $file-upload-padding;
+    text-align: center;
+    cursor: pointer;
+    color:  $file-upload-color;
+    font-weight: bold;
+
+    &:hover {
+        background-color: $file-upload-hover-background-color;
+    }
+
+    & > input[type=file] {
+        display: none;
+    }
+
+    &[data-dragging=true] {
+        background-color: $file-upload-dragging-background-color;
+    }
+
+    &[data-uploading=true] {
+        background-color: $file-upload-uploading-background-color;
+    }
+}
