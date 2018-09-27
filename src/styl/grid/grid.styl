@@ -11,7 +11,7 @@ container(sizes...)
 
     for size in sizes
         @media only screen and (min-width: size) {
-            width: size;
+            width: "calc(%s - var(--scrollbar-width))" % size;
         }
 
 container-fluid() {
