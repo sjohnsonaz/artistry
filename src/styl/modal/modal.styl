@@ -16,7 +16,7 @@ $modal-margin-right = -1 * $modal-width / 2;
     &.modal-open {
         //transform: none;
         visibility: inherit;
-        overflow-y: auto;
+        overflow-y: scroll;
         & > .modal-content {
             transform: none !important;
         }
@@ -133,7 +133,9 @@ $modal-margin-right = -1 * $modal-width / 2;
         }
     }
     @media only screen and (max-width: ($size-md - 1)) {
-        overflow-y: visible;
+        &.modal-open {
+            overflow-y: visible;
+        }
         .modal-content {
             position: fixed;
             display: flex;

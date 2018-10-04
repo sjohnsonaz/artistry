@@ -63,28 +63,3 @@ relative() {
 .relative {
     relative();
 }
-.body-scroll-lock {
-    overflow-y: scroll;
-
-    & > .root {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        overflow: hidden;
-    }
-}
-
-:root{
-  --scrollbar-width: calc(100vw - 100%);
-}
-
-body.body-scroll {
-    overflow-y: scroll;
-
-    &.body-scroll-lock {
-        margin-right: var(--scrollbar-width);
-    }
-}

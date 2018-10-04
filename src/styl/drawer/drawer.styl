@@ -32,11 +32,12 @@
     left: 0;
     visibility: hidden;
     z-index: $drawer-z-index;
-    transition: visibility 0s $drawer-transition-duration, overflow $drawer-transition-duration;
+    transition: visibility 0s $drawer-transition-duration;//, overflow-y $drawer-transition-duration;
 
     &.drawer-open {
         visibility: visible;
-        transition: visibility $drawer-transition-duration 0s, overflow 0s;
+        transition: visibility $drawer-transition-duration 0s;//, overflow-y 0s;
+        overflow-y: scroll;
     }
 
     &.drawer-background:before {
@@ -65,7 +66,7 @@
         border-radius: $drawer-border-radius;
         max-height: 100%;
         max-width: 100%;
-        overflow: auto;
+        overflow: visible;
         box-shadow: $drawer-box-shadow;
         z-index: $drawer-z-index + 1;
         transition: transform $drawer-transition-duration;
