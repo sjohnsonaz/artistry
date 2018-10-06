@@ -10,6 +10,8 @@
     border: $input-border-width solid $input-default-border-color;
     font-family: Arial;
     box-shadow: $input-box-shadow-height-0;
+    // iOS specific fix
+    appearance: none;
     &:focus {
         outline: none;
         border-color: $input-default-border-color-focus;
