@@ -1,7 +1,9 @@
 @require "modal-settings.styl";
+
 $modal-margin-right = -1 * $modal-width / 2;
+
 // TODO: Create z-index override to force on top
-.modal {
+.modal
     display: block;
     position: fixed;
     z-index: $modal-z-index;
@@ -13,15 +15,17 @@ $modal-margin-right = -1 * $modal-width / 2;
     overflow-y: visible;
     transition: visibility $modal-transition-duration, overflow $modal-transition-duration;
     will-change: visibility;
-    &.modal-open {
+
+    &.modal-open
         //transform: none;
         visibility: inherit;
         overflow-y: scroll;
-        & > .modal-content {
+
+        & > .modal-content
             transform: none !important;
-        }
-    }
-    &.modal-background:before {
+
+
+    &.modal-background:before
         content: '';
         display: block;
         position: fixed;
@@ -34,12 +38,11 @@ $modal-margin-right = -1 * $modal-width / 2;
         transition: opacity $modal-transition-duration;
         will-change: opacity;
 
-        .modal-open& {
+        .modal-open&
             opacity: 1;
-        }
-    }
 
-    .modal-content {
+
+    .modal-content
         display: block;
         position: relative;
         padding: 0;
@@ -55,49 +58,63 @@ $modal-margin-right = -1 * $modal-width / 2;
         will-change: transform;
         clearfix();
 
-        &.modal-content-space {
+        &.modal-content-space
             padding: $modal-padding;
-        }
 
-        .modal-header {
+        .modal-header
+            display: flex;
+            flex-direction: row;
             margin: 0;
             padding: $modal-padding;
             border-bottom: $modal-border-width solid $modal-border-color;
             background-color: $modal-header-background-color;
             border-top-left-radius: $modal-border-radius;
             border-top-right-radius: $modal-border-radius;
-            clearfix();
-            .modal-title {
-                padding: 0;
+
+            .modal-title
                 margin: 0;
-                float: left;
-            }
-            .modal-controls {
-                float: right;
-            }
-        }
-        .modal-body {
+                flex-grow: 0;
+
+        .modal-action
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            flex-grow: 1;
+            padding: 0;
+
+            &.modal-action-reverse
+                flex-direction: row-reverse;
+
+            &.modal-action-start
+                justify-content: flex-start;
+
+            & > *
+                margin: 0 $modal-action-spacing 0 0;
+
+                &:last-child
+                    margin-right: 0;
+
+
+        .modal-body
             margin: 0;
             padding: 0;
 
-            &.modal-body-space {
+            &.modal-body-space
                 padding: $modal-padding;
-            }
 
-            &:first-child {
-                &.lock-contents:after {
+            &:first-child
+                &.lock-contents:after
                     border-top-right-radius: max(0, $modal-border-radius - $modal-border-width);
                     border-top-left-radius: max(0, $modal-border-radius - $modal-border-width);
-                }
-            }
-            &:last-child {
-                &.lock-contents:after {
+
+            &:last-child
+                &.lock-contents:after
                     border-bottom-right-radius: max(0, $modal-border-radius - $modal-border-width);
                     border-bottom-left-radius: max(0, $modal-border-radius - $modal-border-width);
-                }
-            }
-        }
-        .modal-footer {
+
+
+        .modal-footer
             margin: 0;
             padding: $modal-padding;
             border-top: $modal-border-width solid $modal-border-color;
@@ -105,34 +122,28 @@ $modal-margin-right = -1 * $modal-width / 2;
             border-bottom-left-radius: $modal-border-radius;
             border-bottom-right-radius: $modal-border-radius;
             clearfix();
-        }
-    }
-    &.modal-animate-top {
-        .modal-content {
+
+
+    &.modal-animate-top
+        .modal-content
             transform: translateY(-2 * ($modal-margin-top + $modal-margin-bottom)) translateY(-100%);
-        }
-    }
-    &.modal-animate-right {
-        .modal-content {
+
+    &.modal-animate-right
+        .modal-content
             transform: translateX(100%);
-        }
-    }
-    &.modal-animate-bottom {
-        .modal-content {
+
+    &.modal-animate-bottom
+        .modal-content
             transform: translateY(2 * ($modal-margin-top + $modal-margin-bottom)) translateY(100%);
-        }
-    }
-    &.modal-animate-left {
-        .modal-content {
+
+    &.modal-animate-left
+        .modal-content
             transform: translateX(-100%);
-        }
-    }
-    &.modal-animate-center {
-        .modal-content {
+
+    &.modal-animate-center
+        .modal-content
             transform: scale(0, 0);
-        }
-    }
-}
+
 
 modal-full()
     &.modal-open
