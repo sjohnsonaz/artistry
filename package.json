@@ -12,7 +12,8 @@
     "build": "webpack",
     "min": "webpack --progress",
     "dev": "webpack --config webpack.dev.config.js --progress",
-    "watch": "webpack --config webpack.dev.config.js --watch --progress"
+    "watch": "webpack --config webpack.dev.config.js --watch --progress",
+    "open": "opn test/html/index.html"
   },
   "dependencies": {
     "normalize.css": "8.0.0"
@@ -26,6 +27,7 @@
     "handlebars-loader": "1.7.0",
     "jquery": "3.3.1",
     "mini-css-extract-plugin": "0.4.0",
+    "opn-cli": "3.1.0",
     "optimize-css-assets-webpack-plugin": "4.0.2",
     "postcss-loader": "2.1.5",
     "style-loader": "0.21.0",
