@@ -132,31 +132,52 @@ $modal-margin-right = -1 * $modal-width / 2;
             transform: scale(0, 0);
         }
     }
-    @media only screen and (max-width: ($size-md - 1)) {
-        &.modal-open {
-            overflow-y: visible;
-        }
-        .modal-content {
-            position: fixed;
-            display: flex;
-            flex-direction: column;
-            top: 0;
-            bottom: 0;
-            margin: 0;
-            width: 100%;
-            border-radius: 0;
-            .modal-header {
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
-            }
-            .modal-body {
-                flex: 1;
-                overflow-y: auto;
-            }
-            .modal-footer {
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-            }
-        }
-    }
 }
+
+modal-full()
+    &.modal-open
+        overflow-y: visible;
+
+    .modal-content
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        bottom: 0;
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+
+        .modal-header
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+
+        .modal-body
+            flex: 1;
+            overflow-y: auto;
+
+        .modal-footer
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+
+modal-size($min-width = false)
+    @media only screen and (max-width: ($min-width - 1))
+        modal-full()
+
+
+.modal-full,
+.modal-xs
+    modal-full()
+
+.modal-sm
+    modal-size($size-sm)
+
+.modal-md
+    modal-size($size-md)
+
+.modal-lg
+    modal-size($size-md)
+
+.modal-xl
+    modal-size($size-md)
