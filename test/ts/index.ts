@@ -14,6 +14,12 @@ $(function () {
         modalRoot.appendChild(modal);
     }
 
+    modals = document.querySelectorAll('.notification-container');
+    for (var index = 0, length = modals.length; index < length; index++) {
+        let modal = modals[index];
+        modalRoot.appendChild(modal);
+    }
+
     // Create Hash Change listener
     window.addEventListener('hashchange', function (event) {
         $('.menu-link').removeClass('menu-active');
