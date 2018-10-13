@@ -58,19 +58,24 @@
 }
 
 .form-action {
-    margin: $form-spacing auto;
-    max-width: $form-line-width;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    padding: 0;
+    margin: 0 auto;
+    padding: $form-spacing 0;
+    max-width: $form-line-width;
 
     & > * {
-        margin: 0 $form-spacing 0 0;
+        margin: 0 ($form-spacing / 2);
+
         &:last-child {
             margin-right: 0;
         }
     }
+}
+
+footer > .form-action {
+    padding: 0;
 }
 
 @media screen and (max-width: $form-width) {
@@ -122,22 +127,10 @@
 
     .form-action {
         max-width: none;
+        margin: 0 $form-spacing;
+    }
+
+    footer > .form-action {
         margin: 0;
-        padding: ($form-spacing / 2) $form-spacing;
-
-        & > * {
-            margin: ($form-spacing / 2);
-        }
-    }
-}
-
-// TODO: Figure out why this is needed
-.modal {
-    .form-container,
-    .form-action {
-        padding: 0 $form-spacing;
-    }
-    .form-text {
-        padding: $form-spacing;
     }
 }
