@@ -1,0 +1,34 @@
+@require 'container-settings.styl';
+
+container()
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    width: 100%;
+
+container-size(sizes...)
+    for size in sizes
+        @media only screen and (min-width: size) {
+            width: "calc(%s - var(--scrollbar-width))" % size;
+        }
+
+.container
+    container()
+
+    &.container-all
+        container-size($size-sm, $size-md, $size-lg, $size-xl)
+
+    &.container-xs
+        container-size($size-xs)
+
+    &.container-sm
+        container-size($size-sm)
+
+    &.container-md
+        container-size($size-md)
+
+    &.container-lg
+        container-size($size-lg)
+
+    &.container-xl
+        container-size($size-xl)

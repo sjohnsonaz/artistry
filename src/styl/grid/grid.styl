@@ -1,23 +1,5 @@
 @require 'grid-settings.styl';
 
-container(sizes...)
-    margin: 0 auto;
-    padding: 0;
-    border: 0;
-
-    @media only screen and (max-width: sizes[0] - 1) {
-        width: 100%;
-    }
-
-    for size in sizes
-        @media only screen and (min-width: size) {
-            width: "calc(%s - var(--scrollbar-width))" % size;
-        }
-
-container-fluid() {
-    width: 100%;
-}
-
 row($min-width = false) {
     display: flex;
 
@@ -94,12 +76,6 @@ flex-grid($columns, $min-width = false)
         .col,
         [class^=col-]
             padding: $grid-spacing
-
-.container
-    container($size-sm, $size-md, $size-lg, $size-xl)
-
-.container-fluid
-    container-fluid()
 
 .grid-12,
 .grid-xs-12
