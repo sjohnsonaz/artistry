@@ -152,7 +152,7 @@ $modal-margin-right = -1 * $modal-width / 2;
             transform: scale(0, 0);
 
 
-modal-floating($min-width = 100%)
+modal-floating($min-width = false)
     &.modal-open
         overflow-y: scroll;
 
@@ -161,7 +161,10 @@ modal-floating($min-width = 100%)
         display: block;
         flex-direction: unset;
         margin: $modal-margin-top auto $modal-margin-top auto;
-        width: $min-width;
+        if $min-width
+            width: "calc(%s - var(--scrollbar-width))" % $min-width;
+        else
+            width: 100%;
         border: $modal-border-width solid $modal-border-color;
         border-radius: $modal-border-radius;
 
@@ -192,7 +195,7 @@ modal-size(sizes...)
     modal-size($size-md)
 
 .modal-lg
-    modal-size($size-md)
+    modal-size($size-lg)
 
 .modal-xl
-    modal-size($size-md)
+    modal-size($size-xl)
