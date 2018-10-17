@@ -20,7 +20,7 @@ $modal-margin-right = -1 * $modal-width / 2;
     &.modal-open
         //transform: none;
         visibility: inherit;
-        overflow-y: scroll;
+        overflow-y: auto;
 
         & > .modal-content
             transform: none !important;
@@ -154,7 +154,7 @@ $modal-margin-right = -1 * $modal-width / 2;
 
 modal-floating($min-width = 100%)
     &.modal-open
-        overflow-y: auto;
+        overflow-y: scroll;
 
     .modal-content
         position: relative;
