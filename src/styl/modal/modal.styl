@@ -174,9 +174,13 @@ modal-floating($min-width = 100%)
             border-bottom-right-radius: $modal-border-radius;
 
 
-modal-size($min-width = false)
-    @media only screen and (min-width: $min-width)
-        modal-floating($min-width)
+modal-size(sizes...)
+    for size in sizes
+        @media only screen and (min-width: size)
+            modal-floating(size)
+
+.modal-all
+    modal-size($size-sm, $size-md, $size-lg, $size-xl)
 
 .modal-xs
     modal-floating()
