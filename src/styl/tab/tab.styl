@@ -87,12 +87,26 @@
             background-color: $tab-background-color;
             border-radius: 0 $tab-border-radius $tab-border-radius $tab-border-radius;
             box-shadow: $tab-box-shadow;
+
+            &:before,
+            &:after {
+                content: '';
+                display: table;
+                clear: both;
+            }
         }
     }
     &.fill-height {
         & > .tab-carousel{
             border-top: $tab-border-width solid $tab-border-color;
             background-color: $tab-background-color;
+
+            &:before,
+            &:after {
+                content: '';
+                display: table;
+                clear: both;
+            }
         }
     }
 
