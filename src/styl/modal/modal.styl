@@ -28,11 +28,12 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
             transition-delay: $modal-fade-duration;
             transform: none !important;
 
-        &.modal-background:before
+        &:before
             opacity: 1;
+            transition-duration: $modal-fade-duration;
             transition-delay: 0s;
 
-    &.modal-background:before
+    &:before
         content: '';
         display: block;
         position: fixed;
