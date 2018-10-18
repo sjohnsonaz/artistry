@@ -2,6 +2,7 @@
 @require "../grid/container.styl";
 
 $modal-margin-right = -1 * $modal-width / 2;
+$modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
 
 // TODO: Create z-index override to force on top
 .modal
@@ -14,7 +15,8 @@ $modal-margin-right = -1 * $modal-width / 2;
     left: 0;
     visibility: hidden;
     overflow-y: visible;
-    transition: visibility $modal-transition-duration, overflow $modal-transition-duration;
+    transition: visibility, overflow;
+    transition-duration: $modal-transition-duration, $modal-transition-duration;
     will-change: visibility;
 
     &.modal-open
@@ -23,8 +25,12 @@ $modal-margin-right = -1 * $modal-width / 2;
         overflow-y: auto;
 
         & > .modal-content
+            transition-delay: $modal-fade-duration;
             transform: none !important;
 
+        &.modal-background:before
+            opacity: 1;
+            transition-delay: 0s;
 
     &.modal-background:before
         content: '';
@@ -36,12 +42,10 @@ $modal-margin-right = -1 * $modal-width / 2;
         left: 0;
         background-color: $modal-mask-background-color;
         opacity: 0;
-        transition: opacity $modal-transition-duration;
+        transition: opacity;
+        transition-duration: ($modal-transition-duration / 2);
+        transition-delay: ($modal-transition-duration / 2);
         will-change: opacity;
-
-        .modal-open&
-            opacity: 1;
-
 
     .modal-content
         position: fixed;
@@ -59,7 +63,9 @@ $modal-margin-right = -1 * $modal-width / 2;
         background-color: $modal-background-color;
         box-shadow: $modal-content-box-shadow;
         transform: translateY(-2 * ($modal-margin-top + $modal-margin-bottom)) translateY(-100%);
-        transition: transform $modal-transition-duration;
+        transition: transform;
+        transition-duration: $modal-slide-duration;
+        transition-delay: 0s;
         will-change: transform;
         clearfix();
 
