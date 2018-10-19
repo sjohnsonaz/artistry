@@ -19,20 +19,6 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
     transition-duration: $modal-transition-duration, $modal-transition-duration;
     will-change: visibility;
 
-    &.modal-open
-        //transform: none;
-        visibility: inherit;
-        overflow-y: auto;
-
-        & > .modal-content
-            transition-delay: $modal-fade-duration;
-            transform: none !important;
-
-        &:before
-            opacity: 1;
-            transition-duration: $modal-fade-duration;
-            transition-delay: 0s;
-
     &:before
         content: '';
         display: block;
@@ -156,8 +142,29 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
 
     &.modal-animate-center
         .modal-content
+            transition-property: transform, opacity;
             transform: scale(0, 0);
+            opacity: 0;
 
+    &.modal-animate-fade
+        .modal-content
+            transition-property: transform, opacity;
+            opacity: 0;
+
+    &.modal-open
+        //transform: none;
+        visibility: inherit;
+        overflow-y: auto;
+
+        & > .modal-content
+            transition-delay: $modal-fade-duration;
+            transform: none;
+            opacity: 1;
+
+        &:before
+            opacity: 1;
+            transition-duration: $modal-fade-duration;
+            transition-delay: 0s;
 
 modal-floating($min-width = false)
     &.modal-open
