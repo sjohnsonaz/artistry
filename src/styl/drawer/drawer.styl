@@ -1,5 +1,7 @@
 @require 'drawer-settings.styl';
 
+$drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
+
 .drawer-container {
     display: flex;
     flex-direction: row;
@@ -30,17 +32,14 @@
     right: 0;
     bottom: 0;
     left: 0;
-    visibility: hidden;
     z-index: $drawer-z-index;
-    transition: visibility 0s $drawer-transition-duration;//, overflow-y $drawer-transition-duration;
+    visibility: hidden;
+    overflow-y: visible;
+    transition-property: visibility, overflow;
+    transition-duration: $drawer-transition-duration, $drawer-transition-duration;
+    will-change: visibility;
 
-    &.drawer-open {
-        visibility: visible;
-        transition: visibility $drawer-transition-duration 0s;//, overflow-y 0s;
-        overflow-y: scroll;
-    }
-
-    &.drawer-background:before {
+    &:before {
         content: '';
         display: block;
         position: fixed;
@@ -50,11 +49,10 @@
         left: 0;
         background-color: $drawer-mask-background-color;
         opacity: 0;
-        transition: opacity $drawer-transition-duration;
-
-        .drawer-open& {
-            opacity: 1;
-        }
+        transition-property: opacity;
+        transition-duration: ($drawer-transition-duration / 2);
+        transition-delay: ($drawer-transition-duration / 2);
+        will-change: opacity;
     }
 
     & > .drawer-content {
@@ -69,7 +67,10 @@
         overflow: visible;
         box-shadow: $drawer-box-shadow;
         z-index: $drawer-z-index + 1;
-        transition: transform $drawer-transition-duration;
+        transition-property: transform;
+        transition-duration: $drawer-transition-duration;
+        transition-delay: 0s;
+        clearfix();
 
         .drawer-top& {
             top: 0;
@@ -114,10 +115,21 @@
                 right: 0;
             }
         }
+    }
 
-        .drawer-open& {
-            transition: transform 0.5s;
+    &.drawer-open {
+        visibility: visible;
+        overflow-y: scroll;
+
+        & > .drawer-content {
+            transition-delay: $drawer-fade-duration;
             transform: none;
+        }
+
+        &:before {
+            opacity: 1;
+            transition-duration: $drawer-fade-duration;
+            transition-delay: 0s;
         }
     }
 }
