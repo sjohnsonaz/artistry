@@ -144,15 +144,15 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
 
     &.modal-animate-right
         .modal-content
-            transform: translateX(100%);
+            transform: translateX(110vw);
 
     &.modal-animate-bottom
         .modal-content
-            transform: translateY(2 * ($modal-margin-top + $modal-margin-bottom)) translateY(100%);
+            transform: translateY(110vh);
 
     &.modal-animate-left
         .modal-content
-            transform: translateX(-100%);
+            transform: translateX(-110vw);
 
     &.modal-animate-center
         .modal-content
@@ -166,6 +166,8 @@ modal-floating($min-width = false)
     .modal-content
         position: relative;
         display: block;
+        top: unset;
+        bottom: unset;
         flex-direction: unset;
         margin: $modal-margin-top auto $modal-margin-top auto;
         if $min-width
