@@ -19,7 +19,7 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
     transition-duration: $modal-transition-duration, $modal-transition-duration;
     will-change: visibility;
 
-    &:before
+    .modal-background
         content: '';
         display: block;
         position: fixed;
@@ -161,7 +161,8 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
             transform: none;
             opacity: 1;
 
-        &:before
+        & > .modal-background
+            right: var(--scrollbar-width);
             opacity: 1;
             transition-duration: $modal-fade-duration;
             transition-delay: 0s;

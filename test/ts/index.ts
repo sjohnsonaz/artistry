@@ -101,13 +101,18 @@ $(function () {
     }
 
     var modalHidden = false;
-    $('#clickOpenModal, #clickCloseModal, #modal').click(function (event) {
+    $('#clickOpenModal, #clickCloseModal, #modal > .modal-background').click(function (event) {
         event.stopPropagation();
         modalHidden = !modalHidden;
         //$('body').toggleClass('scroll-lock', modalHidden);
         $('#modal.modal').toggleClass('modal-open', modalHidden);
         lockBodyScroll(modalHidden);
     });
+
+    $('.modal').click(function (event) {
+        event.stopPropagation();
+    });
+
     $('.modal-content').click(function (event) {
         event.stopPropagation();
     });
