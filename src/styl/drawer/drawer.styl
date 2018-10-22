@@ -1,4 +1,5 @@
 @require 'drawer-settings.styl';
+@require '../animation/overflow.styl';
 
 $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
 
@@ -116,14 +117,5 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
                 transform: none;
             }
         }
-    }
-}
-
-@keyframes overflow-y-scroll {
-    from {
-        overflow-y: hidden;
-    }
-    to {
-        overflow-y: hidden;
     }
 }
