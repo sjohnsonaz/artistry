@@ -119,7 +119,7 @@ $(function () {
         $('#drawer').toggleClass('drawer-open', drawerHidden);
         lockBodyScroll(drawerHidden);
     });
-    $('.drawer-content').click(function (event) {
+    $('.drawer').click(function (event) {
         event.stopPropagation();
     });
 

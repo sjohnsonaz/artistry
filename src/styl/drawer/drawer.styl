@@ -2,28 +2,6 @@
 
 $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
 
-.drawer-container {
-    display: flex;
-    flex-direction: row;
-
-    .drawer {
-        opacity: 1;
-        visibility: visible;
-        transition: none;
-        top: auto;
-        right: auto;
-        bottom: auto;
-        left: auto;
-
-        & > .drawer-content {
-            transition: none;
-            transform: none;
-            visibility: visible;
-            box-shadow: none;
-        }
-    }
-}
-
 // TODO: Create z-index override to force on top
 .drawer {
     display: block;
@@ -34,15 +12,14 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
     left: 0;
     z-index: $drawer-z-index;
     visibility: hidden;
-    overflow-y: scroll;
-    transition-property: visibility, overflow;
-    transition-duration: $drawer-transition-duration, $drawer-transition-duration;
+    overflow-y: hidden;
+    transition-property: visibility;
+    transition-duration: $drawer-transition-duration;
     will-change: visibility;
 
-    &:before {
-        content: '';
-        display: block;
-        position: fixed;
+    & > .drawer-background {
+        position: absolute;
+        overflow-y: hidden;
         top: 0;
         right: 0;
         bottom: 0;
@@ -50,18 +27,9 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
         background-color: $drawer-mask-background-color;
         opacity: 0;
         transition-property: opacity;
-        transition-duration: ($drawer-transition-duration / 2);
-        transition-delay: ($drawer-transition-duration / 2);
+        transition-duration: $drawer-fade-duration;
+        transition-delay: $drawer-slide-duration;
         will-change: opacity;
-    }
-
-    & > .drawer-scroller {
-        position: absolute;
-        overflow-y: hidden;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
 
         & > .drawer-content {
             display: block;
@@ -70,21 +38,19 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
             padding: $drawer-padding;
             border: $drawer-border-width solid $drawer-border-color;
             border-radius: $drawer-border-radius;
-            max-height: 100%;
-            max-width: 100%;
             overflow: visible;
             box-shadow: $drawer-box-shadow;
             z-index: $drawer-z-index + 1;
             transition-property: transform;
-            transition-duration: $drawer-transition-duration;
-            transition-delay: 0s;
+            transition-duration: $drawer-slide-duration;
+            transition-delay: $drawer-fade-duration;
             clearfix();
 
             .drawer-top& {
                 top: 0;
                 left: 0;
                 right: 0;
-                transform: translateY(-200%);
+                transform: "translateY(calc(-100% - %s))" % $drawer-slide-buffer;
 
                 .drawer-full& {
                     bottom: 0;
@@ -95,7 +61,7 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
                 top: 0;
                 right: 0;
                 bottom: 0;
-                transform: translateX(200%);
+                transform: "translateX(calc(100% + %s))" % $drawer-slide-buffer;
 
                 .drawer-full& {
                     left: 0;
@@ -106,7 +72,7 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
                 right: 0;
                 bottom: 0;
                 left: 0;
-                transform: translateY(200%);
+                transform: "translateY(calc(100% + %s))" % $drawer-slide-buffer;
 
                 .drawer-full& {
                     top: 0;
@@ -117,7 +83,7 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
                 top: 0;
                 bottom: 0;
                 left: 0;
-                transform: translateX(-200%);
+                transform: "translateX(calc(-100% - %s))" % $drawer-slide-buffer;
 
                 .drawer-full& {
                     right: 0;
@@ -128,20 +94,19 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
 
     &.drawer-open {
         visibility: visible;
+        overflow-y: scroll;
 
-        & > .drawer-scroller {
-            overflow-y: hidden;
+        & > .drawer-background {
+            opacity: 1;
+            transition-delay: 0s;
+            overflow-y: visible;
+            animation-name: overflow-y-scroll;
+            animation-duration: $drawer-transition-duration;
 
             & > .drawer-content {
                 transition-delay: $drawer-fade-duration;
                 transform: none;
             }
-        }
-
-        &:before {
-            opacity: 1;
-            transition-duration: $drawer-fade-duration;
-            transition-delay: 0s;
         }
     }
 }
@@ -150,8 +115,7 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
     from {
         overflow-y: hidden;
     }
-
     to {
-        overflow-y: scroll;
+        overflow-y: hidden;
     }
 }
