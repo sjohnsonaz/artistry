@@ -119,7 +119,20 @@ $(function () {
         $('#drawer').toggleClass('drawer-open', drawerHidden);
         lockBodyScroll(drawerHidden);
     });
+
+    var drawerHidden = false;
+    $('#clickOpenLargeDrawer, #clickCloseLargeDrawer, #largeDrawer').click(function (event) {
+        event.stopPropagation();
+        drawerHidden = !drawerHidden;
+        $('#largeDrawer').toggleClass('drawer-open', drawerHidden);
+        lockBodyScroll(drawerHidden);
+    });
+
     $('.drawer').click(function (event) {
+        event.stopPropagation();
+    });
+
+    $('.drawer-content').click(function (event) {
         event.stopPropagation();
     });
 
