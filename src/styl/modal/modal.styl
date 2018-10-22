@@ -5,7 +5,6 @@
 $modal-margin-right = (-1 * $modal-width / 2);
 $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
 
-// TODO: Create z-index override to force on top
 .modal {
     display: block;
     position: fixed;
@@ -188,7 +187,6 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
     }
 
     &.modal-open {
-        // transform: none;
         visibility: inherit;
         overflow-y: auto;
 
@@ -198,7 +196,6 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
             animation-name: overflow-xy-scroll;
             animation-duration: $modal-transition-duration;
 
-            // right: var(--scrollbar-width);
             &:before {
                 opacity: 1;
                 transition-duration: $modal-fade-duration;
