@@ -1,12 +1,12 @@
-@require "modal-settings.styl";
-@require "../grid/container.styl";
+@require 'modal-settings.styl';
+@require '../grid/container.styl';
 @require '../animation/overflow.styl';
 
-$modal-margin-right = -1 * $modal-width / 2;
+$modal-margin-right = (-1 * $modal-width / 2);
 $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
 
 // TODO: Create z-index override to force on top
-.modal
+.modal {
     display: block;
     position: fixed;
     z-index: $modal-z-index;
@@ -21,203 +21,268 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
     transition-duration: $modal-transition-duration;
     will-change: visibility;
 
-    .modal-background
-        content: '';
+    .modal-background {
         display: block;
-        position: fixed;
+        position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
-        background-color: $modal-mask-background-color;
-        opacity: 0;
-        transition-property: opacity;
-        transition-duration: ($modal-transition-duration / 2);
-        transition-delay: ($modal-transition-duration / 2);
-        will-change: opacity;
 
-    .modal-content
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-        padding: 0;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        border-radius: 0;
+        &:before {
+            content: '';
+            display: block;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: $modal-mask-background-color;
+            opacity: 0;
+            transition-property: opacity;
+            transition-duration: ($modal-transition-duration / 2);
+            transition-delay: ($modal-transition-duration / 2);
+            will-change: opacity;
+        }
 
-        //width: $modal-width;
-        min-height: $modal-min-height;
-        background-color: $modal-background-color;
-        box-shadow: $modal-content-box-shadow;
-        transform: translateY(-2 * ($modal-margin-top + $modal-margin-bottom)) translateY(-100%);
-        transition-property: transform;
-        transition-duration: $modal-slide-duration;
-        transition-delay: 0s;
-        will-change: transform;
-        clearfix();
-
-        &.modal-content-space
-            padding: $modal-padding;
-
-        .modal-header
+        .modal-content {
+            position: fixed;
             display: flex;
-            flex-direction: row;
-            margin: 0;
-            padding: $modal-padding;
-            border-bottom: $modal-border-width solid $modal-border-color;
-            background-color: $modal-header-background-color;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-
-            .modal-title
-                margin: 0;
-                flex-grow: 0;
-
-        .modal-action
-            margin: 0;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            flex-grow: 1;
-            padding: 0;
-
-            &.modal-action-reverse
-                flex-direction: row-reverse;
-
-            &.modal-action-start
-                justify-content: flex-start;
-
-            & > *
-                margin: 0 $modal-action-spacing 0 0;
-
-                &:last-child
-                    margin-right: 0;
-
-
-        .modal-body
+            flex-direction: column;
             margin: 0;
             padding: 0;
-            flex: 1;
-            overflow-y: auto;
-
-            &.modal-body-space
-                padding: $modal-padding;
-
-            &:first-child
-                &.lock-contents:after
-                    border-top-right-radius: max(0, $modal-border-radius - $modal-border-width);
-                    border-top-left-radius: max(0, $modal-border-radius - $modal-border-width);
-
-            &:last-child
-                &.lock-contents:after
-                    border-bottom-right-radius: max(0, $modal-border-radius - $modal-border-width);
-                    border-bottom-left-radius: max(0, $modal-border-radius - $modal-border-width);
-
-
-        .modal-footer
-            margin: 0;
-            padding: $modal-padding;
-            border-top: $modal-border-width solid $modal-border-color;
-            background-color: $modal-header-background-color;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            border-radius: 0;
+            // width: $modal-width;
+            min-height: $modal-min-height;
+            background-color: $modal-background-color;
+            box-shadow: $modal-content-box-shadow;
+            transform: translateY(-2 * ($modal-margin-top + $modal-margin-bottom)) translateY(-100%);
+            transition-property: transform;
+            transition-duration: $modal-slide-duration;
+            transition-delay: 0s;
+            will-change: transform;
             clearfix();
 
+            &.modal-content-space {
+                padding: $modal-padding;
+            }
 
-    &.modal-animate-top
-        .modal-content
+            .modal-header {
+                display: flex;
+                flex-direction: row;
+                margin: 0;
+                padding: $modal-padding;
+                border-bottom: $modal-border-width solid $modal-border-color;
+                background-color: $modal-header-background-color;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+
+                .modal-title {
+                    margin: 0;
+                    flex-grow: 0;
+                }
+            }
+
+            .modal-action {
+                margin: 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                flex-grow: 1;
+                padding: 0;
+
+                &.modal-action-reverse {
+                    flex-direction: row-reverse;
+                }
+
+                &.modal-action-start {
+                    justify-content: flex-start;
+                }
+
+                & > * {
+                    margin: 0 $modal-action-spacing 0 0;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+
+            .modal-body {
+                margin: 0;
+                padding: 0;
+                flex: 1;
+                overflow-y: auto;
+
+                &.modal-body-space {
+                    padding: $modal-padding;
+                }
+
+                &:first-child {
+                    &.lock-contents:after {
+                        border-top-right-radius: max(0, $modal-border-radius - $modal-border-width);
+                        border-top-left-radius: max(0, $modal-border-radius - $modal-border-width);
+                    }
+                }
+
+                &:last-child {
+                    &.lock-contents:after {
+                        border-bottom-right-radius: max(0, $modal-border-radius - $modal-border-width);
+                        border-bottom-left-radius: max(0, $modal-border-radius - $modal-border-width);
+                    }
+                }
+            }
+
+            .modal-footer {
+                margin: 0;
+                padding: $modal-padding;
+                border-top: $modal-border-width solid $modal-border-color;
+                background-color: $modal-header-background-color;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                clearfix();
+            }
+        }
+    }
+
+    &.modal-animate-top {
+        .modal-content {
             transform: translateY(-2 * ($modal-margin-top + $modal-margin-bottom)) translateY(-100%);
+        }
+    }
 
-    &.modal-animate-right
-        .modal-content
+    &.modal-animate-right {
+        .modal-content {
             transform: translateX(110vw);
+        }
+    }
 
-    &.modal-animate-bottom
-        .modal-content
+    &.modal-animate-bottom {
+        .modal-content {
             transform: translateY(110vh);
+        }
+    }
 
-    &.modal-animate-left
-        .modal-content
+    &.modal-animate-left {
+        .modal-content {
             transform: translateX(-110vw);
+        }
+    }
 
-    &.modal-animate-center
-        .modal-content
+    &.modal-animate-center {
+        .modal-content {
             transition-property: transform, opacity;
             transform: scale(0, 0);
             opacity: 0;
+        }
+    }
 
-    &.modal-animate-fade
-        .modal-content
+    &.modal-animate-fade {
+        .modal-content {
             transition-property: transform, opacity;
             opacity: 0;
+        }
+    }
 
-    &.modal-open
-        //transform: none;
+    &.modal-open {
+        // transform: none;
         visibility: inherit;
         overflow-y: auto;
 
-        & > .modal-content
-            transition-delay: $modal-fade-duration;
-            transform: none;
-            opacity: 1;
+        & > .modal-background {
+            overflow-y: visible;
+            overflow-x: visible;
+            animation-name: overflow-xy-scroll;
+            animation-duration: $modal-transition-duration;
 
-        & > .modal-background
-            right: var(--scrollbar-width);
-            opacity: 1;
-            transition-duration: $modal-fade-duration;
-            transition-delay: 0s;
+            // right: var(--scrollbar-width);
+            &:before {
+                opacity: 1;
+                transition-duration: $modal-fade-duration;
+                transition-delay: 0s;
+            }
 
-modal-floating($min-width = false)
-    &.modal-open
+            & > .modal-content {
+                transition-delay: $modal-fade-duration;
+                transform: none;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+modal-floating($min-width = false) {
+    &.modal-open {
         overflow-y: scroll;
         overflow-x: visible;
         animation-name: overflow-x-scroll;
         animation-duration: $modal-transition-duration;
+    }
 
-    .modal-content
-        position: relative;
-        display: block;
-        top: unset;
-        bottom: unset;
-        flex-direction: unset;
-        margin: $modal-margin-top auto $modal-margin-top auto;
-        if $min-width
-            width: "calc(%s - var(--scrollbar-width))" % $min-width;
-        else
-            width: 100%;
-        border: $modal-border-width solid $modal-border-color;
-        border-radius: $modal-border-radius;
+    & > .modal-background {
+        overflow-y: visible;
 
-        .modal-header
-            border-top-left-radius: $modal-border-radius;
-            border-top-right-radius: $modal-border-radius;
+        & > .modal-content {
+            position: relative;
+            display: block;
+            top: unset;
+            bottom: unset;
+            flex-direction: unset;
+            margin: $modal-margin-top auto $modal-margin-top auto;
 
-        .modal-footer
-            border-bottom-left-radius: $modal-border-radius;
-            border-bottom-right-radius: $modal-border-radius;
+            if ($min-width) {
+                width: 'calc(%s - var(--scrollbar-width))' % $min-width;
+            } else {
+                width: 100%;
+            }
 
+            border: $modal-border-width solid $modal-border-color;
+            border-radius: $modal-border-radius;
 
-modal-size(sizes...)
-    for size in sizes
-        @media only screen and (min-width: size)
-            modal-floating(size)
+            .modal-header {
+                border-top-left-radius: $modal-border-radius;
+                border-top-right-radius: $modal-border-radius;
+            }
 
-.modal-all
-    modal-size($size-sm, $size-md, $size-lg, $size-xl)
+            .modal-footer {
+                border-bottom-left-radius: $modal-border-radius;
+                border-bottom-right-radius: $modal-border-radius;
+            }
+        }
+    }
+}
 
-.modal-xs
-    modal-floating()
+modal-size(sizes...) {
+    for size in sizes {
+        @media only screen and (min-width: size) {
+            modal-floating(size);
+        }
+    }
+}
 
-.modal-sm
-    modal-size($size-sm)
+.modal-all {
+    modal-size($size-sm, $size-md, $size-lg, $size-xl);
+}
 
-.modal-md
-    modal-size($size-md)
+.modal-xs {
+    modal-floating();
+}
 
-.modal-lg
-    modal-size($size-lg)
+.modal-sm {
+    modal-size($size-sm);
+}
 
-.modal-xl
-    modal-size($size-xl)
+.modal-md {
+    modal-size($size-md);
+}
+
+.modal-lg {
+    modal-size($size-lg);
+}
+
+.modal-xl {
+    modal-size($size-xl);
+}
