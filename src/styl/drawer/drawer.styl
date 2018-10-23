@@ -14,6 +14,7 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
     z-index: $drawer-z-index;
     visibility: hidden;
     overflow-y: hidden;
+    overflow-x: hidden;
     transition-property: visibility;
     transition-duration: $drawer-transition-duration;
     will-change: visibility;
@@ -21,6 +22,7 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
     & > .drawer-background {
         position: absolute;
         overflow-y: hidden;
+        overflow-x: hidden;
         top: 0;
         right: 0;
         //bottom: 0;
@@ -69,6 +71,10 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
                 bottom: 0;
                 transform: "translateX(calc(100% + %s))" % $drawer-slide-buffer;
 
+                & > .drawer-content {
+                    min-height: 100%;
+                }
+
                 .drawer-full& {
                     left: 0;
                 }
@@ -94,6 +100,10 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
                 left: 0;
                 transform: "translateX(calc(-100% - %s))" % $drawer-slide-buffer;
 
+                & > .drawer-content {
+                    min-height: 100%;
+                }
+
                 .drawer-full& {
                     right: 0;
                 }
@@ -109,14 +119,16 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
             opacity: 1;
             transition-delay: 0s;
             overflow-y: visible;
-            animation-name: overflow-y-scroll;
+            overflow-x: visible;
+            animation-name: overflow-xy-scroll;
             animation-duration: $drawer-transition-duration;
 
             & > .drawer-scroller {
                 transition-delay: $drawer-fade-duration;
                 transform: none;
                 overflow-y: visible;
-                animation-name: overflow-y-scroll;
+                overflow-x: visible;
+                animation-name: overflow-xy-scroll;
                 animation-duration: $drawer-transition-duration;
             }
         }
