@@ -146,11 +146,26 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
         &.drawer-right,
         &.drawer-left {
             overflow: hidden;
+            animation-name: overflow-y-scroll;
+            animation-duration: $drawer-transition-duration;
 
             & > .drawer-background {
                 overflow-y: scroll;
-                animation-name: unset;
+                animation-name: left-right-background-open;
             }
         }
+    }
+}
+
+@keyframes left-right-background-open {
+    from {
+        position: absolute;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+    to {
+        position: absolute;
+        overflow-x: hidden;
+        overflow-y: hidden;
     }
 }
