@@ -53,61 +53,61 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
                 border-radius: $drawer-border-radius;
                 box-shadow: $drawer-box-shadow;
             }
+        }
+    }
 
-            .drawer-top& {
-                top: 0;
-                left: 0;
-                right: 0;
-                transform: "translateY(calc(-100% - %s))" % $drawer-slide-buffer;
+    &.drawer-top > .drawer-background > .drawer-scroller {
+        top: 0;
+        left: 0;
+        right: 0;
+        transform: "translateY(calc(-100% - %s))" % $drawer-slide-buffer;
 
-                .drawer-full& {
-                    bottom: 0;
-                }
-            }
+        .drawer-full& {
+            bottom: 0;
+        }
+    }
 
-            .drawer-right& {
-                top: 0;
-                right: 0;
-                bottom: 0;
-                transform: "translateX(calc(100% + %s))" % $drawer-slide-buffer;
+    &.drawer-right > .drawer-background > .drawer-scroller {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        transform: "translateX(calc(100% + %s))" % $drawer-slide-buffer;
 
-                & > .drawer-content {
-                    min-height: 100%;
-                }
+        & > .drawer-content {
+            min-height: 100%;
+        }
 
-                .drawer-full& {
-                    left: 0;
-                }
-            }
+        .drawer-full& {
+            left: 0;
+        }
+    }
 
-            .drawer-bottom& {
-                right: 0;
-                bottom: 0;
-                left: 0;
-                transform: "translateY(calc(100% + %s))" % $drawer-slide-buffer;
+    &.drawer-bottom > .drawer-background > .drawer-scroller {
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: "translateY(calc(100% + %s))" % $drawer-slide-buffer;
 
-                .drawer-full& {
-                    top: 0;
-                    overflow-y: visible;
-                    max-height: unset;
-                    position: relative;
-                }
-            }
+        .drawer-full& {
+            top: 0;
+            overflow-y: visible;
+            max-height: unset;
+            position: relative;
+        }
+    }
 
-            .drawer-left& {
-                top: 0;
-                bottom: 0;
-                left: 0;
-                transform: "translateX(calc(-100% - %s))" % $drawer-slide-buffer;
+    &.drawer-left > .drawer-background > .drawer-scroller {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        transform: "translateX(calc(-100% - %s))" % $drawer-slide-buffer;
 
-                & > .drawer-content {
-                    min-height: 100%;
-                }
+        & > .drawer-content {
+            min-height: 100%;
+        }
 
-                .drawer-full& {
-                    right: 0;
-                }
-            }
+        .drawer-full& {
+            right: 0;
         }
     }
 
