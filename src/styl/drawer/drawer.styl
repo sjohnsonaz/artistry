@@ -111,6 +111,16 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
         }
     }
 
+    &.drawer-right,
+    &.drawer-left {
+        overflow-x: hidden;
+        overflow-y: hidden;
+
+        & > .drawer-background {
+            position: fixed;
+        }
+    }
+
     &.drawer-open {
         visibility: visible;
         overflow-y: scroll;
@@ -130,6 +140,16 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
                 overflow-x: visible;
                 //animation-name: overflow-xy-scroll;
                 //animation-duration: $drawer-transition-duration;
+            }
+        }
+
+        &.drawer-right,
+        &.drawer-left {
+            overflow: hidden;
+
+            & > .drawer-background {
+                overflow-y: scroll;
+                animation-name: unset;
             }
         }
     }
