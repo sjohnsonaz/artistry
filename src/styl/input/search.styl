@@ -1,3 +1,67 @@
-.input-search
-    &::-webkit-calendar-picker-indicator
-        display: none;
+$search-border-radius ?= 5px;
+$search-border-color ?= $default-border-color;
+$search-border-width ?= $default-border-width;
+$search-option-color ?= #ccf;
+$search-divider-width ?= 1px;
+$search-spacing ?= 7px;
+
+.search
+    box-shadow: $input-box-shadow-height-0;
+    border-radius: $search-border-radius;
+
+    .search-button-group
+        display: flex;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        box-shadow: none;
+        border: $search-border-width solid $search-border-color;
+        border-bottom-width: $search-divider-width;
+
+        .search-input
+            border-bottom-left-radius: 0;
+
+        .search-button
+            border-bottom-right-radius: 0;
+
+    .search-option-box
+        border: $search-border-width solid $search-border-color;
+        border-top-width: 0;
+        border-bottom-left-radius: $search-border-radius;
+        border-bottom-right-radius: $search-border-radius;
+
+        .search-option-list
+            display: flex;
+            flex-direction: column;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            .search-option
+                display: flex;
+                flex-direction: row;
+                margin: 0;
+                padding: $search-spacing;
+                cursor: pointer;
+                outline: none;
+
+                &:hover,
+                &:active,
+                &:focus
+                    background-color: $search-option-color;
+
+                &:last-child
+                    border-bottom-left-radius: $search-border-radius - $search-border-width;
+                    border-bottom-right-radius: $search-border-radius - $search-border-width;
+
+                .search-option-action
+                    flex-grow: 1;
+
+                    .search-option-action-text
+                        span
+                            b
+                                font-weight: bold;
+
+                .search-option-alt-action
+
+                    .search-option-alt-action-text
+                        font-weight: normal;
