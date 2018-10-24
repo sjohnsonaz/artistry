@@ -193,7 +193,7 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
         & > .modal-background {
             overflow-y: visible;
             overflow-x: visible;
-            animation-name: overflow-xy-scroll;
+            animation-name: overflow-xy-hidden;
             animation-duration: $modal-transition-duration;
 
             &:before {
@@ -215,7 +215,7 @@ modal-floating($min-width = false) {
     &.modal-open {
         overflow-y: scroll;
         overflow-x: visible;
-        animation-name: overflow-x-scroll;
+        animation-name: overflow-x-hidden;
         animation-duration: $modal-transition-duration;
     }
 
