@@ -11,23 +11,15 @@ $search-spacing ?= 7px;
 
     .search-button-group
         display: flex;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        box-shadow: none;
         border: $search-border-width solid $search-border-color;
-        border-bottom-width: $search-divider-width;
-
-        .search-input
-            border-bottom-left-radius: 0;
-
-        .search-button
-            border-bottom-right-radius: 0;
 
     .search-option-box
         border: $search-border-width solid $search-border-color;
         border-top-width: 0;
         border-bottom-left-radius: $search-border-radius;
         border-bottom-right-radius: $search-border-radius;
+        opacity: 0;
+        transition: opacity 0.3s;
 
         .search-option-list
             display: flex;
@@ -66,3 +58,19 @@ $search-spacing ?= 7px;
 
                     .search-option-alt-action-text
                         font-weight: normal;
+
+    &.search-open
+
+        .search-button-group
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-width: $search-divider-width;
+
+            .search-input
+                border-bottom-left-radius: 0;
+
+            .search-button
+                border-bottom-right-radius: 0;
+
+        .search-option-box
+            opacity: 1;
