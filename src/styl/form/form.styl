@@ -64,6 +64,7 @@ form-size($max-width)
     @media screen and (max-width: ($max-width - 1))
         .form-container
 
+            &.form-container-stacked,
             &:not(.form-container-inline)
                 .form-label
                     margin: $form-spacing 0;
@@ -79,7 +80,8 @@ form-size($max-width)
                         width: 100%;
 
 
-            &.form-container-inline
+            &.form-container-inline,
+            &:not(.form-container-stacked)
                 .form-label
                     .form-title
                         margin: 0;
