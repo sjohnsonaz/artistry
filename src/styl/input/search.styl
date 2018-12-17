@@ -6,6 +6,7 @@ $search-divider-width ?= 1px;
 $search-spacing ?= 7px;
 
 .search
+    position: relative;
     box-shadow: $input-box-shadow-height-0;
     border-radius: $search-border-radius;
 
@@ -14,10 +15,16 @@ $search-spacing ?= 7px;
         border: $search-border-width solid $search-border-color;
 
     .search-option-box
+        position: absolute;
+        right: 0;
+        left: 0;
         border: $search-border-width solid $search-border-color;
         border-top-width: 0;
         border-bottom-left-radius: $search-border-radius;
         border-bottom-right-radius: $search-border-radius;
+        background-color: $input-text-background-color;
+        color: $input-text-color;
+        box-shadow: $input-box-shadow-height-0;
         opacity: 0;
         transition: opacity 0.3s;
 
