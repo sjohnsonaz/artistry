@@ -73,8 +73,8 @@ flex-grid($columns, $min-width = false)
 .grid-space
     & > .row,
     & > .row-reverse
-        .col,
-        [class^=col-]
+        & > .col,
+        & > [class^=col-]
             padding: $grid-spacing
 
 .grid-12,
