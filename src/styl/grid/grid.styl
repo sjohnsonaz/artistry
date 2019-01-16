@@ -29,18 +29,22 @@ row-reverse($min-width = false) {
 }
 
 flex-column($span, $total, $min-width) {
+    flex-grow: 0;
+    flex-shrink: 0;
     if $min-width {
-        flex: 0 0 100%;
+        width: 100%;
 
         @media only screen and (min-width: $min-width) {
-            flex: 0 0 ((100% * $span)/ $total);
+            width: ((100% * $span)/ $total);
         }
     } else {
-        flex: 0 0 ((100% * $span)/ $total);
+        width: ((100% * $span)/ $total);
     }
 }
 
 flex-offset($span, $total, $min-width) {
+    flex-grow: 0;
+    flex-shrink: 0;
     if $min-width {
         margin-left: 0;
 
