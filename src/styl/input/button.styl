@@ -15,6 +15,19 @@
     font-size: 100%;
     line-height: 1.15;
 
+    &.button-small {
+        padding: $input-padding-small;
+    }
+
+    &.button-large {
+        padding: $input-padding-large;
+    }
+
+    &.button-locked, &:disabled {
+        filter: contrast(80%) brightness(140%);
+        cursor: default;
+    }
+
     &:not(.button-textonly):not(.button-outline) {
         border-color: $input-default-border-color;
         color: $input-default-color;
@@ -30,12 +43,6 @@
         &:active:enabled, &.button-down:enabled {
             color: darken($input-default-color, $input-color-variance);
             background-color: darken($input-default-background-color, $input-color-variance);
-        }
-
-        // TODO: Decide if disabled should use opacity
-        &.button-locked, &:disabled {
-            opacity: $input-disabled-opacity;
-            cursor: default;
         }
 
         &:focus, &.button-down:enabled {
@@ -95,12 +102,6 @@
             background-color: unset;
         }
 
-        // TODO: Decide if disabled should use opacity
-        &.button-locked, &:disabled {
-            opacity: $input-disabled-opacity;
-            cursor: default;
-        }
-
         &:focus, &.button-down:enabled {
             outline: none;
             border-color: $input-default-border-color-focus;
@@ -141,6 +142,7 @@
     }
 
     &.button-outline {
+        border-color: $input-default-border-color;
     }
 
     &.button-lockable {
