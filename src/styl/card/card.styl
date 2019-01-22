@@ -7,6 +7,11 @@ $card-header-margin = -($card-border-width + $card-padding);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax($card-min-width, $card-max-width));
     grid-gap: $card-gap;
+
+    & > .card,
+    & > .card-fillable.fillable {
+        margin: 0;
+    }
 }
 
 .card {
