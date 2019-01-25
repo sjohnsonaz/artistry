@@ -84,65 +84,59 @@
         }
     }
 
-    &.button-textonly {
+    &.button-textonly,
+    &.button-outline {
         color: $input-textonly-default-color;
         border-color: transparent;
-        background-color: unset;
+        background-color: transparent;
         box-shadow: none;
         font-weight: bold;
 
         &:focus:enabled, &:hover:enabled {
             color: lighten($input-textonly-default-color, $input-color-variance);
-            background-color: unset;
+            background-color: $input-textonly-background-color;
             box-shadow: none;
         }
 
         &:active:enabled, &.button-down:enabled {
             color: darken($input-textonly-default-color, $input-color-variance);
-            background-color: unset;
         }
 
         &:focus, &.button-down:enabled {
             outline: none;
-            border-color: $input-default-border-color-focus;
             box-shadow: $box-shadow-height-1;
         }
 
         &[data-theme='primary'], &.button-primary {
-            border: $input-border-width solid $input-primary-border-color;
-            color: $input-primary-color;
-            background-color: $input-primary-background-color;
+            color: $input-textonly-primary-color;
 
             &:focus:enabled, &:hover:enabled {
-                color: lighten($input-primary-color, $input-color-variance);
-                background-color: lighten($input-primary-background-color, $input-color-variance);
+                color: lighten($input-textonly-primary-color, $input-color-variance);
             }
 
             &:active:enabled, &.button-down:enabled {
-                color: darken($input-primary-color, $input-color-variance);
-                background-color: darken($input-primary-background-color, $input-color-variance);
+                color: darken($input-textonly-primary-color, $input-color-variance);
+                background-color: darken($input-textonly-background-color, $input-color-variance);
             }
         }
 
         &[data-theme='danger'], &.button-danger {
-            border: $input-border-width solid $input-danger-border-color;
-            color: $input-danger-color;
-            background-color: $input-danger-background-color;
+            color: $input-textonly-danger-color;
 
             &:focus:enabled, &:hover:enabled {
-                color: lighten($input-danger-color, $input-color-variance);
-                background-color: lighten($input-danger-background-color, $input-color-variance);
+                color: lighten($input-textonly-danger-color, $input-color-variance);
             }
 
             &:active:enabled, &.button-down:enabled {
-                color: darken($input-danger-color, $input-color-variance);
-                background-color: darken($input-danger-background-color, $input-color-variance);
+                color: darken($input-textonly-danger-color, $input-color-variance);
+                background-color: darken($input-textonly-background-color, $input-color-variance);
             }
         }
     }
 
     &.button-outline {
-        border-color: $input-default-border-color;
+        border-color: $input-outline-border-color;
+        border-width: $input-outline-border-width;
     }
 
     &.button-lockable {
