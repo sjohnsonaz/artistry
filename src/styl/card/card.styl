@@ -124,6 +124,11 @@ $card-header-margin = -($card-border-width + $card-padding);
     & > .fillable-content > .card
         margin: 0;
 
+.card-row {
+    display: block;
+    margin: $card-control-margin;
+}
+
 .card-section {
     --card-control-min-width: $card-min-width;
     --card-control-max-width: $card-max-width;
@@ -131,7 +136,11 @@ $card-header-margin = -($card-border-width + $card-padding);
     &.card-section-multi-column {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(var(--card-control-min-width), var(--card-control-max-width)));
-        grid-gap: $card-gap;
+        grid-gap: $card-control-margin;
+    }
+
+    & > .card-row {
+        margin: ($card-control-margin / 2);
     }
 
     & > .card-control {
@@ -139,14 +148,14 @@ $card-header-margin = -($card-border-width + $card-padding);
         flex-direction: row;
         margin: 0;
 
-        & > .card-title {
+        & > .card-control-title {
             font-weight: bold;
             width: calc(var(--card-control-min-width) / 3);
             text-align: end;
             margin: ($card-control-margin / 2);
         }
 
-        & > .card-data {
+        & > .card-control-data {
             text-align: start;
             margin: ($card-control-margin / 2);
         }
