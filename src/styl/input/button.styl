@@ -12,18 +12,20 @@
     user-select: none;
     transition: opacity 0.3s, box-shadow 0.3s;
     // Added for consistency between Button and A tags.
-    font-size: 100%;
+    font-size: 0.9em;
+    font-weight: 500;
     line-height: 1.15;
     text-transform: $button-text-transform;
+    -webkit-font-smoothing: antialiased;
 
     &.button-small {
         padding: $input-padding-small;
-        font-size: smaller;
+        font-size: 0.7em;
     }
 
     &.button-large {
         padding: $input-padding-large;
-        font-size: larger;
+        font-size: 1.1em;
     }
 
     &.button-locked, &:disabled {
