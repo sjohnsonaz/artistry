@@ -1,0 +1,11 @@
+.ripple {
+    --ripple-x: 10px;
+    --ripple-y: 10px;
+    transition: background 0.8s;
+
+    background-image: radial-gradient(circle at var(--ripple-x) var(--ripple-y), transparent 1%, red 1%) center/15000%;
+    &:active {
+        background-size: 100%;
+        transition: background 0s;
+    }
+}
