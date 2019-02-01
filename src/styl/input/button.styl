@@ -50,7 +50,9 @@
         }
 
         &:active:enabled,
-        &.button-down:enabled {
+        &:active:enabled:not(.button-no-focus),
+        &.button-down:enabled,
+        &.button-down:enabled:not(.button-no-focus) {
             color: darken($input-default-color, $input-color-variance);
             background-color: darken($input-default-background-color, $input-color-variance);
         }
@@ -70,7 +72,9 @@
             }
 
             &:active,
-            &.button-down {
+            &:active:not(.button-no-focus),
+            &.button-down,
+            &.button-down:not(.button-no-focus) {
                 color: darken($input-primary-color, $input-color-variance);
                 background-color: darken($input-primary-background-color, $input-color-variance);
             }
@@ -91,7 +95,9 @@
             }
 
             &:active,
-            &.button-down {
+            &:active:not(.button-no-focus),
+            &.button-down,
+            &.button-down:not(.button-no-focus) {
                 color: darken($input-danger-color, $input-color-variance);
                 background-color: darken($input-danger-background-color, $input-color-variance);
             }
@@ -117,7 +123,9 @@
         }
 
         &:active:enabled,
-        &.button-down:enabled {
+        &:active:enabled:not(.button-no-focus),
+        &.button-down:enabled,
+        &.button-down:enabled:not(.button-no-focus) {
             color: darken($input-textonly-default-color, $input-color-variance);
             background-color: darken($input-textonly-background-color, $input-color-variance);
         }
@@ -134,7 +142,9 @@
             }
 
             &:active,
-            &.button-down {
+            &:active:not(.button-no-focus),
+            &.button-down,
+            &.button-down:not(.button-no-focus) {
                 color: darken($input-textonly-primary-color, $input-color-variance);
             }
         }
@@ -151,7 +161,9 @@
             }
 
             &:active,
-            &.button-down {
+            &:active:not(.button-no-focus),
+            &.button-down,
+            &.button-down:not(.button-no-focus) {
                 color: darken($input-textonly-danger-color, $input-color-variance);
             }
         }
