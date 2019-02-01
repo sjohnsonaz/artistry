@@ -14,13 +14,16 @@
     // Added for consistency between Button and A tags.
     font-size: 100%;
     line-height: 1.15;
+    text-transform: $button-text-transform;
 
     &.button-small {
         padding: $input-padding-small;
+        font-size: smaller;
     }
 
     &.button-large {
         padding: $input-padding-large;
+        font-size: larger;
     }
 
     &.button-locked, &:disabled {
@@ -110,7 +113,6 @@
         border-color: transparent;
         background-color: transparent;
         box-shadow: none;
-        font-weight: bold;
 
         &:hover:enabled {
             color: lighten($input-textonly-default-color, $input-color-variance);
