@@ -104,3 +104,21 @@ relative() {
     border-left-color: $default-border-color;
     border-left-style: solid;
 }
+
+.divider,
+.divider-horizontal {
+    border-width: $default-border-width 0 0 0;
+    border-color: $default-border-color;
+    border-style: solid;
+}
+
+.divider-vertical {
+    border-width: 0 $default-border-width 0 0;
+    border-color: $default-border-color;
+    border-style: solid;
+}
+
+&.disabled {
+    filter: contrast(40%) brightness(110%);
+    cursor: default;
+}
