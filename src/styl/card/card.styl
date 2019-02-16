@@ -18,6 +18,8 @@ $card-header-margin = -($card-border-width + $card-padding);
 }
 
 .card {
+    --card-handle-width: $card-handle-width;
+
     display: flex;
     flex-direction: column;
     flex-basis: auto;
@@ -46,6 +48,14 @@ $card-header-margin = -($card-border-width + $card-padding);
         }
     }
 
+    & > *:first-child {
+        border-top-width: 0;
+    }
+
+    & > *:last-child {
+        border-bottom-width: 0;
+    }
+
     &.card-type-success {
         border-color: $card-success-border-color;
     }
@@ -63,19 +73,23 @@ $card-header-margin = -($card-border-width + $card-padding);
     }
 
     &.card-handle-top {
-        border-top-width: $card-handle-width;
+        border-top-width: var(--card-handle-width);
     }
 
     &.card-handle-right {
-        border-right-width: $card-handle-width;
+        border-right-width: var(--card-handle-width);
     }
 
     &.card-handle-bottom {
-        border-bottom-width: $card-handle-width;
+        border-bottom-width: var(--card-handle-width);
     }
 
     &.card-handle-left {
-        border-left-width: $card-handle-width;
+        border-left-width: var(--card-handle-width);
+    }
+
+    $.card-handle-bold {
+
     }
 
     & > header,
@@ -85,8 +99,11 @@ $card-header-margin = -($card-border-width + $card-padding);
         background-color: $card-header-background-color;
         color: $card-header-color;
         font-weight: $card-header-font-weight;
-        border: $card-border-width solid $card-border-color;
-        margin: (-1 * $card-border-width);
+        //border: $card-border-width solid $card-border-color;
+        border-width: $card-border-width 0;
+        border-color: $card-border-color;
+        border-style: solid;
+        margin: 0;//(-1 * $card-border-width);
         padding: $card-padding;
         clearfix();
 
