@@ -17,7 +17,7 @@
     }
 
     & > .menu-bar-expander {
-        display: none;
+        display: block;
         & > a {
             padding: $menu-bar-padding;
             font-size: 30px;
@@ -81,30 +81,6 @@
         right: 0;
         left: 0;
         z-index: 11;
-
-        @media only screen and (max-width: ($size-md - 1)) {
-            display: block;
-            height: auto;
-
-            & > .menu-bar-title {
-                display: inline-block;
-            }
-
-            & > .menu-bar-expander {
-                display: inline-block;
-            }
-
-            & > ul {
-                display: none;
-                flex-direction: column;
-            }
-            &.menu-bar-open {
-                & > ul {
-                    clear: top;
-                    display: flex;
-                }
-            }
-        }
     }
 }
 
