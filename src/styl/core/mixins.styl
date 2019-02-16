@@ -118,7 +118,12 @@ relative() {
     border-style: solid;
 }
 
-&.disabled {
+.disabled {
     filter: contrast(40%) brightness(110%);
     cursor: default;
+    user-select: none;
+}
+
+.nowrap {
+    white-space: nowrap;
 }
