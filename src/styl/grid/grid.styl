@@ -66,8 +66,10 @@ flex-grid($columns, $min-width = false)
     & > .row,
     & > .row-reverse
         & > .col
+            --col-width: auto;
             flex-grow: 1;
             flex-shrink: 1;
+            width: var(--col-width);
 
         for $span in (1..$columns)
             & > .col-{$span}
