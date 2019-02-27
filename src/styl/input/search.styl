@@ -71,7 +71,6 @@ $search-spacing ?= 7px;
         .search-button-group
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
-            border-bottom-width: $search-divider-width;
 
             .search-input
                 border-bottom-left-radius: 0;
@@ -80,5 +79,7 @@ $search-spacing ?= 7px;
                 border-bottom-right-radius: 0;
 
         .search-option-box
+            border-top-width: $search-divider-width;
+            border-top-color: $search-border-color;
             opacity: 1;
             z-index: 1;
