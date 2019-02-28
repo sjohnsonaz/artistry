@@ -94,8 +94,32 @@ search-full($max-width = false) {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 100;
-    background-color: white;
+    background-color: $input-text-background-color;
+    border-radius: 0;
+    z-index: 20;
+
+    .search-button-group {
+        margin: $default-spacing;
+        border-bottom-left-radius: $search-border-radius;
+        border-bottom-right-radius: $search-border-radius;
+
+        .search-input {
+            border-bottom-left-radius: $search-border-radius;
+        }
+
+        .search-button {
+            border-bottom-right-radius: $search-border-radius;
+        }
+    }
+
+    .search-option-box {
+        .search-option-list {
+            .search-option:last-child {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
 }
 
 search-size(sizes...) {
