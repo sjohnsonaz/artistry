@@ -86,3 +86,44 @@ $search-spacing ?= 7px;
             visibility: visible;
             z-index: 1;
             transition: visibility 0.3s, opacity 0.3s;
+
+
+search-full($max-width = false) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    background-color: white;
+}
+
+search-size(sizes...) {
+    for size in sizes {
+        @media only screen and (max-width: (size - 1)) {
+            search-full(size);
+        }
+    }
+}
+
+.search[data-open="true"]
+    &.search-xs {
+        search-full();
+    }
+
+    &.search-sm {
+        search-size($size-sm);
+    }
+
+    &.search-md {
+        search-size($size-md);
+    }
+
+    &.search-lg {
+        search-size($size-lg);
+    }
+
+    &.search-xl {
+        search-size($size-xl);
+    }
+
