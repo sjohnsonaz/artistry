@@ -2,9 +2,20 @@
     <header>Information</header>
     <div class="section-content section-content-space">
         <h3>Progress Bar</h3>
-        <div class="progress-bar">
-            <div style="--progress-bar-progress: 50%; --progress-bar-string: '50%';"></div>
+
+        <h4>Using aria-valuetext</h4>
+        <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+            aria-valuetext="50%" style="--progress-bar-progress: 50%;">
         </div>
+
+        <h4>Using content</h4>
+        <div class="progress-bar progress-bar-content" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+            style="--progress-bar-progress: 50%;">
+            <div>50%</div>
+        </div>
+
+        <h4>Default Progress Bar</h4>
+        <progress max="100" value="50"> 50% </progress>
 
         <h3>Tooltip</h3>
         <button class="button tooltip tooltip-right tooltip-open" aria-label="Tooltip text">Tooltip</button>

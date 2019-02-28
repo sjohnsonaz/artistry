@@ -8,25 +8,55 @@
     border: $progress-bar-border-width solid $progress-bar-border-color;
     background-color: $progress-bar-background-color;
     border-radius: $progress-bar-border-radius;
-    & > div {
-        padding: $progress-bar-border-radius - $progress-bar-border-width;
-        width: var(--progress-bar-progress, 0%);
-        height: 100%;
-        overflow: visible;
-        background-color: $progress-bar-normal-background-color;
-        color: $progress-bar-normal-color;
-        font-size: 12px;
-        text-align: center;
-        line-height: $progress-bar-height - 2 * $progress-bar-border-width - max(0, 2 * ($progress-bar-border-radius - $progress-bar-border-width));
-        border-radius: max($progress-bar-border-radius - $progress-bar-border-width, 0);
-        transition: width $progress-bar-transition-duration ease;
+
+    &:not(.progress-bar-content) {
+        position: relative;
+
+        &:before {
+            display: block;
+            position: absolute;
+            content: '';
+            padding: $progress-bar-border-radius - $progress-bar-border-width;
+            width: var(--progress-bar-progress, 0%);
+            height: 100%;
+            background-color: $progress-bar-normal-background-color;
+            border-radius: max($progress-bar-border-radius - $progress-bar-border-width, 0);
+            transition: width $progress-bar-transition-duration ease;
+        }
+        &:after {
+            display: block;
+            position: absolute;
+            content: attr(aria-valuetext);
+            padding: $progress-bar-border-radius - $progress-bar-border-width;
+            width: var(--progress-bar-progress, 0%);
+            color: $progress-bar-normal-color;
+            font-size: 12px;
+            line-height: $progress-bar-height - 2 * $progress-bar-border-width - max(0, 2 * ($progress-bar-border-radius - $progress-bar-border-width));
+            text-align: center;
+        }
     }
-    &.progress-complete > div {
-        background-color: $progress-bar-complete-background-color;
-        color: $progress-bar-complete-color;
-    }
-    &.progress-error > div {
-        background-color: $progress-bar-error-background-color;
-        color: $progress-bar-error-color;
+
+    &.progress-bar-content {
+        & > div {
+            padding: $progress-bar-border-radius - $progress-bar-border-width;
+            width: var(--progress-bar-progress, 0%);
+            height: 100%;
+            overflow: visible;
+            background-color: $progress-bar-normal-background-color;
+            color: $progress-bar-normal-color;
+            font-size: 12px;
+            text-align: center;
+            line-height: $progress-bar-height - 2 * $progress-bar-border-width - max(0, 2 * ($progress-bar-border-radius - $progress-bar-border-width));
+            border-radius: max($progress-bar-border-radius - $progress-bar-border-width, 0);
+            transition: width $progress-bar-transition-duration ease;
+        }
+        &.progress-complete > div {
+            background-color: $progress-bar-complete-background-color;
+            color: $progress-bar-complete-color;
+        }
+        &.progress-error > div {
+            background-color: $progress-bar-error-background-color;
+            color: $progress-bar-error-color;
+        }
     }
 }
