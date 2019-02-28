@@ -19,9 +19,21 @@
             padding: $progress-bar-border-radius - $progress-bar-border-width;
             width: var(--progress-bar-progress, 0%);
             height: 100%;
-            background-color: $progress-bar-normal-background-color;
+            background-color: $progress-bar-default-background-color;
             border-radius: max($progress-bar-border-radius - $progress-bar-border-width, 0);
             transition: width $progress-bar-transition-duration ease;
+        }
+        &.progress-bar-success:before {
+            background-color: $progress-bar-success-background-color;
+        }
+        &.progress-bar-info:before {
+            background-color: $progress-bar-info-background-color;
+        }
+        &.progress-bar-warning:before {
+            background-color: $progress-bar-warning-background-color;
+        }
+        &.progress-bar-danger:before {
+            background-color: $progress-bar-danger-background-color;
         }
         &:after {
             display: block;
@@ -29,10 +41,22 @@
             content: attr(aria-valuetext);
             padding: $progress-bar-border-radius - $progress-bar-border-width;
             width: var(--progress-bar-progress, 0%);
-            color: $progress-bar-normal-color;
+            color: $progress-bar-default-color;
             font-size: 12px;
             line-height: $progress-bar-height - 2 * $progress-bar-border-width - max(0, 2 * ($progress-bar-border-radius - $progress-bar-border-width));
             text-align: center;
+        }
+        &.progress-bar-success:after {
+            color: $progress-bar-success-color;
+        }
+        &.progress-bar-info:after {
+            color: $progress-bar-complete-color;
+        }
+        &.progress-bar-warning:after {
+            color: $progress-bar-warning-color;
+        }
+        &.progress-bar-danger:before {
+            color: $progress-bar-danger-color;
         }
     }
 
@@ -50,13 +74,21 @@
             border-radius: max($progress-bar-border-radius - $progress-bar-border-width, 0);
             transition: width $progress-bar-transition-duration ease;
         }
-        &.progress-complete > div {
-            background-color: $progress-bar-complete-background-color;
-            color: $progress-bar-complete-color;
+        &.progress-bar-success > div  {
+            background-color: $progress-bar-success-background-color;
+            color: $progress-bar-success-color;
         }
-        &.progress-error > div {
-            background-color: $progress-bar-error-background-color;
-            color: $progress-bar-error-color;
+        &.progress-bar-info > div {
+            background-color: $progress-bar-info-background-color;
+            color: $progress-bar-info-color;
+        }
+        &.progress-bar-warning > div  {
+            background-color: $progress-bar-warning-background-color;
+            color: $progress-bar-warning-color;
+        }
+        &.progress-bar-danger > div  {
+            background-color: $progress-bar-danger-background-color;
+            color: $progress-bar-danger-color;
         }
     }
 }
