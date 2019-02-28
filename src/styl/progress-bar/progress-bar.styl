@@ -1,7 +1,6 @@
 @require "progress-bar-settings.styl";
 .progress-bar {
     --progress-bar-progress: 0%;
-    --progress-bar-string: "0%";
     padding: 0;
     margin: $progress-bar-margin;
     width: 100%;
@@ -21,10 +20,6 @@
         line-height: $progress-bar-height - 2 * $progress-bar-border-width - max(0, 2 * ($progress-bar-border-radius - $progress-bar-border-width));
         border-radius: max($progress-bar-border-radius - $progress-bar-border-width, 0);
         transition: width $progress-bar-transition-duration ease;
-        &:after {
-            display: block;
-            content: var(--progress-bar-string, "0%");
-        }
     }
     &.progress-complete > div {
         background-color: $progress-bar-complete-background-color;
