@@ -26,7 +26,8 @@ $search-spacing ?= 7px;
         color: $input-text-color;
         box-shadow: $input-box-shadow-height-0;
         opacity: 0;
-        transition: opacity 0.3s;
+        visibility: hidden;
+        transition: visibility 0s 0.3s, opacity 0.3s;
 
         .search-option-list
             display: flex;
@@ -66,7 +67,7 @@ $search-spacing ?= 7px;
                     .search-option-alt-action-text
                         font-weight: normal;
 
-    &.search-open
+    &[data-open="true"]
 
         .search-button-group
             border-bottom-left-radius: 0;
@@ -82,4 +83,6 @@ $search-spacing ?= 7px;
             border-top-width: $search-divider-width;
             border-top-color: $search-border-color;
             opacity: 1;
+            visibility: visible;
             z-index: 1;
+            transition: visibility 0.3s, opacity 0.3s;
