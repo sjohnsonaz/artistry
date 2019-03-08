@@ -9,28 +9,28 @@
     & > .menu-bar-title {
         display: block;
         padding: 0 $menu-bar-padding;
-        font-size: 30px;
+        font-size: $menu-bar-title-font-size;
         font-weight: bold;
-        line-height: $menu-bar-top-height;
+        line-height: $menu-bar-height;
         color: $menu-bar-color;
         white-space: nowrap;
     }
 
     & > .menu-bar-expander {
         display: block;
+        transition: background-color 0.3s;
         & > a {
-            padding: $menu-bar-padding;
-            font-size: 30px;
+            padding: 0 $menu-bar-padding;
+            font-size: $menu-bar-title-font-size;
             font-weight: bold;
-            line-height: $menu-bar-top-height;
+            line-height: $menu-bar-height;
             color: $menu-bar-color;
             text-decoration: none;
-            transition: background-color 0.3s;
-            &:hover {
-                background-color: $menu-bar-background-color-hover;
-            }
         }
-        &.menu-bar-expander-active > a {
+        &:hover {
+            background-color: $menu-bar-background-color-hover;
+        }
+        &.menu-bar-expander-active {
             background-color: $menu-bar-background-color-hover;
         }
     }
@@ -45,6 +45,7 @@
 
         & > li {
             display: block;
+            font-size: $menu-bar-font-size;
 
             &.menu-spacer {
                 flex-grow: 1;
@@ -67,15 +68,15 @@
 
             & > * {
                 display: block;
-                height: $menu-bar-top-height;
+                height: $menu-bar-height;
                 padding: $menu-bar-padding;
-                line-height: $menu-bar-top-height - 2 * $menu-bar-padding;
+                line-height: $menu-bar-height - 2 * $menu-bar-padding;
             }
         }
     }
 
     &.menu-bar-top {
-        height: $menu-bar-top-height;
+        height: $menu-bar-height;
         position: fixed;
         top: 0;
         right: 0;
@@ -85,9 +86,9 @@
 }
 
 .container-menu-bar-top {
-    padding-top: $menu-bar-top-height;
+    padding-top: $menu-bar-height;
 }
 
 .popover-menu-bar-top > .popover-mask {
-    top: $menu-bar-top-height;
+    top: $menu-bar-height;
 }
