@@ -178,15 +178,12 @@ $card-header-margin = -($card-border-width + $card-padding);
 .card-section {
     --card-control-min-width: $card-min-width;
     --card-control-max-width: $card-max-width;
+    margin: ($card-control-margin / 2);
 
     &.card-section-multi-column {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(var(--card-control-min-width), var(--card-control-max-width)));
         grid-gap: $card-control-margin;
-    }
-
-    & > .card-row {
-        margin: ($card-control-margin / 2);
     }
 
     & > .card-control {
