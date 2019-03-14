@@ -1,19 +1,22 @@
 @require "input-settings.styl";
 
-.input,
-.text, 
-.password, 
-.textarea {
+.input {
+    --input-padding: $input-padding;
+    --input-font-size: $input-font-size;
+
+    --input-padding-small: $input-padding-small;
+    --input-font-size-small: $input-font-size-small;
+    --input-padding-large: $input-padding-large;
+    --input-font-size-large: $input-font-size-large;
+
     margin: $input-margin;
-    padding: $input-padding;
+    padding: var(--input-padding);
     border-radius: $input-border-radius;
     border: $input-border-width solid $input-default-border-color;
     background-color: $input-text-background-color;
     color: $input-text-color;
-    font-size: $input-font-size;
+    font-size: var(--input-font-size);
     box-shadow: $input-box-shadow-height-0;
-    // iOS specific fix
-    appearance: none;
     // Flexbox fix
     min-width: 0;
     &:focus {
@@ -21,21 +24,28 @@
         border-color: $input-default-border-color-focus;
         box-shadow: $box-shadow-height-1;
     }
+
+    &.input-small {
+        --input-padding: var(--input-padding-small);
+        --input-font-size: var(--input-font-size-small);
+    }
+
+    &.input-large {
+        --input-padding: var(--input-padding-large);
+        --input-font-size: var(--input-font-size-large);
+    }
 }
+
+input[type=""],
+input[type="text"],
+input[type="password"],
+textarea {
+    &.input {
+        // iOS specific fix
+        appearance: none;
+    }
+}
+
 .label {
     font-weight: bold;
-}
-.select {
-    margin: $input-margin;
-    padding: $input-padding;
-    border-radius: $input-border-radius;
-    border: $input-border-width solid $input-default-border-color;
-    font-family: Arial;
-    overflow: auto;
-    box-shadow: $input-box-shadow-height-0;
-    &:focus {
-        outline: none;
-        border-color: $input-default-border-color-focus;
-        box-shadow: $box-shadow-height-1;
-    }
 }

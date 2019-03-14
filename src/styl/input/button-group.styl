@@ -21,11 +21,8 @@ focus-tight() {
     &:hover {
         box-shadow: $input-box-shadow-height-1;
     }
-    & > .button, 
-    & > .input,
-    & > .text,
-    & > .password,
-    & > .select {
+    & > .button,
+    & > .input {
         display: block;
         //position: relative;
         margin: 0;
@@ -66,9 +63,7 @@ focus-tight() {
     background-color: $button-bar-background-color;
     box-shadow: $input-box-shadow-height-1;
     & > .button, 
-    & > .input,
-    & > .text, 
-    & > .password {
+    & > .input {
         display: block;
         margin: ($button-bar-margin / 2);
         focus-tight();
