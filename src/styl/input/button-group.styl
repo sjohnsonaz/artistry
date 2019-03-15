@@ -61,7 +61,7 @@ focus-tight() {
     border: $input-border-width solid $input-default-border-color;
     border-radius: $input-border-radius;
     background-color: $button-bar-background-color;
-    box-shadow: $input-box-shadow-height-1;
+    box-shadow: $input-box-shadow-height-0;
     & > .button, 
     & > .input {
         display: block;
@@ -75,22 +75,18 @@ focus-tight() {
     flex-direction: row;
     justify-content: flex-end;
     flex-grow: 1;
-    margin: 0;
-    padding: $button-bar-margin;
+    margin: $form-spacing ($button-bar-margin / 2);
+    padding: 0;
 
-    &.modal-action-reverse {
+    &.action-bar-reverse {
         flex-direction: row-reverse;
     }
 
-    &.modal-action-start {
+    &.action-bar-start {
         justify-content: flex-start;
     }
 
     & > * {
-        margin: 0 $button-bar-margin 0 0;
-
-        &:last-child {
-            margin-right: 0;
-        }
+        margin: 0 ($button-bar-margin / 2);
     }
 }
