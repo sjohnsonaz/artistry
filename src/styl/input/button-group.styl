@@ -69,3 +69,28 @@ focus-tight() {
         focus-tight();
     }
 }
+
+.action-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-grow: 1;
+    margin: 0;
+    padding: $button-bar-margin;
+
+    &.modal-action-reverse {
+        flex-direction: row-reverse;
+    }
+
+    &.modal-action-start {
+        justify-content: flex-start;
+    }
+
+    & > * {
+        margin: 0 $button-bar-margin 0 0;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
