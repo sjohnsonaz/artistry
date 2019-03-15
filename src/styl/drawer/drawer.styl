@@ -44,7 +44,6 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
             transition-property: transform;
             transition-duration: $drawer-slide-duration;
             transition-delay: $drawer-fade-duration;
-            clearfix();
 
             & > .drawer-content {
                 background-color: $drawer-background-color;
@@ -52,6 +51,7 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
                 border: $drawer-border-width solid $drawer-border-color;
                 border-radius: $drawer-border-radius;
                 box-shadow: $drawer-box-shadow;
+                clearfix();
             }
         }
     }
