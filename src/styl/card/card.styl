@@ -20,9 +20,7 @@ $card-header-margin = -($card-border-width + $card-padding);
 .card {
     --card-handle-width: $card-handle-width;
 
-    display: flex;
-    flex-direction: column;
-    flex-basis: auto;
+    display: block;
 
     padding: 0;
     margin: $card-margin 0;
@@ -130,7 +128,7 @@ $card-header-margin = -($card-border-width + $card-padding);
         display: flex;
         flex-direction: row;
         margin: 0;
-        padding: ($card-padding / 2);
+        padding: 0;
 
         &.card-nav-align-end {
             justify-content: flex-end;
