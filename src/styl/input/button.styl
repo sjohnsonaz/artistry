@@ -1,14 +1,6 @@
 @require 'input-settings.styl';
 
 .button {
-    --input-padding: $input-padding;
-    --input-font-size: $input-font-size;
-
-    --input-padding-small: $input-padding-small;
-    --input-font-size-small: $input-font-size-small;
-    --input-padding-large: $input-padding-large;
-    --input-font-size-large: $input-font-size-large;
-
     display: inline-block;
     padding: var(--input-padding);
     border-width: $input-border-width;
@@ -36,8 +28,8 @@
         --input-font-size: var(--input-font-size-large);
     }
 
-    &.button-locked, &:disabled {
-        filter: contrast(40%) brightness(110%);
+    &:disabled {
+        filter: var(--input-locked);
         cursor: default;
     }
 
@@ -50,9 +42,9 @@
     }
 
     &:not(.button-textonly):not(.button-outline) {
-        border-color: $input-default-border-color;
-        color: $input-default-color;
-        background-color: $input-default-background-color;
+        border-color: var(--input-default-border-color);
+        color: var(--input-default-color);
+        background-color: var(--input-default-background-color);
         box-shadow: $input-box-shadow-height-0;
 
         &:hover:enabled {
@@ -61,139 +53,81 @@
 
         &:focus:enabled:not(.button-no-focus) {
             outline: none;
-            border-color: $input-default-border-color-focus;
-            color: lighten($input-default-color, $input-color-variance);
-            background-color: lighten($input-default-background-color, $input-color-variance);
+            border-color: var(--input-default-border-color-focus);
+            filter: var(--input-brighter);
         }
 
         &:active:enabled,
         &:active:enabled:not(.button-no-focus),
         &.button-down:enabled,
         &.button-down:enabled:not(.button-no-focus) {
-            color: darken($input-default-color, $input-color-variance);
-            background-color: darken($input-default-background-color, $input-color-variance);
+            filter: var(--input-darker);
         }
 
-        &[data-theme='primary']:enabled,
-        &.button-primary:enabled {
-            border: $input-border-width solid $input-primary-border-color;
-            color: $input-primary-color;
-            background-color: $input-primary-background-color;
-
-            &:hover {
-            }
-
-            &:focus:not(.button-no-focus) {
-                color: lighten($input-primary-color, $input-color-variance);
-                background-color: lighten($input-primary-background-color, $input-color-variance);
-            }
-
-            &:active,
-            &:active:not(.button-no-focus),
-            &.button-down,
-            &.button-down:not(.button-no-focus) {
-                color: darken($input-primary-color, $input-color-variance);
-                background-color: darken($input-primary-background-color, $input-color-variance);
-            }
+        &[data-theme='primary'],
+        &.button-primary {
+            border: $input-border-width solid var(--input-primary-border-color);
+            color: var(--input-primary-color);
+            background-color: var(--input-primary-background-color);
         }
 
-        &[data-theme='danger']:enabled,
-        &.button-danger:enabled {
-            border: $input-border-width solid $input-danger-border-color;
-            color: $input-danger-color;
-            background-color: $input-danger-background-color;
-
-            &:hover {
-            }
-
-            &:focus:not(.button-no-focus) {
-                color: lighten($input-danger-color, $input-color-variance);
-                background-color: lighten($input-danger-background-color, $input-color-variance);
-            }
-
-            &:active,
-            &:active:not(.button-no-focus),
-            &.button-down,
-            &.button-down:not(.button-no-focus) {
-                color: darken($input-danger-color, $input-color-variance);
-                background-color: darken($input-danger-background-color, $input-color-variance);
-            }
+        &[data-theme='danger'],
+        &.button-danger {
+            border: $input-border-width solid var(--input-danger-border-color);
+            color: var(--input-danger-color);
+            background-color: var(--input-danger-background-color);
         }
     }
 
     &.button-textonly,
     &.button-outline {
-        color: $button-textonly-default-color;
+        color: var(--button-textonly-default-color);
         border-color: transparent;
         background-color: transparent;
         box-shadow: none;
 
         &:hover:enabled {
-            color: lighten($button-textonly-default-color, $input-color-variance);
-            background-color: lighten($button-textonly-background-color, $input-color-variance);
+            background-color: var(--button-textonly-background-color);
+            filter: var(--input-brighter);
         }
 
         &:focus:enabled:not(.button-no-focus) {
             outline: none;
-            background-color: $button-textonly-background-color;
+            background-color: var(--button-textonly-background-color);
         }
 
         &:active:enabled,
         &:active:enabled:not(.button-no-focus),
         &.button-down:enabled,
         &.button-down:enabled:not(.button-no-focus) {
-            color: darken($button-textonly-default-color, $input-color-variance);
-            background-color: darken($button-textonly-background-color, $input-color-variance);
+            background-color: var(--button-textonly-background-color);
+            filter: var(--input-darker);
         }
 
-        &[data-theme='primary']:enabled,
-        &.button-primary:enabled {
-            color: $button-textonly-primary-color;
-
-            &:hover {
-                color: lighten($button-textonly-primary-color, $input-color-variance);
-            }
-
-            &:focus:not(.button-no-focus) {
-            }
-
-            &:active,
-            &:active:not(.button-no-focus),
-            &.button-down,
-            &.button-down:not(.button-no-focus) {
-                color: darken($button-textonly-primary-color, $input-color-variance);
-            }
+        &[data-theme='primary'],
+        &.button-primary {
+            color: var(--button-textonly-primary-color);
         }
 
-        &[data-theme='danger']:enabled,
-        &.button-danger:enabled {
-            color: $button-textonly-danger-color;
-
-            &:hover {
-                color: lighten($button-textonly-danger-color, $input-color-variance);
-            }
-
-            &:focus:not(.button-no-focus) {
-            }
-
-            &:active,
-            &:active:not(.button-no-focus),
-            &.button-down,
-            &.button-down:not(.button-no-focus) {
-                color: darken($button-textonly-danger-color, $input-color-variance);
-            }
+        &[data-theme='danger'],
+        &.button-danger {
+            color: var(--button-textonly-danger-color);
         }
     }
 
     &.button-outline {
-        border-color: $button-outline-border-color;
-        border-width: $button-outline-border-width;
+        border-color: var(--button-outline-border-color);
+        border-width: var(--button-outline-border-width);
     }
 
     &.button-lockable {
         position: relative;
 
         &.button-locked {
+            cursor: default;
+            user-select: none;
+            pointer-events: none;
+
             & > .button-text {
                 opacity: 0;
             }
@@ -201,6 +135,12 @@
             & > .button-spinner {
                 opacity: 1;
             }
+        }
+
+        &.button-locked:hover,
+        &.button-locked:focus,
+        &.button-locked:active {
+            filter: var(--input-locked) !important;
         }
 
         & > .button-text {

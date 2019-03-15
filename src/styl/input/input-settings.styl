@@ -46,3 +46,44 @@ $input-text-background-color ?= $white;
 $input-text-color ?= $black;
 
 $button-text-transform ?= uppercase;
+
+:root {
+    // Colors
+    --input-default-border-color: $input-default-border-color;
+    --input-default-color: $input-default-color;
+    --input-default-background-color: $input-default-background-color;
+
+    --input-primary-border-color: $input-primary-border-color;
+    --input-primary-color: $input-primary-color;
+    --input-primary-background-color: $input-primary-background-color;
+
+    --input-danger-border-color: $input-danger-border-color;
+    --input-danger-color: $input-danger-color;
+    --input-danger-background-color: $input-danger-background-color;
+
+    // Button Colors
+    --button-textonly-default-color: $button-textonly-default-color;
+    --button-textonly-primary-color: $button-textonly-primary-color;
+    --button-textonly-danger-color: $button-textonly-danger-color;
+
+    --button-textonly-background-color: $button-textonly-background-color;
+    --button-outline-border-color: $button-outline-border-color;
+
+    // Color Focus
+    --input-default-border-color-focus: $input-default-border-color-focus;
+
+    // All
+    --input-padding: $input-padding;
+    --input-font-size: $input-font-size;
+
+    --input-padding-small: $input-padding-small;
+    --input-font-size-small: $input-font-size-small;
+    --input-padding-large: $input-padding-large;
+    --input-font-size-large: $input-font-size-large;
+
+    // Button
+    --input-color-variance: $input-color-variance;
+    --input-brighter: brightness(calc(100% + var(--input-color-variance)));
+    --input-darker: brightness(calc(100% - var(--input-color-variance)));
+    --input-locked: contrast(40%) brightness(110%);
+}
