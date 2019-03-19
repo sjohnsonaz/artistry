@@ -125,16 +125,11 @@ $card-header-margin = -($card-border-width + $card-padding);
 
     & > nav,
     & > .card-nav {
-        display: flex;
-        flex-direction: row;
+        display: block;
+        clearfix();
         margin: 0;
         padding: 0;
-
-        &.card-nav-align-end {
-            justify-content: flex-end;
-        }
     }
-
 
 
     & > .card-content {
