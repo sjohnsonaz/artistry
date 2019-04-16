@@ -88,6 +88,7 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
                 padding: 0;
                 flex: 1;
                 overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
 
                 &:first-child {
                     &.lock-contents:after {
@@ -192,6 +193,7 @@ modal-floating($min-width = false) {
         overflow-x: visible;
         animation-name: overflow-x-hidden;
         animation-duration: $modal-transition-duration;
+        -webkit-overflow-scrolling: touch;
     }
 
     & > .modal-background {
@@ -217,6 +219,10 @@ modal-floating($min-width = false) {
             .modal-header {
                 border-top-left-radius: $modal-border-radius;
                 border-top-right-radius: $modal-border-radius;
+            }
+
+            .modal-body {
+                -webkit-overflow-scrolling: auto;
             }
 
             .modal-footer {

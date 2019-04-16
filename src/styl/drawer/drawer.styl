@@ -134,6 +134,7 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
     &.drawer-open {
         visibility: visible;
         overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
 
         & > .drawer-background {
             opacity: 1;
@@ -158,10 +159,12 @@ $drawer-transition-duration = $drawer-fade-duration + $drawer-slide-duration;
             overflow: hidden;
             animation-name: overflow-y-scroll;
             animation-duration: $drawer-transition-duration;
+            -webkit-overflow-scrolling: auto;
 
             & > .drawer-background {
                 overflow-y: scroll;
                 animation-name: left-right-background-open;
+                -webkit-overflow-scrolling: touch;
             }
         }
     }
