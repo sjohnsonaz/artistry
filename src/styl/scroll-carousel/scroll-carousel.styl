@@ -1,27 +1,27 @@
 @require "scroll-carousel-settings.styl";
 
 :root {
-//    --carousel-width: 40vw;
-//    --carousel-height: calc(0.7 * var(--carousel-width));
-//    --carousel-padding: 5px;
+    --carousel-width: 100%;//40vw;
+    //--carousel-height: calc(0.7 * var(--carousel-width));
+    --carousel-padding: 5px;
 }
 
 @media (max-width: 479px) {
     :root {
-//        --carousel-width: 95vw;
+        --carousel-width: 95vw;
     }
 }
 
 .scroll-carousel-frame {
-    padding: 10px;
+    //padding: 10px;
     border-radius: 3px;
     border: 1px solid #ddd;
-//    width: calc(var(--carousel-width) + (2 * var(--carousel-padding)));
-//    height: calc(var(--carousel-height) + (2 * var(--carousel-padding)));
+    width: calc(var(--carousel-width) + (2 * var(--carousel-padding)));
+    //height: calc(var(--carousel-height) + (2 * var(--carousel-padding)));
 
     .scroll-carousel {
-//        width: var(--carousel-width);
-//        height: var(--carousel-height);
+        width: var(--carousel-width);
+        //height: var(--carousel-height);
 
         .scroll {
             display: flex;
