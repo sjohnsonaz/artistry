@@ -9,7 +9,25 @@
         border-bottom: $list-border-width solid $list-border-color;
         padding: 0;
         margin: 0;
-        background-color: white;
+        color: var(--list-color);
+        background-color: var(--list-background-color);
+
+        &:hover {
+            color: var(--list-hover-color);
+            background-color: var(--list-hover-background-color);
+        }
+
+        &:active,
+        &:focus,
+        &.list-option-active {
+            color: var(--list-active-color);
+            background-color: var(--list-active-background-color);
+        }
+
+        &.list-option-selected {
+            color: var(--list-selected-color);
+            background-color: var(--list-selected-background-color);
+        }
 
         &:last-child {
             border-bottom: none;
