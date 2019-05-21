@@ -38,3 +38,30 @@
 
 .scrollable-x
     overflow-x: auto
+
+:root {
+    --scrollable-bumper-size: $scrollable-bumper-size;
+}
+
+.scrollable.scrollable-bumper
+    position: relative;
+
+    & > .scrollable-bumper-top
+        position: absolute;
+        height: var(--scrollable-bumper-size);
+        width: 100%;
+
+    & > .scrollable-bumper-bottom
+        --scrollable-bumper-translate: calc(-1 * var(--scrollable-bumper-size));
+        position: absolute;
+        height: var(--scrollable-bumper-size);
+        width: 100%;
+        transform: translateY(var(--scrollable-bumper-translate));
+
+    & > .scrollable-bumper-right {
+
+    }
+
+    & > .scrollable-bumper-left {
+
+    }
