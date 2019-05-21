@@ -52,11 +52,10 @@
         width: 100%;
 
     & > .scrollable-bumper-bottom
-        --scrollable-bumper-translate: calc(-1 * var(--scrollable-bumper-size));
         position: absolute;
         height: var(--scrollable-bumper-size);
         width: 100%;
-        transform: translateY(var(--scrollable-bumper-translate));
+        transform: translateY(calc(-1 * var(--scrollable-bumper-size)));
 
     & > .scrollable-bumper-right {
 
