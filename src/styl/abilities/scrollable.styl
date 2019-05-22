@@ -43,24 +43,33 @@
     --scrollable-bumper-size: $scrollable-bumper-size;
 }
 
-.scrollable.scrollable-bumper
-    position: relative;
+.scrollable
+    & > .scrollable-bumper
+        position: relative;
 
-    & > .scrollable-bumper-top
-        position: absolute;
-        height: var(--scrollable-bumper-size);
-        width: 100%;
+        & > .scrollable-bumper-top
+            position: absolute;
+            height: var(--scrollable-bumper-size);
+            width: 100%;
 
-    & > .scrollable-bumper-bottom
-        position: absolute;
-        height: var(--scrollable-bumper-size);
-        width: 100%;
-        transform: translateY(calc(-1 * var(--scrollable-bumper-size)));
+        & > .scrollable-bumper-bottom
+            position: absolute;
+            height: var(--scrollable-bumper-size);
+            width: 100%;
+            bottom: 0;
 
-    & > .scrollable-bumper-right {
+        & > .scrollable-bumper-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: var(--scrollable-bumper-size);
+        }
 
-    }
-
-    & > .scrollable-bumper-left {
-
-    }
+        & > .scrollable-bumper-left {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: var(--scrollable-bumper-size);
+        }
