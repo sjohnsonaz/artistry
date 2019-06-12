@@ -51,25 +51,27 @@
             position: absolute;
             height: var(--scrollable-bumper-size);
             width: 100%;
+            z-index: -100;
 
         & > .scrollable-bumper-bottom
             position: absolute;
             height: var(--scrollable-bumper-size);
             width: 100%;
             bottom: 0;
+            z-index: -100;
 
-        & > .scrollable-bumper-right {
+        & > .scrollable-bumper-right
             position: absolute;
             top: 0;
             bottom: 0;
             right: 0;
             width: var(--scrollable-bumper-size);
-        }
+            z-index: -100;
 
-        & > .scrollable-bumper-left {
+        & > .scrollable-bumper-left
             position: absolute;
             top: 0;
             bottom: 0;
             left: 0;
             width: var(--scrollable-bumper-size);
-        }
+            z-index: -100;
