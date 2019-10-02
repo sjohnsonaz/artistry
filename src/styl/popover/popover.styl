@@ -11,6 +11,14 @@ $popover-box-shadow-y-prime = -1 * $popover-box-shadow-x * sin($quarter-pi) + $p
 $popover-arrow-cover = ($popover-diagonal-cover / 2);
 $popover-arrow-cover-position = ($popover-diagonal-cover / 2) - ($popover-arrow-cover-offset * math(2, 'sqrt'));
 
+.popover {
+    --math-sqrt-2: math(2, 'sqrt');
+    --math-pi: 3.141592653589793;
+    --math-quarter-pi: 3.141592653589793 / 4;
+    --math-cos-quarter-pi: cos(3.141592653589793 / 4);
+    --math-sin-quarter-pi: sin(3.141592653589793 / 4);
+}
+
 // TODO: Prevent mouse-down on trigger when popover is open
 .popover-trigger {
     position: relative;
