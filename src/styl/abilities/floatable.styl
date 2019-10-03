@@ -1,8 +1,24 @@
 .floatable {
+    --floatable-float: 1;
     --floatable-offset-x: 0px;
-    --floatable-offset-y: 0px;
-    --floatable-blur-radius: 0;
-    --floatable-spread-radius: 0;
-    --floatable-color: #000000;
-    box-shadow: var(--floatable-offset-x) var(--floatable-offset-y) var(--floatable-blur-radius) var(--floatable-spread-radius) var(--floatable-color);
+    --floatable-offset-y: 2px;
+    --floatable-blur-radius: 10px;
+    --floatable-spread-radius: 0px;
+    --floatable-color: rgba(0, 0, 0, 0.3);
+    //--floatable-offset-x
+    //box-shadow: calc(var(--floatable-float) * var(--floatable-offset-x)) calc(var(--floatable-float) * var(--floatable-offset-y)) calc(var(--floatable-float) * var(--floatable-blur-radius)) calc(var(--floatable-float) * var(--floatable-spread-radius)) var(--floatable-color);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 2px 1px -1px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px 0px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 8px 0px, rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 3px 3px -2px;
 }
+    // box-shadow: calc(
+    //     var(--floatable-float) * var(--floatable-offset-x)
+    // ) calc(
+    //     var(--floatable-float) * var(--floatable-offset-y)
+    // ) calc(
+    //     var(--floatable-float) * var(--floatable-blur-radius)
+    // ) calc(
+    //     var(--floatable-float) * var(--floatable-spread-radius)
+    // ) calc(
+    //     var(--floatable-float) * var(--floatable-color)
+    // );
