@@ -1,69 +1,43 @@
-.floatable {
-    --floatable-float: 1;
-    --floatable-offset-x: 0px;
-    --floatable-offset-y: 2px;
-    --floatable-blur-radius: 10px;
-    --floatable-spread-radius: 0px;
-    --floatable-color: rgba(0, 0, 0, 0.3);
-    box-shadow: calc(var(--floatable-float) * var(--floatable-offset-x)) calc(var(--floatable-float) * var(--floatable-offset-y)) calc(var(--floatable-float) * var(--floatable-blur-radius)) calc(var(--floatable-float) * var(--floatable-spread-radius)) var(--floatable-color);
-    // box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 2px 1px -1px;
-    // box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px 0px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px;
-    // box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 8px 0px, rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 3px 3px -2px;
+:root {
+    --shadow-depth: 1;
+    --shadow-ambient-offset-x: 0px;
+    --shadow-ambient-offset-y: 1.6px;
+    --shadow-ambient-blur-radius: 3.6px;
+    --shadow-ambient-spread-radius: 0px;
+    --shadow-ambient-color: rgba(0, 0, 0, 0.132);
+    --shadow-key-offset-x: 0px;
+    --shadow-key-offset-y: 0.3px;
+    --shadow-key-blur-radius: 0.9px;
+    --shadow-key-spread-radius: 0px;
+    --shadow-key-color: rgba(0, 0, 0, 0.108);
+    --shadow-ambient: calc(
+        var(--shadow-depth) * var(--shadow-ambient-offset-x)
+    ) calc(
+        var(--shadow-depth) * var(--shadow-ambient-offset-y)
+    ) calc(
+        var(--shadow-depth) * var(--shadow-ambient-blur-radius)
+    ) calc(
+        var(--shadow-depth) * var(--shadow-ambient-spread-radius)
+    ) var(--shadow-ambient-color);
+    --shadow-key: calc(
+        var(--shadow-depth) * var(--shadow-key-offset-x)
+    ) calc(
+        var(--shadow-depth) * var(--shadow-key-offset-y)
+    ) calc(
+        var(--shadow-depth) * var(--shadow-key-blur-radius)
+    ) calc(
+        var(--shadow-depth) * var(--shadow-key-spread-radius)
+    ) var(--shadow-key-color);
 }
-    // box-shadow: calc(
-    //     var(--floatable-float) * var(--floatable-offset-x)
-    // ) calc(
-    //     var(--floatable-float) * var(--floatable-offset-y)
-    // ) calc(
-    //     var(--floatable-float) * var(--floatable-blur-radius)
-    // ) calc(
-    //     var(--floatable-float) * var(--floatable-spread-radius)
-    // ) calc(
-    //     var(--floatable-float) * var(--floatable-color)
-    // );
 
+.floatable {
+    box-shadow: var(--shadow-ambient), var(--shadow-key);
+}
 
-    
-// /* Shadow 0dp */
-// box-shadow: none;
-
-// /* Shadow 1dp */  box-shadow: 0 1px  1px  0   rgba(0,0,0,0.14), 0 2px 1px  -1px rgba(0,0,0,0.12), 0 1px  3px   0   rgba(0,0,0,0.20);
-// /* Shadow 2dp */  box-shadow: 0 2px  2px  0   rgba(0,0,0,0.14), 0 3px 1px  -2px rgba(0,0,0,0.12), 0 1px  5px   0   rgba(0,0,0,0.20);
-// /* Shadow 3dp */  box-shadow: 0 3px  4px  0   rgba(0,0,0,0.14), 0 3px 3px  -2px rgba(0,0,0,0.12), 0 1px  8px   0   rgba(0,0,0,0.20);
-// /* Shadow 4dp */  box-shadow: 0 4px  5px  0   rgba(0,0,0,0.14), 0 1px 10px  0   rgba(0,0,0,0.12), 0 2px  4px  -1px rgba(0,0,0,0.20);
-// /* Shadow 6dp */  box-shadow: 0 6px  10px 0   rgba(0,0,0,0.14), 0 1px 18px  0   rgba(0,0,0,0.12), 0 3px  5px  -1px rgba(0,0,0,0.20);
-// /* Shadow 8dp */  box-shadow: 0 8px  10px 1px rgba(0,0,0,0.14), 0 3px 14px  2px rgba(0,0,0,0.12), 0 5px  5px  -3px rgba(0,0,0,0.20);
-// /* Shadow 9dp */  box-shadow: 0 9px  12px 1px rgba(0,0,0,0.14), 0 3px 16px  2px rgba(0,0,0,0.12), 0 5px  6px  -3px rgba(0,0,0,0.20);
-// /* Shadow 12dp */ box-shadow: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px  4px rgba(0,0,0,0.12), 0 7px  8px  -4px rgba(0,0,0,0.20);
-// /* Shadow 16dp */ box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px  5px rgba(0,0,0,0.12), 0 8px  10px -5px rgba(0,0,0,0.20);
-// /* Shadow 24dp */ box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px  8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.20);
-
-
-
-// /* Shadow 1dp */  box-shadow: 0 1px  1px  0   rgba(0,0,0,0.14), 0 2px 1px  -1px rgba(0,0,0,0.12), 0 1px  3px   0   rgba(0,0,0,0.20);
-// /* Shadow 2dp */  box-shadow: 0 2px  2px  0   rgba(0,0,0,0.14), 0 3px 1px  -2px rgba(0,0,0,0.12), 0 1px  5px   0   rgba(0,0,0,0.20);
-// /* Shadow 3dp */  box-shadow: 0 3px  4px  0   rgba(0,0,0,0.14), 0 3px 3px  -2px rgba(0,0,0,0.12), 0 1px  8px   0   rgba(0,0,0,0.20);
-// /* Shadow 4dp */  box-shadow: 0 4px  5px  0   rgba(0,0,0,0.14), 0 1px 10px  0   rgba(0,0,0,0.12), 0 2px  4px  -1px rgba(0,0,0,0.20);
-// /* Shadow 5dp */  box-shadow: 0 5px  6px  0   rgba(0,0,0,0.14), 0 1px 10px  0   rgba(0,0,0,0.12), 0 2px  4px  -1px rgba(0,0,0,0.20);
-// /* Shadow 6dp */  box-shadow: 0 6px  6px  0   rgba(0,0,0,0.14), 0 1px 18px  0   rgba(0,0,0,0.12), 0 3px  5px  -1px rgba(0,0,0,0.20);
-// /* Shadow 7dp */  box-shadow: 0 6px  8px  0   rgba(0,0,0,0.14), 0 1px 18px  0   rgba(0,0,0,0.12), 0 3px  5px  -1px rgba(0,0,0,0.20);
-// /* Shadow 8dp */  box-shadow: 0 8px  10px 1px rgba(0,0,0,0.14), 0 3px 14px  2px rgba(0,0,0,0.12), 0 5px  5px  -3px rgba(0,0,0,0.20);
-// /* Shadow 9dp */  box-shadow: 0 9px  12px 1px rgba(0,0,0,0.14), 0 3px 16px  2px rgba(0,0,0,0.12), 0 5px  6px  -3px rgba(0,0,0,0.20);
-// /* Shadow 12dp */ box-shadow: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px  4px rgba(0,0,0,0.12), 0 7px  8px  -4px rgba(0,0,0,0.20);
-// /* Shadow 16dp */ box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px  5px rgba(0,0,0,0.12), 0 8px  10px -5px rgba(0,0,0,0.20);
-// /* Shadow 24dp */ box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px  8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.20);
-
-
-
-
-
-// 0 1px  1px  0   , 0 2px 1px  -1px , 0 1px  3px   0  
-// 0 2px  2px  0   , 0 3px 1px  -2px , 0 1px  5px   0  
-// 0 3px  4px  0   , 0 3px 3px  -2px , 0 1px  8px   0  
-// 0 4px  5px  0   , 0 1px 10px  0   , 0 2px  4px  -1px
-// 0 6px  10px 0   , 0 1px 18px  0   , 0 3px  5px  -1px
-// 0 8px  10px 1px , 0 3px 14px  2px , 0 5px  5px  -3px
-// 0 9px  12px 1px , 0 3px 16px  2px , 0 5px  6px  -3px
-// 0 12px 17px 2px , 0 5px 22px  4px , 0 7px  8px  -4px
-// 0 16px 24px 2px , 0 6px 30px  5px , 0 8px  10px -5px
-// 0 24px 38px 3px , 0 9px 46px  8px , 0 11px 15px -7px
+/*
+ * .depth-0  box-shadow: 0  0       0     0 transparent
+ * .depth-4  box-shadow: 0  1.6px   3.6px 0 rgba(0, 0, 0, .132), 0 0.3px  0.9px 0 rgba(0, 0, 0, .108);
+ * .depth-8  box-shadow: 0  3.2px   7.2px 0 rgba(0, 0, 0, .132), 0 0.6px  1.8px 0 rgba(0, 0, 0, .108);
+ * .depth-16 box-shadow: 0  6.4px  14.4px 0 rgba(0, 0, 0, .132), 0 1.2px  3.6px 0 rgba(0, 0, 0, .108);
+ * .depth-64 box-shadow: 0 25.6px  57.6px 0 rgba(0, 0, 0, .132), 0 4.8px 14.4px 0 rgba(0, 0, 0, .108);
+ */
