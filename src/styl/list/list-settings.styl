@@ -2,13 +2,13 @@
 
 $list-border-width ?= 1px;//$default-border-width;
 $list-border-color ?= $default-border-color;
-$list-color ?= black;
-$list-background-color ?= white;
-$list-hover-color ?= black;
+$list-color ?= $default-color;
+$list-background-color ?= $default-background-color;
+$list-hover-color ?= $default-color;
 $list-hover-background-color ?= lighten($primary-color, 80%);
-$list-active-color ?= black;
+$list-active-color ?= $default-color;
 $list-active-background-color ?= lighten($primary-color, 60%);
-$list-selected-color ?= white;
+$list-selected-color ?= $default-background-color;
 $list-selected-background-color ?= $primary-color;
 
 :root {
@@ -20,4 +20,5 @@ $list-selected-background-color ?= $primary-color;
     --list-active-background-color: $list-active-background-color;
     --list-selected-color: $list-selected-color;
     --list-selected-background-color: $list-selected-background-color;
+    //--list-brighter: brightness(calc(100% + var(--list-color-variance)));
 }
