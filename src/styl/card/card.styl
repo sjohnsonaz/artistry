@@ -96,9 +96,6 @@ $card-header-margin = -($card-border-width + $card-padding);
     & > footer,
     & > .card-title {
         display: flex;
-        background-color: $card-header-background-color;
-        color: $card-header-color;
-        font-weight: $card-header-font-weight;
         //border: $card-border-width solid $card-border-color;
         border-width: $card-border-width 0;
         border-color: $card-border-color;
@@ -123,6 +120,19 @@ $card-header-margin = -($card-border-width + $card-padding);
             width: 20px;
             font-weight: bold;
         }
+    }
+
+    & > header,
+    & > .card-title {
+        background-color: $card-header-background-color;
+        color: $card-header-color;
+        font-weight: $card-header-font-weight;
+    }
+
+    & > footer {
+        background-color: $card-footer-background-color;
+        color: $card-footer-color;
+        font-weight: $card-footer-font-weight;
     }
 
     & > nav,
