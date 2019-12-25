@@ -72,13 +72,17 @@ $(function () {
     let scrollBarWidth
 
     (() => {
+        let root = document.querySelector('.root');
         let body = document.body;
         body.classList.add('body-scroll');
-        body.setAttribute('data-lock', 'init');
+        root.classList.add('root-scroll');
+        //body.setAttribute('data-lock', 'init');
         scrollBarWidth = getComputedStyle(body).marginRight;
-        body.setAttribute('data-lock', 'false');
+        root.setAttribute('data-lock', 'false');
         body.style.setProperty('--scrollbar-width', scrollBarWidth);
     })();
+
+    let lockStack: number[] = [];
 
     function lockBodyScroll(lock: boolean) {
         let body = document.body;
@@ -86,15 +90,14 @@ $(function () {
         let modalRoot = document.querySelector('.modal-root') as HTMLElement;
         if (lock) {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop || body.scrollTop || root.scrollTop;
-            body.setAttribute('data-lock', 'true');
-            //body.style.marginRight = scrollBarWidth;
-            //modalRoot.style.marginRight = '-' + scrollBarWidth;
+            lockStack.push(scrollTop);
+            if (lockStack.length === 1) {
+                root.setAttribute('data-lock', 'true');
+            }
             root.scrollTop = scrollTop;
         } else {
-            let scrollTop = root.scrollTop || window.pageYOffset || document.documentElement.scrollTop || body.scrollTop;
-            body.setAttribute('data-lock', 'false');
-            //body.style.marginRight = '';
-            //body.style.marginRight = '';
+            let scrollTop = lockStack.pop();
+            root.setAttribute('data-lock', 'false');
             body.scrollTop = scrollTop;
             document.documentElement.scrollTop = scrollTop;
         }

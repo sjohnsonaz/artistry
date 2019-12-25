@@ -1,9 +1,48 @@
-:root{
+:root {
   --scrollbar-width-init: calc(100vw - 100%);
   --scrollbar-width: 0px;
 }
 
 body.body-scroll {
+    overflow-y: scroll;
+    &[data-lock="init"] {
+        margin-right: var(--scrollbar-width-init);
+    }
+
+    &[data-lock="true"] {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translate(0);
+        overflow-y: hidden;
+        margin-right: var(--scrollbar-width);
+
+        & .root {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        & .modal-root {
+            transform: translate(0);
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            margin-right: calc(-1 * var(--scrollbar-width));
+        }
+    }
+}
+
+.root-scroll {
     overflow-y: scroll;
     &[data-lock="init"] {
         margin-right: var(--scrollbar-width-init);

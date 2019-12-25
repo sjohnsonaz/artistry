@@ -14,8 +14,8 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
     bottom: 0;
     left: 0;
     visibility: hidden;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    //overflow-y: hidden;
+    //overflow-x: hidden;
     transition-property: visibility;
     transition-duration: $modal-transition-duration;
     will-change: visibility;
@@ -166,7 +166,7 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
 
     &.modal-open {
         visibility: inherit;
-        overflow-y: auto;
+        //overflow-y: auto;
 
         & > .modal-background {
             overflow-y: visible;
@@ -191,15 +191,15 @@ $modal-transition-duration = $modal-fade-duration + $modal-slide-duration;
 
 modal-floating($min-width = false) {
     &.modal-open {
-        overflow-y: scroll;
-        overflow-x: visible;
-        animation-name: overflow-x-hidden;
-        animation-duration: $modal-transition-duration;
+        //overflow-y: scroll;
+        //overflow-x: visible;
+        //animation-name: overflow-x-hidden;
+        //animation-duration: $modal-transition-duration;
         -webkit-overflow-scrolling: touch;
     }
 
     & > .modal-background {
-        overflow-y: visible;
+        //overflow-y: visible;
 
         & > .modal-content {
             position: relative;
