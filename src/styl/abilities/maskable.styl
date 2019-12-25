@@ -1,20 +1,46 @@
-$mask-background-color = #000;
+$mask-background-color = rgba(1, 1, 1, 0.5);
 $mask-fade-duration = 0.3s;
 $mask-delay-duration = 0.3s;
 
-.maskable {
-    position: absolute;
-    overflow-y: hidden;
-    overflow-x: hidden;
+maskable() {
+    display: block;
+    position: fixed;
+    //overflow-y: hidden;
+    //overflow-x: hidden;
     top: 0;
     right: 0;
-    //bottom: 0;
+    bottom: 0;
     left: 0;
-    min-height: 100%;
     background-color: $mask-background-color;
     opacity: 0;
     transition-property: opacity;
     transition-duration: $mask-fade-duration;
     transition-delay: $mask-delay-duration;
     will-change: opacity;
+    visibility: hidden;
+
+    &[data-position="absolute"] {
+        position: absolute;
+    }
+
+    &[data-visible="true"] {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.maskable {
+    maskable();
+}
+
+.maskable-before {
+    &:before {
+        maskable();
+    }
+}
+
+.maskable-after {
+    &:after {
+        maskable();
+    }
 }
