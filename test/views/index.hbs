@@ -7,9 +7,8 @@
         display: block;
     }
 </style>
-<div class="root">
+<div class="root layer">
     <div class="container container-all container-menu-bar-top">
-        {{#> menu-bar-top}}{{/menu-bar-top}}
         <div id="forms" class="layout-section animatable" data-animation="fade-top" data-direction="in">
             {{#> button}}{{/button}}
             {{#> input}}{{/input}}
@@ -38,5 +37,8 @@
             {{#> grid}}{{/grid}}
         </div>
     </div>
+</div>
+<div class="layer">
+    {{#> menu-bar-top}}{{/menu-bar-top}}
 </div>
 <div id="modal-root" class="modal-root"></div>

@@ -1,0 +1,66 @@
+.layer {
+    --layer-locked-filter: blur(5px);
+    --layer-fade-duration: 0.3s;
+    --layer-delay-duration: 0.3s;
+    --layer-mask-background-color: rgba(1, 1, 1, 0.5);
+
+    position: static;
+    filter: none;
+    //transition-property: filter;
+    //transition-duration: var(--layer-fade-duration);
+    //transition-delay: var(--layer-delay-duration);
+
+    &[data-status="fixed"] {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translate(0);
+        overflow-y: hidden;
+    }
+
+    &[data-status="locked"] {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translate(0);
+        overflow-y: hidden;
+        //filter: var(--layer-locked-filter);
+    }
+/*
+    &:after {
+        content: '';
+        display: block;
+        position: fixed;
+        //overflow-y: hidden;
+        //overflow-x: hidden;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: var(--layer-mask-background-color);
+        opacity: 0;
+        transition-property: opacity, visibility;
+        transition-duration: var(--layer-fade-duration);
+        transition-delay: var(--layer-delay-duration);
+        will-change: opacity;
+        visibility: hidden;
+    }
+
+    &[data-position="absolute"] {
+        &:after {
+            position: absolute;
+        }
+    }
+
+    &[data-status="locked"] {
+        &:after {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    */
+}
