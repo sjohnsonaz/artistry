@@ -83,23 +83,40 @@ $(function () {
         root.setAttribute('data-status', '');
     })();
 
-    let lockStack: number[] = [];
+    let lockStack: {
+        scrollTop: number;
+        hideScroll: boolean;
+    }[] = [];
 
-    function lockBodyScroll(lock: boolean) {
+    function lockBodyScroll(lock: boolean, hideScroll: boolean) {
         let body = document.body;
         let root = document.querySelector('.root');
         if (lock) {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop || body.scrollTop || root.scrollTop;
-            lockStack.push(scrollTop);
+            let currentHideScroll = body.getAttribute('data-status') === 'hide';
+            lockStack.push({
+                scrollTop: scrollTop,
+                hideScroll: currentHideScroll
+            });
             if (lockStack.length === 1) {
                 root.setAttribute('data-status', 'locked');
             }
             root.scrollTop = scrollTop;
+            if (hideScroll) {
+                body.setAttribute('data-lock', 'hide');
+            } else {
+                body.setAttribute('data-lock', '');
+            }
         } else {
-            let scrollTop = lockStack.pop();
+            let lockConfig = lockStack.pop();
             root.setAttribute('data-status', '');
-            body.scrollTop = scrollTop;
-            document.documentElement.scrollTop = scrollTop;
+            body.scrollTop = lockConfig.scrollTop;
+            if (lockConfig.hideScroll) {
+                body.setAttribute('data-lock', 'hide');
+            } else {
+                body.setAttribute('data-lock', '');
+            }
+            document.documentElement.scrollTop = lockConfig.scrollTop;
         }
     }
 
@@ -109,7 +126,7 @@ $(function () {
         modalHidden = !modalHidden;
         //$('body').toggleClass('scroll-lock', modalHidden);
         $('#modal.modal').toggleClass('modal-open', modalHidden);
-        lockBodyScroll(modalHidden);
+        lockBodyScroll(modalHidden, false);
     });
 
     $('.modal').click(function (event) {
@@ -125,7 +142,7 @@ $(function () {
         event.stopPropagation();
         drawerHidden = !drawerHidden;
         $('#drawer').toggleClass('drawer-open', drawerHidden);
-        lockBodyScroll(drawerHidden);
+        lockBodyScroll(drawerHidden, true);
     });
 
     var drawerHidden = false;
@@ -133,7 +150,7 @@ $(function () {
         event.stopPropagation();
         drawerHidden = !drawerHidden;
         $('#largeDrawer').toggleClass('drawer-open', drawerHidden);
-        lockBodyScroll(drawerHidden);
+        lockBodyScroll(drawerHidden, true);
     });
 
     $('.drawer').click(function (event) {
