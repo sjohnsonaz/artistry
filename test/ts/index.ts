@@ -104,8 +104,10 @@ $(function () {
             root.scrollTop = scrollTop;
             if (hideScroll) {
                 body.setAttribute('data-lock', 'hide');
+                root.setAttribute('data-pad-scroll', 'true');
             } else {
                 body.setAttribute('data-lock', '');
+                root.setAttribute('data-pad-scroll', '');
             }
         } else {
             let lockConfig = lockStack.pop();
@@ -113,8 +115,10 @@ $(function () {
             body.scrollTop = lockConfig.scrollTop;
             if (lockConfig.hideScroll) {
                 body.setAttribute('data-lock', 'hide');
+                root.setAttribute('data-pad-scroll', 'true');
             } else {
                 body.setAttribute('data-lock', '');
+                root.setAttribute('data-pad-scroll', '');
             }
             document.documentElement.scrollTop = lockConfig.scrollTop;
         }
