@@ -1,9 +1,11 @@
-.layer {
+:root {
     --layer-locked-filter: blur(5px);
     --layer-fade-duration: 0.3s;
     --layer-delay-duration: 0.3s;
     --layer-mask-background-color: rgba(1, 1, 1, 0.5);
+}
 
+.layer-root {
     position: static;
 
     &[data-status="locked"] {
@@ -19,7 +21,7 @@
 
 body.body-scroll {
     &[data-lock="hide"] {
-        .layer {
+        .layer-root {
             margin-right: var(--scrollbar-width);
             position: fixed;
             top: 0;
@@ -30,4 +32,11 @@ body.body-scroll {
             overflow-y: hidden;
         }
     }
+}
+
+// TODO: Should this be fixed?
+.layer-fixed,
+.layer-overlay,
+.layer-flyout {
+    position: static;
 }

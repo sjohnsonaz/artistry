@@ -3,21 +3,21 @@ import * as $ from 'jquery';
 $(function () {
     // Move Modals
     let modals = document.querySelectorAll('.modal');
-    let modalRoot = document.getElementById('modal-root');
+    let overlayLayer = document.getElementById('layer-overlay');
     for (var index = 0, length = modals.length; index < length; index++) {
         let modal = modals[index];
-        modalRoot.appendChild(modal);
+        overlayLayer.appendChild(modal);
     }
     modals = document.querySelectorAll('.drawer');
     for (var index = 0, length = modals.length; index < length; index++) {
         let modal = modals[index];
-        modalRoot.appendChild(modal);
+        overlayLayer.appendChild(modal);
     }
 
     modals = document.querySelectorAll('.notification-container');
     for (var index = 0, length = modals.length; index < length; index++) {
         let modal = modals[index];
-        modalRoot.appendChild(modal);
+        overlayLayer.appendChild(modal);
     }
 
     // Create Hash Change listener
@@ -79,8 +79,8 @@ $(function () {
         body.setAttribute('data-lock', '');
         body.style.setProperty('--scrollbar-width', scrollBarWidth);
 
-        let root = document.querySelector('.root');
-        root.setAttribute('data-status', '');
+        let rootLayer = document.getElementById('layer-root');
+        rootLayer.setAttribute('data-status', '');
     })();
 
     let lockStack: {
@@ -90,35 +90,35 @@ $(function () {
 
     function lockBodyScroll(lock: boolean, hideScroll: boolean) {
         let body = document.body;
-        let root = document.querySelector('.root');
+        let rootLayer = document.getElementById('layer-root');
         if (lock) {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop || body.scrollTop || root.scrollTop;
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop || body.scrollTop || rootLayer.scrollTop;
             let currentHideScroll = body.getAttribute('data-status') === 'hide';
             lockStack.push({
                 scrollTop: scrollTop,
                 hideScroll: currentHideScroll
             });
             if (lockStack.length === 1) {
-                root.setAttribute('data-status', 'locked');
+                rootLayer.setAttribute('data-status', 'locked');
             }
-            root.scrollTop = scrollTop;
+            rootLayer.scrollTop = scrollTop;
             if (hideScroll) {
                 body.setAttribute('data-lock', 'hide');
-                root.setAttribute('data-pad-scroll', 'true');
+                rootLayer.setAttribute('data-pad-scroll', 'true');
             } else {
                 body.setAttribute('data-lock', '');
-                root.setAttribute('data-pad-scroll', '');
+                rootLayer.setAttribute('data-pad-scroll', '');
             }
         } else {
             let lockConfig = lockStack.pop();
-            root.setAttribute('data-status', '');
+            rootLayer.setAttribute('data-status', '');
             body.scrollTop = lockConfig.scrollTop;
             if (lockConfig.hideScroll) {
                 body.setAttribute('data-lock', 'hide');
-                root.setAttribute('data-pad-scroll', 'true');
+                rootLayer.setAttribute('data-pad-scroll', 'true');
             } else {
                 body.setAttribute('data-lock', '');
-                root.setAttribute('data-pad-scroll', '');
+                rootLayer.setAttribute('data-pad-scroll', '');
             }
             document.documentElement.scrollTop = lockConfig.scrollTop;
         }

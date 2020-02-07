@@ -7,7 +7,7 @@
         display: block;
     }
 </style>
-<div class="root layer">
+<div class="layer-root" id="layer-root">
     <div class="container container-all container-menu-bar-top">
         <div id="forms" class="layout-section animatable" data-animation="fade-top" data-direction="in">
             {{#> button}}{{/button}}
@@ -38,7 +38,8 @@
         </div>
     </div>
 </div>
-<div class="layer">
+<div class="layer-fixed" id="layer-fixed">
     {{#> menu-bar-top}}{{/menu-bar-top}}
 </div>
-<div id="modal-root" class="modal-root"></div>
+<div class="layer-overlay" id="layer-overlay"></div>
+<div class="layer-flyout" id="layer-flyout"></div>
