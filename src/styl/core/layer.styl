@@ -19,10 +19,24 @@
     }
 }
 
+// TODO: Should this be fixed?
+.layer-fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 0;
+    transform: scale(1);
+}
+
+.layer-overlay,
+.layer-flyout {
+    position: static;
+}
+
 body.body-scroll {
     &[data-lock="hide"] {
         .layer-root {
-            margin-right: var(--scrollbar-width);
             position: fixed;
             top: 0;
             right: 0;
@@ -31,12 +45,10 @@ body.body-scroll {
             transform: translate(0);
             overflow-y: hidden;
         }
-    }
-}
 
-// TODO: Should this be fixed?
-.layer-fixed,
-.layer-overlay,
-.layer-flyout {
-    position: static;
+        .layer-root,
+        .layer-fixed {
+            margin-right: var(--scrollbar-width);
+        }
+    }
 }
