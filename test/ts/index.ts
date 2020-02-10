@@ -1,5 +1,5 @@
 import * as $ from 'jquery';
-import BodyScroll from './BodyScroll';
+import BodyScroll from '../../src/scripts/BodyScroll';
 
 $(function () {
     // Move Modals
