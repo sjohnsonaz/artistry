@@ -1,4 +1,5 @@
 import * as $ from 'jquery';
+import BodyScroll from './BodyScroll';
 
 $(function () {
     // Move Modals
@@ -72,15 +73,7 @@ $(function () {
     let scrollBarWidth
 
     (() => {
-        let body = document.body;
-        body.classList.add('body-scroll');
-        body.setAttribute('data-lock', 'init');
-        scrollBarWidth = getComputedStyle(body).marginRight;
-        body.setAttribute('data-lock', '');
-        body.style.setProperty('--scrollbar-width', scrollBarWidth);
-
-        let rootLayer = document.getElementById('layer-root');
-        rootLayer.setAttribute('data-status', '');
+        BodyScroll.init();
     })();
 
     let lockStack: {
@@ -89,38 +82,10 @@ $(function () {
     }[] = [];
 
     function lockBodyScroll(lock: boolean, hideScroll: boolean) {
-        let body = document.body;
-        let rootLayer = document.getElementById('layer-root');
         if (lock) {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop || body.scrollTop || rootLayer.scrollTop;
-            let currentHideScroll = body.getAttribute('data-status') === 'hide';
-            lockStack.push({
-                scrollTop: scrollTop,
-                hideScroll: currentHideScroll
-            });
-            if (lockStack.length === 1) {
-                rootLayer.setAttribute('data-status', 'locked');
-            }
-            rootLayer.scrollTop = scrollTop;
-            if (hideScroll) {
-                body.setAttribute('data-lock', 'hide');
-                rootLayer.setAttribute('data-pad-scroll', 'true');
-            } else {
-                body.setAttribute('data-lock', '');
-                rootLayer.setAttribute('data-pad-scroll', '');
-            }
+            BodyScroll.lock(hideScroll);
         } else {
-            let lockConfig = lockStack.pop();
-            rootLayer.setAttribute('data-status', '');
-            body.scrollTop = lockConfig.scrollTop;
-            if (lockConfig.hideScroll) {
-                body.setAttribute('data-lock', 'hide');
-                rootLayer.setAttribute('data-pad-scroll', 'true');
-            } else {
-                body.setAttribute('data-lock', '');
-                rootLayer.setAttribute('data-pad-scroll', '');
-            }
-            document.documentElement.scrollTop = lockConfig.scrollTop;
+            BodyScroll.unlock();
         }
     }
 
