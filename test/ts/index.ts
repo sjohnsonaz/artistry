@@ -15,10 +15,11 @@ $(function () {
         overlayLayer.appendChild(modal);
     }
 
-    modals = document.querySelectorAll('.notification-container');
-    for (var index = 0, length = modals.length; index < length; index++) {
-        let modal = modals[index];
-        overlayLayer.appendChild(modal);
+    let notificationContainers = document.querySelectorAll('.notification-container');
+    let flyoutLayer = document.getElementById('layer-flyout');
+    for (var index = 0, length = notificationContainers.length; index < length; index++) {
+        let notificationContainer = notificationContainers[index];
+        flyoutLayer.appendChild(notificationContainer);
     }
 
     // Create Hash Change listener
