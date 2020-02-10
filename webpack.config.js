@@ -16,7 +16,7 @@ module.exports = {
         path: path.resolve(__dirname, './test/build')
     },
     resolve: {
-        extensions: ['.webpack.js', '.web.js', '.js', '.css', '.styl']
+        extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.css', '.styl']
     },
     module: {
         rules: [{
