@@ -95,7 +95,7 @@ $(function () {
         modalHidden = !modalHidden;
         //$('body').toggleClass('scroll-lock', modalHidden);
         $('#modal.modal').toggleClass('modal-open', modalHidden);
-        lockBodyScroll(modalHidden, false);
+        lockBodyScroll(modalHidden, true);
     });
 
     $('.modal').click(function (event) {
