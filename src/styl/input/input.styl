@@ -17,32 +17,33 @@
         box-shadow: $box-shadow-height-1;
     }
 
-    &.input-small {
+    &[data-size="small"] {
         --input-padding: var(--input-padding-small);
         --input-font-size: var(--input-font-size-small);
     }
 
-    &.input-large {
+    &[data-size="large"] {
         --input-padding: var(--input-padding-large);
         --input-font-size: var(--input-font-size-large);
     }
 
-    &.input-required {
+    &:required {
         border-color: $input-required-border-color;
     }
-    &.input-success {
+    &[data-theme="success"] {
         background-color: $notification-success-background-color;
         color: $notification-success-color;
     }
-    &.input-info {
+    &[data-theme="info"] {
         background-color: $notification-info-background-color;
         color: $notification-info-color;
     }
-    &.input-warning {
+    &[data-theme="warning"] {
         background-color: $notification-warning-background-color;
         color: $notification-warning-color;
     }
-    &.input-danger {
+    &[data-theme="danger"],
+    &:invalid {
         background-color: $notification-danger-background-color;
         color: $notification-danger-color;
     }
