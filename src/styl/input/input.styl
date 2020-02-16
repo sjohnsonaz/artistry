@@ -16,6 +16,21 @@
         border-color: $input-default-border-color-focus;
         box-shadow: $box-shadow-height-1;
     }
+    &:required {
+        border-color: $input-required-border-color;
+    }
+    &:invalid {
+        background-color: $notification-danger-background-color;
+        color: $notification-danger-color;
+    }
+    &:readonly {
+        filter: var(--input-locked);
+        cursor: default;
+    }
+    &:disabled {
+        filter: var(--input-locked);
+        cursor: default;
+    }
 
     &[data-size="small"] {
         --input-padding: var(--input-padding-small);
@@ -27,9 +42,6 @@
         --input-font-size: var(--input-font-size-large);
     }
 
-    &:required {
-        border-color: $input-required-border-color;
-    }
     &[data-theme="success"] {
         background-color: $notification-success-background-color;
         color: $notification-success-color;
@@ -42,8 +54,7 @@
         background-color: $notification-warning-background-color;
         color: $notification-warning-color;
     }
-    &[data-theme="danger"],
-    &:invalid {
+    &[data-theme="danger"] {
         background-color: $notification-danger-background-color;
         color: $notification-danger-color;
     }
