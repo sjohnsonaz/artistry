@@ -46,13 +46,13 @@ flex-offset($span, $total, $min-width) {
     flex-grow: 0;
     flex-shrink: 0;
     if $min-width {
-        margin-left: 0;
+        margin-inline-start: : 0;
 
         @media only screen and (min-width: $min-width) {
-            margin-left: ((100% * $span) / $total);
+            margin-inline-start: ((100% * $span) / $total);
         }
     } else {
-        margin-left: ((100% * $span) / $total);
+        margin-inline-start: ((100% * $span) / $total);
     }
 }
 
@@ -74,7 +74,7 @@ flex-grid($columns, $min-width = false)
                 flex-grow: unset;
                 flex-shrink: unset;
                 width: var(--col-width);
-                margin-left: var(--col-offset);
+                margin-inline-start: var(--col-offset);
 
         for $span in (1..$columns)
             & > .col-{$span}
