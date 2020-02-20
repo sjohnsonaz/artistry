@@ -34,6 +34,16 @@ $(function () {
         $('.menu-bar-top').toggleClass('menu-bar-open');
     });
 
+    $('#clickFlipDirection').click(function (event) {
+        event.preventDefault();
+        var html = $('html');
+        if (html.attr('dir') === 'rtl') {
+            html.removeAttr('dir');
+        } else {
+            html.attr('dir', 'rtl');
+        }
+    });
+
     $('#clickLockableEdit, #clickLockableSave, #clickLockableDelete').click(function (event) {
         var button = $(event.currentTarget);
         (function () {
