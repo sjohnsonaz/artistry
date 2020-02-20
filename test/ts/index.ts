@@ -60,6 +60,15 @@ $(function () {
         })();
     });
 
+    $('#clickOpenSearch').click(function (event) {
+        var search = $('#search');
+        if (search.attr('data-open') === 'true') {
+            search.removeAttr('data-open');
+        } else {
+            search.attr('data-open', 'true');
+        }
+    })
+
     $('#clickShowPopoverMenu > .popover').click(function (event) {
         event.preventDefault();
         event.stopPropagation();

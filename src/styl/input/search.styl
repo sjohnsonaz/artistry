@@ -7,7 +7,6 @@ $search-spacing ?= 7px;
 
 .search
     position: relative;
-    box-shadow: $input-box-shadow-height-0;
     border-radius: $search-border-radius;
 
     & > .button-group
@@ -68,18 +67,18 @@ $search-spacing ?= 7px;
 
     &[data-open="true"]
 
-        .search-button-group
+        .button-group
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
 
             .search-input
                 border-bottom-left-radius: 0;
 
-            .search-button
+            .button.search-button
                 border-bottom-right-radius: 0;
 
         .search-option-box
-            border-top-width: $search-divider-width;
+            border-top-width: $search-divider-width - $input-border-width;
             border-top-color: $search-border-color;
             opacity: 1;
             visibility: visible;
