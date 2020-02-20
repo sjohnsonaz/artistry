@@ -17,15 +17,6 @@ $section-header-margin = -($section-border-width + $section-padding);
 
     & > header {
         display: flex;
-        background-color: $section-header-background-color;
-        color: $section-header-color;
-        font-weight: $section-header-font-weight;
-        border: $section-border-width solid $section-border-color;
-        border-top-left-radius: $section-border-radius;
-        border-top-right-radius: $section-border-radius;
-        padding: 0;
-        margin: (-1 * $section-border-width) (-1 * $section-border-width) 0 (-1 * $section-border-width);
-        clearfix();
         & > .section-toggle {
             padding: 0;
             margin: 0;
@@ -35,21 +26,29 @@ $section-header-margin = -($section-border-width + $section-padding);
             font-weight: bold;
         }
     }
+
+    & > header,
     & > footer {
         background-color: $section-header-background-color;
         color: $section-header-color;
         font-weight: $section-header-font-weight;
-        border: $section-border-width solid $section-border-color;
-        border-bottom-left-radius: $section-border-radius;
-        border-bottom-right-radius: $section-border-radius;
+        border: 0 solid $section-border-color;
         padding: 0;
-        margin: (-1 * $section-border-width) 0;
+        margin: 0;
         clearfix();
-        &:before {
-            content: '';
-            display: block;
-            height: 1px;
-            margin-top: -1px;
+
+        &:first-child {
+            border-bottom-width: $section-border-width;
+            border-top-left-radius: $section-border-radius;
+            border-top-right-radius: $section-border-radius;
+            // Support section closing
+            margin: 0 0 -1px 0;
+        }
+
+        &:last-child {
+            border-top-width: $section-border-width;
+            border-bottom-left-radius: $section-border-radius;
+            border-bottom-right-radius: $section-border-radius;
         }
     }
     .section-content {
