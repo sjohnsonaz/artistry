@@ -18,9 +18,7 @@ focus-tight() {
     box-shadow: $input-box-shadow-height-0;
     border-radius: $input-border-radius;
     transition: box-shadow 0.3s;
-    &:hover {
-        box-shadow: $input-box-shadow-height-1;
-    }
+
     & > .button,
     & > .input {
         display: block;
@@ -64,6 +62,28 @@ focus-tight() {
 
     & > .button {
         focus-tight();
+    }
+
+    // Fix box-shadow for regular buttons (specificity)
+    & > .button:not(.button-textonly):not(.button-outline) {
+        box-shadow: none;
+    }
+
+    // Fix border for outline buttons
+    & > .button.button-outline {
+        &:last-child {
+            border-right-width: $button-outline-border-width;
+        }
+
+        [dir=rtl] &:first-child {
+            border-right-width: $button-outline-border-width;
+        }
+
+        [dir=rtl] &:last-child {
+            border-right-width: 0;
+
+            border-left-width: $button-outline-border-width;
+        }
     }
 
     // Added fix for popover
