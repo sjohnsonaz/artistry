@@ -1,6 +1,6 @@
-$search-border-radius ?= 5px;
-$search-border-color ?= $default-border-color;
-$search-border-width ?= $default-border-width;
+$search-border-radius ?= $input-border-radius;
+$search-border-color ?= $input-default-border-color;
+$search-border-width ?= $input-border-width;
 $search-option-color ?= #ccf;
 $search-divider-width ?= 1px;
 $search-spacing ?= 7px;
@@ -8,6 +8,7 @@ $search-spacing ?= 7px;
 .search
     position: relative;
     border-radius: $search-border-radius;
+    z-index: 1;
 
     & > .button-group
         display: flex;
@@ -16,14 +17,18 @@ $search-spacing ?= 7px;
         position: absolute;
         right: 0;
         left: 0;
+        padding-top: $search-border-radius;
+        margin-top: - $search-border-radius;
         border: $search-border-width solid $search-border-color;
-        border-top-width: 0;
         border-bottom-left-radius: $search-border-radius;
         border-bottom-right-radius: $search-border-radius;
+        border-top-width: $search-divider-width - $input-border-width;
+        border-top-color: $search-border-color;
         background-color: $input-text-background-color;
         color: $input-text-color;
         box-shadow: $input-box-shadow-height-0;
         opacity: 0;
+        z-index: -1;
         visibility: hidden;
         transition: visibility 0s 0.3s, opacity 0.3s;
 
@@ -67,22 +72,9 @@ $search-spacing ?= 7px;
 
     &[data-open="true"]
 
-        .button-group
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-
-            .search-input
-                border-bottom-left-radius: 0;
-
-            .button.search-button
-                border-bottom-right-radius: 0;
-
         .search-option-box
-            border-top-width: $search-divider-width - $input-border-width;
-            border-top-color: $search-border-color;
             opacity: 1;
             visibility: visible;
-            z-index: 1;
             transition: visibility 0.3s, opacity 0.3s;
 
 
