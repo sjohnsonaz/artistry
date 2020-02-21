@@ -19,7 +19,7 @@
 
 .form-text
     margin: $form-spacing;
-    padding-inline-start: $form-label-width + $form-spacing;
+    padding-inline-start: $form-title-width + $form-spacing;
 
     &.fill
         padding-inline-start: 0;
@@ -27,17 +27,17 @@
 .form-group
     margin: $form-spacing;
     display: grid;
-    grid-template-columns: $form-label-width 1fr;
+    grid-template-columns: $form-title-width 1fr;
     grid-gap: 0 $form-spacing;
     align-items: center;
 
-    .form-label
+    .form-title
         grid-row: 1;
         grid-column: 1;
         font-weight: bold;
         text-align: end;
 
-    .form-input
+    .form-control
         grid-row: 1;
         grid-column: 2;
 
@@ -54,11 +54,11 @@
         grid-template-columns: 1fr;
         align-items: start;
  
-        .form-label
+        .form-title
             text-align: start;
             margin: ($form-spacing / 2) 0;
 
-        .form-input
+        .form-control
             grid-row: auto;
             grid-column: 1;
 
@@ -76,11 +76,11 @@ form-size($max-width)
                 grid-template-columns: 1fr;
                 align-items: start;
 
-                .form-label
+                .form-title
                     text-align: start;
                     margin: ($form-spacing / 2) 0;
 
-                .form-input
+                .form-control
                     grid-row: auto;
                     grid-column: 1;
 
