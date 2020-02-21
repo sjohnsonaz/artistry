@@ -19,47 +19,52 @@
 
 .form-text
     margin: $form-spacing;
-    padding-inline-start: $form-label-width + 2 * $form-spacing;
+    padding-inline-start: $form-label-width + $form-spacing;
 
     &.fill
         padding-inline-start: 0;
 
 .form-group
     margin: $form-spacing;
-
-    .form-text
-        display: block;
-        margin: 0;
-        padding: $form-spacing 0;
-        clear: both;
+    display: grid;
+    grid-template-columns: $form-label-width 1fr;
+    grid-gap: 0 $form-spacing;
+    align-items: center;
 
     .form-label
+        grid-row: 1;
+        grid-column: 1;
+        font-weight: bold;
+        text-align: end;
+
+    .form-input
+        grid-row: 1;
+        grid-column: 2;
+
+    .form-text
+        grid-row: 2;
+        grid-column: 2;
+        margin: ($form-spacing / 2) 0;
+        padding: 0;
         display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        .form-title
-            margin: 0 $form-spacing;
-            width: $form-label-width;
-            font-weight: bold;
-            text-align: end;
-
-        .form-input
-            flex-grow: 1;
+        justify-content: space-between;
+        font-size: smaller;
 
     &.form-group-stacked:not(.form-group-inline)
+        grid-template-columns: 1fr;
+        align-items: start;
+ 
         .form-label
-            margin: $form-spacing 0;
-            flex-direction: column;
-            align-items: flex-start;
+            text-align: start;
+            margin: ($form-spacing / 2) 0;
 
-            .form-title
-                margin: 0;
-                width: auto;
-                text-align: start;
+        .form-input
+            grid-row: auto;
+            grid-column: 1;
 
-            .form-input
-                width: 100%;
+        .form-text
+            grid-row: auto;
+            grid-column: 1;
 
 form-size($max-width)
     @media screen and (max-width: ($max-width - 1))
@@ -68,19 +73,20 @@ form-size($max-width)
 
         .form-group
             &:not(.form-group-inline)
+                grid-template-columns: 1fr;
+                align-items: start;
+
                 .form-label
-                    margin: $form-spacing 0;
-                    flex-direction: column;
-                    align-items: flex-start;
+                    text-align: start;
+                    margin: ($form-spacing / 2) 0;
 
-                    .form-title
-                        margin: 0;
-                        width: auto;
-                        text-align: start;
+                .form-input
+                    grid-row: auto;
+                    grid-column: 1;
 
-                    .form-input
-                        width: 100%;
-
+                .form-text
+                    grid-row: auto;
+                    grid-column: 1;
 
 .form-sm
     form-size($size-sm)
