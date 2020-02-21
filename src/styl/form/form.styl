@@ -1,7 +1,8 @@
 @require "form-settings.styl";
 
 :root {
-    --form-title-columns: 3;
+    --form-columns: 12;
+    --form-title-span: 3;
     --form-spacing: $form-spacing;
 }
 
@@ -23,14 +24,15 @@
 
 
 .form-text
+    --form-title-width: calc(var(--form-title-span) / var(--form-columns) * (100% - var(--form-spacing)));
     margin: $form-spacing;
-    padding-inline-start: $form-title-width + $form-spacing;
+    padding-inline-start: var(--form-title-width);
 
     &.fill
         padding-inline-start: 0;
 
 .form-group
-    --form-title-width: calc(var(--form-title-columns) / 12 * (100% + var(--form-spacing)) - var(--form-spacing));
+    --form-title-width: calc(var(--form-title-span) / var(--form-columns) * (100% + var(--form-spacing)) - var(--form-spacing));
     margin: $form-spacing;
     display: grid;
     grid-template-columns: var(--form-title-width) 1fr;
@@ -115,7 +117,7 @@ form-size($max-width)
     form-size($size-xl)
 
 .form-row
-    --form-title-columns: 6;
+    --form-title-span: 6;
 
     display: grid;
     grid-auto-flow: column;
