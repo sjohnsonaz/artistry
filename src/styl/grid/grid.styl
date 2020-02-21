@@ -82,13 +82,6 @@ flex-grid($columns, $min-width = false)
             & > .offset-{$span}
                 flex-offset($span, $columns, $min-width)
 
-.grid-space
-    & > .row,
-    & > .row-reverse
-        & > .col,
-        & > [class^=col-]
-            padding: $grid-spacing
-
 flex-grid(12)
 
 &,
@@ -112,3 +105,30 @@ flex-grid(12)
 .grid-xl-12
     & > 
         flex-grid(12, $size-xl);
+
+.grid-space
+    & > .row,
+    & > .row-reverse
+        & > .col,
+        & > [class^=col-]
+            padding: ($grid-spacing / 2)
+
+        & > .col:first-child,
+        & > [class^=col-]:first-child
+            padding-inline-start: $grid-spacing;
+
+        & > .col:last-child,
+        & > [class^=col-]:last-child
+            padding-inline-end: $grid-spacing;
+
+    & > .row:first-child
+    & > .row-reverse:last-child
+        & > .col,
+        & > [class^=col-]
+            padding-top: $grid-spacing
+
+    & > .row:last-child
+    & > .row-reverse:first-child
+        & > .col,
+        & > [class^=col-]
+            padding-bottom: $grid-spacing
