@@ -66,29 +66,35 @@
             grid-row: auto;
             grid-column: 1;
 
+form-stacked()
+    .form-text
+        padding-inline-start: 0;
+
+    .form-group
+        .form-title
+            text-align: start;
+
+        &:not(.form-group-inline)
+            grid-template-columns: 1fr;
+            align-items: start;
+
+            .form-title
+                margin: ($form-spacing / 2) 0;
+
+            .form-control
+                grid-row: auto;
+                grid-column: 1;
+
+            .form-text
+                grid-row: auto;
+                grid-column: 1;
+
 form-size($max-width)
     @media screen and (max-width: ($max-width - 1))
-        .form-text
-            padding-inline-start: 0;
+        form-stacked()
 
-        .form-group
-            .form-title
-                text-align: start;
-
-            &:not(.form-group-inline)
-                grid-template-columns: 1fr;
-                align-items: start;
-
-                .form-title
-                    margin: ($form-spacing / 2) 0;
-
-                .form-control
-                    grid-row: auto;
-                    grid-column: 1;
-
-                .form-text
-                    grid-row: auto;
-                    grid-column: 1;
+.form-stacked
+    form-stacked()
 
 .form-sm
     form-size($size-sm)
@@ -101,3 +107,34 @@ form-size($max-width)
 
 .form-xl
     form-size($size-xl)
+
+.form-row
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: $form-spacing;
+    margin: $form-spacing;
+
+    & > .form-group
+        margin: 0;
+
+form-row($max-width)
+    @media screen and (max-width: ($max-width - 1))
+        &.form-row
+            grid-auto-flow: row;
+
+.form-row-stacked
+    &.form-row
+        grid-auto-flow: row;
+
+.form-row-sm
+    form-row($size-sm)
+
+.form-row-md
+    form-row($size-md)
+
+.form-row-lg
+    form-row($size-lg)
+
+.form-row-xl
+    form-row($size-xl)
