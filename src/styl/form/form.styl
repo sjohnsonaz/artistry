@@ -1,5 +1,10 @@
 @require "form-settings.styl";
 
+:root {
+    --form-title-columns: 3;
+    --form-spacing: $form-spacing;
+}
+
 .form
     &.form-lock
         position: relative;
@@ -25,9 +30,10 @@
         padding-inline-start: 0;
 
 .form-group
+    --form-title-width: calc(var(--form-title-columns) / 12 * (100% + var(--form-spacing)) - var(--form-spacing));
     margin: $form-spacing;
     display: grid;
-    grid-template-columns: $form-title-width 1fr;
+    grid-template-columns: var(--form-title-width) 1fr;
     grid-gap: 0 $form-spacing;
     align-items: center;
 
@@ -109,6 +115,8 @@ form-size($max-width)
     form-size($size-xl)
 
 .form-row
+    --form-title-columns: 6;
+
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
