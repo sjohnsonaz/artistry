@@ -27,9 +27,19 @@
     --form-title-width: calc(var(--form-title-span) / var(--form-columns) * (100% - var(--form-spacing)));
     margin: $form-spacing;
     padding-inline-start: var(--form-title-width);
+    color: var(--form-text-color);
 
     &.fill
         padding-inline-start: 0;
+
+    &[data-theme="success"]
+        --form-text-color: var(--form-text-success-color);
+    &[data-theme="info"]
+        --form-text-color: var(--form-text-info-color);
+    &[data-theme="warning"]
+        --form-text-color: var(--form-text-warning-color);
+    &[data-theme="danger"]
+        --form-text-color: var(--form-text-danger-color);
 
 .form-group
     --form-title-width: calc(var(--form-title-span) / var(--form-columns) * (100% + var(--form-spacing)) - var(--form-spacing));
