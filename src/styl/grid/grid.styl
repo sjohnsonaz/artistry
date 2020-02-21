@@ -109,17 +109,11 @@ flex-grid(12)
 .grid-space
     & > .row,
     & > .row-reverse
+        padding: 0 ($grid-spacing / 2)
+
         & > .col,
         & > [class^=col-]
             padding: ($grid-spacing / 2)
-
-        & > .col:first-child,
-        & > [class^=col-]:first-child
-            padding-inline-start: $grid-spacing;
-
-        & > .col:last-child,
-        & > [class^=col-]:last-child
-            padding-inline-end: $grid-spacing;
 
     & > .row:first-child
     & > .row-reverse:last-child
