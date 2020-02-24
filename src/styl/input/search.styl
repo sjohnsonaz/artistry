@@ -121,8 +121,12 @@ search-size(sizes...) {
 }
 
 .search[data-open="true"]
-    &.search-xs {
+    &.search-full {
         search-full();
+    }
+
+    &.search-xs {
+        search-size($size-xs);
     }
 
     &.search-sm {

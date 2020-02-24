@@ -57,14 +57,14 @@ flex-offset($span, $total, $min-width) {
 }
 
 flex-grid($columns, $min-width = false)
-    & > .row
+    .row
         row($min-width)
 
-    & > .row-reverse
+    .row-reverse
         row-reverse($min-width)
 
-    & > .row,
-    & > .row-reverse
+    .row,
+    .row-reverse
         & > .col
             flex-grow: 1;
             flex-shrink: 1;
@@ -82,25 +82,51 @@ flex-grid($columns, $min-width = false)
             & > .offset-{$span}
                 flex-offset($span, $columns, $min-width)
 
+flex-grid(12)
+
+&,
+.grid >,
+.grid-12 >,
+.grid-xs-12 >
+    flex-grid(12)
+
+.grid-xs-12
+    & > 
+        flex-grid(12, $size-xs)
+
+.grid-sm-12
+    & > 
+        flex-grid(12, $size-sm)
+
+.grid-md-12
+    & > 
+        flex-grid(12, $size-md)
+
+.grid-lg-12
+    & > 
+        flex-grid(12, $size-lg);
+
+.grid-xl-12
+    & > 
+        flex-grid(12, $size-xl);
+
 .grid-space
     & > .row,
     & > .row-reverse
+        padding: 0 ($grid-spacing / 2)
+
         & > .col,
         & > [class^=col-]
-            padding: $grid-spacing
+            padding: ($grid-spacing / 2)
 
-.grid-12,
-.grid-xs-12
-    flex-grid(12)
+    & > .row:first-child
+    & > .row-reverse:last-child
+        & > .col,
+        & > [class^=col-]
+            padding-top: $grid-spacing
 
-.grid-sm-12
-    flex-grid(12, $size-sm)
-
-.grid-md-12
-    flex-grid(12, $size-md)
-
-.grid-lg-12
-    flex-grid(12, $size-lg);
-
-.grid-xl-12
-    flex-grid(12, $size-xl);
+    & > .row:last-child
+    & > .row-reverse:first-child
+        & > .col,
+        & > [class^=col-]
+            padding-bottom: $grid-spacing

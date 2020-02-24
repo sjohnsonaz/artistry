@@ -1,8 +1,22 @@
 @require "../settings.styl";
-$form-spacing ?= $default-padding;
+$form-spacing ?= $default-spacing;
 $form-boder-color ?= $default-border-color;
-$form-title-width ?= 200px;
+$form-title-min-width ?= 200px;
 $form-actions-border-width ?= $default-border-width;
 $form-actions-border-color ?= $default-border-color;
 $form-actions-background-color ?= $default-header-color;
-$form-actions-input-margin ?= $default-padding;
+$form-actions-input-margin ?= $default-spacing;
+
+$form-text-color ?= $default-color
+$form-text-success-color ?= $success-color;
+$form-text-info-color ?= $info-color;
+$form-text-warning-color ?= $warning-color;
+$form-text-danger-color ?= $danger-color;
+
+:root {
+    --form-text-color: $form-text-color;
+    --form-text-success-color: $form-text-success-color;
+    --form-text-info-color: $form-text-info-color;
+    --form-text-warning-color: $form-text-warning-color;
+    --form-text-danger-color: $form-text-danger-color;
+}

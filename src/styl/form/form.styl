@@ -1,5 +1,11 @@
 @require "form-settings.styl";
 
+:root {
+    --form-columns: 12;
+    --form-title-span: 3;
+    --form-spacing: $form-spacing;
+}
+
 .form
     &.form-lock
         position: relative;
@@ -18,16 +24,30 @@
 
 
 .form-text
+    --form-title-width: calc(var(--form-title-span) / var(--form-columns) * (100% - var(--form-spacing)));
     margin: $form-spacing;
-    padding-inline-start: $form-title-width + $form-spacing;
+    padding-inline-start: var(--form-title-width);
+    color: var(--form-text-color);
 
     &.fill
         padding-inline-start: 0;
+        width: auto;
+        height: auto;
+
+    &[data-theme="success"]
+        --form-text-color: var(--form-text-success-color);
+    &[data-theme="info"]
+        --form-text-color: var(--form-text-info-color);
+    &[data-theme="warning"]
+        --form-text-color: var(--form-text-warning-color);
+    &[data-theme="danger"]
+        --form-text-color: var(--form-text-danger-color);
 
 .form-group
+    --form-title-width: calc(var(--form-title-span) / var(--form-columns) * (100% + var(--form-spacing)) - var(--form-spacing));
     margin: $form-spacing;
     display: grid;
-    grid-template-columns: $form-title-width 1fr;
+    grid-template-columns: minmax($form-title-min-width, var(--form-title-width)) 1fr;
     grid-gap: 0 $form-spacing;
     align-items: center;
 
@@ -67,29 +87,38 @@
             grid-row: auto;
             grid-column: 1;
 
+form-stacked()
+    .form-text
+        padding-inline-start: 0;
+
+    .form-group
+        .form-title
+            text-align: start;
+
+        &:not(.form-group-inline)
+            grid-template-columns: 1fr;
+            align-items: start;
+
+            .form-title
+                margin: ($form-spacing / 2) 0;
+
+            .form-control
+                grid-row: auto;
+                grid-column: 1;
+
+            .form-text
+                grid-row: auto;
+                grid-column: 1;
+
 form-size($max-width)
     @media screen and (max-width: ($max-width - 1))
-        .form-text
-            padding-inline-start: 0;
+        form-stacked()
 
-        .form-group
-            .form-title
-                text-align: start;
+.form-stacked
+    form-stacked()
 
-            &:not(.form-group-inline)
-                grid-template-columns: 1fr;
-                align-items: start;
-
-                .form-title
-                    margin: ($form-spacing / 2) 0;
-
-                .form-control
-                    grid-row: auto;
-                    grid-column: 1;
-
-                .form-text
-                    grid-row: auto;
-                    grid-column: 1;
+.form-xs
+    form-size($size-xs)
 
 .form-sm
     form-size($size-sm)
@@ -102,3 +131,39 @@ form-size($max-width)
 
 .form-xl
     form-size($size-xl)
+
+.form-row
+    --form-title-span: 6;
+
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: $form-spacing;
+    margin: $form-spacing;
+
+    & > .form-group
+        margin: 0;
+
+form-row($max-width)
+    @media screen and (max-width: ($max-width - 1))
+        &.form-row
+            grid-auto-flow: row;
+
+.form-row-stacked
+    &.form-row
+        grid-auto-flow: row;
+
+.form-row-xs
+    form-row($size-xs)
+
+.form-row-sm
+    form-row($size-sm)
+
+.form-row-md
+    form-row($size-md)
+
+.form-row-lg
+    form-row($size-lg)
+
+.form-row-xl
+    form-row($size-xl)

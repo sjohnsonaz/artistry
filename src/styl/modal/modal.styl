@@ -243,11 +243,15 @@ modal-size(sizes...) {
 }
 
 .modal-all {
-    modal-size($size-sm, $size-md, $size-lg, $size-xl);
+    modal-size($size-xs, $size-sm, $size-md, $size-lg, $size-xl);
+}
+
+.modal-floating {
+    modal-floating();
 }
 
 .modal-xs {
-    modal-floating();
+    modal-size($size-xs);
 }
 
 .modal-sm {
