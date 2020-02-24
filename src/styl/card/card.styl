@@ -193,21 +193,30 @@ $card-header-margin = -($card-border-width + $card-padding);
         grid-gap: $card-control-margin;
     }
 
+    &.card-section-centered {
+        & > .card-control {
+            & > .card-control-title {
+                --card-control-margin: $card-control-margin;
+                width: calc(100% / 2 - var(--card-control-margin));
+            }
+        }
+    }
+
     & > .card-control {
         display: flex;
         flex-direction: row;
         margin: 0;
 
         & > .card-control-title {
-            font-weight: bold;
             width: calc(var(--card-control-min-width) / 3);
-            text-align: end;
             margin: ($card-control-margin / 2);
+            text-align: end;
+            font-weight: bold;
         }
 
         & > .card-control-data {
-            text-align: start;
             margin: ($card-control-margin / 2);
+            text-align: start;
         }
     }
 }
