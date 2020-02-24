@@ -1,61 +1,81 @@
 @require 'table-settings.styl';
 
-table-row-template() {
-    & > tr {
-        & > th {
-            padding: 5px;
-            text-align: start;
-        }
-
-        & > td {
-            padding: 5px;
-        }
-
-        &:nth-child(odd) {
-            background-color: $table-row-odd-background-color;
-        }
-
-        &:nth-child(even) {
-            background-color: $table-row-even-background-color;
-        }
-    }
-}
-
 table.table {
     width: 100%;
     border-collapse: collapse;
 
-    & > thead {
-        table-row-template();
+    tr {
+        & > th {
+            text-align: start;
+        }
 
+        & > th,
+        & > td {
+            padding: $table-spacing ($table-spacing / 2);
+
+            &:first-child {
+                padding-inline-start: $table-spacing;
+            }
+
+            &:last-child {
+                padding-inline-end: $table-spacing;
+            }
+        }
+    }
+
+    & > thead {
         & > tr {
             border-bottom: 1px solid $table-head-border-color;
         }
     }
 
-    tbody {
-        table-row-template();
-
+    & > tfoot {
         & > tr {
-            &:hover {
-                background-color: $table-row-hover-background-color;
+            border-top: 1px solid $table-head-border-color;
+        }
+    }
+
+    &.table-striped {
+        tbody {
+            & > tr {
+                &:nth-child(odd) {
+                    background-color: $table-row-odd-background-color;
+                }
+
+                &:nth-child(even) {
+                    background-color: $table-row-even-background-color;
+                }
             }
         }
     }
 
-    table-row-template();
-
-    & > tr {
-        &:hover {
-            background-color: $table-row-hover-background-color;
+    &.table-hoverable {
+        tbody {
+            & > tr {
+                &:hover {
+                    background-color: $table-row-hover-background-color;
+                }
+            }
         }
     }
 
-    & > tfoot {
-        table-row-template();
+    &.table-form {
+        tbody {
+            & > tr {
+                &:not(:first-child) {
+                    & > th,
+                    & > td {
+                        padding-top: ($table-spacing / 2);
+                    }
+                }
 
-        & > tr {
-            border-top: 1px solid $table-head-border-color;
+                &:not(:last-child) {
+                    & > th,
+                    & > td {
+                        padding-bottom: ($table-spacing / 2);
+                    }
+                }
+            }
         }
     }
 

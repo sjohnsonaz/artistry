@@ -45,7 +45,7 @@
     --form-title-width: calc(var(--form-title-span) / var(--form-columns) * (100% + var(--form-spacing)) - var(--form-spacing));
     margin: $form-spacing;
     display: grid;
-    grid-template-columns: var(--form-title-width) 1fr;
+    grid-template-columns: minmax($form-title-min-width, var(--form-title-width)) 1fr;
     grid-gap: 0 $form-spacing;
     align-items: center;
 
