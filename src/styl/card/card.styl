@@ -194,7 +194,7 @@ $card-header-margin = -($card-border-width + $card-padding);
     }
 
     &.card-section-centered {
-        & > .card-control {
+        & > .card-control:not(.card-control-stacked) {
             & > .card-control-title {
                 --card-control-margin: $card-control-margin;
                 width: calc(100% / 2 - var(--card-control-margin));
@@ -204,19 +204,35 @@ $card-header-margin = -($card-border-width + $card-padding);
 
     & > .card-control {
         display: flex;
-        flex-direction: row;
         margin: 0;
 
         & > .card-control-title {
-            width: calc(var(--card-control-min-width) / 3);
-            margin: ($card-control-margin / 2);
-            text-align: end;
             font-weight: bold;
+            margin: ($card-control-margin / 2);
         }
 
         & > .card-control-data {
             margin: ($card-control-margin / 2);
             text-align: start;
+        }
+
+        &:not(.card-control-stacked) {
+            flex-direction: row;
+            align-items: center;
+
+            & > .card-control-title {
+                width: calc(var(--card-control-min-width) / 3);
+                text-align: end;
+            }
+        }
+
+        &.card-control-stacked {
+            flex-direction: column;
+            justify-items: start;
+
+            & > .card-control-title {
+                text-align: start;
+            }
         }
     }
 }
