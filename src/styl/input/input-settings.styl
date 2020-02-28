@@ -12,17 +12,21 @@ $input-font-size ?= $default-font-size;
 $input-font-size-small ?= $default-font-size-small;
 $input-font-size-large ?= $default-font-size-large;
 
-$input-default-background-color ?= $widget-color;
-$input-default-color ?= $widget-color-alt;
+$input-default-background-color ?= $basic-color;
+$input-default-color ?= $basic-color-alt;
 $input-default-border-color ?= $default-border-color;
 
-$input-primary-background-color ?= $primary-color;
-$input-primary-color ?= $primary-color-alt;
-$input-primary-border-color ?= darken($primary-color, $input-color-variance);
+$button-default-background-color ?= $widget-color;
+$button-default-color ?= $widget-color-alt;
+$button-default-border-color ?= darken($widget-color, $input-color-variance);
 
-$input-danger-background-color ?= $danger-color;
-$input-danger-color ?= $danger-color-alt;
-$input-danger-border-color ?= darken($danger-color, $input-color-variance);
+$button-primary-background-color ?= $primary-color;
+$button-primary-color ?= $primary-color-alt;
+$button-primary-border-color ?= darken($primary-color, $input-color-variance);
+
+$button-danger-background-color ?= $danger-color;
+$button-danger-color ?= $danger-color-alt;
+$button-danger-border-color ?= darken($danger-color, $input-color-variance);
 
 $button-textonly-background-color ?= $widget-color;
 $button-textonly-default-color ?= lighten($widget-color-alt, $input-color-variance);
@@ -43,10 +47,7 @@ $input-disabled-opacity ?= 0.65;
 $button-bar-margin ?= $default-padding;
 $button-bar-margin-small ?= $default-padding-small;
 $button-bar-margin-large ?= $default-padding-large;
-$button-bar-background-color ?= $default-header-color;
-
-$input-text-background-color ?= $default-background-color;
-$input-text-color ?= $default-color;
+$button-bar-background-color ?= $default-header-background-color;
 
 $button-text-transform ?= uppercase;
 
@@ -54,17 +55,17 @@ $input-required-border-color ?= $red;
 
 :root {
     // Colors
-    --input-default-border-color: $input-default-border-color;
-    --input-default-color: $input-default-color;
-    --input-default-background-color: $input-default-background-color;
+    --button-default-border-color: $button-default-border-color;
+    --button-default-color: $button-default-color;
+    --button-default-background-color: $button-default-background-color;
 
-    --input-primary-border-color: $input-primary-border-color;
-    --input-primary-color: $input-primary-color;
-    --input-primary-background-color: $input-primary-background-color;
+    --button-primary-border-color: $button-primary-border-color;
+    --button-primary-color: $button-primary-color;
+    --button-primary-background-color: $button-primary-background-color;
 
-    --input-danger-border-color: $input-danger-border-color;
-    --input-danger-color: $input-danger-color;
-    --input-danger-background-color: $input-danger-background-color;
+    --button-danger-border-color: $button-danger-border-color;
+    --button-danger-color: $button-danger-color;
+    --button-danger-background-color: $button-danger-background-color;
 
     // Button Colors
     --button-textonly-default-color: $button-textonly-default-color;
