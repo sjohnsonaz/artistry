@@ -16,6 +16,32 @@ $input-default-background-color ?= $basic-color;
 $input-default-color ?= $basic-color-alt;
 $input-default-border-color ?= $default-border-color;
 
+//$input-selected-background-color ?= darken($widget-color, $input-color-variance);
+//$input-selected-color ?= $widget-color-alt;
+//$input-selected-border-color ?= darken($default-border-color, $input-color-variance);
+
+$input-focus-border-color ?= darken($default-border-color, $input-color-variance);
+//$input-focus-box-shadow ?= 0 0 6px 0 #003;
+//$input-disabled-opacity ?= 0.65;
+
+$button-bar-margin ?= $default-padding;
+$button-bar-margin-small ?= $default-padding-small;
+$button-bar-margin-large ?= $default-padding-large;
+$button-bar-background-color ?= $default-header-background-color;
+
+$button-text-transform ?= uppercase;
+
+$input-required-border-color ?= $black;
+
+$input-success-background-color ?= $success-color;
+$input-success-color ?= $success-color-alt;
+$input-info-background-color ?= $info-color;
+$input-info-color ?= $info-color-alt;
+$input-warning-background-color ?= $warning-color;
+$input-warning-color ?= $warning-color-alt;
+$input-danger-background-color ?= $danger-color;
+$input-danger-color ?= $danger-color-alt;
+
 $button-default-background-color ?= $widget-color;
 $button-default-color ?= $widget-color-alt;
 $button-default-border-color ?= darken($widget-color, $input-color-variance);
@@ -35,23 +61,6 @@ $button-textonly-danger-color ?= lighten($danger-color, $input-color-variance);
 
 $button-outline-border-color ?= lighten($widget-color-alt, $input-color-variance);
 $button-outline-border-width ?= 1px;
-
-$input-selected-background-color ?= darken($widget-color, $input-color-variance);
-$input-selected-color ?= $widget-color-alt;
-$input-selected-border-color ?= darken($default-border-color, $input-color-variance);
-
-$input-default-border-color-focus ?= darken($default-border-color, $input-color-variance);
-$input-focus-box-shadow ?= 0 0 6px 0 #003;
-$input-disabled-opacity ?= 0.65;
-
-$button-bar-margin ?= $default-padding;
-$button-bar-margin-small ?= $default-padding-small;
-$button-bar-margin-large ?= $default-padding-large;
-$button-bar-background-color ?= $default-header-background-color;
-
-$button-text-transform ?= uppercase;
-
-$input-required-border-color ?= $red;
 
 :root {
     // Colors
@@ -76,7 +85,7 @@ $input-required-border-color ?= $red;
     --button-outline-border-color: $button-outline-border-color;
 
     // Color Focus
-    --input-default-border-color-focus: $input-default-border-color-focus;
+    --input-default-border-color: $input-focus-border-color;
 
     // All
     --input-padding: $input-padding;
