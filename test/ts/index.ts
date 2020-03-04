@@ -376,4 +376,15 @@ $(function () {
             }, 20);
         }
     });
+
+    let breadcrumbFrame = document.querySelector('.breadcrumb-frame');
+    let breadcrumbChildren = document.querySelectorAll('.breadcrumb-header > *:not(.breadcrumb-frame)');
+    let breadcrumbObserver = new IntersectionObserver((entries, observer) => {
+        console.log(entries, observer);
+    }, {
+        root: breadcrumbFrame,
+        rootMargin: '0px',
+        threshold: 0.5
+    });
+    breadcrumbChildren.forEach(child => breadcrumbObserver.observe(child));
 });

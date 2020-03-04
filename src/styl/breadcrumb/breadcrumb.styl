@@ -90,3 +90,22 @@ $breadcrumb-gradient-percentage = 60%;
         }
     }
 }
+
+.breadcrumb-header {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    .breadcrumb-frame {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    & > span,
+    & > a {
+        display: block;
+        margin: $breadcrumb-padding;
+    }
+}
