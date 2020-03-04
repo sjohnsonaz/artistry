@@ -377,14 +377,20 @@ $(function () {
         }
     });
 
-    let breadcrumbFrame = document.querySelector('.breadcrumb-frame');
+    let breadcrumbFrame = document.querySelector('.breadcrumb-header');
     let breadcrumbChildren = document.querySelectorAll('.breadcrumb-header > *:not(.breadcrumb-frame)');
-    let breadcrumbObserver = new IntersectionObserver((entries, observer) => {
-        console.log(entries, observer);
+    let breadcrumbObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.remove('breadcrumb-item-hidden');
+            } else {
+                entry.target.classList.add('breadcrumb-item-hidden');
+            }
+        });
     }, {
         root: breadcrumbFrame,
         rootMargin: '0px',
-        threshold: 0.5
+        threshold: 1
     });
     breadcrumbChildren.forEach(child => breadcrumbObserver.observe(child));
 });
