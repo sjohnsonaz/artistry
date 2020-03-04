@@ -41,7 +41,7 @@
         text-transform: none;
     }
 
-    &:not(.button-textonly):not(.button-outline) {
+    &:not(.button-textonly):not(.button-outline):not(.button-underline) {
         border-color: var(--button-default-border-color);
         color: var(--button-default-color);
         background-color: var(--button-default-background-color);
@@ -80,7 +80,8 @@
     }
 
     &.button-textonly,
-    &.button-outline {
+    &.button-outline,
+    &.button-underline {
         color: var(--button-textonly-default-color);
         border-color: transparent;
         background-color: transparent;
@@ -118,6 +119,13 @@
     &.button-outline {
         border-color: var(--button-outline-border-color);
         border-width: $button-outline-border-width;
+    }
+
+    &.button-underline {
+        border-bottom-color: var(--button-outline-border-color);
+        border-width: $button-outline-border-width;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
     }
 
     &.button-lockable {

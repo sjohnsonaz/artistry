@@ -377,20 +377,36 @@ $(function () {
         }
     });
 
-    let breadcrumbFrame = document.querySelector('.breadcrumb-header');
-    let breadcrumbChildren = document.querySelectorAll('.breadcrumb-header > *:not(.breadcrumb-frame)');
-    let breadcrumbObserver = new IntersectionObserver((entries) => {
+    let breadcrumbHeader = document.querySelector('.action-bar-breadcrumb');
+    let breadcrumbDropdown = document.querySelector('.action-bar-dropdown');
+    let breadcrumbChildren = document.querySelectorAll('.action-bar-breadcrumb > *:not(.action-bar-dropdown');
+    let hiddenCount = 0;
+    let breadcrumbChildrenObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+
             if (entry.isIntersecting) {
-                entry.target.classList.remove('breadcrumb-item-hidden');
+                if (entry.target.classList.contains('action-bar-breadcrumb-item-hidden')) {
+                    entry.target.classList.remove('action-bar-breadcrumb-item-hidden');
+                    hiddenCount--;
+                }
             } else {
-                entry.target.classList.add('breadcrumb-item-hidden');
+                if (!entry.target.classList.contains('action-bar-breadcrumb-item-hidden')) {
+                    entry.target.classList.add('action-bar-breadcrumb-item-hidden');
+                    hiddenCount++;
+                }
             }
         });
+        if (hiddenCount > 0) {
+            breadcrumbHeader.setAttribute('data-align','end');
+            breadcrumbDropdown.classList.remove('action-bar-breadcrumb-item-hidden');
+        } else {
+            breadcrumbHeader.removeAttribute('data-align');
+            breadcrumbDropdown.classList.add('action-bar-breadcrumb-item-hidden');
+        }
     }, {
-        root: breadcrumbFrame,
+        root: breadcrumbHeader,
         rootMargin: '0px',
         threshold: 1
     });
-    breadcrumbChildren.forEach(child => breadcrumbObserver.observe(child));
+    breadcrumbChildren.forEach(child => breadcrumbChildrenObserver.observe(child));
 });
