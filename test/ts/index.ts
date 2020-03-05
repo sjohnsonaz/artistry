@@ -134,12 +134,21 @@ $(function () {
         lockBodyScroll(drawerHidden, true);
     });
 
-    var drawerHidden = false;
+    var largeDrawerHidden = false;
     $('#clickOpenLargeDrawer, #clickCloseLargeDrawer, #largeDrawer').click(function (event) {
         event.stopPropagation();
-        drawerHidden = !drawerHidden;
-        $('#largeDrawer').toggleClass('drawer-open', drawerHidden);
-        lockBodyScroll(drawerHidden, true);
+        largeDrawerHidden = !largeDrawerHidden;
+        $('#largeDrawer').toggleClass('drawer-open', largeDrawerHidden);
+        lockBodyScroll(largeDrawerHidden, true);
+    });
+
+    var menuDrawerHidden = false;
+    $('#clickOpenMenuDrawer, #clickCloseMenuDrawer, #menuDrawer').click(function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        menuDrawerHidden = !menuDrawerHidden;
+        $('#menuDrawer').toggleClass('drawer-open', menuDrawerHidden);
+        lockBodyScroll(menuDrawerHidden, true);
     });
 
     $('.drawer').click(function (event) {
