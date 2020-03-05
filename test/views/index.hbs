@@ -12,24 +12,10 @@
     <div class="container container-all">
         {{#> page/form/index}}{{/page/form/index}}
         {{#> page/data/index}}{{/page/data/index}}
-        <div id="widgets" class="layout-section animatable" data-animation="fade-top" data-direction="in">
-            <h2>Widgets</h2>
-            {{#> information}}{{/information}}
-            {{#> containers}}{{/containers}}
-            {{#> card}}{{/card}}
-            {{#> widgets}}{{/widgets}}
-            {{#> scroll-carousel}}{{/scroll-carousel}}
-        </div>
-        <div id="navigation" class="layout-section animatable" data-animation="fade-top" data-direction="in">
-            <h2>Navigation</h2>
-            {{#> navigation}}{{/navigation}}
-        </div>
-        <div id="animation" class="layout-section" data-animation="fade-top" data-direction="in">
-            {{#> animation}}{{/animation}}
-        </div>
-        <div id="grid" class="layout-section animatable" data-animation="fade-top" data-direction="in">
-            {{#> grid}}{{/grid}}
-        </div>
+        {{#> page/widgets/index}}{{/page/widgets/index}}
+        {{#> page/navigation/index}}{{/page/navigation/index}}
+        {{#> page/abilities/index}}{{/page/abilities/index}}
+        {{#> page/grid/index}}{{/page/grid/index}}
     </div>
 </div>
 <div class="layer-fixed" id="layer-fixed">
