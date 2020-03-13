@@ -62,13 +62,13 @@ $breadcrumb-gradient-percentage = 60%;
                 transform: translateX(50%) translateY(-50%) rotate(45deg);
                 border-top: $breadcrumb-border-width solid $breadcrumb-border-color;
                 border-right: $breadcrumb-border-width solid $breadcrumb-border-color;
-                & when ($breadcrumb-border-radius = 0) {
-                    & when ($breadcrumb-border-width > 1) {
+                if ($breadcrumb-border-radius = 0) {
+                    if ($breadcrumb-border-width > 1) {
                         border-top: $breadcrumb-border-width * (2 / math(2, 'sqrt')) - $breadcrumb-border-radius solid $breadcrumb-border-color;
                         border-right: $breadcrumb-border-width * (2 / math(2, 'sqrt')) - $breadcrumb-border-radius solid $breadcrumb-border-color;
                     }
                 }
-                & when ($breadcrumb-border-width > $breadcrumb-border-radius) {
+                if ($breadcrumb-border-width > $breadcrumb-border-radius) {
                     border-top: $breadcrumb-border-width + $breadcrumb-border-radius * (math(2, 'sqrt') - 1) solid $breadcrumb-border-color;
                     border-right: $breadcrumb-border-width + $breadcrumb-border-radius * (math(2, 'sqrt') - 1) solid $breadcrumb-border-color;
                 }
