@@ -8,18 +8,32 @@
     }
 </style>
 <div class="layer-root" id="layer-root">
-    <div class="menu-bar-placeholder"></div>
-    <div class="container container-all">
-        {{#> page/form/index}}{{/page/form/index}}
-        {{#> page/data/index}}{{/page/data/index}}
-        {{#> page/widgets/index}}{{/page/widgets/index}}
-        {{#> page/navigation/index}}{{/page/navigation/index}}
-        {{#> page/abilities/index}}{{/page/abilities/index}}
-        {{#> page/grid/index}}{{/page/grid/index}}
+    <div class="layout">
+        <div class="layout-inner">
+            <div class="layout-header">
+                {{#> menu-bar-top}}{{/menu-bar-top}}
+            </div>
+            <div class="layout-body">
+                <div class="container container-all">
+                    {{#> page/form/index}}{{/page/form/index}}
+                    {{#> page/data/index}}{{/page/data/index}}
+                    {{#> page/widgets/index}}{{/page/widgets/index}}
+                    {{#> page/navigation/index}}{{/page/navigation/index}}
+                    {{#> page/abilities/index}}{{/page/abilities/index}}
+                    {{#> page/grid/index}}{{/page/grid/index}}
+                </div>
+            </div>
+            <div class="layout-footer">
+                {{#> menu-bar-bottom}}{{/menu-bar-bottom}}
+            </div>
+        </div>
+        <div class="layout-footer">
+                123123
+            {{#> menu-bar-bottom}}{{/menu-bar-bottom}}
+        </div>
     </div>
 </div>
 <div class="layer-fixed" id="layer-fixed">
-    {{#> menu-bar-top}}{{/menu-bar-top}}
 </div>
 <div class="layer-overlay" id="layer-overlay"></div>
 <div class="layer-flyout" id="layer-flyout"></div>

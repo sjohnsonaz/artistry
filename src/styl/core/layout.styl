@@ -1,0 +1,23 @@
+.layout
+    .layout-header
+        position: static;
+
+    .layout-footer
+        position: static;
+
+    .layout-inner
+        display: flex;
+        flex-direction: column;
+
+        .layout-header
+            position: sticky;
+            top: 0;
+            z-index: 1;
+
+        .layout-body
+            flex-grow: 1;
+
+        .layout-footer
+            position: sticky;
+            bottom: 0;
+            z-index: 1;
