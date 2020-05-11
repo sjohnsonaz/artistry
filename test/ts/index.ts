@@ -1,7 +1,11 @@
 import * as $ from 'jquery';
 import BodyScroll from '../../src/scripts/BodyScroll';
 
+import { run } from './jss';
+
 $(function () {
+    run();
+
     // Move Modals
     let modals = document.querySelectorAll('.modal');
     let overlayLayer = document.getElementById('layer-overlay');
@@ -406,7 +410,7 @@ $(function () {
             }
         });
         if (hiddenCount > 0) {
-            breadcrumbHeader.setAttribute('data-align','end');
+            breadcrumbHeader.setAttribute('data-align', 'end');
             breadcrumbDropdown.classList.remove('action-bar-breadcrumb-item-hidden');
         } else {
             breadcrumbHeader.removeAttribute('data-align');
