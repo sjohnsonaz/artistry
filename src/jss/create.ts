@@ -1,4 +1,6 @@
-import jss from 'jss';
+import jss, { JssStyle } from 'jss';
+
+export { JssStyle };
 
 type CreateSheetParameters = Parameters<(typeof jss)["createStyleSheet"]>;
 
@@ -12,4 +14,8 @@ export function createSheet<T extends CreateSheetParameters[0], U extends Create
         styles,
         options
     };
+}
+
+export function classMerge(...styles: JssStyle[]) {
+    return Object.assign({}, ...styles);
 }

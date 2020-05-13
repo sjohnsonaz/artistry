@@ -1,7 +1,7 @@
 import { create } from 'jss';
 import preset from 'jss-preset-default'
 
-import { Button } from '../../src/jss';
+import { Button, Container } from '../../src/jss';
 
 const jssInstance = create();
 const createGenerateId = () => {
@@ -12,6 +12,8 @@ const createGenerateId = () => {
 jssInstance.setup(Object.assign({}, { createGenerateId }, preset()));
 
 export function run() {
-    let sheet = jssInstance.createStyleSheet(Button.styles, Button.options);
-    sheet.attach();
+    let buttonSheet = jssInstance.createStyleSheet(Button.styles, Button.options);
+    buttonSheet.attach();
+    let containerSheet = jssInstance.createStyleSheet(Container.styles, Container.options);
+    containerSheet.attach();
 }
