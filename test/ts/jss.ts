@@ -1,19 +1,17 @@
-import { create } from 'jss';
-import preset from 'jss-preset-default'
+import { Button, Container, defaultValues } from '../../src/jss';
+import { compileStyle } from '@artistry/jss';
 
-import { Button, Container } from '../../src/jss';
-
-const jssInstance = create();
-const createGenerateId = () => {
-    //let counter = 0
-    //return (rule, sheet) => `pizza--${rule.key}-${counter++}`
-    return (rule: any, _sheet) => `${rule.key}`;
+function createSheet(text: string) {
+    let style = document.createElement('style');
+    style.type = 'text/css';
+    style.appendChild(document.createTextNode(text));
+    return style;
 }
-jssInstance.setup(Object.assign({}, { createGenerateId }, preset()));
 
 export function run() {
-    let buttonSheet = jssInstance.createStyleSheet(Button.styles, Button.options);
-    buttonSheet.attach();
-    let containerSheet = jssInstance.createStyleSheet(Container.styles, Container.options);
-    containerSheet.attach();
+    let containerSheet = createSheet([
+        compileStyle(...Button.toRules()),
+        compileStyle(...Container.toRules())
+    ].join('\n'));
+    document.head.appendChild(containerSheet);
 }
