@@ -1,18 +1,23 @@
 const path = require('path');
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
     entry: {
         'artistry': './src/styl/main.styl',
         'index': './test/ts/index.ts',
-        'view': './test/ts/view.ts'
+        'view': './test/ts/view.ts',
+        'abstract': './test/ts/abstract.ts'
     },
     output: {
-        filename: '[name].js',
+        filename: '[name]-[hash:6].js',
         path: path.resolve(__dirname, './test/build')
     },
+    optimization: {
+        usedExports: true
+    },
+    devtool: 'source-map',
     resolve: {
         extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.css', '.styl']
     },
@@ -20,7 +25,7 @@ module.exports = {
         rules: [{
             test: /\.styl$/,
             use: [
-                MiniCssExtractPlugin.loader,
+                'style-loader',
                 'css-loader',
                 { loader: 'postcss-loader', options: { sourceMap: true } },
                 'stylus-loader'
@@ -28,7 +33,7 @@ module.exports = {
         }, {
             test: /\.css$/,
             use: [
-                MiniCssExtractPlugin.loader,
+                'style-loader',
                 'css-loader',
                 { loader: 'postcss-loader', options: { sourceMap: true } }
             ]
@@ -38,14 +43,22 @@ module.exports = {
         }, {
             test: /\.tsx?$/,
             use: ['ts-loader']
+        }, {
+            test: /\.js$/,
+            enforce: 'pre',
+            use: ['source-map-loader']
         }]
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: "../../dist/[name].css",
-            chunkFilename: "[id].css"
-        })
-    ]
+        new HtmlWebpackPlugin({
+            template: 'test/html/index.html'
+        }),
+    ],
+    devServer: {
+        contentBase: path.join(__dirname, 'build'),
+        compress: true,
+        host: '0.0.0.0',
+        port: 8080,
+        historyApiFallback: true
+    }
 };
