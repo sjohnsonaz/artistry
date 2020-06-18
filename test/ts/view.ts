@@ -1,13 +1,12 @@
-
 declare var require: any;
-let view = require('../views/index.hbs');
+const viewIndex = require('../views/index.hbs');
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 	var div = document.createElement('div');
-	div.innerHTML = view({});
+	div.innerHTML = viewIndex({});
 	var frag = document.createDocumentFragment();
 	var child;
-	while(div.firstChild) {
+	while (div.firstChild) {
 		frag.appendChild(div.removeChild(div.firstChild));
 	}
 	document.body.appendChild(frag);
