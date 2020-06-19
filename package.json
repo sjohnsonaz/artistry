@@ -11,9 +11,9 @@
     "prepublishOnly": "webpack",
     "build": "webpack",
     "min": "webpack --progress",
-    "dev": "webpack-dev-server --config webpack.dev.js --progress",
-    "start": "webpack-dev-server --config webpack.abstract.js --watch --progress",
-    "watch": "tsc --declaration --watch",
+    "dev": "webpack --config webpack.dev.js --progress",
+    "watch": "webpack --config webpack.dev.js --watch --progress",
+    "serve": "webpack-dev-server --config webpack.dev.js --watch --progress",
     "open": "opn test/html/index.html"
   },
   "dependencies": {

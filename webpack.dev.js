@@ -7,7 +7,8 @@ module.exports = {
     entry: {
         'artistry': './src/styl/main.styl',
         'index': './test/ts/index.ts',
-        'view': './test/ts/view.ts'
+        'view': './test/ts/view.ts',
+        'abstract': './test/ts/abstract.ts'
     },
     output: {
         filename: '[name]-[hash:6].js',
@@ -57,7 +58,7 @@ module.exports = {
         contentBase: path.join(__dirname, 'build'),
         compress: true,
         host: '0.0.0.0',
-        port: 8081,
+        port: 8080,
         historyApiFallback: true
     }
 };
