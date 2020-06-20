@@ -1,4 +1,3 @@
-declare var require: any;
 const viewIndex = require('../views/index.hbs');
 
 document.addEventListener("DOMContentLoaded", function () {
