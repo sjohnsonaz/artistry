@@ -10,6 +10,7 @@ export interface IPaperProps extends IBaseProps {
     margin?: Length | Length[] | 0;
 }
 
+// TODO: Find better 0 check.
 export function Paper({
     base = getSettings(),
     color = base.colors.surface,
@@ -23,9 +24,9 @@ export function Paper({
         backgroundColor: color.color + '',
         color: color.text + '',
         borderColor: borderColor + '',
-        borderRadius,
-        borderWidth,
-        padding: padding,
-        margin: margin
+        borderRadius: borderRadius ? borderRadius : undefined,
+        borderWidth: borderWidth ? borderWidth : undefined,
+        padding: padding ? padding : undefined,
+        margin: margin ? margin : undefined
     };
 }
