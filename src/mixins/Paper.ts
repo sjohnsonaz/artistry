@@ -1,5 +1,5 @@
 import { Color, Length, VariableProperties, ColorPair } from '@artistry/abstract';
-import { IBaseProps, getSettings } from './IBaseProps';
+import { IBaseProps, getSettings } from '../base';
 
 export interface IPaperProps extends IBaseProps {
     color?: ColorPair;
