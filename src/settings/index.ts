@@ -1,1 +1,2 @@
-export * from './Default';
+export * from './DefaultSettings';
+export * from './IDefaultSettings';
