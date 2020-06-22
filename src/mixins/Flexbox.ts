@@ -11,15 +11,17 @@ export interface IFlexContainerProps {
 
 export function FlexContainer({
     inline = false,
-    direction = ROW,
+    direction,
     align,
-    alignContent
+    alignContent,
+    justify
 }: IFlexContainerProps = {}): VariableProperties {
     return {
         display: inline ? INLINE_FLEX : FLEX,
         flexDirection: direction,
         alignItems: align,
-        alignContent
+        alignContent,
+        justifyContent: justify
     };
 }
 
