@@ -1,9 +1,11 @@
-import { rgb, px, hex, brighten, ColorPair } from '@artistry/abstract';
+import { rgb, px, hex, brighten, ColorPair, space } from '@artistry/abstract';
 import { IDefaultSettings } from './IDefaultSettings';
 
+let spacer = space(8);
+let value = spacer(1);
 export const DefaultSettings: IDefaultSettings = {
     // Layout
-    spacing: px(8),
+    space: space(8),
     borderWidth: px(1),
     borderRadius: px(5),
     dividerWidth: px(1),

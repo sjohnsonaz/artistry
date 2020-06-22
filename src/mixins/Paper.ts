@@ -6,8 +6,8 @@ export interface IPaperProps extends IBaseProps {
     borderColor?: Color;
     borderRadius?: Length | 0;
     borderWidth?: Length | 0;
-    padding?: Length | 0;
-    margin?: Length | 0;
+    padding?: Length | Length[] | 0;
+    margin?: Length | Length[] | 0;
 }
 
 export function Paper({
@@ -16,7 +16,7 @@ export function Paper({
     borderColor = base.colors.border.color,
     borderRadius = base.borderRadius,
     borderWidth = base.borderWidth,
-    padding = base.spacing,
+    padding = base.space(1),
     margin = 0
 }: IPaperProps = {}): VariableProperties {
     return {

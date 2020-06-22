@@ -1,8 +1,8 @@
-import { Length, ColorPair } from "@artistry/abstract";
+import { Length, ColorPair, space } from "@artistry/abstract";
 
 export interface IDefaultSettings {
     // Layout
-    spacing: Length;
+    space: ReturnType<typeof space>;
     borderWidth: Length;
     borderRadius: Length;
     dividerWidth: Length;
