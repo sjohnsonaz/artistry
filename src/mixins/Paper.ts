@@ -1,6 +1,5 @@
-import { Color, Length, VariableProperties, ColorPair, Settings } from '@artistry/abstract';
-import { IBaseProps } from './IBaseProps';
-import { IDefaultSettings } from '../settings/IDefaultSettings';
+import { Color, Length, VariableProperties, ColorPair } from '@artistry/abstract';
+import { IBaseProps, getSettings } from './IBaseProps';
 
 export interface IPaperProps extends IBaseProps {
     color?: ColorPair;
@@ -11,21 +10,8 @@ export interface IPaperProps extends IBaseProps {
     margin?: Length | 0;
 }
 
-export interface ArtistryStyle<T, U extends (VariableProperties | VariableProperties[]) = any> {
-    (options?: T): U;
-}
-
-type PropertiesHash<T> = {
-    [P in keyof T]: VariableProperties;
-}
-
-export function propertiesExport<T extends VariableProperties>(properties: T): T;
-export function propertiesExport<T>(hash: PropertiesHash<T>): PropertiesHash<T> {
-    return hash;
-}
-
 export function Paper({
-    base = Settings.get<IDefaultSettings>(),
+    base = getSettings(),
     color = base.colors.surface,
     borderColor = base.colors.border.color,
     borderRadius = base.borderRadius,
