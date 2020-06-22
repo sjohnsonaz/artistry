@@ -1,33 +1,45 @@
-import { VariableProperties, INLINE_FLEX, FLEX, ROW, COLUMN, COLUMN_REVERSE, ROW_REVERSE, GLOBAL } from '@artistry/abstract';
+import { AlignContentProperty, FlexDirectionProperty, AlignSelfProperty, JustifySelfProperty } from 'csstype'
+import { VariableProperties, INLINE_FLEX, FLEX, ROW, AlignItemsProperty, JustifyContentProperty } from '@artistry/abstract';
 
-type Direction = GLOBAL | typeof ROW | typeof COLUMN | typeof COLUMN_REVERSE | typeof ROW_REVERSE;
-
-export interface IFlexContainerSettings {
+export interface IFlexContainerProps {
     inline?: boolean;
-    direction?: Direction;
+    direction?: FlexDirectionProperty;
+    align?: AlignItemsProperty;
+    alignContent?: AlignContentProperty;
+    justify?: JustifyContentProperty;
 }
 
 export function FlexContainer({
     inline = false,
     direction = ROW,
-}: IFlexContainerSettings = {}): VariableProperties {
+    align,
+    alignContent
+}: IFlexContainerProps = {}): VariableProperties {
     return {
         display: inline ? INLINE_FLEX : FLEX,
         flexDirection: direction,
+        alignItems: align,
+        alignContent
     };
 }
 
-export interface IFlexElementSettings {
+export interface IFlexElementProps {
     grow?: number;
     shrink?: number;
+    align?: AlignSelfProperty;
+    justify?: JustifySelfProperty;
 }
 
 export function FlexElement({
     grow = 0,
-    shrink = 0
-}: IFlexElementSettings = {}): VariableProperties {
+    shrink = 0,
+    align,
+    justify
+}: IFlexElementProps = {}): VariableProperties {
     return {
         flexGrow: grow,
-        flexShrink: shrink
+        flexShrink: shrink,
+        alignSelf: align,
+        justifySelf: justify
     };
 }
