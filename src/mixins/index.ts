@@ -1,4 +1,4 @@
-export * from './Default';
+
 export * from './Flexbox';
 export * from './Paper';
 export * from './Position';

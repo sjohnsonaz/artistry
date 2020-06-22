@@ -6,8 +6,8 @@
   "repository": "https://www.github.com/sjohnsonaz/artistry.git",
   "license": "MIT",
   "description": "A powerful and configurable stylesheet",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "typings": "dist/src/index.d.ts",
   "scripts": {
     "prepublishOnly": "webpack",
     "build": "webpack",
@@ -15,7 +15,8 @@
     "dev": "webpack-dev-server --config webpack.dev.js --progress",
     "start": "webpack-dev-server --config webpack.abstract.js --watch --progress",
     "watch": "tsc --declaration --watch",
-    "open": "opn test/html/index.html"
+    "open": "opn test/html/index.html",
+    "clean": "rimraf ./dist"
   },
   "dependencies": {
     "normalize.css": "8.0.1"
@@ -33,6 +34,7 @@
     "opn-cli": "5.0.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "postcss-loader": "3.0.0",
+    "rimraf": "^3.0.2",
     "roboto-fontface": "0.10.0",
     "source-map-loader": "1.0.0",
     "style-loader": "1.2.1",

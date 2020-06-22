@@ -1,5 +1,5 @@
 import { Color, Length, VariableProperties } from '@artistry/abstract';
-import { Default } from './Default';
+import { Default } from '../settings/Default';
 
 export interface IPaperSettings {
     backgroundColor?: Color;
