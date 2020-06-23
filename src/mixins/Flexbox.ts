@@ -1,5 +1,5 @@
-import { AlignContentProperty, FlexDirectionProperty, AlignSelfProperty, JustifySelfProperty } from 'csstype'
-import { VariableProperties, INLINE_FLEX, FLEX, ROW, AlignItemsProperty, JustifyContentProperty } from '@artistry/abstract';
+import { AlignContentProperty, FlexDirectionProperty, JustifySelfProperty } from 'csstype'
+import { VariableProperties, INLINE_FLEX, FLEX, AlignItemsProperty, AlignSelfProperty, JustifyContentProperty } from '@artistry/abstract';
 
 export interface IFlexContainerProps {
     inline?: boolean;
