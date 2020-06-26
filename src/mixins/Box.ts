@@ -1,10 +1,16 @@
-import { Length, VariableProperties } from '@artistry/abstract';
+import { Length, VariableProperties, AUTO } from '@artistry/abstract';
 import { IBaseProps, getSettings } from '../base';
 
 export interface IBoxProps extends IBaseProps {
     borderWidth?: Length | 0;
-    padding?: number | number[];
-    margin?: number | number[];
+    padding?: number | (number | typeof AUTO)[];
+    margin?: number | (number | typeof AUTO)[];
+    height?: Length | 0;
+    minHeight?: Length | 0;
+    maxHeight?: Length | 0;
+    width?: Length | 0;
+    minWidth?: Length | 0;
+    maxWidth?: Length | 0;
 }
 
 // TODO: Find better 0 check.
@@ -13,7 +19,13 @@ export function Box({
     base = getSettings(),
     borderWidth = base.borderWidth,
     padding = 0,
-    margin = 0
+    margin = 0,
+    height,
+    minHeight,
+    maxHeight,
+    width,
+    minWidth,
+    maxWidth
 }: IBoxProps = {}): VariableProperties {
     let paddingSpace: Length | Length[];
     if (padding instanceof Array) {
@@ -30,6 +42,12 @@ export function Box({
     return {
         borderWidth: borderWidth ? borderWidth : undefined,
         padding: paddingSpace ? paddingSpace : undefined,
-        margin: marginSpace ? marginSpace : undefined
+        margin: marginSpace ? marginSpace : undefined,
+        height,
+        minHeight,
+        maxHeight,
+        width,
+        minWidth,
+        maxWidth
     };
 }

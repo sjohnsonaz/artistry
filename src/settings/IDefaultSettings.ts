@@ -27,4 +27,11 @@ export interface IDefaultSettings {
         fast: number;
         slow: number;
     };
+    sizes: {
+        xSmall: Length,
+        small: Length,
+        medium: Length,
+        large: Length,
+        xLarge: Length
+    }
 }

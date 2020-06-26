@@ -29,5 +29,13 @@ export const DefaultSettings: IDefaultSettings = {
     times: {
         fast: 0.3,
         slow: 0.5
+    },
+
+    sizes: {
+        xSmall: px(375),
+        small: px(576),
+        medium: px(768),
+        large: px(992),
+        xLarge: px(1200)
     }
 };
