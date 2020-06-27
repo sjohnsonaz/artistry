@@ -73,7 +73,7 @@ export function ScrollAttribute(block: Block, name: string, ...scrollType: Scrol
     scrollType.forEach(scrollType => {
         mods[(name + '-' + scrollType).toLowerCase()] = Scroll({ scrollType });
     });
-    block.mod(mods);
+    block.modifiers(mods);
 }
 
 Scroll({ scrollType: 'Auto' })
