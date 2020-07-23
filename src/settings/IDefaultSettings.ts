@@ -27,6 +27,8 @@ export interface IDefaultSettings {
         fast: number;
         slow: number;
     };
+
+    // Sizes
     sizes: {
         xSmall: Length,
         small: Length,
@@ -34,4 +36,8 @@ export interface IDefaultSettings {
         large: Length,
         xLarge: Length
     }
+}
+
+export interface IPaperSettings extends IDefaultSettings {
+
 }

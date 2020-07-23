@@ -17,9 +17,9 @@ export interface IBoxProps extends IBaseProps {
 // TODO: Find better spacing.
 export function Box({
     base = getSettings(),
-    borderWidth = base.borderWidth,
     padding = 0,
     margin = 0,
+    borderWidth,
     height,
     minHeight,
     maxHeight,
