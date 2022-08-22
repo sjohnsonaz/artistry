@@ -15,7 +15,8 @@
     "watch": "webpack --config webpack.dev.js --watch --progress",
     "example": "webpack serve --config webpack.example.js --progress",
     "start": "webpack serve --config webpack.config.js --progress",
-    "open": "opn test/html/index.html"
+    "open": "opn test/html/index.html",
+    "test": "jest --verbose --coverage"
   },
   "dependencies": {
     "normalize.css": "8.0.1"
@@ -28,22 +29,20 @@
     "@artistry/icons": "0.0.2",
     "@cascade/diff": "^0.0.0",
     "@fortawesome/free-solid-svg-icons": "5.11.2",
-    "@types/chai": "4.2.11",
+    "@types/jest": "^28.1.7",
     "@types/jquery": "3.3.38",
-    "@types/mocha": "7.0.2",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "autoprefixer": "9.8.0",
-    "chai": "4.2.0",
     "css-loader": "3.6.0",
     "dotenv": "^16.0.1",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "handlebars": "4.7.6",
     "handlebars-loader": "1.7.1",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.3",
     "jquery": "3.5.1",
     "jsdom": "16.2.2",
-    "mocha": "8.0.1",
     "opn-cli": "5.0.0",
     "postcss-loader": "3.0.0",
     "prettier": "^2.7.1",
@@ -55,6 +54,7 @@
     "style-loader": "1.2.1",
     "stylus": "0.54.7",
     "stylus-loader": "3.0.2",
+    "ts-jest": "^28.0.8",
     "ts-loader": "7.0.5",
     "tsconfig-paths-webpack-plugin": "^4.0.0",
     "typescript": "^4.7.4",
@@ -74,5 +74,11 @@
     "carousels",
     "buttons",
     "forms"
-  ]
+  ],
+  "jest": {
+    "preset": "ts-jest",
+    "testPathIgnorePatterns": [
+      "<rootDir>/dist/"
+    ]
+  }
 }
