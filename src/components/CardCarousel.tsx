@@ -2,14 +2,18 @@ import * as React from 'react';
 
 import Carousel, { ICarouselProps } from './Carousel';
 //import Card from './Card';
-import CardContainer from './CardContainer';
+import { CardContainer } from './CardContainer';
 
 export interface ICardCarouselProps extends ICarouselProps {
     minWidth?: number;
     maxWidth?: number;
     cardSpacing?: number;
     carouselSpacing?: number;
-    onChangeSize?: (index: number, slideSize?: number, oldSlideSize?: number) => any;
+    onChangeSize?: (
+        index: number,
+        slideSize?: number,
+        oldSlideSize?: number
+    ) => any;
 }
 
 export interface ICardCarouselState {
@@ -17,11 +21,14 @@ export interface ICardCarouselState {
     slideSize?: number;
 }
 
-export default class CardCarousel extends React.Component<ICardCarouselProps, ICardCarouselState> {
+export default class CardCarousel extends React.Component<
+    ICardCarouselProps,
+    ICardCarouselState
+> {
     element: React.RefObject<HTMLDivElement> = React.createRef();
     state: ICardCarouselState = {
         rendered: false,
-        slideSize: 1
+        slideSize: 1,
     };
 
     componentDidMount() {
@@ -40,17 +47,13 @@ export default class CardCarousel extends React.Component<ICardCarouselProps, IC
                 let length = React.Children.count(this.props.children);
                 oldIndex = (oldIndex % length) + length;
             }
-            let newIndex = Math.floor(oldIndex * oldSlideSize / slideSize);
+            let newIndex = Math.floor((oldIndex * oldSlideSize) / slideSize);
             this.props.onChangeSize(newIndex, slideSize, oldSlideSize);
         }
-    }
+    };
 
     resizeHandler = () => {
-        let {
-            minWidth,
-            cardSpacing,
-            carouselSpacing
-        } = this.props;
+        let { minWidth, cardSpacing, carouselSpacing } = this.props;
 
         let slideSize = 1;
         let element = this.element.current;
@@ -70,13 +73,13 @@ export default class CardCarousel extends React.Component<ICardCarouselProps, IC
             let oldSlideSize = this.state.slideSize;
             this.setState({
                 rendered: true,
-                slideSize: slideSize
+                slideSize: slideSize,
             });
             this.onChangeSize(slideSize, oldSlideSize);
         } else if (slideSize !== this.state.slideSize) {
             let oldSlideSize = this.state.slideSize;
             this.setState({
-                slideSize: slideSize
+                slideSize: slideSize,
             });
             this.onChangeSize(slideSize, oldSlideSize);
         }
@@ -87,14 +90,8 @@ export default class CardCarousel extends React.Component<ICardCarouselProps, IC
     }
 
     render() {
-        let {
-            id,
-            className,
-            minWidth,
-            maxWidth,
-            children,
-            ...props
-        } = this.props;
+        let { id, className, minWidth, maxWidth, children, ...props } =
+            this.props;
 
         let classNames = className ? [className] : [];
         classNames.push('card-carousel');
@@ -111,28 +108,23 @@ export default class CardCarousel extends React.Component<ICardCarouselProps, IC
         });
 
         return (
-            <div
-                ref={this.element}
-                id={id}
-                className={classNames.join(' ')}
-            >
-                {this.state.rendered ?
-                    <Carousel
-                        {...props}
-                    >
+            <div ref={this.element} id={id} className={classNames.join(' ')}>
+                {this.state.rendered ? (
+                    <Carousel {...props}>
                         {wrappedChildren.map((children, index) => {
                             return (
                                 <CardContainer
                                     className="space"
                                     minWidth={minWidth}
                                     maxWidth={maxWidth}
-                                    key={index}>
+                                    key={index}
+                                >
                                     {children}
                                 </CardContainer>
                             );
                         })}
-                    </Carousel> :
-                    undefined}
+                    </Carousel>
+                ) : undefined}
             </div>
         );
     }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Button from './Button';
-import ButtonGroup from './ButtonGroup';
+import { ButtonGroup } from './ButtonGroup';
 import Input from './Input';
 import Icon from './Icon';
 
@@ -9,7 +9,7 @@ export enum RoundingType {
     None = 0,
     Round = 1,
     Floor = 2,
-    Ceiling = 3
+    Ceiling = 3,
 }
 
 export interface IAmountInputProps {
@@ -19,8 +19,14 @@ export interface IAmountInputProps {
     minimum?: number;
     maximum?: number;
     onChange?: (value: number, event: React.FormEvent<any>) => void | boolean;
-    onIncrement?: (value: number, event: React.MouseEvent<any>) => void | boolean;
-    onDecrement?: (value: number, event: React.MouseEvent<any>) => void | boolean;
+    onIncrement?: (
+        value: number,
+        event: React.MouseEvent<any>
+    ) => void | boolean;
+    onDecrement?: (
+        value: number,
+        event: React.MouseEvent<any>
+    ) => void | boolean;
     incrementText?: string;
     decrementText?: string;
     incrementIcon?: string;
@@ -44,7 +50,10 @@ export interface IAmountInputState {
     value?: number;
 }
 
-export default class AmountInput extends React.Component<IAmountInputProps, IAmountInputState> {
+export default class AmountInput extends React.Component<
+    IAmountInputProps,
+    IAmountInputState
+> {
     constructor(props?: IAmountInputProps) {
         super(props);
         let {
@@ -54,47 +63,44 @@ export default class AmountInput extends React.Component<IAmountInputProps, IAmo
             nonZero,
             nonNegative,
             minimum,
-            maximum
+            maximum,
         } = props;
         let cleanedValue: number;
         try {
             cleanedValue = cleanValue(value, round, nonZero, nonNegative);
-            cleanedValue = fixValueBounds(value, minimum, maximum)
-        }
-        catch (e) {
-            cleanedValue = defaultValue
+            cleanedValue = fixValueBounds(value, minimum, maximum);
+        } catch (e) {
+            cleanedValue = defaultValue;
         }
         this.state = {
-            value: cleanedValue
+            value: cleanedValue,
         };
     }
 
     change = (event: React.FormEvent<any>) => {
         let value = (event.target as any).value;
-        let {
-            onChange,
-            round,
-            nonZero,
-            nonNegative,
-            minimum,
-            maximum
-        } = this.props;
+        let { onChange, round, nonZero, nonNegative, minimum, maximum } =
+            this.props;
         if (onChange) {
             try {
-                let cleanedValue = cleanValue(value, round, nonZero, nonNegative);
+                let cleanedValue = cleanValue(
+                    value,
+                    round,
+                    nonZero,
+                    nonNegative
+                );
                 cleanedValue = fixValueBounds(value, minimum, maximum);
                 onChange(cleanedValue, event);
                 this.setState({
-                    value: value
+                    value: value,
                 });
-            }
-            catch (e) {
+            } catch (e) {
                 this.setState({
-                    value: value
+                    value: value,
                 });
             }
         }
-    }
+    };
 
     increment = (event: React.MouseEvent<any>) => {
         event.stopPropagation();
@@ -106,7 +112,7 @@ export default class AmountInput extends React.Component<IAmountInputProps, IAmo
             nonZero,
             nonNegative,
             minimum,
-            maximum
+            maximum,
         } = this.props;
         try {
             let cleanedValue = cleanValue(value, round, nonZero, nonNegative);
@@ -119,13 +125,10 @@ export default class AmountInput extends React.Component<IAmountInputProps, IAmo
                 onChange(cleanedValue, event);
             }
             this.setState({
-                value: cleanedValue
+                value: cleanedValue,
             });
-        }
-        catch (e) {
-
-        }
-    }
+        } catch (e) {}
+    };
 
     decrement = (event: React.MouseEvent<any>) => {
         event.stopPropagation();
@@ -137,7 +140,7 @@ export default class AmountInput extends React.Component<IAmountInputProps, IAmo
             nonZero,
             nonNegative,
             minimum,
-            maximum
+            maximum,
         } = this.props;
         try {
             let cleanedValue = cleanValue(value, round, nonZero, nonNegative);
@@ -150,24 +153,15 @@ export default class AmountInput extends React.Component<IAmountInputProps, IAmo
                 onChange(cleanedValue, event);
             }
             this.setState({
-                value: cleanedValue
+                value: cleanedValue,
             });
-        }
-        catch (e) {
-
-        }
-    }
+        } catch (e) {}
+    };
 
     reset = (event: React.MouseEvent<any>) => {
         let value = this.props.defaultValue;
-        let {
-            onChange,
-            round,
-            nonZero,
-            nonNegative,
-            minimum,
-            maximum
-        } = this.props;
+        let { onChange, round, nonZero, nonNegative, minimum, maximum } =
+            this.props;
         let cleanedValue: number;
         try {
             cleanedValue = cleanValue(value, round, nonZero, nonNegative);
@@ -176,13 +170,10 @@ export default class AmountInput extends React.Component<IAmountInputProps, IAmo
                 onChange(cleanedValue, event);
             }
             this.setState({
-                value: cleanedValue
+                value: cleanedValue,
             });
-        }
-        catch (e) {
-
-        }
-    }
+        } catch (e) {}
+    };
 
     componentWillReceiveProps(props: IAmountInputProps) {
         let {
@@ -192,18 +183,17 @@ export default class AmountInput extends React.Component<IAmountInputProps, IAmo
             nonZero,
             nonNegative,
             minimum,
-            maximum
+            maximum,
         } = props;
         let cleanedValue: number;
         try {
             cleanedValue = cleanValue(value, round, nonZero, nonNegative);
             cleanedValue = fixValueBounds(value, minimum, maximum);
-        }
-        catch (e) {
-            cleanedValue = defaultValue
+        } catch (e) {
+            cleanedValue = defaultValue;
         }
         this.setState({
-            value: cleanedValue
+            value: cleanedValue,
         });
     }
 
@@ -226,14 +216,16 @@ export default class AmountInput extends React.Component<IAmountInputProps, IAmo
             disableDecrement: _disableDecrement,
             disableIncrement: _disableIncrement,
             disableInput,
-            fill
+            fill,
         } = this.props;
 
-        let disableDecrement = _disableDecrement || disabled || value <= minimum;
-        let disableIncrement = _disableIncrement || disabled || value >= maximum;
+        let disableDecrement =
+            _disableDecrement || disabled || value <= minimum;
+        let disableIncrement =
+            _disableIncrement || disabled || value >= maximum;
 
-        let decrementIconFull = hideDecrementIcon ? undefined : ["-"];
-        let incrementIconFull = hideIncrementIcon ? undefined : ["+"];
+        let decrementIconFull = hideDecrementIcon ? undefined : ['-'];
+        let incrementIconFull = hideIncrementIcon ? undefined : ['+'];
 
         if (right) {
             let classNames = className ? [className] : [];
@@ -266,7 +258,11 @@ export default class AmountInput extends React.Component<IAmountInputProps, IAmo
                     {incrementIconFull}
                     {incrementText}
                 </Button>
-                {showReset ? <Button><Icon name="times" /> </Button> : null}
+                {showReset ? (
+                    <Button>
+                        <Icon name="times" />{' '}
+                    </Button>
+                ) : null}
             </ButtonGroup>
         );
     }
@@ -284,12 +280,12 @@ function cleanValue(
         throw 'Value is not a number';
     }
     if (!isFinite(cleanedValue)) {
-        throw 'Value is not finite'
+        throw 'Value is not finite';
     }
-    if (nonZero && (cleanedValue === 0)) {
+    if (nonZero && cleanedValue === 0) {
         throw 'Value is zero';
     }
-    if (nonNegative && (cleanedValue < 0)) {
+    if (nonNegative && cleanedValue < 0) {
         throw 'Value is negative';
     }
 
@@ -308,11 +304,7 @@ function cleanValue(
     return cleanedValue;
 }
 
-function fixValueBounds(
-    value: number,
-    minimum: number,
-    maximum: number
-) {
+function fixValueBounds(value: number, minimum: number, maximum: number) {
     if (typeof minimum === 'number' && value < minimum) {
         value = minimum;
     }

@@ -1,11 +1,36 @@
 ﻿import * as React from 'react';
 
 import Button from './Button';
-import ButtonGroup from './ButtonGroup';
+import { ButtonGroup } from './ButtonGroup';
 
-type Month = 'January' | 'February' | 'March' | 'April' | 'May' | 'June' | 'July' | 'August' | 'September' | 'October' | 'November' | 'December';
+type Month =
+    | 'January'
+    | 'February'
+    | 'March'
+    | 'April'
+    | 'May'
+    | 'June'
+    | 'July'
+    | 'August'
+    | 'September'
+    | 'October'
+    | 'November'
+    | 'December';
 
-var monthNames: Month[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var monthNames: Month[] = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+];
 
 export interface ICalendarProps {
     date?: Date;
@@ -19,45 +44,48 @@ export interface ICalendarState {
 }
 
 export default class Calendar extends React.Component<ICalendarProps, any> {
-
     constructor(props?: ICalendarProps) {
         super(props);
         var date = this.props.date || new Date(Date.now());
         this.state = {
             year: date.getFullYear(),
             month: date.getMonth(),
-            date: date
+            date: date,
         };
     }
 
     increaseMonth = () => {
         this.setState({ month: (this.state.month + 1) % 12 });
-    }
+    };
 
     decreaseMonth = () => {
         this.setState({ month: (this.state.month + 11) % 12 });
-    }
+    };
 
     increaseYear = () => {
         this.setState({ year: this.state.year + 1 });
-    }
+    };
 
     decreaseYear = () => {
         this.setState({ year: this.state.year - 1 });
-    }
+    };
 
     selectDay = (day) => {
         if (this.props.onSelect) {
             this.props.onSelect(day);
         }
-    }
+    };
 
     getDays(year: number, month: number) {
         var firstDay = new Date(year, month, 1);
         var lastDay = new Date(year, month + 1, 0);
 
         var days = [firstDay];
-        for (var index = 2, length = lastDay.getDate(); index < length; index++) {
+        for (
+            var index = 2, length = lastDay.getDate();
+            index < length;
+            index++
+        ) {
             days.push(new Date(year, month, index));
         }
         days.push(lastDay);
@@ -97,7 +125,7 @@ export default class Calendar extends React.Component<ICalendarProps, any> {
             ) {
                 this.setState({
                     year: year,
-                    month: month
+                    month: month,
                 });
             }
         }
@@ -114,7 +142,7 @@ export default class Calendar extends React.Component<ICalendarProps, any> {
             var selectedDate: ISelectedDate = {
                 year: this.props.date.getFullYear(),
                 month: this.props.date.getMonth(),
-                date: this.props.date.getDate()
+                date: this.props.date.getDate(),
             };
         }
         let today = new Date();
@@ -131,10 +159,15 @@ export default class Calendar extends React.Component<ICalendarProps, any> {
                             value={this.state.year}
                             onChange={(event) => {
                                 this.setState({
-                                    year: parseInt((event.target as any).value)
+                                    year: parseInt((event.target as any).value),
                                 });
-                            }}>
-                            {years.map(year => <option value={year} key={year}>{year}</option>)}
+                            }}
+                        >
+                            {years.map((year) => (
+                                <option value={year} key={year}>
+                                    {year}
+                                </option>
+                            ))}
                         </select>
                         <Button onClick={this.increaseYear}>+</Button>
                     </ButtonGroup>
@@ -146,9 +179,12 @@ export default class Calendar extends React.Component<ICalendarProps, any> {
                             value={this.state.month + 1}
                             onChange={(event) => {
                                 this.setState({
-                                    month: parseInt((event.target as any).value) - 1
+                                    month:
+                                        parseInt((event.target as any).value) -
+                                        1,
                                 });
-                            }}>
+                            }}
+                        >
                             <option value="1">January</option>
                             <option value="2">February</option>
                             <option value="3">March</option>
@@ -180,28 +216,58 @@ export default class Calendar extends React.Component<ICalendarProps, any> {
                     <tbody>
                         {weeks.map((week, index, array) => {
                             return (
-                                <tr key={this.state.year + ' ' + this.state.month + ' ' + index}>
-                                    {index === 0 && week.length < 7 ?
+                                <tr
+                                    key={
+                                        this.state.year +
+                                        ' ' +
+                                        this.state.month +
+                                        ' ' +
+                                        index
+                                    }
+                                >
+                                    {index === 0 && week.length < 7 ? (
                                         <td colSpan={7 - week.length}></td>
-                                        : undefined}
+                                    ) : undefined}
                                     {week.map((day, index, array) => {
-                                        var selected = compareDays(selectedDate, day);
-                                        var current = todayTime === day.getTime();
+                                        var selected = compareDays(
+                                            selectedDate,
+                                            day
+                                        );
+                                        var current =
+                                            todayTime === day.getTime();
                                         let dayClassName = undefined;
                                         if (selected) {
-                                            dayClassName = 'calendar-day-selected';
+                                            dayClassName =
+                                                'calendar-day-selected';
                                         } else if (current) {
-                                            dayClassName = 'calendar-day-current';
+                                            dayClassName =
+                                                'calendar-day-current';
                                         }
                                         return (
-                                            <td key={this.state.year + ' ' + this.state.month + ' ' + index}>
-                                                <a className={dayClassName} onClick={this.selectDay.bind(this, day)}>{day.getDate()}</a>
+                                            <td
+                                                key={
+                                                    this.state.year +
+                                                    ' ' +
+                                                    this.state.month +
+                                                    ' ' +
+                                                    index
+                                                }
+                                            >
+                                                <a
+                                                    className={dayClassName}
+                                                    onClick={this.selectDay.bind(
+                                                        this,
+                                                        day
+                                                    )}
+                                                >
+                                                    {day.getDate()}
+                                                </a>
                                             </td>
                                         );
                                     })}
-                                    {index > 0 && week.length < 7 ?
+                                    {index > 0 && week.length < 7 ? (
                                         <td colSpan={7 - week.length}></td>
-                                        : undefined}
+                                    ) : undefined}
                                 </tr>
                             );
                         })}

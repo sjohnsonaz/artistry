@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 
 import Button from './Button';
-import ButtonGroup from './ButtonGroup';
+import { ButtonGroup } from './ButtonGroup';
 
 import Calendar, { ICalendarProps } from './Calendar';
 import MaskedInput from './MaskedInput';
@@ -16,10 +16,10 @@ export interface IDatePickerProps {
     onSelect: (date: Date) => void;
 }
 
-export default class DatePicker extends React.Component<IDatePickerProps, any>{
+export default class DatePicker extends React.Component<IDatePickerProps, any> {
     onSelect = (date: Date) => {
         this.props.onSelect(date);
-    }
+    };
 
     onChange = (event: React.FormEvent<HTMLInputElement>) => {
         let value = (event.target as any).value;
@@ -27,13 +27,10 @@ export default class DatePicker extends React.Component<IDatePickerProps, any>{
         if (!isNaN(output.getTime())) {
             this.props.onSelect(output);
         }
-    }
+    };
 
     render() {
-        let {
-            id,
-            className
-        } = this.props;
+        let { id, className } = this.props;
 
         let classNames = className ? [className] : [];
         classNames.push('popover-trigger');
@@ -69,11 +66,10 @@ export default class DatePicker extends React.Component<IDatePickerProps, any>{
                     popoverAlign="right"
                     popoverFill
                     popoverSpace
-                    popover={<Calendar
-                        date={date}
-                        onSelect={this.onSelect}
-                    />}
-                >Calendar</Button>
+                    popover={<Calendar date={date} onSelect={this.onSelect} />}
+                >
+                    Calendar
+                </Button>
             </ButtonGroup>
         );
     }
