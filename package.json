@@ -13,6 +13,7 @@
     "min": "webpack --progress",
     "dev": "webpack --config webpack.dev.js --progress",
     "watch": "webpack --config webpack.dev.js --watch --progress",
+    "example": "webpack serve --config webpack.example.js --progress",
     "start": "webpack serve --config webpack.config.js --progress",
     "open": "opn test/html/index.html"
   },
