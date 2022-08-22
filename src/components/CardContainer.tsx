@@ -1,7 +1,9 @@
-import * as React from 'react';
+import React from 'react';
+
+import ClassNames from '../util/ClassNames';
 
 export interface ICardContainerProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     id?: string;
     className?: string;
     space?: boolean;
@@ -9,42 +11,40 @@ export interface ICardContainerProps {
     maxWidth?: number | string;
 }
 
-export default class CardContainer extends React.Component<ICardContainerProps, any> {
-    render() {
-        let {
-            id,
-            className,
-            space,
-            minWidth,
-            maxWidth
-        } = this.props;
+export function CardContainer({
+    children,
+    id,
+    className,
+    space,
+    minWidth,
+    maxWidth,
+}: ICardContainerProps) {
+    const classNames = new ClassNames(className, 'card-container');
 
-        let classNames = className ? [className] : [];
-        classNames.push('card-container');
-
-        if (space) {
-            classNames.push('space');
-        }
-
-        if (minWidth && typeof minWidth === 'number') {
-            minWidth += 'px' as any;
-        }
-
-        if (maxWidth && typeof maxWidth === 'number') {
-            maxWidth += 'px' as any;
-        }
-
-        return (
-            <div
-                className={classNames.join(' ')}
-                id={id}
-                style={{
-                    '--card-min-width': minWidth,
-                    '--card-max-width': maxWidth
-                } as any}
-            >
-                {this.props.children}
-            </div>
-        )
+    if (space) {
+        classNames.add('space');
     }
+
+    if (minWidth && typeof minWidth === 'number') {
+        minWidth += 'px' as any;
+    }
+
+    if (maxWidth && typeof maxWidth === 'number') {
+        maxWidth += 'px' as any;
+    }
+
+    return (
+        <div
+            className={classNames.toString()}
+            id={id}
+            style={
+                {
+                    '--card-min-width': minWidth,
+                    '--card-max-width': maxWidth,
+                } as any
+            }
+        >
+            {children}
+        </div>
+    );
 }

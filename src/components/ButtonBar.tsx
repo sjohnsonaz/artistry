@@ -1,16 +1,21 @@
-import * as React from 'react';
+import React from 'react';
+
+import ClassNames from '../util/ClassNames';
 
 export interface IButtonBarProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     className?: string;
     id?: string;
 }
 
-export default class ButtonBar extends React.Component<IButtonBarProps, any>{
-    render() {
-        let classNames = this.props.className ? [this.props.className] : [];
-        classNames.push('button-bar');
-        let className = classNames.join(' ');
-        return <div className={className} id={this.props.id}>{this.props.children}</div>
-    }
+const BUTTON_BAR = 'button-bar';
+
+export function ButtonBar({ children, className, id }: IButtonBarProps) {
+    const classNames = new ClassNames(className, BUTTON_BAR);
+
+    return (
+        <div className={classNames.toString()} id={id}>
+            {children}
+        </div>
+    );
 }

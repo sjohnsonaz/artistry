@@ -1,19 +1,31 @@
 import * as React from 'react';
 
+import ClassNames from '../util/ClassNames';
+
 export interface IButtonGroupProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     className?: string;
     id?: string;
     fill?: boolean;
 }
 
-export default class ButtonGroups extends React.Component<IButtonGroupProps, any>{
-    render() {
-        let classNames = this.props.className ? [this.props.className] : [];
-        classNames.push('button-group');
-        if (this.props.fill) {
-            classNames.push('fill-width');
-        }
-        return <div className={classNames.join(' ')} id={this.props.id}>{this.props.children}</div>
+const BUTTON_GROUP = 'button-group';
+const FILL_WIDTH = 'fill-width';
+
+export function ButtonGroup({
+    children,
+    className,
+    id,
+    fill,
+}: IButtonGroupProps) {
+    const classNames = new ClassNames(className, BUTTON_GROUP);
+    if (fill) {
+        classNames.add(FILL_WIDTH);
     }
+
+    return (
+        <div className={classNames.toString()} id={id}>
+            {children}
+        </div>
+    );
 }

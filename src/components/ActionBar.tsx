@@ -1,38 +1,42 @@
-import * as React from 'react';
+import React from 'react';
 
+import ClassNames from '../util/ClassNames';
 
 export interface IActionBarProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     className?: string;
     id?: string;
     direction?: 'forward' | 'reverse';
-    align?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+    align?:
+        | 'start'
+        | 'end'
+        | 'center'
+        | 'space-between'
+        | 'space-around'
+        | 'space-evenly';
     displaySize?: 'default' | 'small' | 'large';
 }
 
-export default class ActionBar extends React.Component<IActionBarProps, any>{
-    render() {
-        let {
-            id,
-            className,
-            direction,
-            align,
-            displaySize
-        } = this.props;
+const ACTION_BAR = 'action-bar';
 
-        let classNames = className ? [className] : [];
-        classNames.push('action-bar');
+export function ActionBar({
+    id,
+    className,
+    direction,
+    align,
+    displaySize,
+}: IActionBarProps) {
+    const classNames = new ClassNames(className, ACTION_BAR);
 
-        return (
-            <div
-                className={classNames.join(' ')}
-                id={id}
-                data-direction={direction}
-                data-align={align}
-                data-size={displaySize}
-            >
-                {this.props.children}
-            </div>
-        );
-    }
+    return (
+        <div
+            className={classNames.toString()}
+            id={id}
+            data-direction={direction}
+            data-align={align}
+            data-size={displaySize}
+        >
+            {this.props.children}
+        </div>
+    );
 }

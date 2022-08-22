@@ -1,28 +1,21 @@
-import * as React from 'react';
+import React from 'react';
+
+import ClassNames from '../util/ClassNames';
 
 export interface IBreadcrumbs {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     id?: string;
     className?: string;
 }
 
-export default class Breadcrumbs extends React.Component<IBreadcrumbs, any> {
-    render() {
-        let {
-            id,
-            className
-        } = this.props;
+const BREADCRUMBS = 'breadcrumbs';
 
-        let classNames = className ? [className] : [];
-        classNames.push('breadcrumbs');
+export function Breadcrumbs({ id, className }: IBreadcrumbs) {
+    const classNames = new ClassNames(className, BREADCRUMBS);
 
-        return (
-            <div
-                className={classNames.join(' ')}
-                id={id}
-            >
-                {this.props.children}
-            </div>
-        );
-    }
+    return (
+        <div className={classNames.toString()} id={id}>
+            {this.props.children}
+        </div>
+    );
 }
