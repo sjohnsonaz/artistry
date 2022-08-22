@@ -1,11 +1,17 @@
 import * as React from 'react';
 
-import DepthStack from '../util/DepthStack';
+import DepthStack, { ICloseHandle } from '../util/DepthStack';
 
 import { ITemplate } from './ITemplate';
 import Button from './Button';
 
-export type SearchSize = 'default' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large';
+export type SearchSize =
+    | 'default'
+    | 'x-small'
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'x-large';
 
 export interface ISearchProps {
     id?: string;
@@ -23,10 +29,20 @@ export interface ISearchProps {
     showClear?: boolean;
     clearText?: any;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
-    onSelectOption?: (event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLDivElement>, value: string) => any;
-    onSearch?: (event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLElement>, value: string) => any;
+    onSelectOption?: (
+        event:
+            | React.KeyboardEvent<HTMLInputElement>
+            | React.MouseEvent<HTMLDivElement>,
+        value: string
+    ) => any;
+    onSearch?: (
+        event:
+            | React.KeyboardEvent<HTMLInputElement>
+            | React.MouseEvent<HTMLElement>,
+        value: string
+    ) => any;
     onClear?: (event: React.MouseEvent<HTMLButtonElement>) => any;
-    onClose?: (event: React.SyntheticEvent<HTMLElement>) => any;
+    onClose?: ICloseHandle;
     altAction?: (option: string) => any;
 
     // Button Props
@@ -59,22 +75,22 @@ export interface ISearchState {
     options?: string[];
 }
 
-export default class Search extends React.Component<ISearchProps, ISearchState> {
-    private closeHandle: (event: React.SyntheticEvent) => void;
+export default class Search extends React.Component<
+    ISearchProps,
+    ISearchState
+> {
+    private closeHandle: ICloseHandle;
 
     constructor(props: ISearchProps, context: any) {
         super(props, context);
-        let {
-            value,
-            options
-        } = this.props;
+        let { value, options } = this.props;
 
         options = this.cleanOptions(options, value);
 
         this.state = {
             activeOption: -1,
             value: value,
-            options: options
+            options: options,
         };
     }
 
@@ -90,10 +106,7 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
     }
 
     onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        let {
-            value,
-            options
-        } = this.state;
+        let { value, options } = this.state;
         let activeOption: number;
         switch (event.keyCode) {
             case 13: // Enter
@@ -116,11 +129,11 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
                 if (activeOption !== -1) {
                     this.setState({
                         activeOption: activeOption,
-                        value: options[activeOption]
+                        value: options[activeOption],
                     });
                 } else {
                     this.setState({
-                        activeOption: activeOption
+                        activeOption: activeOption,
                     });
                 }
                 break;
@@ -138,33 +151,43 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
                 if (activeOption !== -1) {
                     this.setState({
                         activeOption: activeOption,
-                        value: options[activeOption]
+                        value: options[activeOption],
                     });
                 } else {
                     this.setState({
-                        activeOption: activeOption
+                        activeOption: activeOption,
                     });
                 }
                 break;
         }
-    }
+    };
 
     onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (this.props.onChange) {
             this.props.onChange(event);
         }
-    }
+    };
 
-    onSearch = (event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLElement>) => {
+    onSearch = (
+        event:
+            | React.KeyboardEvent<HTMLInputElement>
+            | React.MouseEvent<HTMLElement>
+    ) => {
         if (this.props.onSearch) {
             this.props.onSearch(event, this.state.value);
         }
-    }
+    };
 
-    onSelectOption(option: string, index: number, event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLDivElement>) {
+    onSelectOption(
+        option: string,
+        index: number,
+        event:
+            | React.KeyboardEvent<HTMLInputElement>
+            | React.MouseEvent<HTMLDivElement>
+    ) {
         this.setState({
             activeOption: index,
-            value: option
+            value: option,
         });
         if (this.props.onSelectOption) {
             this.props.onSelectOption(event, option);
@@ -175,17 +198,17 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
         if (this.props.onClear) {
             this.props.onClear(event);
         }
-    }
+    };
 
-    onClose = (event: React.SyntheticEvent<HTMLElement>) => {
+    onClose: ICloseHandle = (event) => {
         if (this.props.onClose) {
             this.props.onClose(event);
         }
-    }
+    };
 
     componentWillMount() {
         if (!this.closeHandle) {
-            this.closeHandle = this.onClose.bind(this);
+            this.closeHandle = this.onClose;
         }
         if (this.props.showOptions) {
             DepthStack.push(this.closeHandle);
@@ -193,15 +216,11 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
     }
 
     componentWillReceiveProps(nextProps: ISearchProps) {
-        let {
-            value,
-            options,
-            showOptions
-        } = nextProps;
+        let { value, options, showOptions } = nextProps;
         options = this.cleanOptions(options, value);
         this.setState({
             value: value,
-            options: options
+            options: options,
         });
         if (showOptions !== this.props.showOptions) {
             if (showOptions) {
@@ -212,7 +231,7 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
         }
         if (value !== this.props.value) {
             this.setState({
-                activeOption: -1
+                activeOption: -1,
             });
         }
     }
@@ -250,18 +269,14 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
             ...buttonProps
         } = this.props;
 
-        let {
-            value,
-            options,
-            activeOption
-        } = this.state;
+        let { value, options, activeOption } = this.state;
 
         let classNames = className ? [className] : [];
         classNames.push('search');
 
         let open: string = undefined;
         if (options.length && !disabled && !disabledInput && showOptions) {
-            open = "true";
+            open = 'true';
         }
 
         let inputClassNames = ['input', 'search-input'];
@@ -288,11 +303,7 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
         }
 
         return (
-            <div
-                id={id}
-                className={classNames.join(' ')}
-                data-open={open}
-            >
+            <div id={id} className={classNames.join(' ')} data-open={open}>
                 <div className="button-group search-button-group">
                     <input
                         className={inputClassNames.join(' ')}
@@ -301,16 +312,15 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
                         value={value || ''}
                         disabled={disabled || disabledInput}
                     />
-                    {showClear && onClear ?
+                    {showClear && onClear ? (
                         <Button
                             className="search-button"
                             onClick={this.onClear}
                             disabled={!value}
                         >
                             {clearText || 'Clear'}
-                        </Button> :
-                        undefined
-                    }
+                        </Button>
+                    ) : undefined}
                     <Button
                         className="search-button"
                         onClick={this.onSearch}
@@ -322,26 +332,52 @@ export default class Search extends React.Component<ISearchProps, ISearchState> 
                 </div>
                 <div className="search-option-box">
                     <ul role="listbox" className="search-option-list">
-                        {!options ? undefined : options.map((option, index) => {
-                            let optionClassName = ['search-option'];
-                            if (index === activeOption) {
-                                optionClassName.push('search-option-active');
-                            }
-                            return (
-                                <li className={optionClassName.join(' ')} role="presentation" key={option + '_' + index}>
-                                    <div className="search-option-action" role="option" onClick={this.onSelectOption.bind(this, option, index)}>
-                                        <div className="search-option-action-text">
-                                            <span><b>{option}</b></span>
-                                        </div>
-                                    </div>
-                                    {altAction && altActionText ?
-                                        <div className="search-option-alt-action" onClick={altAction.bind(this, option)}>
-                                            <div className="search-option-alt-action-text">{altActionText}</div>
-                                        </div> :
-                                        undefined}
-                                </li>
-                            );
-                        })}
+                        {!options
+                            ? undefined
+                            : options.map((option, index) => {
+                                  let optionClassName = ['search-option'];
+                                  if (index === activeOption) {
+                                      optionClassName.push(
+                                          'search-option-active'
+                                      );
+                                  }
+                                  return (
+                                      <li
+                                          className={optionClassName.join(' ')}
+                                          role="presentation"
+                                          key={option + '_' + index}
+                                      >
+                                          <div
+                                              className="search-option-action"
+                                              role="option"
+                                              onClick={this.onSelectOption.bind(
+                                                  this,
+                                                  option,
+                                                  index
+                                              )}
+                                          >
+                                              <div className="search-option-action-text">
+                                                  <span>
+                                                      <b>{option}</b>
+                                                  </span>
+                                              </div>
+                                          </div>
+                                          {altAction && altActionText ? (
+                                              <div
+                                                  className="search-option-alt-action"
+                                                  onClick={altAction.bind(
+                                                      this,
+                                                      option
+                                                  )}
+                                              >
+                                                  <div className="search-option-alt-action-text">
+                                                      {altActionText}
+                                                  </div>
+                                              </div>
+                                          ) : undefined}
+                                      </li>
+                                  );
+                              })}
                     </ul>
                 </div>
             </div>

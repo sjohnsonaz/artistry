@@ -1,24 +1,33 @@
 import * as React from 'react';
 
-import { Button, NotificationContainer, NotificationType, Section, Notification, INotificationProps, ActionBar } from '../../../../modules/ArtistryReact';
+import {
+    Button,
+    NotificationContainer,
+    NotificationType,
+    Section,
+    Notification,
+    INotificationProps,
+    ActionBar,
+} from '../../../../modules/ArtistryReact';
 
-export interface INotificationViewProps {
-
-}
+export interface INotificationViewProps {}
 
 export interface INotification extends INotificationProps {
     text?: string;
 }
 
 export interface INotificationViewState {
-    items?: {
+    items: {
         [index: number]: INotification;
     };
 }
 
-export default class NotificationView extends React.Component<INotificationViewProps, any> {
+export default class NotificationView extends React.Component<
+    INotificationViewProps,
+    any
+> {
     state: INotificationViewState = {
-        items: {}
+        items: {},
     };
 
     static currentKey = 0;
@@ -35,45 +44,45 @@ export default class NotificationView extends React.Component<INotificationViewP
             title: 'Default',
             text: 'This is a default message.',
             decay: 2000,
-            onClick: () => console.log('Default clicked!')
+            onClick: () => console.log('Default clicked!'),
         });
-    }
+    };
 
     pushSuccess = () => {
         this.pushItem({
             type: 'success',
             title: 'Success',
             text: 'This is a success message.',
-            decay: 2000
+            decay: 2000,
         });
-    }
+    };
 
     pushInfo = () => {
         this.pushItem({
             type: 'info',
             title: 'Info',
             text: 'This is a info message.',
-            decay: 2000
+            decay: 2000,
         });
-    }
+    };
 
     pushWarning = () => {
         this.pushItem({
             type: 'warning',
             title: 'Warning',
             text: 'This is a warning message.',
-            decay: 2000
+            decay: 2000,
         });
-    }
+    };
 
     pushDanger = () => {
         this.pushItem({
             type: 'danger',
             title: 'Danger',
             text: 'This is a danger message.',
-            decay: 2000
+            decay: 2000,
         });
-    }
+    };
 
     render() {
         return (
@@ -86,7 +95,7 @@ export default class NotificationView extends React.Component<INotificationViewP
                     <Button onClick={this.pushDanger}>Push Danger</Button>
                 </ActionBar>
                 <NotificationContainer>
-                    {Object.keys(this.state.items).map(key => {
+                    {Object.keys(this.state.items).map((key) => {
                         let item = this.state.items[key];
                         return (
                             <Notification

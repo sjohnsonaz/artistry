@@ -15,11 +15,15 @@ export default class BodyScroll {
         let root = document.querySelector(this.rootSelector) as HTMLElement;
         if (root) {
             // We must query multiple objects for the scrollTop.
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop || body.scrollTop || root.scrollTop;
+            let scrollTop =
+                window.pageYOffset ||
+                document.documentElement.scrollTop ||
+                body.scrollTop ||
+                root.scrollTop;
             let currentHideScroll = body.getAttribute('data-status') === 'hide';
             this.lockStack.push({
                 scrollTop: scrollTop,
-                hideScroll: currentHideScroll
+                hideScroll: currentHideScroll,
             });
             if (this.lockStack.length === 1) {
                 root.setAttribute('data-status', 'locked');
@@ -40,16 +44,18 @@ export default class BodyScroll {
         let root = document.querySelector(this.rootSelector) as HTMLElement;
 
         let lockConfig = this.lockStack.pop();
-        root.setAttribute('data-status', '');
-        body.scrollTop = lockConfig.scrollTop;
-        if (lockConfig.hideScroll) {
-            body.setAttribute('data-lock', 'hide');
-            root.setAttribute('data-pad-scroll', 'true');
-        } else {
-            body.setAttribute('data-lock', '');
-            root.setAttribute('data-pad-scroll', '');
+        if (lockConfig) {
+            root.setAttribute('data-status', '');
+            body.scrollTop = lockConfig.scrollTop;
+            if (lockConfig.hideScroll) {
+                body.setAttribute('data-lock', 'hide');
+                root.setAttribute('data-pad-scroll', 'true');
+            } else {
+                body.setAttribute('data-lock', '');
+                root.setAttribute('data-pad-scroll', '');
+            }
+            document.documentElement.scrollTop = lockConfig.scrollTop;
         }
-        document.documentElement.scrollTop = lockConfig.scrollTop;
     }
 
     static init() {

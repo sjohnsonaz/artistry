@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ITemplate } from './ITemplate';
 import Popover from './Popover';
-import DepthStack from '../util/DepthStack';
+import DepthStack, { ICloseHandle } from '../util/DepthStack';
 
 export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
     id?: string;
@@ -33,18 +33,17 @@ export interface IButtonProps extends React.HTMLProps<HTMLButtonElement> {
     noFocus?: boolean;
 }
 
-
 export interface IButtonState {
     open?: boolean;
 }
 
 export default class Button extends React.Component<IButtonProps, any> {
-    private closeHandle: (event: React.SyntheticEvent) => void;
+    private closeHandle?: ICloseHandle;
 
-    constructor(props?: IButtonState) {
+    constructor(props: IButtonState) {
         super(props);
         this.state = {
-            open: this.props.open || false
+            open: this.props.open || false,
         };
     }
 
@@ -55,18 +54,18 @@ export default class Button extends React.Component<IButtonProps, any> {
             }
             this.props.onClick(event);
         }
-    }
+    };
 
-    close(event: React.SyntheticEvent) {
+    close: ICloseHandle = (event: React.SyntheticEvent) => {
         if (this.props.onPopoverClose) {
             this.props.onPopoverClose(event);
         }
-    }
+    };
 
     componentWillMount() {
         if (this.props.popover) {
             if (!this.closeHandle) {
-                this.closeHandle = this.close.bind(this);
+                this.closeHandle = this.close;
             }
             if (this.props.popoverOpen) {
                 DepthStack.push(this.closeHandle);
@@ -78,7 +77,7 @@ export default class Button extends React.Component<IButtonProps, any> {
     componentWillReceiveProps(nextProps: IButtonProps) {
         if (nextProps.popover) {
             if (!this.closeHandle) {
-                this.closeHandle = this.close.bind(this);
+                this.closeHandle = this.close;
             }
             // We did not have a popover
             if (!this.props.popover) {
@@ -142,7 +141,7 @@ export default class Button extends React.Component<IButtonProps, any> {
         } = this.props;
 
         let classNames = className ? [className] : [];
-        let injectedProps = {};
+        let injectedProps: Record<string, string | boolean> = {};
 
         classNames.push('button');
         switch (theme) {
@@ -243,10 +242,7 @@ export default class Button extends React.Component<IButtonProps, any> {
                     space={popoverSpace}
                     preventClick
                 >
-                    {typeof popover === 'function' ?
-                        popover() :
-                        popover
-                    }
+                    {typeof popover === 'function' ? popover() : popover}
                 </Popover>
             );
         }
@@ -264,38 +260,43 @@ export default class Button extends React.Component<IButtonProps, any> {
             injectedProps['disabled'] = true;
         }
 
-        return !(popoverMenu || link) ?
-            (
-                <button
-                    {...props as any}
-                    className={classNames.join(' ')}
-                    id={id}
-                    type={buttonType}
-                    onClick={this.onClick}
-                    {...injectedProps}>
-                    {popOver}
-                    {lockContent ?
-                        <>
-                            <div className="button-text">{this.props.children}</div>
-                            <div className="button-spinner">{lockContent}</div>
-                        </> :
-                        this.props.children}
-                </button>
-            ) : (
-                <a
-                    {...props as any}
-                    className={classNames.join(' ')}
-                    id={id}
-                    onClick={this.onClick}
-                    {...injectedProps}>
-                    {popOver}
-                    {lockContent ?
-                        <>
-                            <div className="button-text">{this.props.children}</div>
-                            <div className="button-spinner">{lockContent}</div>
-                        </> :
-                        this.props.children}
-                </a>
-            );
+        return !(popoverMenu || link) ? (
+            <button
+                {...(props as any)}
+                className={classNames.join(' ')}
+                id={id}
+                type={buttonType}
+                onClick={this.onClick}
+                {...injectedProps}
+            >
+                {popOver}
+                {lockContent ? (
+                    <>
+                        <div className="button-text">{this.props.children}</div>
+                        <div className="button-spinner">{lockContent}</div>
+                    </>
+                ) : (
+                    this.props.children
+                )}
+            </button>
+        ) : (
+            <a
+                {...(props as any)}
+                className={classNames.join(' ')}
+                id={id}
+                onClick={this.onClick}
+                {...injectedProps}
+            >
+                {popOver}
+                {lockContent ? (
+                    <>
+                        <div className="button-text">{this.props.children}</div>
+                        <div className="button-spinner">{lockContent}</div>
+                    </>
+                ) : (
+                    this.props.children
+                )}
+            </a>
+        );
     }
 }

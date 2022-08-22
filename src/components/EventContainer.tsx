@@ -1,14 +1,17 @@
 import * as React from 'react';
 
 export interface IEventContainerProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     events: string | string[];
     preventDefault?: boolean;
     stopPropagation?: boolean;
     block?: boolean;
 }
 
-export default class EventContainer extends React.Component<IEventContainerProps, any> {
+export default class EventContainer extends React.Component<
+    IEventContainerProps,
+    any
+> {
     eventHandler = (event: React.SyntheticEvent) => {
         if (this.props.preventDefault) {
             event.preventDefault();
@@ -16,28 +19,23 @@ export default class EventContainer extends React.Component<IEventContainerProps
         if (this.props.stopPropagation) {
             event.stopPropagation();
         }
-    }
+    };
     eventsToHash(events: string | string[]) {
-        let hash = {};
+        let hash: Record<string, React.EventHandler<React.SyntheticEvent>> = {};
         if (typeof events === 'string') {
             events = [events];
         }
-        events.forEach(event => {
+        events.forEach((event) => {
             hash[event] = this.eventHandler;
         });
         return hash;
     }
 
     render() {
-        let {
-            block,
-            events
-        } = this.props;
+        let { block, events } = this.props;
         if (block) {
             return (
-                <div {...this.eventsToHash(events)}>
-                    {this.props.children}
-                </div>
+                <div {...this.eventsToHash(events)}>{this.props.children}</div>
             );
         } else {
             return (

@@ -1,8 +1,7 @@
-
 export default class ClassNames {
     parts: { [index: string]: string } = {};
 
-    constructor(...names: string[]) {
+    constructor(...names: (string | undefined)[]) {
         for (let index = 0, length = names.length; index < length; index++) {
             let name = names[index];
             if (name) {
@@ -57,9 +56,13 @@ export default class ClassNames {
         className = className.trim();
 
         let classNames = element.className.split(' ');
-        let hash = {};
-        for (let index = 0, length = classNames.length; index < length; index++) {
-            let name = classNames[index].trim();
+        const hash: Record<string, string> = {};
+        for (
+            let index = 0, length = classNames.length;
+            index < length;
+            index++
+        ) {
+            const name = classNames[index].trim();
             if (name) {
                 hash[name] = name;
             }
@@ -75,8 +78,12 @@ export default class ClassNames {
         className = className.trim();
 
         let classNames = element.className.split(' ');
-        let hash = {};
-        for (let index = 0, length = classNames.length; index < length; index++) {
+        const hash: Record<string, string> = {};
+        for (
+            let index = 0, length = classNames.length;
+            index < length;
+            index++
+        ) {
             let name = classNames[index].trim();
             if (name) {
                 hash[name] = name;

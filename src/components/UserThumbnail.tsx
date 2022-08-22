@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import DepthStack from '../util/DepthStack';
+import DepthStack, { ICloseHandle } from '../util/DepthStack';
 
 import { ITemplate } from './ITemplate';
 import Popover from './Popover';
@@ -18,23 +18,26 @@ export interface IUserThumbnailProps {
     popoverOpen?: boolean;
     popoverMenu?: boolean;
     menuBarTop?: boolean;
-    onPopoverClose?: (event: React.MouseEvent<HTMLElement>) => boolean | void;
+    onPopoverClose?: ICloseHandle;
     onClick?: (event: React.MouseEvent<HTMLElement>) => boolean | void;
 }
 
-export default class UserThumbnail extends React.Component<IUserThumbnailProps, any> {
-    private closeHandle: (event: React.MouseEvent<HTMLElement>) => void;
+export default class UserThumbnail extends React.Component<
+    IUserThumbnailProps,
+    any
+> {
+    private closeHandle: ICloseHandle;
 
-    close(event: React.MouseEvent<HTMLElement>) {
+    close: ICloseHandle = (event) => {
         if (this.props.onPopoverClose) {
             this.props.onPopoverClose(event);
         }
-    }
+    };
 
     componentWillMount() {
         if (this.props.popover) {
             if (!this.closeHandle) {
-                this.closeHandle = this.close.bind(this);
+                this.closeHandle = this.close;
             }
             if (this.props.popoverOpen) {
                 DepthStack.push(this.closeHandle);
@@ -45,7 +48,7 @@ export default class UserThumbnail extends React.Component<IUserThumbnailProps, 
     componentWillReceiveProps(nextProps: IUserThumbnailProps) {
         if (nextProps.popover) {
             if (!this.closeHandle) {
-                this.closeHandle = this.close.bind(this);
+                this.closeHandle = this.close;
             }
             // We did not have a popover
             if (!this.props.popover) {
@@ -83,7 +86,7 @@ export default class UserThumbnail extends React.Component<IUserThumbnailProps, 
             }
             this.props.onClick(event);
         }
-    }
+    };
 
     render() {
         let classNames = this.props.className ? [this.props.className] : [];
@@ -102,30 +105,34 @@ export default class UserThumbnail extends React.Component<IUserThumbnailProps, 
                 break;
         }
 
-        let thumbnail = this.props.src ?
-            (
-                <img className={classNames.join(' ')} src={this.props.src} />
-            ) : (
-                <span className={classNames.join(' ')}>{this.props.placeholder}</span>
-            );
+        let thumbnail = this.props.src ? (
+            <img className={classNames.join(' ')} src={this.props.src} />
+        ) : (
+            <span className={classNames.join(' ')}>
+                {this.props.placeholder}
+            </span>
+        );
 
         if (this.props.popover) {
             let popover = (
                 <Popover
                     align={this.props.popoverAlign}
                     direction={this.props.popoverDirection}
-                    open={!this.props.popoverMenu ? this.props.popoverOpen : undefined}
+                    open={
+                        !this.props.popoverMenu
+                            ? this.props.popoverOpen
+                            : undefined
+                    }
                     space={this.props.popoverSpace}
                     preventClick
                 >
-                    {typeof this.props.popover === 'function' ?
-                        this.props.popover() :
-                        this.props.popover
-                    }
+                    {typeof this.props.popover === 'function'
+                        ? this.props.popover()
+                        : this.props.popover}
                 </Popover>
             );
             if (this.props.popoverMenu) {
-                let triggerClassNames = ['clickable', 'popover-trigger']
+                let triggerClassNames = ['clickable', 'popover-trigger'];
                 if (this.props.popoverOpen) {
                     triggerClassNames.push('popover-open');
                 } else {
@@ -135,21 +142,27 @@ export default class UserThumbnail extends React.Component<IUserThumbnailProps, 
                     triggerClassNames.push('popover-menu-bar-top');
                 }
                 return (
-                    <span role="button" className={triggerClassNames.join(' ')} id={this.props.id}
+                    <span
+                        role="button"
+                        className={triggerClassNames.join(' ')}
+                        id={this.props.id}
                         onClick={this.onClick}
                     >
                         {thumbnail}
                         {popover}
                     </span>
-                )
+                );
             } else {
                 return (
-                    <span className="popover-trigger" id={this.props.id}
-                        onClick={this.onClick} >
+                    <span
+                        className="popover-trigger"
+                        id={this.props.id}
+                        onClick={this.onClick}
+                    >
                         {thumbnail}
                         {popover}
                     </span>
-                )
+                );
             }
         } else {
             (thumbnail.props as any).id = this.props.id;

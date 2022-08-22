@@ -1,11 +1,18 @@
 import * as React from 'react';
 
-import { Cell, Grid, Icon, List, Search, Section, Row } from '../../../../modules/ArtistryReact';
+import {
+    Cell,
+    Grid,
+    Icon,
+    List,
+    Search,
+    Section,
+    Row,
+} from '../../../../modules/ArtistryReact';
+import { ICloseHandle } from '../../../../util/DepthStack';
 import { wait } from '../../../../util/PromiseUtil';
 
-export interface IListViewProps {
-
-}
+export interface IListViewProps {}
 
 export interface IListViewState {
     searchValue?: string;
@@ -19,76 +26,97 @@ interface IListData {
     unit: string;
 }
 
-let data: IListData[] = [{
-    ingredient: 'Potato',
-    quantity: '8 - 10',
-    unit: 'potato'
-}, {
-    ingredient: 'Salt',
-    quantity: 1,
-    unit: 'teaspoon'
-}, {
-    ingredient: 'Butter',
-    quantity: '2',
-    unit: 'tablespoon'
-}, {
-    ingredient: 'Pepper',
-    quantity: 1,
-    unit: 'dash'
-}, {
-    ingredient: 'Hot Milk',
-    quantity: '1/4',
-    unit: 'cup'
-}, {
-    ingredient: 'Scallions',
-    quantity: '1/8',
-    unit: 'cup'
-}, {
-    ingredient: 'Cheese',
-    quantity: '1/8',
-    unit: 'cup'
-}];
+let data: IListData[] = [
+    {
+        ingredient: 'Potato',
+        quantity: '8 - 10',
+        unit: 'potato',
+    },
+    {
+        ingredient: 'Salt',
+        quantity: 1,
+        unit: 'teaspoon',
+    },
+    {
+        ingredient: 'Butter',
+        quantity: '2',
+        unit: 'tablespoon',
+    },
+    {
+        ingredient: 'Pepper',
+        quantity: 1,
+        unit: 'dash',
+    },
+    {
+        ingredient: 'Hot Milk',
+        quantity: '1/4',
+        unit: 'cup',
+    },
+    {
+        ingredient: 'Scallions',
+        quantity: '1/8',
+        unit: 'cup',
+    },
+    {
+        ingredient: 'Cheese',
+        quantity: '1/8',
+        unit: 'cup',
+    },
+];
 
-export default class ListView extends React.Component<IListViewProps, IListViewState> {
+export default class ListView extends React.Component<
+    IListViewProps,
+    IListViewState
+> {
     constructor(props: IListViewProps, context: any) {
         super(props, context);
         this.state = {
             searchValue: '',
             showOptions: false,
-            options: []
+            options: [],
         };
     }
 
     onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
-            searchValue: event.target.value
+            searchValue: event.target.value,
         });
         await wait(1000);
         this.setState({
             showOptions: true,
-            options: data
-        });
-    }
-
-    onSelectOption = (event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLDivElement>, value?: string) => {
-        this.setState({
-            searchValue: value,
-            showOptions: false
-        });
-    }
-
-    onSearch = (event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLElement>, value?: string) => {
-        this.setState({
-            searchValue: value,
-            showOptions: false
+            options: data,
         });
     };
 
-    onClose = (event: React.SyntheticEvent<HTMLElement>) => {
+    onSelectOption = (
+        event:
+            | React.KeyboardEvent<HTMLInputElement>
+            | React.MouseEvent<HTMLDivElement>,
+        value?: string
+    ) => {
         this.setState({
-            showOptions: false
+            searchValue: value,
+            showOptions: false,
         });
-    }
+    };
+
+    onSearch = (
+        event:
+            | React.KeyboardEvent<HTMLInputElement>
+            | React.MouseEvent<HTMLElement>,
+        value?: string
+    ) => {
+        this.setState({
+            searchValue: value,
+            showOptions: false,
+        });
+    };
+
+    onClose: ICloseHandle = (event) => {
+        this.setState({
+            showOptions: false,
+        });
+    };
 
     altAction?: (option: string) => any;
 
@@ -100,11 +128,7 @@ export default class ListView extends React.Component<IListViewProps, IListViewS
                         <Cell>
                             <Search
                                 value={this.state.searchValue}
-                                options={[
-                                    'Option 1',
-                                    'Option 2',
-                                    'Option 3'
-                                ]}
+                                options={['Option 1', 'Option 2', 'Option 3']}
                                 showOptions={this.state.showOptions}
                                 onChange={this.onChange}
                                 onSelectOption={this.onSelectOption}
@@ -112,7 +136,11 @@ export default class ListView extends React.Component<IListViewProps, IListViewS
                                 onClose={this.onClose}
                                 altAction={this.altAction}
                                 fill
-                                buttonText={<span className="nowrap"><Icon name="search" /> Search</span>}
+                                buttonText={
+                                    <span className="nowrap">
+                                        <Icon name="search" /> Search
+                                    </span>
+                                }
                                 screenSize="small"
                             />
                         </Cell>
@@ -120,7 +148,7 @@ export default class ListView extends React.Component<IListViewProps, IListViewS
                 </Grid>
                 <List
                     data={this.state.options}
-                    template={item => item.ingredient}
+                    template={(item) => item.ingredient}
                     active={3}
                     selected={[1, 3, 5]}
                     space

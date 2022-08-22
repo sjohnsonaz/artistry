@@ -6,16 +6,18 @@ import { IScrollableExternalProps } from './Scrollable';
 import BodyScroll from '../util/BodyScroll';
 import { waitAnimation } from '../util/PromiseUtil';
 import Portal from '../util/Portal';
-import DepthStack from '../util/DepthStack';
+import DepthStack, { ICloseHandle } from '../util/DepthStack';
 
-export interface IDrawerProps extends IGridExternalProps, IScrollableExternalProps {
-    children?: React.ReactNode
+export interface IDrawerProps
+    extends IGridExternalProps,
+        IScrollableExternalProps {
+    children?: React.ReactNode;
     className?: string;
     id?: string;
     direction?: 'top' | 'right' | 'bottom' | 'left';
     open: boolean;
     full?: boolean;
-    onClose: (event: React.MouseEvent<HTMLDivElement>) => void;
+    onClose: ICloseHandle;
     background?: boolean;
     space?: boolean;
 }
@@ -25,7 +27,10 @@ export interface IDrawerState {
     remove?: boolean;
 }
 
-export default class Drawer extends React.Component<IDrawerProps, IDrawerState> {
+export default class Drawer extends React.Component<
+    IDrawerProps,
+    IDrawerState
+> {
     element: HTMLDivElement;
     runCount: number = 0;
 
@@ -33,7 +38,7 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
         super(props);
         this.state = {
             open: props.open,
-            remove: !props.open
+            remove: !props.open,
         };
         this.element = document.createElement('div');
         if (props.open) {
@@ -46,36 +51,36 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
         event.stopPropagation();
     }
 
-    close = (event: React.MouseEvent<HTMLDivElement>) => {
+    close: ICloseHandle = (event) => {
         // TODO: Create a prop for preventing mask clicks.
         if (this.props.onClose) {
             this.props.onClose(event);
         }
-    }
+    };
 
     transitionEnd = async (event: React.TransitionEvent<HTMLDivElement>) => {
         if (event.propertyName === 'transform') {
             if (!this.props.open) {
                 await this.setState({
-                    remove: true
+                    remove: true,
                 });
                 this.updateModalRoot();
             }
         }
-    }
+    };
 
     onScroll = (event: React.UIEvent<HTMLElement>) => {
         if (this.props.onScroll) {
             this.props.onScroll(event);
         }
-    }
+    };
 
     async componentDidUpdate(prevProps?: IDrawerProps) {
         if (this.props.open != prevProps.open) {
             if (this.props.open) {
                 let runCount = this.runCount;
                 await this.setState({
-                    remove: false
+                    remove: false,
                 });
                 if (runCount !== this.runCount) {
                     return;
@@ -86,13 +91,13 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
                 await waitAnimation();
                 await waitAnimation();
                 this.setState({
-                    open: this.props.open
+                    open: this.props.open,
                 });
                 DepthStack.push(this.close);
             } else {
                 BodyScroll.unlock();
                 this.setState({
-                    open: this.props.open
+                    open: this.props.open,
                 });
                 DepthStack.remove(this.close);
             }
@@ -126,14 +131,7 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
     }
 
     render() {
-        let {
-            className,
-            id,
-            direction,
-            full,
-            background,
-            space
-        } = this.props;
+        let { className, id, direction, full, background, space } = this.props;
 
         let classNames = className ? [className] : [];
         classNames.push('drawer');
@@ -162,16 +160,24 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
             gridConfig(innerClassNames, this.props);
         }
 
-        return ReactDOM.createPortal((
-            <div className={classNames.join(' ')} id={id} onTransitionEnd={this.transitionEnd}>
+        return ReactDOM.createPortal(
+            <div
+                className={classNames.join(' ')}
+                id={id}
+                onTransitionEnd={this.transitionEnd}
+            >
                 <div className="drawer-background" onScroll={this.onScroll}>
                     <div className="drawer-scroller">
-                        <div className={innerClassNames.join(' ')} onClick={this.preventClick}>
+                        <div
+                            className={innerClassNames.join(' ')}
+                            onClick={this.preventClick}
+                        >
                             {this.props.children}
                         </div>
                     </div>
                 </div>
-            </div>
-        ), this.element);
+            </div>,
+            this.element
+        );
     }
 }

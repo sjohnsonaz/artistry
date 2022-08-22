@@ -7,17 +7,26 @@ import { IScrollableExternalProps } from './Scrollable';
 import BodyScroll from '../util/BodyScroll';
 import { waitAnimation } from '../util/PromiseUtil';
 import Portal from '../util/Portal';
-import DepthStack from '../util/DepthStack';
+import DepthStack, { ICloseHandle } from '../util/DepthStack';
 
-export type ModalSize = 'none' | 'all' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large';
+export type ModalSize =
+    | 'none'
+    | 'all'
+    | 'x-small'
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'x-large';
 
-export interface IModalProps extends IGridExternalProps, IScrollableExternalProps {
-    children?: React.ReactNode
+export interface IModalProps
+    extends IGridExternalProps,
+        IScrollableExternalProps {
+    children?: React.ReactNode;
     className?: string;
     id?: string;
     open: boolean;
-    onClose?: (event: React.MouseEvent<HTMLElement>) => void;
-    onConfirm?: (event: React.MouseEvent<HTMLElement>) => void;
+    onClose?: ICloseHandle;
+    onConfirm?: ICloseHandle;
     closeable?: boolean;
     closeButton?: any;
     title?: any;
@@ -44,7 +53,7 @@ export default class Modal extends React.Component<IModalProps, IModalState> {
         super(props);
         this.state = {
             open: props.open,
-            remove: !props.open
+            remove: !props.open,
         };
         this.element = document.createElement('div');
         if (props.open) {
@@ -56,44 +65,50 @@ export default class Modal extends React.Component<IModalProps, IModalState> {
     preventClick(event: React.MouseEvent<HTMLElement>) {
         // This will let us close Modals inside Modals.
         let target = event.target as HTMLElement;
-        if (!target.classList || !(target.classList.contains('modal') || target.classList.contains('drawer'))) {
+        if (
+            !target.classList ||
+            !(
+                target.classList.contains('modal') ||
+                target.classList.contains('drawer')
+            )
+        ) {
             event.stopPropagation();
         }
     }
 
-    close = (event: React.MouseEvent<HTMLElement>) => {
+    close: ICloseHandle = (event) => {
         // TODO: Create a prop for preventing mask clicks.
         if (this.props.onClose) {
             return this.props.onClose(event);
         } else {
             return false;
         }
-    }
+    };
 
-    confirm = (event: React.MouseEvent<HTMLElement>) => {
+    confirm: ICloseHandle = (event) => {
         if (this.props.onConfirm) {
             return this.props.onConfirm(event);
         } else {
             return false;
         }
-    }
+    };
 
     transitionEnd = async (event: React.TransitionEvent<HTMLDivElement>) => {
         if (event.propertyName === 'transform') {
             if (!this.props.open) {
                 await this.setState({
-                    remove: true
+                    remove: true,
                 });
                 this.updateModalRoot();
             }
         }
-    }
+    };
 
     onScroll = (event: React.UIEvent<HTMLElement>) => {
         if (this.props.onScroll) {
             this.props.onScroll(event);
         }
-    }
+    };
 
     async componentDidUpdate(prevProps?: IModalProps) {
         if (this.props.open != prevProps.open) {
@@ -101,7 +116,7 @@ export default class Modal extends React.Component<IModalProps, IModalState> {
                 DepthStack.blur();
                 let runCount = this.runCount;
                 await this.setState({
-                    remove: false
+                    remove: false,
                 });
                 if (runCount !== this.runCount) {
                     return;
@@ -112,13 +127,13 @@ export default class Modal extends React.Component<IModalProps, IModalState> {
                 await waitAnimation();
                 await waitAnimation();
                 this.setState({
-                    open: this.props.open
+                    open: this.props.open,
                 });
                 DepthStack.push(this.close, this.confirm);
             } else {
                 BodyScroll.unlock();
                 this.setState({
-                    open: this.props.open
+                    open: this.props.open,
                 });
                 DepthStack.remove(this.close);
             }
@@ -160,7 +175,7 @@ export default class Modal extends React.Component<IModalProps, IModalState> {
             closeButton,
             title,
             header,
-            footer
+            footer,
         } = this.props;
 
         let classNames = this.props.className ? [this.props.className] : [];
@@ -178,9 +193,9 @@ export default class Modal extends React.Component<IModalProps, IModalState> {
         }
 
         if (screenSize) {
-            let sizes = (screenSize instanceof Array) ? screenSize : [screenSize];
+            let sizes = screenSize instanceof Array ? screenSize : [screenSize];
 
-            sizes.forEach(size => {
+            sizes.forEach((size) => {
                 switch (size) {
                     case 'all':
                         classNames.push('modal-all');
@@ -228,7 +243,7 @@ export default class Modal extends React.Component<IModalProps, IModalState> {
             headerSection = (
                 <div className="modal-header">
                     <div className="modal-title">{title}</div>
-                    {closeable ?
+                    {closeable ? (
                         <div className="action-bar">
                             <Button
                                 onClick={this.props.onClose}
@@ -236,16 +251,14 @@ export default class Modal extends React.Component<IModalProps, IModalState> {
                             >
                                 {closeButton || 'Close'}
                             </Button>
-                        </div> :
-                        null}
-                    <div>
-                        {header}
-                    </div>
+                        </div>
+                    ) : null}
+                    <div>{header}</div>
                 </div>
             );
         }
 
-        return ReactDOM.createPortal((
+        return ReactDOM.createPortal(
             <div
                 className={classNames.join(' ')}
                 id={this.props.id}
@@ -253,27 +266,39 @@ export default class Modal extends React.Component<IModalProps, IModalState> {
                 onScroll={this.onScroll}
             >
                 <div className="modal-background">
-                    {headerSection || footer ?
-                        <div className="modal-content" onClick={this.preventClick}>
+                    {headerSection || footer ? (
+                        <div
+                            className="modal-content"
+                            onClick={this.preventClick}
+                        >
                             {headerSection}
                             <div
-                                className={'modal-body ' + modalContentClassNames.join(' ')}
+                                className={
+                                    'modal-body ' +
+                                    modalContentClassNames.join(' ')
+                                }
                                 onScroll={this.onScroll}
                             >
                                 {this.props.children}
                             </div>
-                            {footer ?
-                                <div className="modal-footer">
-                                    {footer}
-                                </div>
-                                : undefined}
-                        </div> :
-                        <div className={'modal-content ' + modalContentClassNames.join(' ')} onClick={this.preventClick}>
+                            {footer ? (
+                                <div className="modal-footer">{footer}</div>
+                            ) : undefined}
+                        </div>
+                    ) : (
+                        <div
+                            className={
+                                'modal-content ' +
+                                modalContentClassNames.join(' ')
+                            }
+                            onClick={this.preventClick}
+                        >
                             {this.props.children}
                         </div>
-                    }
+                    )}
                 </div>
-            </div>
-        ), this.element);
+            </div>,
+            this.element
+        );
     }
 }

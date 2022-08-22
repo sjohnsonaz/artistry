@@ -3,10 +3,22 @@ export interface CustomEventListener<T = any> extends EventListener {
 }
 
 export interface CustomEventTarget<T = any> extends EventTarget {
-    addEventListener<U extends keyof T>(type: U, callback: CustomEventListener<T[U]>): void;
-    addEventListener<U extends keyof T>(type: U | string, callback: CustomEventListener<T[U]>): void;
-    removeEventListener<U extends keyof T>(type: U, callback: CustomEventListener<T[U]>): void;
-    removeEventListener<U extends keyof T>(type: U | string, callback: CustomEventListener<T[U]>): void;
+    addEventListener<U extends keyof T>(
+        type: U,
+        callback: CustomEventListener<T[U]>
+    ): void;
+    addEventListener<U extends keyof T>(
+        type: U | string,
+        callback: CustomEventListener<T[U]>
+    ): void;
+    removeEventListener<U extends keyof T>(
+        type: U,
+        callback: CustomEventListener<T[U]>
+    ): void;
+    removeEventListener<U extends keyof T>(
+        type: U | string,
+        callback: CustomEventListener<T[U]>
+    ): void;
     sendEvent<U extends keyof T>(type: U, detail?: T[U]): void;
     sendEvent<U extends keyof T>(type: U | string, detail?: T[U]): void;
 }
@@ -17,8 +29,15 @@ export default class BaseEventTarget<T = any> implements EventTarget {
     } = {};
 
     addEventListener(type: string, callback: CustomEventListener): void;
-    addEventListener<U extends keyof T>(type: U, callback: CustomEventListener<T[U]>): void;
-    addEventListener<U extends keyof T>(type: U | string, callback: CustomEventListener<T[U]>): void {
+    addEventListener<U extends keyof T>(
+        type: U,
+        callback: CustomEventListener<T[U]>
+    ): void;
+    addEventListener<U extends keyof T>(
+        type: U | string,
+        callback: CustomEventListener<T[U]>
+    ): void {
+        // @ts-expect-error
         if (!(type in this.listeners)) {
             this.listeners[type as string] = [];
         }
@@ -26,8 +45,15 @@ export default class BaseEventTarget<T = any> implements EventTarget {
     }
 
     removeEventListener(type: string, callback: CustomEventListener): void;
-    removeEventListener<U extends keyof T>(type: U, callback: CustomEventListener<T[U]>): void;
-    removeEventListener<U extends keyof T>(type: U | string, callback: CustomEventListener<T[U]>): void {
+    removeEventListener<U extends keyof T>(
+        type: U,
+        callback: CustomEventListener<T[U]>
+    ): void;
+    removeEventListener<U extends keyof T>(
+        type: U | string,
+        callback: CustomEventListener<T[U]>
+    ): void {
+        // @ts-expect-error
         if (!(type in this.listeners)) {
             return;
         }
@@ -54,7 +80,12 @@ export default class BaseEventTarget<T = any> implements EventTarget {
 
     sendEvent<U extends keyof T>(type: U, detail?: T[U]): void;
     sendEvent<U extends keyof T>(type: U | string, detail?: T[U]): void {
-        this.dispatchEvent(new CustomEvent(type as string, detail ? { detail: detail } : undefined));
+        this.dispatchEvent(
+            new CustomEvent(
+                type as string,
+                detail ? { detail: detail } : undefined
+            )
+        );
     }
 }
 

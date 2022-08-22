@@ -3,14 +3,14 @@ import Diff, { IDiffItem, DiffOperation } from '@cascade/diff';
 export enum UnitValid {
     valid = 1,
     invalid = 0,
-    incomplete = -1
+    incomplete = -1,
 }
 
 export class MaskUnit {
     type: UnitTypes;
     definition: string;
     mask: string;
-    value: string;
+    value: string = '';
 
     constructor(type: UnitTypes, definition: string) {
         this.type = type;
@@ -25,12 +25,14 @@ export class MaskUnit {
 
     isValid() {
         if (this.value) {
-            let clean = this.value.replace(/[\W_]+/g, "");
+            let clean = this.value.replace(/[\W_]+/g, '');
             if (clean.length < this.mask.length) {
                 return UnitValid.incomplete;
             } else {
                 if (this.type === UnitTypes.range) {
-                    return MaskUnit.isRangeValid(this.definition, this.value) ? UnitValid.valid : UnitValid.invalid;
+                    return MaskUnit.isRangeValid(this.definition, this.value)
+                        ? UnitValid.valid
+                        : UnitValid.invalid;
                 } else {
                     return UnitValid.valid;
                 }
@@ -90,8 +92,8 @@ export class MaskUnit {
 }
 
 export default class Mask {
-    units: MaskUnit[];
-    mask: string;
+    units: MaskUnit[] = [];
+    mask: string = '';
 
     constructor(mask: string) {
         this.parse(mask);
@@ -100,47 +102,59 @@ export default class Mask {
     parse(mask: string) {
         this.units = [];
         if (mask) {
-            mask.replace(regex, (
-                substring: string,
-                numeric: string,
-                alpha: string,
-                alphanumeric: string,
-                hexidecimal: string,
-                escaped: string,
-                //set: string,
-                range: string
-            ) => {
-                if (numeric) {
-                    let unit = new MaskUnit(UnitTypes.numeric, numeric);
-                    this.units.push(unit);
-                } else if (alpha) {
-                    let unit = new MaskUnit(UnitTypes.alpha, alpha);
-                    this.units.push(unit);
-                } else if (alphanumeric) {
-                    let unit = new MaskUnit(UnitTypes.alphanumeric, alphanumeric);
-                    this.units.push(unit);
-                } else if (hexidecimal) {
-                    let unit = new MaskUnit(UnitTypes.hexidecimal, hexidecimal);
-                    this.units.push(unit);
-                } else if (escaped) {
-                    let unit = new MaskUnit(UnitTypes.escaped, escaped);
-                    this.units.push(unit);
-                    //} else if (set) {
-                    //let unit = new MaskUnit(UnitTypes.set, set);
-                    //this.units.push(unit);
-                } else if (range) {
-                    let unit = new MaskUnit(UnitTypes.range, range);
-                    this.units.push(unit);
+            mask.replace(
+                regex,
+                (
+                    substring: string,
+                    numeric: string,
+                    alpha: string,
+                    alphanumeric: string,
+                    hexidecimal: string,
+                    escaped: string,
+                    //set: string,
+                    range: string
+                ) => {
+                    if (numeric) {
+                        let unit = new MaskUnit(UnitTypes.numeric, numeric);
+                        this.units.push(unit);
+                    } else if (alpha) {
+                        let unit = new MaskUnit(UnitTypes.alpha, alpha);
+                        this.units.push(unit);
+                    } else if (alphanumeric) {
+                        let unit = new MaskUnit(
+                            UnitTypes.alphanumeric,
+                            alphanumeric
+                        );
+                        this.units.push(unit);
+                    } else if (hexidecimal) {
+                        let unit = new MaskUnit(
+                            UnitTypes.hexidecimal,
+                            hexidecimal
+                        );
+                        this.units.push(unit);
+                    } else if (escaped) {
+                        let unit = new MaskUnit(UnitTypes.escaped, escaped);
+                        this.units.push(unit);
+                        //} else if (set) {
+                        //let unit = new MaskUnit(UnitTypes.set, set);
+                        //this.units.push(unit);
+                    } else if (range) {
+                        let unit = new MaskUnit(UnitTypes.range, range);
+                        this.units.push(unit);
+                    }
+                    return substring;
                 }
-                return substring;
-            });
+            );
         }
 
-        let cleanMask = this.units.map(unit => unit.mask).join('');
+        let cleanMask = this.units.map((unit) => unit.mask).join('');
 
-        mask = mask.replace(new RegExp(UnitRegexes.range, 'g'), (searchValue: string, range: string) => {
-            return MaskUnit.getRangeMask(range);
-        });
+        mask = mask.replace(
+            new RegExp(UnitRegexes.range, 'g'),
+            (searchValue: string, range: string) => {
+                return MaskUnit.getRangeMask(range);
+            }
+        );
 
         var output = '';
         var cleanIndex = 0;
@@ -160,7 +174,7 @@ export default class Mask {
 
     fill(value: string) {
         let remainder = value;
-        this.units.forEach(unit => {
+        this.units.forEach((unit) => {
             remainder = unit.fill(remainder);
         });
         return remainder;
@@ -189,7 +203,11 @@ export default class Mask {
 
     getMaskPosition(position: number) {
         var valueIndex = 0;
-        for (var index = 0, length = this.mask.length; index < length; index++) {
+        for (
+            var index = 0, length = this.mask.length;
+            index < length;
+            index++
+        ) {
             var character = this.mask[index];
             if (Mask.isValidCharacter(character)) {
                 valueIndex++;
@@ -205,14 +223,18 @@ export default class Mask {
         return {
             start: this.getVirtualPosition(selection.start),
             end: this.getVirtualPosition(selection.end),
-            direction: selection.direction
+            direction: selection.direction,
         };
     }
 
     formatClean(clean: string, allowLessValid: boolean = false) {
         let cleanMask = Mask.cleanValue(this.mask);
 
-        let diff = Diff.compare(cleanMask.split('').reverse().join(''), clean.split('').reverse().join(''), compareChars);
+        let diff = Diff.compare(
+            cleanMask.split('').reverse().join(''),
+            clean.split('').reverse().join(''),
+            compareChars
+        );
 
         let lcs = createLCS(diff);
         if (!allowLessValid && lcs.length < clean.length) {
@@ -228,7 +250,11 @@ export default class Mask {
 
         var output = '';
         var cleanIndex = 0;
-        for (var index = 0, length = this.mask.length; index < length; index++) {
+        for (
+            var index = 0, length = this.mask.length;
+            index < length;
+            index++
+        ) {
             var character = this.mask[index];
             if (Mask.isValidCharacter(character)) {
                 output += cleanSpaces[cleanIndex] || ' ';
@@ -245,15 +271,23 @@ export default class Mask {
         return this.formatClean(clean, allowLessValid);
     }
 
-    updateSelection(value: string, selection: ISelection, keyboardMovement: KeyboardMovement = KeyboardMovement.none): IMaskUpdate {
+    updateSelection(
+        value: string,
+        selection: ISelection,
+        keyboardMovement: KeyboardMovement = KeyboardMovement.none
+    ): IMaskUpdate {
         let clean = Mask.cleanValueWithSpaces(value);
         let virtualSelection = this.getVirtualSelection(selection);
         let selectionStart: number;
         let selectionEnd: number;
         switch (keyboardMovement) {
             case KeyboardMovement.none:
-                selectionStart = this.getMaskPosition(Math.min(clean.length, virtualSelection.start));
-                selectionEnd = this.getMaskPosition(Math.min(clean.length, virtualSelection.end));
+                selectionStart = this.getMaskPosition(
+                    Math.min(clean.length, virtualSelection.start)
+                );
+                selectionEnd = this.getMaskPosition(
+                    Math.min(clean.length, virtualSelection.end)
+                );
                 break;
             case KeyboardMovement.home:
                 selectionStart = this.getMaskPosition(0);
@@ -264,17 +298,21 @@ export default class Mask {
                 selectionEnd = selectionStart;
                 break;
             case KeyboardMovement.left:
-                selectionStart = this.getMaskPosition(virtualSelection.start - 1);
+                selectionStart = this.getMaskPosition(
+                    virtualSelection.start - 1
+                );
                 selectionEnd = selectionStart;
                 break;
             case KeyboardMovement.right:
-                selectionStart = this.getMaskPosition(Math.min(clean.length, virtualSelection.start + 1));
+                selectionStart = this.getMaskPosition(
+                    Math.min(clean.length, virtualSelection.start + 1)
+                );
                 selectionEnd = selectionStart;
                 break;
         }
         return {
             selectionStart: selectionStart,
-            selectionEnd: selectionEnd
+            selectionEnd: selectionEnd,
         };
     }
 
@@ -287,7 +325,6 @@ export default class Mask {
         for (let index = 0, length = diff.length; index < length; index++) {
             let diffItem = diff[index];
             if (diffItem.operation === -1) {
-
             }
             if (diffItem.operation === 0) {
                 position++;
@@ -303,7 +340,7 @@ export default class Mask {
         return {
             value: value,
             selectionStart: selectionPosition,
-            selectionEnd: selectionPosition
+            selectionEnd: selectionPosition,
         };
     }
 
@@ -312,33 +349,41 @@ export default class Mask {
         let virtualSelection = this.getVirtualSelection(selection);
 
         if (virtualSelection.start === virtualSelection.end) {
-            let updatedClean = forward ?
-                clean.slice(0, virtualSelection.start) + clean.slice(virtualSelection.end + 1) :
-                clean.slice(0, virtualSelection.start - 1) + clean.slice(virtualSelection.end);
+            let updatedClean = forward
+                ? clean.slice(0, virtualSelection.start) +
+                  clean.slice(virtualSelection.end + 1)
+                : clean.slice(0, virtualSelection.start - 1) +
+                  clean.slice(virtualSelection.end);
             let updatedValue = this.formatClean(updatedClean, true);
 
-            let selectionPosition = this.getMaskPosition(forward ? virtualSelection.start : (virtualSelection.start - 1));
+            let selectionPosition = this.getMaskPosition(
+                forward ? virtualSelection.start : virtualSelection.start - 1
+            );
             return {
                 value: updatedValue,
                 selectionStart: selectionPosition,
-                selectionEnd: selectionPosition
+                selectionEnd: selectionPosition,
             };
         } else {
-            let updatedClean = clean.slice(0, virtualSelection.start) + clean.slice(virtualSelection.end);
+            let updatedClean =
+                clean.slice(0, virtualSelection.start) +
+                clean.slice(virtualSelection.end);
             let updatedValue = this.formatClean(updatedClean, true);
 
-            let selectionPosition = this.getMaskPosition(Math.min(updatedClean.length, virtualSelection.start));
+            let selectionPosition = this.getMaskPosition(
+                Math.min(updatedClean.length, virtualSelection.start)
+            );
             return {
                 value: updatedValue,
                 selectionStart: selectionPosition,
-                selectionEnd: selectionPosition
+                selectionEnd: selectionPosition,
             };
         }
     }
 
     static cleanValue(value: string) {
         if (typeof value === 'string') {
-            return value.replace(/[\W_]+/g, "");
+            return value.replace(/[\W_]+/g, '');
         } else {
             return '';
         }
@@ -346,7 +391,7 @@ export default class Mask {
 
     static cleanValueWithSpaces(value: string) {
         if (typeof value === 'string') {
-            let clean = value.replace(/[\W]+/g, "");
+            let clean = value.replace(/[\W]+/g, '');
             let length = clean.replace(/[_]/g, ' ').trim().length;
             return clean.substring(0, length);
         } else {
@@ -380,7 +425,7 @@ enum UnitTypes {
     hexidecimal = 'hexidecimal',
     escaped = 'escaped',
     //set = 'set',
-    range = 'range'
+    range = 'range',
 }
 
 enum UnitRegexes {
@@ -390,25 +435,28 @@ enum UnitRegexes {
     hexidecimal = '(0)',
     escaped = '(\\\\.)',
     //set = '\\[([^\\[\\]]*)\\]',
-    range = '\\[\\[([^\\[\\]]*)\\]\\]'
+    range = '\\[\\[([^\\[\\]]*)\\]\\]',
 }
 
-let regex = new RegExp([
-    UnitRegexes.numeric,
-    UnitRegexes.alpha,
-    UnitRegexes.alphanumeric,
-    UnitRegexes.hexidecimal,
-    UnitRegexes.escaped,
-    //UnitRegexes.set,
-    UnitRegexes.range
-].join('|'), 'g');
+let regex = new RegExp(
+    [
+        UnitRegexes.numeric,
+        UnitRegexes.alpha,
+        UnitRegexes.alphanumeric,
+        UnitRegexes.hexidecimal,
+        UnitRegexes.escaped,
+        //UnitRegexes.set,
+        UnitRegexes.range,
+    ].join('|'),
+    'g'
+);
 
 export enum ValidCharacter {
     placeholder = '_',
     alpha = 'a',
     number = '9',
     alphanumeric = 'n',
-    hexadecimal = '0'
+    hexadecimal = '0',
 }
 
 export interface ISelection {
@@ -428,7 +476,7 @@ export enum KeyboardMovement {
     home,
     end,
     left,
-    right
+    right,
 }
 
 function compareChars(maskChar: string, valueChar: string) {

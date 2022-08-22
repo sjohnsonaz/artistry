@@ -1,22 +1,21 @@
-import * as React from 'react';
+import React from 'react';
 import MaskedInput from './MaskedInput';
 
-export interface ITimeInputProps extends React.HTMLProps<HTMLInputElement> {
+export interface ITimeInputProps
+    extends React.InputHTMLAttributes<HTMLInputElement> {
     seconds?: boolean;
     value?: string;
     fill?: boolean;
 }
 
-export interface ITimeInputState {
-}
+export interface ITimeInputState {}
 
-export default class TimeInput extends React.Component<ITimeInputProps, ITimeInputState> {
+export default class TimeInput extends React.Component<
+    ITimeInputProps,
+    ITimeInputState
+> {
     render() {
-        let {
-            seconds,
-            value,
-            ...props
-        } = this.props;
+        let { seconds, value, ...props } = this.props;
 
         let date = new Date(value);
 
@@ -32,11 +31,7 @@ export default class TimeInput extends React.Component<ITimeInputProps, ITimeInp
         }
 
         return (
-            <MaskedInput
-                {...props as any}
-                mask={mask}
-                value={timeString}
-            />
+            <MaskedInput {...(props as any)} mask={mask} value={timeString} />
         );
     }
 }

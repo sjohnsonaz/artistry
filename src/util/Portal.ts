@@ -4,13 +4,14 @@ export default class Portal {
     } = {};
 
     static addElement(name: string, element: HTMLElement | string) {
-        if (typeof element === 'string') {
-            element = document.getElementById(element);
-        }
-        if (!element) {
+        const newElement =
+            typeof element === 'string'
+                ? document.getElementById(element)
+                : element;
+        if (!newElement) {
             throw new Error('No Portal element found');
         }
-        this.elements[name] = element;
+        this.elements[name] = newElement;
     }
 
     static removeElement(name: string) {

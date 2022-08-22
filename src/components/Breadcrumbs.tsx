@@ -10,12 +10,12 @@ export interface IBreadcrumbs {
 
 const BREADCRUMBS = 'breadcrumbs';
 
-export function Breadcrumbs({ id, className }: IBreadcrumbs) {
+export function Breadcrumbs({ children, id, className }: IBreadcrumbs) {
     const classNames = new ClassNames(className, BREADCRUMBS);
 
     return (
         <div className={classNames.toString()} id={id}>
-            {this.props.children}
+            {children}
         </div>
     );
 }

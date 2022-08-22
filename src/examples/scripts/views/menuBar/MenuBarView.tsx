@@ -1,43 +1,44 @@
 import * as React from 'react';
 
-import { MenuBar, MenuBarLink, UserThumbnail, Spacer } from '../../../../modules/ArtistryReact';
+import {
+    MenuBar,
+    MenuBarLink,
+    UserThumbnail,
+    Spacer,
+} from '../../../../modules/ArtistryReact';
+import { ICloseHandle } from '../../../../util/DepthStack';
 
-export interface IMenuBarViewProps {
-
-}
+export interface IMenuBarViewProps {}
 
 export interface IMenuBarViewState {
     userMenuOpen: boolean;
 }
 
-export default class MenuBarView extends React.Component<IMenuBarViewProps, IMenuBarViewState> {
-    constructor(props?: IMenuBarViewProps) {
+export default class MenuBarView extends React.Component<
+    IMenuBarViewProps,
+    IMenuBarViewState
+> {
+    constructor(props: IMenuBarViewProps) {
         super(props);
         this.state = {
-            userMenuOpen: false
+            userMenuOpen: false,
         };
     }
 
     toggleUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         this.setState({ userMenuOpen: !this.state.userMenuOpen });
-    }
+    };
 
-    closeUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    closeUserMenu: ICloseHandle = (event) => {
         event.preventDefault();
         this.setState({ userMenuOpen: false });
-    }
+    };
+
     render() {
         return (
-            <MenuBar
-                top
-                title="React Artistry"
-            >
-                <MenuBarLink
-                    active
-                    title="Home"
-                    href="#"
-                />
+            <MenuBar top title="React Artistry">
+                <MenuBarLink active title="Home" href="#" />
                 <Spacer />
                 <MenuBarLink
                     noLink
@@ -46,7 +47,7 @@ export default class MenuBarView extends React.Component<IMenuBarViewProps, IMen
                             src="https://placebear.com/50/50"
                             placeholder="C"
                             size="small"
-                            popover={"Logout"}
+                            popover={'Logout'}
                             popoverDirection="bottom"
                             popoverAlign="right"
                             popoverSpace
@@ -61,7 +62,7 @@ export default class MenuBarView extends React.Component<IMenuBarViewProps, IMen
                             placeholder="C"
                             size="small"
                             onClick={this.toggleUserMenu}
-                            popover={"Logout"}
+                            popover={'Logout'}
                             popoverDirection="bottom"
                             popoverAlign="right"
                             popoverMenu

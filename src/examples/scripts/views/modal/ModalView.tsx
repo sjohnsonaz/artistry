@@ -1,10 +1,13 @@
 import * as React from 'react';
 
-import { Button, ButtonBar, Modal, Section } from '../../../../modules/ArtistryReact';
+import {
+    Button,
+    ButtonBar,
+    Modal,
+    Section,
+} from '../../../../modules/ArtistryReact';
 
-export interface IModalViewProps {
-
-}
+export interface IModalViewProps {}
 
 export interface IModalViewState {
     modalOpen: boolean;
@@ -12,44 +15,47 @@ export interface IModalViewState {
     innerModalOpen: boolean;
 }
 
-export default class ModalView extends React.Component<IModalViewProps, IModalViewState> {
-    constructor(props?: IModalViewProps) {
+export default class ModalView extends React.Component<
+    IModalViewProps,
+    IModalViewState
+> {
+    constructor(props: IModalViewProps) {
         super(props);
         this.state = {
             modalOpen: false,
             modalLock: false,
-            innerModalOpen: false
+            innerModalOpen: false,
         };
     }
 
     openModal = () => {
         this.setState({ modalOpen: true });
-    }
+    };
 
     closeModal = () => {
         this.setState({ modalOpen: false });
         console.log('close');
-    }
+    };
 
     confirmModal = () => {
         this.setState({ modalOpen: false });
         console.log('confirm');
-    }
+    };
 
     openInnerModal = () => {
         this.setState({ innerModalOpen: true });
-    }
+    };
 
     closeInnerModal = () => {
         this.setState({ innerModalOpen: false });
-    }
+    };
 
     lockModal = () => {
         this.setState({ modalLock: true });
         window.setTimeout(() => {
             this.setState({ modalLock: false });
         }, 1000);
-    }
+    };
 
     render() {
         return (
@@ -69,7 +75,9 @@ export default class ModalView extends React.Component<IModalViewProps, IModalVi
                 >
                     <div>test</div>
                     <ButtonBar>
-                        <Button onClick={this.openInnerModal}>Open Inner Modal</Button>
+                        <Button onClick={this.openInnerModal}>
+                            Open Inner Modal
+                        </Button>
                         <Button onClick={this.lockModal}>Lock Modal</Button>
                     </ButtonBar>
                     <Modal

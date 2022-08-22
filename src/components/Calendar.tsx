@@ -70,7 +70,7 @@ export default class Calendar extends React.Component<ICalendarProps, any> {
         this.setState({ year: this.state.year - 1 });
     };
 
-    selectDay = (day) => {
+    selectDay = (day: Date) => {
         if (this.props.onSelect) {
             this.props.onSelect(day);
         }

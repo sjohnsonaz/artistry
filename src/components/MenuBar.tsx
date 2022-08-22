@@ -4,13 +4,13 @@ import * as ReactDOM from 'react-dom';
 import Portal from '../util/Portal';
 
 export interface IMenuBarProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     className?: string;
     id?: string;
     title?: any;
     top?: boolean;
     open?: boolean;
-    onOpen?: (event: MouseEvent) => boolean | void;
+    onOpen?: React.MouseEventHandler;
 }
 
 export default class MenuBar extends React.Component<IMenuBarProps, any> {
@@ -37,12 +37,12 @@ export default class MenuBar extends React.Component<IMenuBarProps, any> {
         }
     }
 
-    onOpen(event: MouseEvent) {
+    onOpen: React.MouseEventHandler = (event) => {
         event.preventDefault();
         if (this.props.onOpen) {
             this.props.onOpen(event);
         }
-    }
+    };
 
     render() {
         let classNames = this.props.className ? [this.props.className] : [];
@@ -60,19 +60,22 @@ export default class MenuBar extends React.Component<IMenuBarProps, any> {
         if (this.props.title) {
             menuBarTitle = (
                 <div className="menu-bar-title">{this.props.title}</div>
-            )
+            );
         }
 
-        return ReactDOM.createPortal((
+        return ReactDOM.createPortal(
             <div className={classNames.join(' ')} id={this.props.id}>
-                {this.props.top ? <div className="menu-bar-expander">
-                    <a href="#" onClick={this.onOpen.bind(this)}>&#9776;</a>
-                </div> : undefined}
+                {this.props.top ? (
+                    <div className="menu-bar-expander">
+                        <a href="#" onClick={this.onOpen}>
+                            &#9776;
+                        </a>
+                    </div>
+                ) : undefined}
                 {menuBarTitle}
-                <ul>
-                    {this.props.children}
-                </ul>
-            </div>
-        ), this.element);
+                <ul>{this.props.children}</ul>
+            </div>,
+            this.element
+        );
     }
 }

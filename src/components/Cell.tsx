@@ -4,7 +4,7 @@ import { alignClass, AlignType } from '../util/Align';
 import ClassNames from '../util/ClassNames';
 
 export interface ICellProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     className?: string;
     id?: string;
     columns?: number;
@@ -16,15 +16,8 @@ export interface ICellProps {
 
 export default class Cell extends React.Component<ICellProps, any> {
     render() {
-        let {
-            id,
-            className,
-            columns,
-            offset,
-            align,
-            width,
-            leftMargin
-        } = this.props;
+        let { id, className, columns, offset, align, width, leftMargin } =
+            this.props;
 
         let classNames = new ClassNames(className);
         if (columns) {
@@ -40,7 +33,7 @@ export default class Cell extends React.Component<ICellProps, any> {
         }
 
         let fixed = false;
-        let style = {};
+        let style: Record<string, string | number> = {};
         if (width) {
             if (typeof width === 'number') {
                 width += 'px' as any;
@@ -59,12 +52,10 @@ export default class Cell extends React.Component<ICellProps, any> {
             classNames.add('col-fixed');
         }
 
-        return <div
-            className={classNames.toString()}
-            id={id}
-            style={style as any}
-        >
-            {this.props.children}
-        </div>
+        return (
+            <div className={classNames.toString()} id={id} style={style as any}>
+                {this.props.children}
+            </div>
+        );
     }
 }

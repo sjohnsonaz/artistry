@@ -20,6 +20,7 @@ export interface IActionBarProps {
 const ACTION_BAR = 'action-bar';
 
 export function ActionBar({
+    children,
     id,
     className,
     direction,
@@ -36,7 +37,7 @@ export function ActionBar({
             data-align={align}
             data-size={displaySize}
         >
-            {this.props.children}
+            {children}
         </div>
     );
 }

@@ -1,11 +1,20 @@
 import * as React from 'react';
 
-import { ActionBar, AmountInput, Button, Divider, Form, FormGroup, Input, FormText, Section, TimePicker } from '../../../../modules/ArtistryReact';
+import {
+    ActionBar,
+    AmountInput,
+    Button,
+    Divider,
+    Form,
+    FormGroup,
+    Input,
+    FormText,
+    Section,
+    TimePicker,
+} from '../../../../modules/ArtistryReact';
 import TimeInput from '../../../../components/TimeInput';
 
-export interface IFormViewProps {
-
-}
+export interface IFormViewProps {}
 
 export interface IFormViewState {
     date?: Date;
@@ -15,21 +24,21 @@ export interface IFormViewState {
 export default class FormView extends React.Component<IFormViewProps, any> {
     state: IFormViewState = {
         date: new Date(Date.now()),
-        amount: 0
-    }
+        amount: 0,
+    };
 
     render() {
         return (
             <Section header="Form" headerSpace>
                 <Form
                     screenSize="small"
-                    onEnter={(event: KeyboardEvent) => {
+                    onEnter={(event) => {
                         event.preventDefault();
-                        console.log('enter')
+                        console.log('enter');
                     }}
-                    onEscape={(event: KeyboardEvent) => {
+                    onEscape={(event) => {
                         event.preventDefault();
-                        console.log('escape')
+                        console.log('escape');
                     }}
                 >
                     <FormGroup label="Value">
@@ -91,14 +100,16 @@ export default class FormView extends React.Component<IFormViewProps, any> {
                             fill
                             value={this.state.date.toUTCString()}
                             onChange={(event) => {
-                                let value = (event.target as any).value;
+                                let value = event.target.value;
                                 let date = new Date(this.state.date);
-                                let parts = value.split(':').map(part => parseInt(part));
+                                let parts = value
+                                    .split(':')
+                                    .map((part) => parseInt(part));
                                 if (parts) {
                                     date.setHours(parts[0], parts[1]);
                                 }
                                 this.setState({
-                                    date: date
+                                    date: date,
                                 });
                                 console.log(date);
                             }}
@@ -111,7 +122,7 @@ export default class FormView extends React.Component<IFormViewProps, any> {
                                 event;
                                 if (date) {
                                     this.setState({
-                                        date: date
+                                        date: date,
                                     });
                                     console.log(date);
                                 }
@@ -124,25 +135,32 @@ export default class FormView extends React.Component<IFormViewProps, any> {
                             seconds
                             value={this.state.date.toUTCString()}
                             onChange={(event) => {
-                                let value = (event.target as any).value;
+                                let value = event.target.value;
                                 let date = new Date(this.state.date);
-                                let parts = value.split(':').map(part => parseInt(part));
+                                let parts = value
+                                    .split(':')
+                                    .map((part) => parseInt(part));
                                 if (parts) {
                                     date.setHours(parts[0], parts[1], parts[2]);
                                 }
                                 this.setState({
-                                    date: date
+                                    date: date,
                                 });
                                 console.log(date);
                             }}
                         />
                     </FormGroup>
                     <FormGroup label="Amount" nonLabel>
-                        <AmountInput value={this.state.amount} minimum={1} maximum={10} onChange={(value) => {
-                            this.setState({
-                                amount: value
-                            });
-                        }} />
+                        <AmountInput
+                            value={this.state.amount}
+                            minimum={1}
+                            maximum={10}
+                            onChange={(value) => {
+                                this.setState({
+                                    amount: value,
+                                });
+                            }}
+                        />
                     </FormGroup>
                     <Divider />
                     <ActionBar>

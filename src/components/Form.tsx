@@ -1,6 +1,12 @@
 import * as React from 'react';
 
-export type FormSize = 'none' | 'small' | 'medium' | 'large' | 'x-large' | 'stacked';
+export type FormSize =
+    | 'none'
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'x-large'
+    | 'stacked';
 
 export interface IFormProps extends React.HTMLProps<HTMLFormElement> {
     // TODO: Change this to size when the React typings allow.
@@ -8,12 +14,12 @@ export interface IFormProps extends React.HTMLProps<HTMLFormElement> {
     lockable?: boolean;
     locked?: boolean;
     nonForm?: boolean;
-    onEnter?: (event: KeyboardEvent) => any;
-    onEscape?: (event: KeyboardEvent) => any;
+    onEnter?: React.KeyboardEventHandler;
+    onEscape?: React.KeyboardEventHandler;
 }
 
 export default class Form extends React.Component<IFormProps, any> {
-    onKeyDown(event: KeyboardEvent) {
+    onKeyDown(event: React.KeyboardEvent) {
         switch (event.keyCode) {
             case 13:
                 this.props.onEnter(event);
@@ -60,22 +66,29 @@ export default class Form extends React.Component<IFormProps, any> {
                 break;
         }
 
-        let onKeyDown = (onEnter || onEscape) ? this.onKeyDown.bind(this) : undefined;
+        let onKeyDown =
+            onEnter || onEscape ? this.onKeyDown.bind(this) : undefined;
         if (nonForm) {
             return (
-                <div id={id} className={classNames.join(' ')} onKeyDown={onKeyDown} {...props as any}>
-                    {lockable ?
-                        <div className="form-lock-screen"></div> :
-                        null}
+                <div
+                    id={id}
+                    className={classNames.join(' ')}
+                    onKeyDown={onKeyDown}
+                    {...(props as any)}
+                >
+                    {lockable ? <div className="form-lock-screen"></div> : null}
                     {this.props.children}
                 </div>
             );
         } else {
             return (
-                <form id={id} className={classNames.join(' ')} onKeyDown={onKeyDown} {...props}>
-                    {lockable ?
-                        <div className="form-lock-screen"></div> :
-                        null}
+                <form
+                    id={id}
+                    className={classNames.join(' ')}
+                    onKeyDown={onKeyDown}
+                    {...props}
+                >
+                    {lockable ? <div className="form-lock-screen"></div> : null}
                     {this.props.children}
                 </form>
             );

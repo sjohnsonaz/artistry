@@ -4,7 +4,7 @@ export interface ICloseHandle {
 
 export interface ICloseItem {
     close: ICloseHandle;
-    confirm: ICloseHandle;
+    confirm?: ICloseHandle;
 }
 
 export default class DepthStack {
@@ -13,13 +13,13 @@ export default class DepthStack {
     static push(close: ICloseHandle, confirm?: ICloseHandle) {
         this.items.push({
             close: close,
-            confirm: confirm
+            confirm: confirm,
         });
     }
 
     static remove(close: ICloseHandle) {
-        let index = this.items.findIndex(closeItem => {
-            return (closeItem.close === close) || (closeItem.confirm === close);
+        let index = this.items.findIndex((closeItem) => {
+            return closeItem.close === close || closeItem.confirm === close;
         });
         if (index > -1) {
             this.items.splice(index, 1);

@@ -1,44 +1,68 @@
 import * as React from 'react';
 
 export type ScrollableType =
-    'auto' |
-    'both' |
-    'none' |
-    'x' |
-    'y' |
-    'xAlways' |
-    'yAlways' |
-    'xNever' |
-    'yNever';
+    | 'auto'
+    | 'both'
+    | 'none'
+    | 'x'
+    | 'y'
+    | 'xAlways'
+    | 'yAlways'
+    | 'xNever'
+    | 'yNever';
 
 export enum ScrollableTypeEnum {
-    auto = "auto",
-    both = "both",
-    none = "none",
-    x = "x",
-    y = "y",
-    xAlways = "x-always",
-    yAlways = "y-always",
-    xNever = "x-never",
-    yNever = "y-never"
+    auto = 'auto',
+    both = 'both',
+    none = 'none',
+    x = 'x',
+    y = 'y',
+    xAlways = 'x-always',
+    yAlways = 'y-always',
+    xNever = 'x-never',
+    yNever = 'y-never',
 }
 
 export interface IScrollableExternalProps {
     scrollType?: ScrollableType;
     bumper?: number;
     onScroll?: (event?: React.UIEvent<HTMLElement>) => any;
-    onTopEnter?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onTopExit?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onRightEnter?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onRightExit?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onBottomEnter?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onBottomExit?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onLeftEnter?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onLeftExit?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
+    onTopEnter?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onTopExit?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onRightEnter?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onRightExit?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onBottomEnter?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onBottomExit?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onLeftEnter?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onLeftExit?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
 }
 
 export interface IScrollableProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     id?: string;
     className?: string;
     type?: ScrollableType;
@@ -46,14 +70,38 @@ export interface IScrollableProps {
     maxHeight?: number | string;
     bumper?: number | string;
     onScroll?: (event?: React.UIEvent<HTMLElement>) => any;
-    onTopEnter?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onTopExit?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onRightEnter?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onRightExit?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onBottomEnter?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onBottomExit?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onLeftEnter?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
-    onLeftExit?: (entries: IntersectionObserverEntry, observer: IntersectionObserver) => any;
+    onTopEnter?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onTopExit?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onRightEnter?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onRightExit?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onBottomEnter?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onBottomExit?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onLeftEnter?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
+    onLeftExit?: (
+        entries: IntersectionObserverEntry,
+        observer: IntersectionObserver
+    ) => any;
 }
 
 export default class Scrollable extends React.Component<IScrollableProps, any> {
@@ -73,7 +121,7 @@ export default class Scrollable extends React.Component<IScrollableProps, any> {
         if (this.props.onScroll) {
             this.props.onScroll(event);
         }
-    }
+    };
 
     componentDidMount() {
         let root = this.root.current;
@@ -82,8 +130,11 @@ export default class Scrollable extends React.Component<IScrollableProps, any> {
         let bottomBumper = this.bottomBumper.current;
         let leftBumper = this.leftBumper.current;
         this.rootObserver = new IntersectionObserver(
-            (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-                entries.forEach(entry => {
+            (
+                entries: IntersectionObserverEntry[],
+                observer: IntersectionObserver
+            ) => {
+                entries.forEach((entry) => {
                     switch (entry.target.className) {
                         case 'scrollable-bumper-top':
                             if (entry.isIntersecting !== this.topIntersected) {
@@ -101,10 +152,15 @@ export default class Scrollable extends React.Component<IScrollableProps, any> {
                             }
                             break;
                         case 'scrollable-bumper-right':
-                            if (entry.isIntersecting !== this.rightIntersected) {
+                            if (
+                                entry.isIntersecting !== this.rightIntersected
+                            ) {
                                 if (entry.isIntersecting) {
                                     if (this.props.onRightEnter) {
-                                        this.props.onRightEnter(entry, observer);
+                                        this.props.onRightEnter(
+                                            entry,
+                                            observer
+                                        );
                                     }
                                     this.rightIntersected = true;
                                 } else {
@@ -116,15 +172,23 @@ export default class Scrollable extends React.Component<IScrollableProps, any> {
                             }
                             break;
                         case 'scrollable-bumper-bottom':
-                            if (entry.isIntersecting !== this.bottomIntersected) {
+                            if (
+                                entry.isIntersecting !== this.bottomIntersected
+                            ) {
                                 if (entry.isIntersecting) {
                                     if (this.props.onBottomEnter) {
-                                        this.props.onBottomEnter(entry, observer);
+                                        this.props.onBottomEnter(
+                                            entry,
+                                            observer
+                                        );
                                     }
                                     this.bottomIntersected = true;
                                 } else {
                                     if (this.props.onBottomExit) {
-                                        this.props.onBottomExit(entry, observer);
+                                        this.props.onBottomExit(
+                                            entry,
+                                            observer
+                                        );
                                     }
                                     this.bottomIntersected = false;
                                 }
@@ -147,11 +211,13 @@ export default class Scrollable extends React.Component<IScrollableProps, any> {
                             break;
                     }
                 });
-            }, {
+            },
+            {
                 root: root,
                 rootMargin: '0px',
-                threshold: [0]
-            });
+                threshold: [0],
+            }
+        );
         this.rootObserver.observe(topBumper);
         this.rootObserver.observe(rightBumper);
         this.rootObserver.observe(bottomBumper);
@@ -165,14 +231,7 @@ export default class Scrollable extends React.Component<IScrollableProps, any> {
     }
 
     render() {
-        let {
-            id,
-            className,
-            type,
-            height,
-            maxHeight,
-            bumper
-        } = this.props;
+        let { id, className, type, height, maxHeight, bumper } = this.props;
         let classNames = className ? [className] : [];
         classNames.push('scrollable');
 
@@ -190,7 +249,7 @@ export default class Scrollable extends React.Component<IScrollableProps, any> {
 
         let style: React.CSSProperties = {};
         if (bumper) {
-            style['--scrollable-bumper-size'] = bumper
+            style['--scrollable-bumper-size'] = bumper;
         }
         if (height) {
             style.height = height;
