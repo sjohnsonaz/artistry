@@ -9,6 +9,7 @@ interface IActionBarItem {
 }
 
 export interface IActionBarBreadcrumbProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     items?: IActionBarItem[];
@@ -108,6 +109,7 @@ export default class ActionBarBreadcrumb extends React.Component<IActionBarBread
 }
 
 export interface IActionBarItemProps {
+    children?: React.ReactNode
     observer: IntersectionObserver;
 }
 

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export interface IButtonBarProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
 }

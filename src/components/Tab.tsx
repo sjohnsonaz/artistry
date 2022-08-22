@@ -4,6 +4,7 @@ import Carousel from './Carousel';
 import { ScrollableType } from './Scrollable';
 
 export interface ITabProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     titles: any[];

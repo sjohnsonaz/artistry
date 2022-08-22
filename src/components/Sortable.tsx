@@ -10,9 +10,9 @@ export default class Sortable extends React.Component<ISortableProps, any> {
     render() {
         return (
             <div>
-                {this.props.items.map((item) => {
+                {this.props.items.map((item) => 
                     <Draggable item={item} />
-                })}
+                )}
             </div>
         );
     }

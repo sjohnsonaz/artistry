@@ -3,6 +3,7 @@ import * as React from 'react';
 import { setState } from '../util/PromiseUtil';
 
 export interface ICloseableProps {
+    children?: React.ReactNode
     id?: string;
     className?: string;
     closed?: boolean;

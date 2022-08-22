@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export interface IPopoverProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     direction?: 'top' | 'right' | 'bottom' | 'left';

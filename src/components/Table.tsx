@@ -80,6 +80,7 @@ export default class Table<T> extends React.Component<ITableProps<T>, any> {
                             if (column.template) {
                                 return column.template(item);
                             } else if (column.property) {
+                                // @ts-expect-error
                                 return <td key={'td-' + index}>{item[column.property]}</td>
                             } else {
                                 return <td key={'td-' + index}></td>

@@ -7,6 +7,7 @@ import ClassNames from '../util/ClassNames';
 export type NotificationLocation = 'default' | 'top' | 'right' | 'bottom' | 'left' | 'center-horizontal' | 'center-vertical' | 'top-right' | 'bottom-right' | 'bottom-left' | 'top-left';
 
 export interface INotificationContainerProps {
+    children?: React.ReactNode
     id?: string;
     className?: string;
     location?: NotificationLocation;

@@ -6,6 +6,7 @@ import ClassNames from '../util/ClassNames';
 import { Animation } from '../abilities/Animatable';
 
 export interface INotificationProps extends INotification {
+    children?: React.ReactNode
     id?: string;
     className?: string;
     clickable?: boolean;

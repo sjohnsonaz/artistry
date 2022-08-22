@@ -3,6 +3,7 @@ import * as React from 'react';
 export type ProgressBarType = 'default' | 'success' | 'info' | 'warning' | 'danger';
 
 export interface IProgressBarProps {
+    children?: React.ReactNode
     id?: string;
     className?: string;
     value?: number;

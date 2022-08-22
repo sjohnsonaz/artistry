@@ -30,7 +30,7 @@ export { default as DatePicker, IDatePickerProps } from '../components/DatePicke
 export { default as DepthStackInterceptor, IDepthStackInterceptorProps } from '../components/DepthStackInterceptor';
 export { default as Divider, IDividerProps } from '../components/Divider';
 export { default as Drawer, IDrawerProps } from '../components/Drawer';
-export { default as EventContainer, IEventContainer } from '../components/EventContainer';
+export { default as EventContainer, IEventContainerProps as IEventContainer } from '../components/EventContainer';
 export { default as FileUpload, IFileUploadProps } from '../components/FileUpload';
 export { default as Fillable, IFillableProps, IFillableState } from '../components/Fillable';
 export { default as Form, IFormProps, FormSize } from '../components/Form';

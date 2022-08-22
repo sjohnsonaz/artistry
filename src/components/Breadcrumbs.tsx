@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export interface IBreadcrumbs {
+    children?: React.ReactNode
     id?: string;
     className?: string;
 }

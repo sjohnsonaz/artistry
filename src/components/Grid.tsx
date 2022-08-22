@@ -3,6 +3,7 @@ import * as React from 'react';
 export type GridSize = 'default' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large';
 
 export interface IGridProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     columns?: number;

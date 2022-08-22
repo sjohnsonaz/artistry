@@ -4,6 +4,7 @@ import { alignClass, AlignType } from '../util/Align';
 import ClassNames from '../util/ClassNames';
 
 export interface ICellProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     columns?: number;

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export interface IRowProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     reverse?: boolean;

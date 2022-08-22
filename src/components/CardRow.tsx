@@ -4,6 +4,7 @@ import { alignClass, AlignType } from '../util/Align';
 import ClassNames from '../util/ClassNames';
 
 export interface ICardRowProps {
+    children?: React.ReactNode
     id?: string;
     className?: string;
     align?: AlignType;

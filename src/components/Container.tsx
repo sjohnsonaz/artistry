@@ -3,6 +3,7 @@ import * as React from 'react';
 export type ContainerSize = 'none' | 'all' | 'small' | 'medium' | 'large' | 'x-large';
 
 export interface IContainerProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     menuBarTop?: boolean;

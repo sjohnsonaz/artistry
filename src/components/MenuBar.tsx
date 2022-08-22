@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom';
 import Portal from '../util/Portal';
 
 export interface IMenuBarProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     title?: any;

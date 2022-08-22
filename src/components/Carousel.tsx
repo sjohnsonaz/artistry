@@ -5,6 +5,7 @@ import { setState, waitAnimation } from '../util/PromiseUtil';
 import { ScrollableType } from './Scrollable';
 
 export interface ICarouselProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     activeIndex: number;

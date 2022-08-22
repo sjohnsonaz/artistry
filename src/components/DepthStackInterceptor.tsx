@@ -2,7 +2,7 @@ import * as React from 'react';
 import DepthStack from '../util/DepthStack';
 
 export interface IDepthStackInterceptorProps {
-
+    children?: React.ReactNode
 }
 
 export default class DepthStackInterceptor extends React.Component<IDepthStackInterceptorProps, any> {

@@ -12,6 +12,7 @@ import DepthStack from '../util/DepthStack';
 export type ModalSize = 'none' | 'all' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large';
 
 export interface IModalProps extends IGridExternalProps, IScrollableExternalProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     open: boolean;

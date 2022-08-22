@@ -6,6 +6,7 @@ import { AlignType, alignClass } from '../util/Align';
 export type FormTextTheme = 'default' | 'success' | 'info' | 'warning' | 'danger';
 
 export interface IFormTextProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     fill?: boolean;

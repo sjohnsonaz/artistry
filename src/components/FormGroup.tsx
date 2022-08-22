@@ -6,6 +6,7 @@ import { AlignType } from '../util/Align';
 import FormText, { FormTextTheme } from './FormText';
 
 export interface IFormGroupProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     label?: any;

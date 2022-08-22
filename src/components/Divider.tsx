@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export interface IDividerProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
 }

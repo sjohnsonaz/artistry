@@ -3,6 +3,7 @@ import * as React from 'react';
 import ClassNames from '../util/ClassNames';
 
 export interface ICardControlProps {
+    children?: React.ReactNode
     id?: string;
     className?: string;
     title?: string;

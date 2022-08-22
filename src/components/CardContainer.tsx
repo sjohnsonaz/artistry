@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export interface ICardContainerProps {
+    children?: React.ReactNode
     id?: string;
     className?: string;
     space?: boolean;

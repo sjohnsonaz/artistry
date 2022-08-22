@@ -9,6 +9,8 @@ export type CardType = 'default' | 'success' | 'info' | 'warning' | 'danger';
 export type CardHandle = 'default' | 'top' | 'right' | 'bottom' | 'left';
 
 export interface ICardProps extends IGridExternalProps, IDisableable {
+    children?: React.ReactNode
+
     /** id of the root element */
     id?: string;
 

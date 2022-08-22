@@ -38,6 +38,7 @@ export interface IScrollableExternalProps {
 }
 
 export interface IScrollableProps {
+    children?: React.ReactNode
     id?: string;
     className?: string;
     type?: ScrollableType;

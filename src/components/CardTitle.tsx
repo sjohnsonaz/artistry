@@ -1,6 +1,7 @@
 ﻿import * as React from 'react';
 
 export interface ICardTitleProps {
+    children?: React.ReactNode
     id?: string;
     className?: string;
 }

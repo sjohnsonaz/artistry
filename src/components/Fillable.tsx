@@ -4,6 +4,7 @@ import { setState, waitAnimation } from '../util/PromiseUtil';
 import BodyScroll from '../util/BodyScroll';
 
 export interface IFillableProps {
+    children?: React.ReactNode
     id?: string;
     className?: string;
     filled?: boolean;

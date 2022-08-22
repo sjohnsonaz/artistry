@@ -1,6 +1,7 @@
 ﻿import * as React from 'react';
 
 export interface ICardNavigationProps {
+    children?: React.ReactNode
     id?: string;
     className?: string;
     align?: 'start' | 'end';

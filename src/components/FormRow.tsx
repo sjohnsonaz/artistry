@@ -5,6 +5,7 @@ import ClassNames from '../util/ClassNames';
 export type FormRowSize = 'none' | 'small' | 'medium' | 'large' | 'x-large' | 'stacked';
 
 export interface IFormRowProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     screenSize?: FormRowSize;

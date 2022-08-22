@@ -1,13 +1,14 @@
 import * as React from 'react';
 
-export interface IEventContainer {
+export interface IEventContainerProps {
+    children?: React.ReactNode
     events: string | string[];
     preventDefault?: boolean;
     stopPropagation?: boolean;
     block?: boolean;
 }
 
-export default class EventContainer extends React.Component<IEventContainer, any> {
+export default class EventContainer extends React.Component<IEventContainerProps, any> {
     eventHandler = (event: React.SyntheticEvent) => {
         if (this.props.preventDefault) {
             event.preventDefault();

@@ -3,6 +3,7 @@ import * as React from 'react';
 import ClassNames from '../util/ClassNames';
 
 export interface ICardSectionProps {
+    children?: React.ReactNode
     id?: string;
     className?: string;
     multiColumn?: boolean;

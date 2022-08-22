@@ -9,6 +9,7 @@ import Portal from '../util/Portal';
 import DepthStack from '../util/DepthStack';
 
 export interface IDrawerProps extends IGridExternalProps, IScrollableExternalProps {
+    children?: React.ReactNode
     className?: string;
     id?: string;
     direction?: 'top' | 'right' | 'bottom' | 'left';
