@@ -1,28 +1,40 @@
 const path = require('path');
+const dotenv = require('dotenv');
 
-const webpack = require('webpack');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+dotenv.config();
+
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+const mode = process.env.NODE_ENV || 'development';
 
 module.exports = {
-    mode: 'production',
+    mode,
     entry: {
         'artistry': './src/styl/main.styl',
         'index': './test/ts/index.ts',
         'view': './test/ts/view.ts'
     },
     output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, './test/build')
+        filename: '[name]-[fullhash].js',
+        path: path.resolve(__dirname, 'build'),
     },
+    devtool: 'inline-source-map',
     resolve: {
-        extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.css', '.styl']
+        extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.css', '.styl'],
+        plugins: [
+            new TsconfigPathsPlugin({
+                configFile: './tsconfig.json',
+            }),
+        ],
     },
+
     module: {
         rules: [{
             test: /\.styl$/,
             use: [
-                MiniCssExtractPlugin.loader,
+                'style-loader',
                 'css-loader',
                 { loader: 'postcss-loader', options: { sourceMap: true } },
                 'stylus-loader'
@@ -30,9 +42,8 @@ module.exports = {
         }, {
             test: /\.css$/,
             use: [
-                MiniCssExtractPlugin.loader,
+                'style-loader',
                 'css-loader',
-                'clean-css-loader',
                 { loader: 'postcss-loader', options: { sourceMap: true } }
             ]
         }, {
@@ -40,27 +51,34 @@ module.exports = {
             use: ['handlebars-loader']
         }, {
             test: /\.tsx?$/,
-            use: ['ts-loader']
+            use: [{
+                loader: 'ts-loader',
+                options: {
+                    transpileOnly: true,
+                },
+            }],
+        }, {
+            test: /\.(woff|woff2|eot|ttf|svg)$/,
+            use: ['file-loader'],
         }]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
+        new ForkTsCheckerWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: './src/examples/html/index.html',
         }),
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: "../../dist/[name].css",
-            chunkFilename: "[id].css"
-        }),
-        new OptimizeCssAssetsPlugin({
-            cssProcessorOptions: {
-                discardComments: {
-                    removeAll: true
-                }
-            }
-        })
-    ]
+    ],
+    optimization: {
+        runtimeChunk: 'single',
+    },
+    devServer: {
+        // host: '0.0.0.0',
+        // static: {
+        //     directory: path.join(__dirname, 'www'),
+        // },
+        // compress: true,
+        port: 8090,
+        // historyApiFallback: true,
+        // disableHostCheck: true,
+    },
 };

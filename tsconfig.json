@@ -5,7 +5,6 @@
     "moduleResolution": "node",
     "isolatedModules": false,
     "jsx": "react",
-    "reactNamespace": "Cascade",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "declaration": false,
