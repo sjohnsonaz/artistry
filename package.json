@@ -16,7 +16,9 @@
     "example": "webpack serve --config webpack.example.js --progress",
     "start": "webpack serve --config webpack.config.js --progress",
     "open": "opn test/html/index.html",
-    "test": "jest --verbose --coverage"
+    "test": "jest --verbose --coverage",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "normalize.css": "8.0.1"
@@ -27,13 +29,23 @@
   },
   "devDependencies": {
     "@artistry/icons": "0.0.2",
+    "@babel/core": "^7.18.13",
     "@cascade/diff": "^0.0.0",
     "@fortawesome/free-solid-svg-icons": "5.11.2",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack5": "^6.5.10",
+    "@storybook/manager-webpack5": "^6.5.10",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
     "@types/jest": "^28.1.7",
     "@types/jquery": "3.3.38",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "autoprefixer": "9.8.0",
+    "babel-loader": "^8.2.5",
     "css-loader": "3.6.0",
     "dotenv": "^16.0.1",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
