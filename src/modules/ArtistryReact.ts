@@ -24,7 +24,7 @@ export { default as CardTitle, ICardTitleProps } from '../components/CardTitle';
 export { default as Carousel, ICarouselProps } from '../components/Carousel';
 export { default as Cell, ICellProps } from '../components/Cell';
 export { default as Closeable, ICloseableProps, ICloseableState } from '../components/Closeable'
-export { default as Code, ICodeProps } from '../components/Code';
+export { Code, ICodeProps } from '../components/Code';
 export { default as Container, IContainerProps, ContainerSize } from '../components/Container';
 export { default as DatePicker, IDatePickerProps } from '../components/DatePicker';
 export { default as DepthStackInterceptor, IDepthStackInterceptorProps } from '../components/DepthStackInterceptor';

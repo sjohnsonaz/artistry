@@ -21,7 +21,8 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "normalize.css": "8.0.1"
+    "normalize.css": "8.0.1",
+    "styled-components": "^5.3.5"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -44,6 +45,7 @@
     "@types/jquery": "3.3.38",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/styled-components": "^5.1.26",
     "autoprefixer": "9.8.0",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
