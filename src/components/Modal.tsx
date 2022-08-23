@@ -110,7 +110,7 @@ export default class Modal extends React.Component<IModalProps, IModalState> {
         }
     };
 
-    async componentDidUpdate(prevProps?: IModalProps) {
+    async componentDidUpdate(prevProps: IModalProps) {
         if (this.props.open != prevProps.open) {
             if (this.props.open) {
                 DepthStack.blur();

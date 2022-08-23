@@ -105,12 +105,12 @@ export interface IScrollableProps {
 }
 
 export default class Scrollable extends React.Component<IScrollableProps, any> {
-    root: React.RefObject<HTMLDivElement> = React.createRef();
-    topBumper: React.RefObject<HTMLDivElement> = React.createRef();
-    rightBumper: React.RefObject<HTMLDivElement> = React.createRef();
-    bottomBumper: React.RefObject<HTMLDivElement> = React.createRef();
-    leftBumper: React.RefObject<HTMLDivElement> = React.createRef();
-    rootObserver: IntersectionObserver;
+    root = React.createRef<HTMLDivElement>();
+    topBumper = React.createRef<HTMLDivElement>();
+    rightBumper = React.createRef<HTMLDivElement>();
+    bottomBumper = React.createRef<HTMLDivElement>();
+    leftBumper = React.createRef<HTMLDivElement>();
+    rootObserver?: IntersectionObserver;
 
     topIntersected: boolean = false;
     rightIntersected: boolean = false;
@@ -218,10 +218,18 @@ export default class Scrollable extends React.Component<IScrollableProps, any> {
                 threshold: [0],
             }
         );
-        this.rootObserver.observe(topBumper);
-        this.rootObserver.observe(rightBumper);
-        this.rootObserver.observe(bottomBumper);
-        this.rootObserver.observe(leftBumper);
+        if (topBumper) {
+            this.rootObserver.observe(topBumper);
+        }
+        if (rightBumper) {
+            this.rootObserver.observe(rightBumper);
+        }
+        if (bottomBumper) {
+            this.rootObserver.observe(bottomBumper);
+        }
+        if (leftBumper) {
+            this.rootObserver.observe(leftBumper);
+        }
     }
 
     componentWillUnmount() {
@@ -231,7 +239,14 @@ export default class Scrollable extends React.Component<IScrollableProps, any> {
     }
 
     render() {
-        let { id, className, type, height, maxHeight, bumper } = this.props;
+        let {
+            id,
+            className,
+            type = ScrollableTypeEnum.auto,
+            height,
+            maxHeight,
+            bumper,
+        } = this.props;
         let classNames = className ? [className] : [];
         classNames.push('scrollable');
 
@@ -249,6 +264,7 @@ export default class Scrollable extends React.Component<IScrollableProps, any> {
 
         let style: React.CSSProperties = {};
         if (bumper) {
+            // @ts-expect-error
             style['--scrollable-bumper-size'] = bumper;
         }
         if (height) {

@@ -1,9 +1,14 @@
 import * as React from 'react';
 
-export type ProgressBarType = 'default' | 'success' | 'info' | 'warning' | 'danger';
+export type ProgressBarType =
+    | 'default'
+    | 'success'
+    | 'info'
+    | 'warning'
+    | 'danger';
 
 export interface IProgressBarProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     id?: string;
     className?: string;
     value?: number;
@@ -15,18 +20,21 @@ export interface IProgressBarProps {
     type?: ProgressBarType;
 }
 
-export default class ProgressBar extends React.Component<IProgressBarProps, any> {
+export default class ProgressBar extends React.Component<
+    IProgressBarProps,
+    any
+> {
     render() {
         let {
             id,
             className,
-            value,
+            value = 0,
             min,
             max,
             showPercentage,
-            decimal,
-            decimalFixed,
-            type
+            decimal = 0,
+            decimalFixed = false,
+            type,
         } = this.props;
 
         let classNames = className ? [className] : [];
@@ -47,8 +55,10 @@ export default class ProgressBar extends React.Component<IProgressBarProps, any>
             value = maxOrOne;
         }
 
-        let percentage = 100 * (value - minOrZero) / (maxOrOne - minOrZero);
-        let text = showPercentage ? numberToPercentage(percentage, decimal, decimalFixed) : undefined;
+        let percentage = (100 * (value - minOrZero)) / (maxOrOne - minOrZero);
+        let text = showPercentage
+            ? numberToPercentage(percentage, decimal, decimalFixed)
+            : undefined;
 
         switch (type) {
             case 'success':
@@ -65,7 +75,7 @@ export default class ProgressBar extends React.Component<IProgressBarProps, any>
                 break;
         }
 
-        let style = { "--progress-bar-progress": percentage + '%' };
+        let style = { '--progress-bar-progress': percentage + '%' };
 
         return (
             <div
@@ -78,17 +88,15 @@ export default class ProgressBar extends React.Component<IProgressBarProps, any>
                 aria-valuetext={text}
                 style={style as any}
             >
-                {this.props.children ?
-                    <div>
-                        {this.props.children}
-                    </div> :
-                    undefined}
+                {this.props.children ? (
+                    <div>{this.props.children}</div>
+                ) : undefined}
             </div>
         );
     }
 }
 
-function parseNumber(value: string | number) {
+function parseNumber(value: string | number = '') {
     if (typeof value === 'number') {
         return value;
     } else {

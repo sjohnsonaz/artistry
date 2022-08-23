@@ -13,39 +13,45 @@ export interface IFileUploadState {
     uploading?: boolean;
 }
 
-export default class FileUpload extends React.Component<IFileUploadProps, IFileUploadState> {
+export default class FileUpload extends React.Component<
+    IFileUploadProps,
+    IFileUploadState
+> {
     fileInput: React.RefObject<HTMLInputElement> = React.createRef();
     state: IFileUploadState = {
         dragging: false,
-        uploading: false
+        uploading: false,
     };
 
     handleFiles = (files: FileList) => {
-        this.setState({
-            uploading: true
-        }, async () => {
-            await this.props.onSelect(files);
-            this.setState({
-                uploading: false
-            });
-        });
-    }
+        this.setState(
+            {
+                uploading: true,
+            },
+            async () => {
+                await this.props.onSelect(files);
+                this.setState({
+                    uploading: false,
+                });
+            }
+        );
+    };
 
     click = () => {
-        this.fileInput.current.click();
-    }
+        this.fileInput.current?.click();
+    };
 
     clickStop = (event: React.MouseEvent<HTMLInputElement>) => {
         event.stopPropagation();
-    }
+    };
 
     select = () => {
         let fileInput = this.fileInput.current;
-        let files = fileInput.files;
+        let files = fileInput?.files;
         if (files && files.length) {
             this.handleFiles(files);
         }
-    }
+    };
 
     drop = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
@@ -55,31 +61,26 @@ export default class FileUpload extends React.Component<IFileUploadProps, IFileU
         if (files && files.length) {
             this.handleFiles(files);
         }
-    }
+    };
 
     dragEnter = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
         event.stopPropagation();
         this.setState({
-            dragging: true
+            dragging: true,
         });
-    }
+    };
 
     dragLeave = (event: React.DragEvent<HTMLDivElement>) => {
         event.preventDefault();
         event.stopPropagation();
         this.setState({
-            dragging: false
+            dragging: false,
         });
-    }
+    };
 
     render() {
-        let {
-            id,
-            className,
-            text,
-            value
-        } = this.props;
+        let { id, className, text, value } = this.props;
 
         let classNames = className ? [className] : [];
         classNames.push('file-upload');

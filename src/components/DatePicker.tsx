@@ -11,7 +11,7 @@ export interface IDatePickerProps {
     id?: string;
     className?: string;
     mask?: string;
-    date: Date | string;
+    date?: Date | string;
     fill?: boolean;
     onSelect: (date: Date) => void;
 }
@@ -35,7 +35,7 @@ export default class DatePicker extends React.Component<IDatePickerProps, any> {
         let classNames = className ? [className] : [];
         classNames.push('popover-trigger');
 
-        var date: Date = undefined;
+        let date: Date | undefined = undefined;
         switch (typeof this.props.date) {
             case 'object':
                 if (this.props.date instanceof Date) {
@@ -75,7 +75,7 @@ export default class DatePicker extends React.Component<IDatePickerProps, any> {
     }
 }
 
-function getDateFormatted(date: Date) {
+function getDateFormatted(date?: Date) {
     if (date) {
         var dd = date.getDate();
         var mm = date.getMonth() + 1; //January is 0!

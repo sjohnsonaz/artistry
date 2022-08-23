@@ -29,7 +29,7 @@ export interface ITableProps<T> {
 
 export default class Table<T> extends React.Component<ITableProps<T>, any> {
     render() {
-        let {
+        const {
             className,
             id,
             data,
@@ -38,12 +38,12 @@ export default class Table<T> extends React.Component<ITableProps<T>, any> {
             template,
             templateTop,
             templateBottom,
-            striped,
-            hoverable,
-            form
+            striped = false,
+            hoverable = false,
+            form = false,
         } = this.props;
 
-        let classNames = new ClassNames(className);
+        const classNames = new ClassNames(className);
         classNames.add('table');
 
         classNames.addTest('table-striped', striped);
@@ -53,17 +53,18 @@ export default class Table<T> extends React.Component<ITableProps<T>, any> {
         let renderedTitles: any = undefined;
         if (headers) {
             renderedTitles = headers.map((header, index) => {
-                return (
-                    <th key={index}>{header}</th>
-                );
+                return <th key={index}>{header}</th>;
             });
         } else if (columns) {
             renderedTitles = columns.map((column, index) => {
                 return (
-                    <th key={index} className={column.action ? 'action-column' : undefined}>
-                        {typeof column.header === 'function' ?
-                            column.header() :
-                            column.header}
+                    <th
+                        key={index}
+                        className={column.action ? 'action-column' : undefined}
+                    >
+                        {typeof column.header === 'function'
+                            ? column.header()
+                            : column.header}
                     </th>
                 );
             });
@@ -72,7 +73,7 @@ export default class Table<T> extends React.Component<ITableProps<T>, any> {
         let renderedBody;
         if (data) {
             if (template) {
-                renderedBody = data.map((item, index) => template(item, index));
+                renderedBody = data.map(template);
             } else if (columns) {
                 renderedBody = data.map((item, index) => (
                     <tr key={index}>
@@ -80,10 +81,13 @@ export default class Table<T> extends React.Component<ITableProps<T>, any> {
                             if (column.template) {
                                 return column.template(item);
                             } else if (column.property) {
-                                // @ts-expect-error
-                                return <td key={'td-' + index}>{item[column.property]}</td>
+                                return (
+                                    <td key={'td-' + index}>
+                                        {item[column.property] as any}
+                                    </td>
+                                );
                             } else {
-                                return <td key={'td-' + index}></td>
+                                return <td key={'td-' + index}></td>;
                             }
                         })}
                     </tr>
@@ -91,7 +95,9 @@ export default class Table<T> extends React.Component<ITableProps<T>, any> {
             } else {
                 renderedBody = data.map((item, index) => (
                     <tr key={index}>
-                        {Object.values(item).map((value, index) => <td key={index}>{value}</td>)}
+                        {Object.values(item).map((value, index) => (
+                            <td key={index}>{value}</td>
+                        ))}
                     </tr>
                 ));
             }
@@ -99,21 +105,22 @@ export default class Table<T> extends React.Component<ITableProps<T>, any> {
 
         return (
             <table className={classNames.toString()} id={id}>
-                {renderedTitles ?
+                {renderedTitles ? (
                     <thead>
-                        <tr>
-                            {renderedTitles}
-                        </tr>
+                        <tr>{renderedTitles}</tr>
                     </thead>
-                    : undefined}
+                ) : undefined}
                 <tbody className={this.props.list ? 'list' : ''}>
-                    {typeof templateTop === 'function' ? templateTop() : templateTop}
+                    {typeof templateTop === 'function'
+                        ? templateTop()
+                        : templateTop}
                     {renderedBody}
-                    {typeof templateBottom === 'function' ? templateBottom() : templateBottom}
+                    {typeof templateBottom === 'function'
+                        ? templateBottom()
+                        : templateBottom}
                 </tbody>
                 <tfoot>
-                    <tr>
-                    </tr>
+                    <tr></tr>
                 </tfoot>
             </table>
         );

@@ -1,9 +1,15 @@
 import * as React from 'react';
 
-export type GridSize = 'default' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large';
+export type GridSize =
+    | 'default'
+    | 'x-small'
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'x-large';
 
 export interface IGridProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     className?: string;
     id?: string;
     columns?: number;
@@ -15,18 +21,31 @@ export interface IGridProps {
 export default class Grid extends React.Component<IGridProps, any> {
     render() {
         let classNames = this.props.className ? [this.props.className] : [];
-        grid(classNames, this.props.columns, this.props.screenSize, this.props.space);
+        grid(
+            classNames,
+            this.props.columns,
+            this.props.screenSize,
+            this.props.space
+        );
 
         if (this.props.fillWidth) {
             classNames.push('fill-width');
         }
 
-        return <div className={classNames.join(' ')} id={this.props.id}>{this.props.children}</div>
+        return (
+            <div className={classNames.join(' ')} id={this.props.id}>
+                {this.props.children}
+            </div>
+        );
     }
 }
 
-function grid(classNames: string[], columns: number, screenSize?: GridSize, space?: boolean) {
-    columns = columns || 12;
+function grid(
+    classNames: string[],
+    columns = 12,
+    screenSize?: GridSize,
+    space?: boolean
+) {
     switch (screenSize) {
         case 'x-small':
             classNames.push('grid-xs-' + columns);

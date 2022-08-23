@@ -7,8 +7,7 @@ export interface ITimePickerProps {
     utc?: boolean;
 }
 
-export interface ITimePickerState {
-}
+export interface ITimePickerState {}
 
 function getState(value: Date, utc: boolean) {
     let currentHour = utc ? value.getUTCHours() : value.getHours();
@@ -19,20 +18,19 @@ function getState(value: Date, utc: boolean) {
     return {
         hours: currentHour,
         minutes: currentMinute,
-        meridiem: currentMeridiem
+        meridiem: currentMeridiem,
     };
 }
 
-export default class TimePicker extends React.Component<ITimePickerProps, ITimePickerState> {
-
+export default class TimePicker extends React.Component<
+    ITimePickerProps,
+    ITimePickerState
+> {
     onChangeHour = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        let {
-            value,
-            utc
-        } = this.props;
-        let date: Date = new Date(value ? value.toUTCString() : undefined);
+        const { value, utc = false } = this.props;
+        const date = new Date(value ? value.toUTCString() : '');
 
-        let state = getState(date, utc);
+        const state = getState(date, utc);
 
         let hours = parseInt(event.target.value);
         hours %= 12;
@@ -42,31 +40,26 @@ export default class TimePicker extends React.Component<ITimePickerProps, ITimeP
         if (this.props.onChange) {
             this.props.onChange(event, date);
         }
-    }
+    };
 
     onChangeMinute = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        let {
-            value
-        } = this.props;
-        let date: Date = new Date(value ? value.toUTCString() : undefined);
-        let minutes = parseInt(event.target.value);
+        const { value } = this.props;
+        const date = new Date(value ? value.toUTCString() : '');
+        const minutes = parseInt(event.target.value);
         date.setMinutes(minutes);
         if (this.props.onChange) {
             this.props.onChange(event, date);
         }
-    }
+    };
 
     onChangeMeridiem = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        let {
-            value,
-            utc
-        } = this.props;
-        let date: Date = new Date(value ? value.toUTCString() : undefined);
+        const { value, utc = false } = this.props;
+        let date: Date = new Date(value ? value.toUTCString() : '');
 
         let state = getState(value, utc);
 
         let meridiemValue = event.target.value;
-        let meridiem: boolean;
+        let meridiem: boolean = false;
         switch (meridiemValue) {
             case 'AM':
                 meridiem = false;
@@ -81,20 +74,17 @@ export default class TimePicker extends React.Component<ITimePickerProps, ITimeP
         if (this.props.onChange) {
             this.props.onChange(event, date);
         }
-    }
+    };
 
     render() {
-        let {
-            value,
-            utc,
-            minuteInterval
-        } = this.props;
+        const { value, utc = false } = this.props;
+        let { minuteInterval } = this.props;
 
-        let state = getState(value, utc);
+        const state = getState(value, utc);
         minuteInterval = minuteInterval || 1;
 
-        let hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        let minutes = [];
+        const hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        const minutes = [];
         for (let index = 0; index < 60; index += minuteInterval) {
             minutes.push(index);
         }
@@ -106,22 +96,34 @@ export default class TimePicker extends React.Component<ITimePickerProps, ITimeP
                     value={state.hours}
                     onChange={this.onChangeHour}
                 >
-                    {hours.map((hour) => <option value={hour} key={hour}>{prependZero(hour)}</option>)}
+                    {hours.map((hour) => (
+                        <option value={hour} key={hour}>
+                            {prependZero(hour)}
+                        </option>
+                    ))}
                 </select>
                 <select
                     className="input"
                     value={state.minutes}
                     onChange={this.onChangeMinute}
                 >
-                    {minutes.map((minute) => <option value={minute} key={minute}>{prependZero(minute)}</option>)}
+                    {minutes.map((minute) => (
+                        <option value={minute} key={minute}>
+                            {prependZero(minute)}
+                        </option>
+                    ))}
                 </select>
                 <select
                     className="input"
                     value={state.meridiem ? 'PM' : 'AM'}
                     onChange={this.onChangeMeridiem}
                 >
-                    <option value="AM" key="AM">AM</option>
-                    <option value="PM" key="PM">PM</option>
+                    <option value="AM" key="AM">
+                        AM
+                    </option>
+                    <option value="PM" key="PM">
+                        PM
+                    </option>
                 </select>
             </span>
         );

@@ -17,7 +17,7 @@ export interface IListViewProps {}
 export interface IListViewState {
     searchValue?: string;
     showOptions?: boolean;
-    options?: IListData[];
+    options: IListData[];
 }
 
 interface IListData {
@@ -68,8 +68,8 @@ export default class ListView extends React.Component<
     IListViewProps,
     IListViewState
 > {
-    constructor(props: IListViewProps, context: any) {
-        super(props, context);
+    constructor(props: IListViewProps) {
+        super(props);
         this.state = {
             searchValue: '',
             showOptions: false,

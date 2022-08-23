@@ -1,33 +1,41 @@
 import * as React from 'react';
 
-import { Button, Card, Cell, Closeable, Fillable, Grid, Row, Section } from '../../../../modules/ArtistryReact';
+import {
+    Button,
+    Card,
+    Cell,
+    Closeable,
+    Grid,
+    Row,
+} from '../../../../modules/ArtistryReact';
 
 import ImageGenerator from '../../util/ImageGenerator';
 
-export interface IVerticalCardProps {
-
-}
+export interface IVerticalCardProps {}
 
 export interface IVerticalCardState {
     closed?: boolean;
 }
 
-export default class VerticalCard extends React.Component<IVerticalCardProps, IVerticalCardState> {
+export default class VerticalCard extends React.Component<
+    IVerticalCardProps,
+    IVerticalCardState
+> {
     image: string;
 
-    constructor(props?: IVerticalCardProps) {
+    constructor(props: IVerticalCardProps) {
         super(props);
         this.state = {
-            closed: true
+            closed: true,
         };
         this.image = ImageGenerator.createPlaceholder(350, 150);
     }
 
     toggleClosed = () => {
         this.setState({
-            closed: !this.state.closed
+            closed: !this.state.closed,
         });
-    }
+    };
 
     render() {
         return (
@@ -42,16 +50,12 @@ export default class VerticalCard extends React.Component<IVerticalCardProps, IV
                     </Cell>
                 </Row>
                 <Row>
-                    <Cell>
-                        Card Content
-                    </Cell>
+                    <Cell>Card Content</Cell>
                 </Row>
                 <Closeable closed={this.state.closed}>
                     <Grid>
                         <Row>
-                            <Cell>
-                                Card Content
-                            </Cell>
+                            <Cell>Card Content</Cell>
                         </Row>
                     </Grid>
                 </Closeable>

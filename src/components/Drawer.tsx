@@ -75,7 +75,7 @@ export default class Drawer extends React.Component<
         }
     };
 
-    async componentDidUpdate(prevProps?: IDrawerProps) {
+    async componentDidUpdate(prevProps: IDrawerProps) {
         if (this.props.open != prevProps.open) {
             if (this.props.open) {
                 let runCount = this.runCount;

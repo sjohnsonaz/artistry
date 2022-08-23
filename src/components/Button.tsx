@@ -96,14 +96,18 @@ export default class Button extends React.Component<IButtonProps, any> {
             }
         } else {
             // We are no longer open
-            if (this.props.popover && this.props.popoverOpen) {
+            if (
+                this.props.popover &&
+                this.props.popoverOpen &&
+                this.closeHandle
+            ) {
                 DepthStack.remove(this.closeHandle);
             }
         }
     }
 
     componentWillUnmount() {
-        if (this.props.popoverOpen) {
+        if (this.props.popoverOpen && this.closeHandle) {
             DepthStack.remove(this.closeHandle);
         }
     }

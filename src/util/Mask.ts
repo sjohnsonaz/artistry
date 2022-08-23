@@ -230,6 +230,7 @@ export default class Mask {
     formatClean(clean: string, allowLessValid: boolean = false) {
         let cleanMask = Mask.cleanValue(this.mask);
 
+        // @ts-expect-error TODO: Update Cascade Diff
         let diff = Diff.compare(
             cleanMask.split('').reverse().join(''),
             clean.split('').reverse().join(''),

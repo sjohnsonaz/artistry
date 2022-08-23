@@ -20,9 +20,9 @@ import VerticalCard from './VerticalCard';
 export interface ICardViewProps {}
 
 export interface ICardViewState {
-    closed?: boolean;
+    closed: boolean;
     filled?: boolean;
-    index?: number;
+    index: number;
 }
 
 export default class CardView extends React.Component<

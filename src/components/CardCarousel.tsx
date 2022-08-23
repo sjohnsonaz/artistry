@@ -18,7 +18,7 @@ export interface ICardCarouselProps extends ICarouselProps {
 
 export interface ICardCarouselState {
     rendered?: boolean;
-    slideSize?: number;
+    slideSize: number;
 }
 
 export default class CardCarousel extends React.Component<

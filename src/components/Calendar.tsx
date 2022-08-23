@@ -44,7 +44,7 @@ export interface ICalendarState {
 }
 
 export default class Calendar extends React.Component<ICalendarProps, any> {
-    constructor(props?: ICalendarProps) {
+    constructor(props: ICalendarProps) {
         super(props);
         var date = this.props.date || new Date(Date.now());
         this.state = {

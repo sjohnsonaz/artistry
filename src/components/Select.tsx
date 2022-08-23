@@ -8,33 +8,34 @@ export interface ISelectProps<T> {
     value?: string | number | string[];
     valueProp?: keyof T;
     displayProp?: keyof T;
-    onChange?: (option: T, event?: React.ChangeEvent<HTMLSelectElement>) => any;
+    onChange?: (
+        option?: T,
+        event?: React.ChangeEvent<HTMLSelectElement>
+    ) => any;
     allowEmpty?: boolean;
     emptyValue?: T | string | number | string[];
 }
 
 export default class Select<T, U> extends React.Component<ISelectProps<T>> {
     onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        let {
-            data,
-            onChange,
-            valueProp
-        } = this.props;
+        const { data, onChange, valueProp } = this.props;
 
         if (onChange) {
             let value = event.target.value;
             if (valueProp) {
-                let option = data.find(option => option[valueProp] as any == value);
+                let option = data.find(
+                    (option) => (option[valueProp] as any) == value
+                );
                 onChange(option, event);
             } else {
-                let option = data.find(option => option as any == value);
+                let option = data.find((option) => (option as any) == value);
                 onChange(option, event);
             }
         }
-    }
+    };
 
     render() {
-        let {
+        const {
             id,
             className,
             data,
@@ -42,7 +43,7 @@ export default class Select<T, U> extends React.Component<ISelectProps<T>> {
             value,
             valueProp,
             allowEmpty,
-            emptyValue
+            emptyValue,
         } = this.props;
 
         let classNames = className ? [className] : [];
@@ -51,13 +52,13 @@ export default class Select<T, U> extends React.Component<ISelectProps<T>> {
 
         let emptyOption = undefined;
         if (allowEmpty) {
-            let emptyString: string = undefined;
+            let emptyString: string | undefined = undefined;
             switch (typeof emptyValue) {
                 case 'object':
-                    if (emptyValue) {
+                    if (emptyValue && valueProp !== undefined) {
                         let prop = (emptyValue as T)[valueProp];
-                        if (prop) {
-                            emptyString = prop.toString();
+                        if (prop !== undefined) {
+                            emptyString = '' + prop;
                         }
                     }
                     break;
@@ -70,7 +71,7 @@ export default class Select<T, U> extends React.Component<ISelectProps<T>> {
             }
             emptyOption = (
                 <option key="_empty_option" value={emptyString}></option>
-            )
+            );
         }
 
         return (
@@ -81,22 +82,30 @@ export default class Select<T, U> extends React.Component<ISelectProps<T>> {
                 onChange={this.onChange}
             >
                 {emptyOption}
-                {template ?
-                    data.map(template) :
-                    data.map(option => {
-                        if (valueProp) {
-                            let optionValue = option[valueProp];
-                            return (
-                                // @ts-expect-error
-                                <option key={optionValue as any} value={optionValue as any}>{optionValue}</option>
-                            );
-                        } else {
-                            return (
-                                // @ts-expect-error
-                                <option key={option as any} value={option as any}>{option}</option>
-                            );
-                        }
-                    })}
+                {template
+                    ? data.map(template)
+                    : data.map((option) => {
+                          if (valueProp) {
+                              let optionValue = option[valueProp];
+                              return (
+                                  <option
+                                      key={optionValue as any}
+                                      value={optionValue as any}
+                                  >
+                                      {optionValue as any}
+                                  </option>
+                              );
+                          } else {
+                              return (
+                                  <option
+                                      key={option as any}
+                                      value={option as any}
+                                  >
+                                      {option as any}
+                                  </option>
+                              );
+                          }
+                      })}
             </select>
         );
     }

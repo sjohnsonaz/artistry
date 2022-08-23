@@ -45,6 +45,7 @@ export default class Cell extends React.Component<ICellProps, any> {
             if (typeof leftMargin === 'number') {
                 leftMargin += 'px' as any;
             }
+            // @ts-expect-error
             style['--col-offset'] = width;
             fixed = true;
         }

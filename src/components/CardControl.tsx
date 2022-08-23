@@ -3,7 +3,7 @@ import * as React from 'react';
 import ClassNames from '../util/ClassNames';
 
 export interface ICardControlProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     id?: string;
     className?: string;
     title?: string;
@@ -12,7 +12,10 @@ export interface ICardControlProps {
     stacked?: boolean;
 }
 
-export default class CardControl extends React.Component<ICardControlProps, any> {
+export default class CardControl extends React.Component<
+    ICardControlProps,
+    any
+> {
     render() {
         let {
             id,
@@ -20,7 +23,7 @@ export default class CardControl extends React.Component<ICardControlProps, any>
             title,
             label,
             width,
-            stacked
+            stacked = false,
         } = this.props;
 
         let classNames = new ClassNames(className, 'card-control');

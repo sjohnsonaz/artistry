@@ -26,7 +26,7 @@ export default class UserThumbnail extends React.Component<
     IUserThumbnailProps,
     any
 > {
-    private closeHandle: ICloseHandle;
+    private closeHandle?: ICloseHandle;
 
     close: ICloseHandle = (event) => {
         if (this.props.onPopoverClose) {
@@ -67,14 +67,18 @@ export default class UserThumbnail extends React.Component<
             }
         } else {
             // We are no longer open
-            if (this.props.popover && this.props.popoverOpen) {
+            if (
+                this.props.popover &&
+                this.props.popoverOpen &&
+                this.closeHandle
+            ) {
                 DepthStack.remove(this.closeHandle);
             }
         }
     }
 
     componentWillUnmount() {
-        if (this.props.popoverOpen) {
+        if (this.props.popoverOpen && this.closeHandle) {
             DepthStack.remove(this.closeHandle);
         }
     }

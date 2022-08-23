@@ -3,10 +3,15 @@ import * as React from 'react';
 import ClassNames from '../util/ClassNames';
 import { AlignType, alignClass } from '../util/Align';
 
-export type FormTextTheme = 'default' | 'success' | 'info' | 'warning' | 'danger';
+export type FormTextTheme =
+    | 'default'
+    | 'success'
+    | 'info'
+    | 'warning'
+    | 'danger';
 
 export interface IFormTextProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     className?: string;
     id?: string;
     fill?: boolean;
@@ -14,15 +19,9 @@ export interface IFormTextProps {
     align?: AlignType;
 }
 
-export default class FormText extends React.Component<IFormTextProps, any>{
+export default class FormText extends React.Component<IFormTextProps, any> {
     render() {
-        let {
-            id,
-            className,
-            fill,
-            theme,
-            align
-        } = this.props;
+        let { id, className, fill, theme, align } = this.props;
 
         let classNames = new ClassNames(className);
         classNames.add('form-text');
@@ -49,14 +48,12 @@ export default class FormText extends React.Component<IFormTextProps, any>{
             case 'danger':
                 _theme = 'danger';
                 break;
+            default:
+                _theme = '';
         }
 
         return (
-            <div
-                className={classNames.toString()}
-                id={id}
-                data-theme={_theme}
-            >
+            <div className={classNames.toString()} id={id} data-theme={_theme}>
                 {this.props.children}
             </div>
         );

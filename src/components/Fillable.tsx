@@ -4,7 +4,7 @@ import { setState, waitAnimation } from '../util/PromiseUtil';
 import BodyScroll from '../util/BodyScroll';
 
 export interface IFillableProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     id?: string;
     className?: string;
     filled?: boolean;
@@ -21,14 +21,17 @@ export interface IFillableState {
     left?: string;
 }
 
-export default class Fillable extends React.Component<IFillableProps, IFillableState> {
+export default class Fillable extends React.Component<
+    IFillableProps,
+    IFillableState
+> {
     root: React.RefObject<HTMLDivElement> = React.createRef();
     state: IFillableState = {
-        filled: this.props.filled
+        filled: this.props.filled,
     };
     runCount: number = 0;
 
-    constructor(props?: IFillableProps) {
+    constructor(props: IFillableProps) {
         super(props);
         if (props.filled) {
             BodyScroll.lock(true);
@@ -37,18 +40,27 @@ export default class Fillable extends React.Component<IFillableProps, IFillableS
 
     async componentWillReceiveProps(nextProps: IFillableState) {
         if (this.props.filled !== nextProps.filled) {
-            let node = this.root.current;
+            // TODO: Fix this
+            let node = this.root.current as HTMLElement;
             this.runCount++;
             let runCount = this.runCount;
 
             if (!nextProps.filled) {
                 let rect = node.getBoundingClientRect();
-                await setState({
-                    top: rect.top + 'px',
-                    bottom: window.innerHeight - rect.top - rect.height + 'px',
-                    left: rect.left + 'px',
-                    right: document.body.scrollWidth - rect.left - rect.width + 'px'
-                }, this);
+                await setState(
+                    {
+                        top: rect.top + 'px',
+                        bottom:
+                            window.innerHeight - rect.top - rect.height + 'px',
+                        left: rect.left + 'px',
+                        right:
+                            document.body.scrollWidth -
+                            rect.left -
+                            rect.width +
+                            'px',
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
@@ -58,15 +70,18 @@ export default class Fillable extends React.Component<IFillableProps, IFillableS
                     return;
                 }
 
-                await setState({
-                    height: undefined,
-                    width: undefined,
-                    top: undefined,
-                    right: undefined,
-                    bottom: undefined,
-                    left: undefined,
-                    filled: false
-                }, this);
+                await setState(
+                    {
+                        height: undefined,
+                        width: undefined,
+                        top: undefined,
+                        right: undefined,
+                        bottom: undefined,
+                        left: undefined,
+                        filled: false,
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
@@ -74,15 +89,23 @@ export default class Fillable extends React.Component<IFillableProps, IFillableS
                 BodyScroll.unlock();
             } else {
                 let rect = node.getBoundingClientRect();
-                await setState({
-                    height: rect.height + 'px',
-                    width: rect.width + 'px',
-                    top: rect.top + 'px',
-                    bottom: window.innerHeight - rect.top - rect.height + 'px',
-                    left: rect.left + 'px',
-                    right: document.body.scrollWidth - rect.left - rect.width + 'px',
-                    filled: true
-                }, this);
+                await setState(
+                    {
+                        height: rect.height + 'px',
+                        width: rect.width + 'px',
+                        top: rect.top + 'px',
+                        bottom:
+                            window.innerHeight - rect.top - rect.height + 'px',
+                        left: rect.left + 'px',
+                        right:
+                            document.body.scrollWidth -
+                            rect.left -
+                            rect.width +
+                            'px',
+                        filled: true,
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
@@ -92,12 +115,15 @@ export default class Fillable extends React.Component<IFillableProps, IFillableS
                     return;
                 }
 
-                await setState({
-                    top: 0 + 'px',
-                    right: 0 + 'px',
-                    bottom: 0 + 'px',
-                    left: 0 + 'px'
-                }, this);
+                await setState(
+                    {
+                        top: 0 + 'px',
+                        right: 0 + 'px',
+                        bottom: 0 + 'px',
+                        left: 0 + 'px',
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
@@ -116,11 +142,7 @@ export default class Fillable extends React.Component<IFillableProps, IFillableS
     }
 
     render() {
-        let {
-            id,
-            className,
-            card
-        } = this.props;
+        let { id, className, card } = this.props;
         let classNames = className ? [className] : [];
         classNames.push('fillable');
 
@@ -135,7 +157,7 @@ export default class Fillable extends React.Component<IFillableProps, IFillableS
                 data-filled={this.state.filled}
                 style={{
                     height: this.state.height,
-                    width: this.state.width
+                    width: this.state.width,
                 }}
                 ref={this.root}
             >

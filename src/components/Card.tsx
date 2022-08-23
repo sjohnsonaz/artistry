@@ -9,7 +9,7 @@ export type CardType = 'default' | 'success' | 'info' | 'warning' | 'danger';
 export type CardHandle = 'default' | 'top' | 'right' | 'bottom' | 'left';
 
 export interface ICardProps extends IGridExternalProps, IDisableable {
-    children?: React.ReactNode
+    children?: React.ReactNode;
 
     /** id of the root element */
     id?: string;
@@ -49,7 +49,7 @@ export default class Card extends React.Component<ICardProps, any> {
         if (this.props.onClick) {
             this.props.onClick(event);
         }
-    }
+    };
 
     render() {
         let {
@@ -65,7 +65,7 @@ export default class Card extends React.Component<ICardProps, any> {
             square,
             grid,
             clickable,
-            disabled
+            disabled = false,
         } = this.props;
         let classNames = className ? [className] : [];
         classNames.push('card');
@@ -95,12 +95,16 @@ export default class Card extends React.Component<ICardProps, any> {
         disabledClass(disabled, classNames);
 
         return (
-            <div className={classNames.join(' ')} id={id} onClick={this.onClick}>
+            <div
+                className={classNames.join(' ')}
+                id={id}
+                onClick={this.onClick}
+            >
                 {header ? <header>{header}</header> : null}
                 <div className={innerClassNames.join(' ')}>
                     {this.props.children}
                 </div>
-                {nav ? <nav className='card-nav'>{nav}</nav> : null}
+                {nav ? <nav className="card-nav">{nav}</nav> : null}
                 {footer ? <footer>{footer}</footer> : null}
             </div>
         );

@@ -3,20 +3,23 @@ import * as React from 'react';
 import ClassNames from '../util/ClassNames';
 
 export interface ICardSectionProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     id?: string;
     className?: string;
     multiColumn?: boolean;
     centered?: boolean;
 }
 
-export default class CardSection extends React.Component<ICardSectionProps, any> {
+export default class CardSection extends React.Component<
+    ICardSectionProps,
+    any
+> {
     render() {
         let {
             id,
             className,
-            multiColumn,
-            centered
+            multiColumn = false,
+            centered = false,
         } = this.props;
 
         let classNames = new ClassNames(className, 'card-section');

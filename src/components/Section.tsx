@@ -4,7 +4,9 @@ import Button from './Button';
 import { IGridExternalProps, gridConfig } from './Grid';
 import { setState } from '../util/PromiseUtil';
 
-export interface ISectionProps extends React.HTMLProps<HTMLElement>, IGridExternalProps {
+export interface ISectionProps
+    extends React.HTMLProps<HTMLElement>,
+        IGridExternalProps {
     header: any;
     footer?: any;
     lockable?: boolean;
@@ -26,7 +28,10 @@ export interface ISectionState {
     height?: string;
 }
 
-export default class Section extends React.Component<ISectionProps, ISectionState> {
+export default class Section extends React.Component<
+    ISectionProps,
+    ISectionState
+> {
     root: React.RefObject<HTMLElement> = React.createRef();
     header: React.RefObject<HTMLElement> = React.createRef();
     content: React.RefObject<HTMLDivElement> = React.createRef();
@@ -34,104 +39,144 @@ export default class Section extends React.Component<ISectionProps, ISectionStat
         closed: this.props.closed,
         running: false,
         animating: false,
-        height: undefined
+        height: undefined,
     };
     runCount: number = 0;
 
     close = () => {
         if (this.props.onClose) {
             // Get closed value
-            let closed = typeof this.props.closed !== 'undefined' ?
-                this.props.closed :
-                (this.state.closed || false);
+            let closed =
+                typeof this.props.closed !== 'undefined'
+                    ? this.props.closed
+                    : this.state.closed || false;
             this.props.onClose(closed);
         } else {
             this.setState({ closed: !this.state.closed });
         }
-    }
+    };
 
     transitionEnd = async (event: React.TransitionEvent<HTMLDivElement>) => {
         if (event.propertyName === 'height') {
             let animating = this.state.animating;
             if (!animating) {
                 if (this.props.closed) {
-                    await setState({
-                        height: undefined,
-                        running: false,
-                        closed: true
-                    }, this);
+                    await setState(
+                        {
+                            height: undefined,
+                            running: false,
+                            closed: true,
+                        },
+                        this
+                    );
                 } else {
-                    await setState({
-                        height: undefined,
-                        running: false,
-                        closed: false
-                    }, this);
+                    await setState(
+                        {
+                            height: undefined,
+                            running: false,
+                            closed: false,
+                        },
+                        this
+                    );
                 }
             }
         }
-    }
+    };
 
     async componentWillReceiveProps(nextProps: ISectionProps) {
         if (this.props.closed !== nextProps.closed) {
-            let node = this.root.current;
-            let header = this.header.current;
-            let content = this.content.current;
+            // TODO: Fix this
+            let node = this.root.current as HTMLElement;
+            let header = this.header.current as HTMLElement;
+            let content = this.content.current as HTMLElement;
 
             this.runCount++;
             let runCount = this.runCount;
 
-            await setState({
-                running: true,
-                animating: true,
-            }, this);
+            await setState(
+                {
+                    running: true,
+                    animating: true,
+                },
+                this
+            );
             if (runCount !== this.runCount) {
                 return;
             }
 
             if (nextProps.closed) {
-                await setState({
-                    height: node.offsetHeight + 'px'
-                }, this);
+                await setState(
+                    {
+                        height: node.offsetHeight + 'px',
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
 
-                await setState({
-                    height: header.offsetHeight + 'px'
-                }, this);
+                await setState(
+                    {
+                        height: header.offsetHeight + 'px',
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
 
-                await setState({
-                    animating: false
-                }, this);
+                await setState(
+                    {
+                        animating: false,
+                    },
+                    this
+                );
             } else {
                 let border = node.offsetHeight - node.clientHeight;
-                await setState({
-                    height: border / 2 + header.offsetHeight + content.offsetHeight + 'px'
-                }, this);
+                await setState(
+                    {
+                        height:
+                            border / 2 +
+                            header.offsetHeight +
+                            content.offsetHeight +
+                            'px',
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
 
-                await setState({
-                    closed: false
-                }, this);
+                await setState(
+                    {
+                        closed: false,
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
 
-                await setState({
-                    height: border / 2 + header.offsetHeight + content.offsetHeight + 'px'
-                }, this);
+                await setState(
+                    {
+                        height:
+                            border / 2 +
+                            header.offsetHeight +
+                            content.offsetHeight +
+                            'px',
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
 
-                await setState({
-                    animating: false
-                }, this);
+                await setState(
+                    {
+                        animating: false,
+                    },
+                    this
+                );
             }
         }
     }
@@ -206,18 +251,22 @@ export default class Section extends React.Component<ISectionProps, ISectionStat
                     className={headerSpace ? 'section-title' : undefined}
                 >
                     {header}
-                    {closeable ?
-                        <Button className="section-toggle" onClick={this.close}>-</Button>
-                        : undefined}
+                    {closeable ? (
+                        <Button className="section-toggle" onClick={this.close}>
+                            -
+                        </Button>
+                    ) : undefined}
                 </header>
-                <div className={innerClassNames.join(' ')} ref={this.content}>{this.props.children}</div>
-                {footer ?
+                <div className={innerClassNames.join(' ')} ref={this.content}>
+                    {this.props.children}
+                </div>
+                {footer ? (
                     <footer
                         className={footerSpace ? 'section-title' : undefined}
                     >
                         {footer}
-                    </footer> :
-                    undefined}
+                    </footer>
+                ) : undefined}
             </section>
         );
     }

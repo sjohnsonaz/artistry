@@ -17,9 +17,7 @@ export interface INotification extends INotificationProps {
 }
 
 export interface INotificationViewState {
-    items: {
-        [index: number]: INotification;
-    };
+    items: INotification[];
 }
 
 export default class NotificationView extends React.Component<
@@ -27,7 +25,7 @@ export default class NotificationView extends React.Component<
     any
 > {
     state: INotificationViewState = {
-        items: {},
+        items: [],
     };
 
     static currentKey = 0;
@@ -95,8 +93,7 @@ export default class NotificationView extends React.Component<
                     <Button onClick={this.pushDanger}>Push Danger</Button>
                 </ActionBar>
                 <NotificationContainer>
-                    {Object.keys(this.state.items).map((key) => {
-                        let item = this.state.items[key];
+                    {this.state.items.map((item, key) => {
                         return (
                             <Notification
                                 key={key}

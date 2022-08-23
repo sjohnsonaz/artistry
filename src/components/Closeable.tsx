@@ -3,7 +3,7 @@ import * as React from 'react';
 import { setState } from '../util/PromiseUtil';
 
 export interface ICloseableProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     id?: string;
     className?: string;
     closed?: boolean;
@@ -16,13 +16,16 @@ export interface ICloseableState {
     height?: string;
 }
 
-export default class Closeable extends React.Component<ICloseableProps, ICloseableState> {
+export default class Closeable extends React.Component<
+    ICloseableProps,
+    ICloseableState
+> {
     root: React.RefObject<HTMLDivElement> = React.createRef();
     state: ICloseableState = {
         closed: this.props.closed,
         running: false,
         animating: false,
-        height: undefined
+        height: undefined,
     };
     runCount: number = 0;
 
@@ -31,86 +34,120 @@ export default class Closeable extends React.Component<ICloseableProps, ICloseab
             let animating = this.state.animating;
             if (!animating) {
                 if (this.state.closed) {
-                    await setState({
-                        running: false
-                    }, this);
+                    await setState(
+                        {
+                            running: false,
+                        },
+                        this
+                    );
                 } else {
-                    await setState({
-                        height: undefined,
-                        running: false
-                    }, this);
+                    await setState(
+                        {
+                            height: undefined,
+                            running: false,
+                        },
+                        this
+                    );
                 }
             }
         }
-    }
+    };
 
     async componentWillReceiveProps(nextProps: ICloseableProps) {
         if (this.props.closed !== nextProps.closed) {
-            let node = this.root.current;
+            // TODO: Fix this
+            let node = this.root.current as HTMLElement;
 
             this.runCount++;
             let runCount = this.runCount;
 
-            await setState({
-                running: true,
-                animating: true,
-            }, this);
+            await setState(
+                {
+                    running: true,
+                    animating: true,
+                },
+                this
+            );
             if (runCount !== this.runCount) {
                 return;
             }
 
             if (nextProps.closed) {
-                await setState({
-                    height: node.offsetHeight + 'px'
-                }, this);
+                await setState(
+                    {
+                        height: node.offsetHeight + 'px',
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
 
-                await setState({
-                    closed: true
-                }, this);
+                await setState(
+                    {
+                        closed: true,
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
 
                 let border = node.offsetHeight - node.clientHeight;
-                await setState({
-                    height: border / 2 + 'px'
-                }, this);
+                await setState(
+                    {
+                        height: border / 2 + 'px',
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
 
-                await setState({
-                    animating: false
-                }, this);
+                await setState(
+                    {
+                        animating: false,
+                    },
+                    this
+                );
             } else {
                 let border = node.offsetHeight - node.clientHeight;
-                await setState({
-                    height: border / 2 + 'px'
-                }, this);
+                await setState(
+                    {
+                        height: border / 2 + 'px',
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
 
-                await setState({
-                    closed: false
-                }, this);
+                await setState(
+                    {
+                        closed: false,
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
 
-                await setState({
-                    height: border / 2 + node.scrollHeight + 'px'
-                }, this);
+                await setState(
+                    {
+                        height: border / 2 + node.scrollHeight + 'px',
+                    },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
 
-                await setState({
-                    animating: false
-                }, this);
+                await setState(
+                    {
+                        animating: false,
+                    },
+                    this
+                );
             }
         }
     }
@@ -120,11 +157,7 @@ export default class Closeable extends React.Component<ICloseableProps, ICloseab
     }
 
     render() {
-        let {
-            id,
-            className,
-            closed
-        } = this.props;
+        let { id, className, closed } = this.props;
         let classNames = className ? [className] : [];
         classNames.push('closeable');
 
@@ -140,6 +173,6 @@ export default class Closeable extends React.Component<ICloseableProps, ICloseab
             >
                 {this.props.children}
             </div>
-        )
+        );
     }
 }

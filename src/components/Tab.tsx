@@ -20,11 +20,11 @@ export interface ITabProps {
 }
 
 export interface ITabState {
-    activeIndex: number;
+    activeIndex?: number;
 }
 
 export default class Tab extends React.Component<ITabProps, ITabState> {
-    constructor(props?: ITabProps) {
+    constructor(props: ITabProps) {
         super(props);
         this.state = {
             activeIndex: props.activeIndex,

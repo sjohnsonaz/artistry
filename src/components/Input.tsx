@@ -9,14 +9,7 @@ export interface IInputProps extends React.HTMLProps<HTMLInputElement> {
 
 export default class Input extends React.Component<IInputProps, any> {
     render() {
-        let {
-            id,
-            className,
-            fill,
-            mask,
-            displaySize,
-            ...props
-        } = this.props;
+        let { id, className, fill, mask, displaySize, ...props } = this.props;
 
         let classNames = this.props.className ? [this.props.className] : [];
         classNames.push('input');
@@ -25,13 +18,13 @@ export default class Input extends React.Component<IInputProps, any> {
             classNames.push('fill-width');
         }
 
-        let _displaySize: string;
+        let _displaySize: string | undefined;
         switch (displaySize) {
             case 'small':
-                _displaySize='input-small';
+                _displaySize = 'input-small';
                 break;
             case 'large':
-                _displaySize='input-large';
+                _displaySize = 'input-large';
                 break;
         }
 
@@ -42,7 +35,7 @@ export default class Input extends React.Component<IInputProps, any> {
                     className={classNames.join(' ')}
                     data-size={_displaySize}
                     mask={mask}
-                    {...props as any}
+                    {...(props as any)}
                 />
             );
         } else {

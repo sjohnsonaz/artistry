@@ -22,10 +22,10 @@ export default class Form extends React.Component<IFormProps, any> {
     onKeyDown(event: React.KeyboardEvent) {
         switch (event.keyCode) {
             case 13:
-                this.props.onEnter(event);
+                this.props.onEnter?.(event);
                 break;
             case 27:
-                this.props.onEscape(event);
+                this.props.onEscape?.(event);
                 break;
         }
     }

@@ -5,7 +5,7 @@ import { setState, waitAnimation } from '../util/PromiseUtil';
 import { ScrollableType } from './Scrollable';
 
 export interface ICarouselProps {
-    children?: React.ReactNode
+    children?: React.ReactNode;
     className?: string;
     id?: string;
     activeIndex: number;
@@ -19,20 +19,23 @@ export interface ICarouselProps {
 
 export interface ICarouselState {
     height?: string;
-    activeIndex?: number;
-    previousActiveIndex?: number;
+    activeIndex: number;
+    previousActiveIndex: number;
     animating?: boolean;
     selected?: boolean;
 }
 
-export default class Carousel extends React.Component<ICarouselProps, ICarouselState> {
+export default class Carousel extends React.Component<
+    ICarouselProps,
+    ICarouselState
+> {
     container: React.RefObject<HTMLDivElement> = React.createRef();
     state: ICarouselState = {
         height: undefined,
         activeIndex: this.props.activeIndex,
         previousActiveIndex: this.props.activeIndex,
         animating: false,
-        selected: true
+        selected: true,
     };
     running: boolean = false;
     runCount: number = 0;
@@ -47,14 +50,14 @@ export default class Carousel extends React.Component<ICarouselProps, ICarouselS
                     this.setState({
                         animating: false,
                         height: undefined,
-                        previousActiveIndex: this.state.activeIndex
+                        previousActiveIndex: this.state.activeIndex,
                     });
                 }
             }
         }
-    }
+    };
 
-    async componentWillReceiveProps(nextProps?: ICarouselProps) {
+    async componentWillReceiveProps(nextProps: ICarouselProps) {
         let { activeIndex } = nextProps;
         let { activeIndex: previousActiveIndex } = this.props;
 
@@ -79,7 +82,6 @@ export default class Carousel extends React.Component<ICarouselProps, ICarouselS
 
         // Only run if we are changing indexes
         if (activeIndex !== previousActiveIndex) {
-
             // Store runCount in closure
             this.runCount++;
             let runCount = this.runCount;
@@ -87,11 +89,14 @@ export default class Carousel extends React.Component<ICarouselProps, ICarouselS
             // Start run
             this.running = true;
 
-            let node: HTMLDivElement;
+            let node: HTMLDivElement | null | undefined = undefined;
             if (!this.props.staticHeight) {
                 // Store current height
                 node = this.container.current;
-                await setState({ height: node.offsetHeight + 'px' }, this);
+                await setState(
+                    { height: (node?.offsetHeight ?? 0) + 'px' },
+                    this
+                );
                 if (runCount !== this.runCount) {
                     return;
                 }
@@ -104,11 +109,14 @@ export default class Carousel extends React.Component<ICarouselProps, ICarouselS
             }
 
             // Update indexes
-            await setState({
-                activeIndex: activeIndex,
-                previousActiveIndex: previousActiveIndex,
-                selected: false
-            }, this);
+            await setState(
+                {
+                    activeIndex: activeIndex,
+                    previousActiveIndex: previousActiveIndex,
+                    selected: false,
+                },
+                this
+            );
 
             // Wait for animationFrame
             await waitAnimation(1);
@@ -122,17 +130,29 @@ export default class Carousel extends React.Component<ICarouselProps, ICarouselS
                 return;
             }
 
-            if (!this.props.staticHeight) {
+            if (!this.props.staticHeight && node) {
                 // Update height
                 let computedStyle = window.getComputedStyle(node, null);
                 let paddingHeight =
-                    parseFloat(computedStyle.getPropertyValue('border-top-width')) +
-                    parseFloat(computedStyle.getPropertyValue('border-bottom-width')) +
+                    parseFloat(
+                        computedStyle.getPropertyValue('border-top-width')
+                    ) +
+                    parseFloat(
+                        computedStyle.getPropertyValue('border-bottom-width')
+                    ) +
                     parseFloat(computedStyle.getPropertyValue('padding-top')) +
-                    parseFloat(computedStyle.getPropertyValue('padding-bottom'));
+                    parseFloat(
+                        computedStyle.getPropertyValue('padding-bottom')
+                    );
                 let activeChild = node.querySelector('.carousel-selected');
                 if (activeChild) {
-                    await setState({ height: paddingHeight + activeChild.clientHeight + 'px' }, this);
+                    await setState(
+                        {
+                            height:
+                                paddingHeight + activeChild.clientHeight + 'px',
+                        },
+                        this
+                    );
                 }
                 if (runCount !== this.runCount) {
                     return;
@@ -142,11 +162,14 @@ export default class Carousel extends React.Component<ICarouselProps, ICarouselS
             // Stop run
             if (this.running) {
                 if (this.props.staticHeight) {
-                    await setState({
-                        animating: false,
-                        height: undefined,
-                        previousActiveIndex: this.state.activeIndex
-                    }, this);
+                    await setState(
+                        {
+                            animating: false,
+                            height: undefined,
+                            previousActiveIndex: this.state.activeIndex,
+                        },
+                        this
+                    );
                 }
                 this.running = false;
             }
@@ -202,39 +225,92 @@ export default class Carousel extends React.Component<ICarouselProps, ICarouselS
         if (this.props.children instanceof Array) {
             if (this.state.activeIndex !== this.state.previousActiveIndex) {
                 if (this.state.activeIndex < this.state.previousActiveIndex) {
-                    children = <>
-                        <div
-                            key={this.state.activeIndex}
-                            className={this.state.selected ? "carousel-selected" : ""}
-                        >{this.props.children[this.state.activeIndex]}</div>
-                        <div
-                            key={this.state.previousActiveIndex}
-                            className={this.state.selected ? "" : "carousel-selected"}
-                        >{this.props.children[this.state.previousActiveIndex]}</div>
-                    </>
+                    children = (
+                        <>
+                            <div
+                                key={this.state.activeIndex}
+                                className={
+                                    this.state.selected
+                                        ? 'carousel-selected'
+                                        : ''
+                                }
+                            >
+                                {this.props.children[this.state.activeIndex]}
+                            </div>
+                            <div
+                                key={this.state.previousActiveIndex}
+                                className={
+                                    this.state.selected
+                                        ? ''
+                                        : 'carousel-selected'
+                                }
+                            >
+                                {
+                                    this.props.children[
+                                        this.state.previousActiveIndex
+                                    ]
+                                }
+                            </div>
+                        </>
+                    );
                 } else {
-                    children = <>
-                        <div
-                            key={this.state.previousActiveIndex}
-                            className={this.state.selected ? "" : "carousel-selected"}
-                        >{this.props.children[this.state.previousActiveIndex]}</div>
-                        <div
-                            key={this.state.activeIndex}
-                            className={this.state.selected ? "carousel-selected" : ""}
-                        >{this.props.children[this.state.activeIndex]}</div>
-                    </>
+                    children = (
+                        <>
+                            <div
+                                key={this.state.previousActiveIndex}
+                                className={
+                                    this.state.selected
+                                        ? ''
+                                        : 'carousel-selected'
+                                }
+                            >
+                                {
+                                    this.props.children[
+                                        this.state.previousActiveIndex
+                                    ]
+                                }
+                            </div>
+                            <div
+                                key={this.state.activeIndex}
+                                className={
+                                    this.state.selected
+                                        ? 'carousel-selected'
+                                        : ''
+                                }
+                            >
+                                {this.props.children[this.state.activeIndex]}
+                            </div>
+                        </>
+                    );
                 }
             } else {
-                children = <>
-                    <div key={this.state.activeIndex} className={this.state.selected ? "carousel-selected" : ""}>{this.props.children[this.state.activeIndex]}</div>
-                </>
+                children = (
+                    <>
+                        <div
+                            key={this.state.activeIndex}
+                            className={
+                                this.state.selected ? 'carousel-selected' : ''
+                            }
+                        >
+                            {this.props.children[this.state.activeIndex]}
+                        </div>
+                    </>
+                );
             }
         } else {
-            children = <>
-                <div key={this.state.activeIndex} className={this.state.selected ? "carousel-selected" : ""}>{this.props.children}</div>
-            </>
+            children = (
+                <>
+                    <div
+                        key={this.state.activeIndex}
+                        className={
+                            this.state.selected ? 'carousel-selected' : ''
+                        }
+                    >
+                        {this.props.children}
+                    </div>
+                </>
+            );
         }
-
 
         return (
             <div

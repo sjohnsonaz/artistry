@@ -17,7 +17,7 @@ import TimeInput from '../../../../components/TimeInput';
 export interface IFormViewProps {}
 
 export interface IFormViewState {
-    date?: Date;
+    date: Date;
     amount: number;
 }
 

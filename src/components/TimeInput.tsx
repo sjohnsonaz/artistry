@@ -15,7 +15,7 @@ export default class TimeInput extends React.Component<
     ITimeInputState
 > {
     render() {
-        let { seconds, value, ...props } = this.props;
+        let { seconds, value = '', ...props } = this.props;
 
         let date = new Date(value);
 
