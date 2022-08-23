@@ -57,7 +57,7 @@ export default class Carousel extends React.Component<
         }
     };
 
-    async componentWillReceiveProps(nextProps: ICarouselProps) {
+    async UNSAFE_componentWillReceiveProps(nextProps: ICarouselProps) {
         let { activeIndex } = nextProps;
         let { activeIndex: previousActiveIndex } = this.props;
 

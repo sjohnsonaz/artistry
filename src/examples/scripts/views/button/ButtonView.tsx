@@ -267,7 +267,7 @@ export default class ButtonView extends React.Component<
                 <Section header="Button Group" space headerSpace>
                     <h3>Button Group</h3>
                     <div className="align-center">
-                        <p>
+                        <div>
                             <ButtonGroup>
                                 <Button>View</Button>
                                 <Button
@@ -280,8 +280,8 @@ export default class ButtonView extends React.Component<
                                 </Button>
                                 <Button theme="danger">Delete</Button>
                             </ButtonGroup>
-                        </p>
-                        <p>
+                        </div>
+                        <div>
                             <ButtonGroup>
                                 <Button display="textonly">View</Button>
                                 <Button display="textonly" theme="primary">
@@ -291,8 +291,8 @@ export default class ButtonView extends React.Component<
                                     Delete
                                 </Button>
                             </ButtonGroup>
-                        </p>
-                        <p>
+                        </div>
+                        <div>
                             <ButtonGroup>
                                 <Button display="outline">View</Button>
                                 <Button display="outline" theme="primary">
@@ -302,7 +302,7 @@ export default class ButtonView extends React.Component<
                                     Delete
                                 </Button>
                             </ButtonGroup>
-                        </p>
+                        </div>
                     </div>
 
                     <h3>Button Bar</h3>

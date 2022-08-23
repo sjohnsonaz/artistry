@@ -38,7 +38,7 @@ export default class Fillable extends React.Component<
         }
     }
 
-    async componentWillReceiveProps(nextProps: IFillableState) {
+    async UNSAFE_componentWillReceiveProps(nextProps: IFillableState) {
         if (this.props.filled !== nextProps.filled) {
             // TODO: Fix this
             let node = this.root.current as HTMLElement;

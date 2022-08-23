@@ -63,7 +63,7 @@ export default class MaskedInput<T> extends React.Component<
         }
     }
 
-    componentWillReceiveProps(nextProps: IMaskedInputProps<T>): void {
+    UNSAFE_componentWillReceiveProps(nextProps: IMaskedInputProps<T>): void {
         let { value } = nextProps;
         if (this.props.value !== value) {
             try {

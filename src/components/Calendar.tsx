@@ -114,7 +114,7 @@ export default class Calendar extends React.Component<ICalendarProps, any> {
         return weeks;
     }
 
-    componentWillReceiveProps(nextProps: ICalendarProps): void {
+    UNSAFE_componentWillReceiveProps(nextProps: ICalendarProps): void {
         if (nextProps.date) {
             let year = nextProps.date.getFullYear();
             let month = nextProps.date.getMonth();

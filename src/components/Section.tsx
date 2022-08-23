@@ -83,7 +83,7 @@ export default class Section extends React.Component<
         }
     };
 
-    async componentWillReceiveProps(nextProps: ISectionProps) {
+    async UNSAFE_componentWillReceiveProps(nextProps: ISectionProps) {
         if (this.props.closed !== nextProps.closed) {
             // TODO: Fix this
             let node = this.root.current as HTMLElement;

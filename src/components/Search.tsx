@@ -206,7 +206,7 @@ export default class Search extends React.Component<
         }
     };
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         if (!this.closeHandle) {
             this.closeHandle = this.onClose;
         }
@@ -215,7 +215,7 @@ export default class Search extends React.Component<
         }
     }
 
-    componentWillReceiveProps(nextProps: ISearchProps) {
+    UNSAFE_componentWillReceiveProps(nextProps: ISearchProps) {
         let { value = '', options = [], showOptions } = nextProps;
         options = this.cleanOptions(options, value);
         this.setState({

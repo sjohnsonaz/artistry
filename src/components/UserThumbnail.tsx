@@ -34,7 +34,7 @@ export default class UserThumbnail extends React.Component<
         }
     };
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         if (this.props.popover) {
             if (!this.closeHandle) {
                 this.closeHandle = this.close;
@@ -45,7 +45,7 @@ export default class UserThumbnail extends React.Component<
         }
     }
 
-    componentWillReceiveProps(nextProps: IUserThumbnailProps) {
+    UNSAFE_componentWillReceiveProps(nextProps: IUserThumbnailProps) {
         if (nextProps.popover) {
             if (!this.closeHandle) {
                 this.closeHandle = this.close;

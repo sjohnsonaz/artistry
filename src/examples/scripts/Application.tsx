@@ -1,9 +1,14 @@
 declare var window: any;
 
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 
-import { Container, BodyScroll, DepthStack, Portal } from '../../modules/ArtistryReact';
+import {
+    Container,
+    BodyScroll,
+    DepthStack,
+    Portal,
+} from '../../modules/ArtistryReact';
 
 import ButtonView from './views/button/ButtonView';
 import RangeView from './views/range/RangeView';
@@ -29,12 +34,17 @@ import NotificationView from './views/notification/NotificationView';
 
 export default class Application {
     static run() {
+        const container = document.getElementById('layer-root');
+        if (!container) {
+            throw new Error('no container element');
+        }
         BodyScroll.init();
         DepthStack.init();
         Portal.addElement('layer-fixed', 'layer-fixed');
         Portal.addElement('layer-overlay', 'layer-overlay');
         Portal.addElement('layer-flyout', 'layer-flyout');
-        ReactDom.render(
+        const root = createRoot(container);
+        root.render(
             <Container menuBarTop screenSize="all">
                 <MenuBarView />
                 <h2>Components</h2>
@@ -58,8 +68,7 @@ export default class Application {
                 <GridView />
                 <CardView />
                 <NotificationView />
-            </Container>,
-            document.getElementById('layer-root'),
+            </Container>
         );
     }
 }

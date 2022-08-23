@@ -175,7 +175,7 @@ export default class AmountInput extends React.Component<
         } catch (e) {}
     };
 
-    componentWillReceiveProps(props: IAmountInputProps) {
+    UNSAFE_componentWillReceiveProps(props: IAmountInputProps) {
         let {
             value = 0,
             defaultValue = 0,
